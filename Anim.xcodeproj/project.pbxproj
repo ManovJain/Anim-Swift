@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43E0C69B2971E0F700022311 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43E0C69A2971E0F700022311 /* GoogleService-Info.plist */; };
 		8815B0A129402D9B007FBB17 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8815B0A029402D9B007FBB17 /* LoginPage.swift */; };
 		8815B0A3294034FB007FBB17 /* SignUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8815B0A2294034FB007FBB17 /* SignUpPage.swift */; };
-		8815B0A829422CE1007FBB17 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8815B0A729422CE1007FBB17 /* Helper.swift */; };
 		8815B0AC29422FD3007FBB17 /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8815B0AB29422FD3007FBB17 /* FoodItem.swift */; };
 		8815B0AE2942716B007FBB17 /* OpenFoodResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8815B0AD2942716B007FBB17 /* OpenFoodResult.swift */; };
 		882D1DCA29393F1A002EFDC8 /* AnimApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882D1DC929393F1A002EFDC8 /* AnimApp.swift */; };
@@ -30,7 +30,6 @@
 		882D1DFF29394C95002EFDC8 /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882D1DFE29394C95002EFDC8 /* ProfilePage.swift */; };
 		882D1E0129394CC9002EFDC8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882D1E0029394CC9002EFDC8 /* User.swift */; };
 		882D1E0329394CE4002EFDC8 /* SearchPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882D1E0229394CE4002EFDC8 /* SearchPage.swift */; };
-		882D1E13293A372C002EFDC8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 882D1E12293A372C002EFDC8 /* GoogleService-Info.plist */; };
 		882D1E16293A379E002EFDC8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 882D1E15293A379E002EFDC8 /* FirebaseAnalytics */; };
 		882D1E18293A379E002EFDC8 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 882D1E17293A379E002EFDC8 /* FirebaseAnalyticsSwift */; };
 		88607D52294C5BEB00602FE3 /* ProfileMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88607D51294C5BEB00602FE3 /* ProfileMenu.swift */; };
@@ -60,9 +59,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		43E0C69A2971E0F700022311 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8815B0A029402D9B007FBB17 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		8815B0A2294034FB007FBB17 /* SignUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPage.swift; sourceTree = "<group>"; };
-		8815B0A729422CE1007FBB17 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Helper.swift; path = ../../../../../../Downloads/idine/Helper.swift; sourceTree = "<group>"; };
 		8815B0AB29422FD3007FBB17 /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
 		8815B0AD2942716B007FBB17 /* OpenFoodResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenFoodResult.swift; sourceTree = "<group>"; };
 		882D1DC629393F1A002EFDC8 /* Anim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Anim.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,7 +81,6 @@
 		882D1DFE29394C95002EFDC8 /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
 		882D1E0029394CC9002EFDC8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		882D1E0229394CE4002EFDC8 /* SearchPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPage.swift; sourceTree = "<group>"; };
-		882D1E12293A372C002EFDC8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		88607D51294C5BEB00602FE3 /* ProfileMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenu.swift; sourceTree = "<group>"; };
 		88607D53294CF79800602FE3 /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		88607D55294CFA6900602FE3 /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
@@ -153,8 +151,8 @@
 				882D1DC929393F1A002EFDC8 /* AnimApp.swift */,
 				882D1DCB29393F1A002EFDC8 /* ContentView.swift */,
 				882D1DCD29393F1A002EFDC8 /* Assets.xcassets */,
-				882D1E12293A372C002EFDC8 /* GoogleService-Info.plist */,
 				882D1DCF29393F1A002EFDC8 /* Preview Content */,
+				43E0C69A2971E0F700022311 /* GoogleService-Info.plist */,
 			);
 			path = Anim;
 			sourceTree = "<group>";
@@ -204,7 +202,6 @@
 		882D1DFD29394C04002EFDC8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				8815B0A729422CE1007FBB17 /* Helper.swift */,
 				882D1E11293952C4002EFDC8 /* Extensions */,
 				88BE153C294BBD6E001AE321 /* NavButton.swift */,
 			);
@@ -456,7 +453,7 @@
 			files = (
 				882D1DD129393F1A002EFDC8 /* Preview Assets.xcassets in Resources */,
 				882D1DCE29393F1A002EFDC8 /* Assets.xcassets in Resources */,
-				882D1E13293A372C002EFDC8 /* GoogleService-Info.plist in Resources */,
+				43E0C69B2971E0F700022311 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,7 +487,6 @@
 				88BE153D294BBD6E001AE321 /* NavButton.swift in Sources */,
 				88607D54294CF79800602FE3 /* Stats.swift in Sources */,
 				882D1E0329394CE4002EFDC8 /* SearchPage.swift in Sources */,
-				8815B0A829422CE1007FBB17 /* Helper.swift in Sources */,
 				88BE152A294BB42B001AE321 /* Allergens.swift in Sources */,
 				882D1DF629394AD6002EFDC8 /* DataScannerView.swift in Sources */,
 				882D1DF829394B02002EFDC8 /* ViewExtensions.swift in Sources */,

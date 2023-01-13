@@ -59,7 +59,7 @@ struct PillTabBar: View {
                         .border(width: 2, edges: [.bottom], color: .green)
                 }
                 else {
-                    Image(systemName: "magnifyingglass")
+                    Image(systemName: "magnifyingglass.circle")
                         .font(.system(size: 20))
                         .foregroundColor(.primary)
                 }
