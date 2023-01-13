@@ -66,23 +66,23 @@ struct PillTabBar: View {
             }
             
             Spacer()
-//            Button(action: {
-//                navModel.currentPage = .profile
-//            }) {
-//                if navModel.currentPage == .profile {
-//                    Image(systemName: "person")
-//                        .font(.system(size: 20))
-//                        .frame(height: 35)
-//                        .foregroundColor(.green)
-//                        .border(width: 2, edges: [.bottom], color: .green)
-//                }
-//                else {
-//                    Image(systemName: "person")
-//                        .font(.system(size: 20))
-//                        .foregroundColor(.primary)
-//                }
-//            }
-//            Spacer()
+            Button(action: {
+                navModel.currentPage = .profile
+            }) {
+                if navModel.currentPage == .profile {
+                    Image(systemName: "person")
+                        .font(.system(size: 20))
+                        .frame(height: 35)
+                        .foregroundColor(.green)
+                        .border(width: 2, edges: [.bottom], color: .green)
+                }
+                else {
+                    Image(systemName: "person")
+                        .font(.system(size: 20))
+                        .foregroundColor(.primary)
+                }
+            }
+            Spacer()
         }
         .frame(width: 200,height: 40)
         .background(Color(.lightGray).opacity(0.75))
