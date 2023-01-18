@@ -11,30 +11,28 @@ struct ProfilePage: View {
     
     @EnvironmentObject var networkRequests: NetworkRequests
     
-//    @State var profileMenu: ProfileMenu
+    @EnvironmentObject var profileMenuViewModel: ProfileMenuViewModel
     
-    @State private var icon = "user"
+    @State var profileMenu: ProfileMenu
+    
     @State private var anim = "bird"
     
     
     var body: some View {
         VStack{
-            Text(icon)
+            Text(profileMenuViewModel.icon.rawValue)
                 .frame(alignment: .center)
                 .font(.system(size: 30))
                 .fontWeight(.bold)
-//            Spacer()
-//                .frame(height: 20)
             HStack {
-    //                    .position(x: 10, y: 150)
                 //DYNAMIC CONTENT
-                if icon == "user" {
+                if profileMenuViewModel.icon.rawValue == "user" {
                     User()
                 }
-                else if icon == "anim" {
+                else if profileMenuViewModel.icon.rawValue == "animManager" {
                     AnimManager()
                 }
-                else if icon == "star" {
+                else if profileMenuViewModel.icon.rawValue == "favorites" {
                     VStack{
                         ButtonScroll()
                         Favorites()
@@ -43,78 +41,12 @@ struct ProfilePage: View {
                 else {
                     SignUpPage()
                 }
-                VStack{
-                    Spacer()
-                    Button(action: {
-                        icon = "user"
-                    }) {
-                        if icon == "user" {
-                            Image(systemName: "person.fill")
-                                .font(.system(size: 20))
-                                .foregroundColor(.indigo)
-                        }
-                        else {
-                            Image(systemName: "person")
-                                .font(.system(size: 20))
-                                .foregroundColor(.primary)
-                        }
-                    }
-                    Spacer()
-                    
-                    Button(action: {
-                        icon = "anim"
-                    }) {
-                        if icon == "anim" {
-                            Image(systemName: anim + ".fill")
-                                .font(.system(size: 20))
-                                .foregroundColor(.indigo)
-                        }
-                        else {
-                            Image(systemName: anim)
-                                .font(.system(size: 20))
-                                .foregroundColor(.primary)
-                        }
-                    }
-                    Spacer()
-                    
-                    Button(action: {
-                        icon = "star"
-                    }) {
-                        if icon == "star" {
-                            Image(systemName: "star.fill")
-                                .font(.system(size: 20))
-                                .foregroundColor(.indigo)
-                                
-                        }
-                        else {
-                            Image(systemName: "star")
-                                .font(.system(size: 20))
-                                .foregroundColor(.primary)
-                        }
-                    }
-                    Spacer()
-                    
-                    Button(action: {
-                        icon = "settings"
-                    }) {
-                        if icon == "settings" {
-                            Image(systemName: "gear")
-                                .font(.system(size: 20))
-                                .foregroundColor(.indigo)
-                                
-                        }
-                        else {
-                            Image(systemName: "gear")
-                                .font(.system(size: 20))
-                                .foregroundColor(.primary)
-                        }
-                    }
-                }
-                .frame(width: 40,height: 240)
-                .background(Color(.lightGray).opacity(0.75))
-                .clipShape(Capsule())
-                .padding(.vertical)
-                .position(x: UIScreen.screenWidth/2.5, y:UIScreen.screenHeight/3.5)
+                profileMenu
+//                .frame(width: 40,height: 240)
+//                .background(Color(.lightGray).opacity(0.75))
+//                .clipShape(Capsule())
+//                .padding(.vertical)
+//                .position(x: UIScreen.screenWidth/2.5, y:UIScreen.screenHeight/3.5)
             }
         }
         .padding()
@@ -129,6 +61,6 @@ struct ProfilePage: View {
 
 struct ProfilePage_Previews: PreviewProvider {
     static var previews: some View {
-        ProfilePage()
+        ProfilePage(profileMenu: ProfileMenu())
     }
 }

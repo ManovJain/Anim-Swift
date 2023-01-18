@@ -31,6 +31,8 @@ struct AnimApp: App {
     
     @StateObject var navModel = NavModel()
     
+    @StateObject var profileMenuViewModel = ProfileMenuViewModel()
+    
 //    @StateObject var userModel = UserModel()
     
     @StateObject var scannedFoodViewModel = ScannedFoodViewModel()
@@ -43,6 +45,7 @@ struct AnimApp: App {
                 .environmentObject(navModel)
                 .environmentObject(networkRequests)
                 .environmentObject(cameraViewModel)
+                .environmentObject(profileMenuViewModel)
 //                .environmentObject(userModel)
                 .environmentObject(scannedFoodViewModel)
                 .task {

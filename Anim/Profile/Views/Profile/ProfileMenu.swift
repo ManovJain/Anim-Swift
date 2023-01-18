@@ -3,21 +3,21 @@ import SwiftUI
 struct ProfileMenu: View {
     
     @EnvironmentObject var navModel: NavModel
+    @EnvironmentObject var profileMenuViewModel: ProfileMenuViewModel
     
     @State private var icon = "profile"
+    @State private var anim = "bird"
     
     var body: some View {
         VStack {
             Spacer()
             Button(action: {
-                icon = "profile"
+                profileMenuViewModel.icon = .user
             }) {
-                if icon == "profile" {
+                if profileMenuViewModel.icon.rawValue == "user" {
                     Image(systemName: "person.fill")
                         .font(.system(size: 20))
-                        
                         .foregroundColor(.indigo)
-                        
                 }
                 else {
                     Image(systemName: "person")
@@ -26,29 +26,29 @@ struct ProfileMenu: View {
                 }
             }
             Spacer()
+            
             Button(action: {
-                icon = "anim"
+                profileMenuViewModel.icon = .animManager
             }) {
-                if icon == "anim" {
-                    Image(systemName: "bird.fill")
+                if profileMenuViewModel.icon.rawValue == "anim" {
+                    Image(systemName: anim + ".fill")
                         .font(.system(size: 20))
                         .foregroundColor(.indigo)
-                        
                 }
                 else {
-                    Image(systemName: "bird")
+                    Image(systemName: anim)
                         .font(.system(size: 20))
                         .foregroundColor(.primary)
                 }
             }
             Spacer()
+            
             Button(action: {
-                icon = "badge"
+                profileMenuViewModel.icon = .favorites
             }) {
-                if icon == "badge" {
+                if profileMenuViewModel.icon.rawValue == "star" {
                     Image(systemName: "star.fill")
                         .font(.system(size: 20))
-                        
                         .foregroundColor(.indigo)
                         
                 }
@@ -59,30 +59,13 @@ struct ProfileMenu: View {
                 }
             }
             Spacer()
+            
             Button(action: {
-                icon = "searchFilter"
+                profileMenuViewModel.icon = .settings
             }) {
-                if icon == "searchFilter" {
-                    Image(systemName: "leaf.fill")
-                        .font(.system(size: 20))
-                        
-                        .foregroundColor(.indigo)
-                        
-                }
-                else {
-                    Image(systemName: "leaf")
-                        .font(.system(size: 20))
-                        .foregroundColor(.primary)
-                }
-            }
-            Spacer()
-            Button(action: {
-                icon = "settings"
-            }) {
-                if icon == "settings" {
+                if profileMenuViewModel.icon.rawValue == "settings" {
                     Image(systemName: "gear")
                         .font(.system(size: 20))
-                        
                         .foregroundColor(.indigo)
                         
                 }
@@ -96,6 +79,7 @@ struct ProfileMenu: View {
         .frame(width: 40,height: 200)
         .background(Color(.lightGray).opacity(0.75))
         .clipShape(Capsule())
+//        .position(x: UIScreen.screenWidth/2.5, y:UIScreen.screenHeight/3.5)
     }
     
     func getIcon() -> String{

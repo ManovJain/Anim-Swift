@@ -8,15 +8,14 @@
 import Foundation
 
 enum Icon: String {
-    case fat = "fat"
-    case salt = "salt"
-    case saturatedFat = "saturated fat"
-    case sugar = "sugar"
+    case user = "user"
+    case animManager = "animManager"
+    case favorites = "favorites"
+    case settings = "settings"
 }
 
-final class ProfilePageViewModel: ObservableObject {
-    @Published var icon: Icon = .fat
-
+final class ProfileMenuViewModel: ObservableObject {
+    @Published var icon: Icon = .user
 }
 
 
