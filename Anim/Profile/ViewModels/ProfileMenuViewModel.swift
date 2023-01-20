@@ -18,6 +18,3 @@ final class ProfileMenuViewModel: ObservableObject {
     @Published var icon: Icon = .user
 }
 
-
-//Make this a State Var in ContentView
-//Use this as an environment variable in profilePage

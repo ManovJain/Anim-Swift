@@ -73,6 +73,7 @@ struct ProfileMenu: View {
                         .foregroundColor(.primary)
                 }
             }
+            Spacer()
         }
         .frame(width: 40,height: 200)
         .background(Color(.lightGray).opacity(0.75))
