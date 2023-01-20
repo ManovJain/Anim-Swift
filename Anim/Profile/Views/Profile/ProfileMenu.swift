@@ -6,7 +6,7 @@ struct ProfileMenu: View {
     @EnvironmentObject var profileMenuViewModel: ProfileMenuViewModel
     
     @State private var icon = "profile"
-    @State private var anim = "bird"
+    @State private var anim = "bird" //dynamic
     
     var body: some View {
         VStack {
