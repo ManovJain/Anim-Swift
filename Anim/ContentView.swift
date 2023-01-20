@@ -22,7 +22,7 @@ struct ContentView: View {
             case .explore:
                 SearchPage()
             case .profile:
-                ProfilePage()
+                ProfilePage(profileMenu: ProfileMenu())
             }
         }
         .overlay(PillTabBar(), alignment: .bottom)
