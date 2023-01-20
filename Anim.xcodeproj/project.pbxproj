@@ -40,7 +40,7 @@
 		88BE1519294BB2E1001AE321 /* Nutriments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1518294BB2E1001AE321 /* Nutriments.swift */; };
 		88BE151B294BB2FC001AE321 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE151A294BB2FC001AE321 /* Product.swift */; };
 		88BE151D294BB321001AE321 /* ScannedProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE151C294BB321001AE321 /* ScannedProduct.swift */; };
-		88BE151F294BB351001AE321 /* ScannedFoodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE151E294BB351001AE321 /* ScannedFoodViewModel.swift */; };
+		88BE151F294BB351001AE321 /* FoodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE151E294BB351001AE321 /* FoodViewModel.swift */; };
 		88BE1524294BB3C2001AE321 /* IngredientsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1523294BB3C2001AE321 /* IngredientsList.swift */; };
 		88BE1526294BB3E1001AE321 /* NutrientsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1525294BB3E1001AE321 /* NutrientsPage.swift */; };
 		88BE1528294BB41A001AE321 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1527294BB41A001AE321 /* AlertView.swift */; };
@@ -90,7 +90,7 @@
 		88BE1518294BB2E1001AE321 /* Nutriments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutriments.swift; sourceTree = "<group>"; };
 		88BE151A294BB2FC001AE321 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		88BE151C294BB321001AE321 /* ScannedProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannedProduct.swift; sourceTree = "<group>"; };
-		88BE151E294BB351001AE321 /* ScannedFoodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannedFoodViewModel.swift; sourceTree = "<group>"; };
+		88BE151E294BB351001AE321 /* FoodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewModel.swift; sourceTree = "<group>"; };
 		88BE1523294BB3C2001AE321 /* IngredientsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsList.swift; sourceTree = "<group>"; };
 		88BE1525294BB3E1001AE321 /* NutrientsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientsPage.swift; sourceTree = "<group>"; };
 		88BE1527294BB41A001AE321 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
@@ -314,7 +314,7 @@
 		88BE1512294BB28A001AE321 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				88BE151E294BB351001AE321 /* ScannedFoodViewModel.swift */,
+				88BE151E294BB351001AE321 /* FoodViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -487,7 +487,7 @@
 				8815B0AC29422FD3007FBB17 /* FoodItem.swift in Sources */,
 				88BE153A294BB5EC001AE321 /* FoodButtonRow.swift in Sources */,
 				8815B0A3294034FB007FBB17 /* SignUpPage.swift in Sources */,
-				88BE151F294BB351001AE321 /* ScannedFoodViewModel.swift in Sources */,
+				88BE151F294BB351001AE321 /* FoodViewModel.swift in Sources */,
 				88BE152C294BB44E001AE321 /* GradeOverlay.swift in Sources */,
 				88BE1517294BB2CD001AE321 /* NutrientLevels.swift in Sources */,
 				882D1DEE29394978002EFDC8 /* CameraViewModel.swift in Sources */,
@@ -646,7 +646,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Anim/Preview Content\"";
-				DEVELOPMENT_TEAM = 9HDBMQNLD8;
+				DEVELOPMENT_TEAM = NNT6SKZK9Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Anim;
@@ -663,7 +663,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.AnimLLC.Anim;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brian.Anim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -682,7 +682,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Anim/Preview Content\"";
-				DEVELOPMENT_TEAM = 9HDBMQNLD8;
+				DEVELOPMENT_TEAM = NNT6SKZK9Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Anim;
@@ -699,7 +699,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.AnimLLC.Anim;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brian.Anim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

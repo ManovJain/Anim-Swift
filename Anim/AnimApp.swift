@@ -35,7 +35,7 @@ struct AnimApp: App {
     
 //    @StateObject var userModel = UserModel()
     
-    @StateObject var scannedFoodViewModel = ScannedFoodViewModel()
+    @StateObject var foodViewModel = FoodViewModel()
     
     var networkRequests = NetworkRequests()
     
@@ -47,7 +47,7 @@ struct AnimApp: App {
                 .environmentObject(cameraViewModel)
                 .environmentObject(profileMenuViewModel)
 //                .environmentObject(userModel)
-                .environmentObject(scannedFoodViewModel)
+                .environmentObject(foodViewModel)
                 .task {
                     await cameraViewModel.requestDataScannerAccessStatus()
                 }

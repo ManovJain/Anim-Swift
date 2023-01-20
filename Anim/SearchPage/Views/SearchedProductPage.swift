@@ -12,7 +12,7 @@ struct SearchedProductPage: View {
     
     @EnvironmentObject var networkRequests: NetworkRequests
     @EnvironmentObject var camModel: CameraViewModel
-    @EnvironmentObject var scannedFoodViewModel: ScannedFoodViewModel
+    @EnvironmentObject var foodViewModel: FoodViewModel
     
     @State var product: Product?
     

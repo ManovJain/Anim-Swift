@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AlertView: View {
     
-    @EnvironmentObject var scannedFoodViewModel: ScannedFoodViewModel
+    @EnvironmentObject var foodViewModel: FoodViewModel
     
     @Binding var alertShown: Bool
     
@@ -21,7 +21,7 @@ struct AlertView: View {
                     alertShown = false
                 }
             VStack {
-                Text("This product has a \(scannedFoodViewModel.currentTagLevel) \(scannedFoodViewModel.currentTagSelected.rawValue) content.")
+                Text("This product has a \(foodViewModel.currentTagLevel) \(foodViewModel.currentTagSelected.rawValue) content.")
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .bold()
@@ -43,10 +43,10 @@ struct AlertView: View {
     }
     
     var borderColor: Color {
-        if scannedFoodViewModel.currentTagLevel == "high" {
+        if foodViewModel.currentTagLevel == "high" {
             return .red
         }
-        else if scannedFoodViewModel.currentTagLevel == "low"{
+        else if foodViewModel.currentTagLevel == "low"{
             return Color(UIColor(red: 155/255, green: 242/255, blue: 114/255, alpha: 1))
         }
         else {

@@ -12,7 +12,7 @@ struct ProductPage: View {
     
     @EnvironmentObject var networkRequests: NetworkRequests
     @EnvironmentObject var camModel: CameraViewModel
-    @EnvironmentObject var scannedFoodViewModel: ScannedFoodViewModel
+    @EnvironmentObject var foodViewModel: FoodViewModel
     
     @State var product: Product?
     
@@ -22,46 +22,32 @@ struct ProductPage: View {
     
     var body: some View {
         NavigationView {
-            if camModel.scannedBarcode == "No Barcode Scanned Yet" {
-                VStack {
-                    Text("No Barcode Scanned Yet")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .frame(alignment: .center)
-                    Image("logo")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 250)
-                }
+            if status == nil{
+                Text("Search or scan a product")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .frame(alignment: .center)
+            }
+            else if status == 0 {
+                Text("Product not found")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .frame(alignment: .center)
             }
             else {
-                if status == nil{
-                    Text("Waiting for database...")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .frame(alignment: .center)
-                }
-                else if status == 0 {
-                    Text("Product not found")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .frame(alignment: .center)
-                }
-                else {
-                    ZStack {
-                        Group {
-                            ProductInfo(foundProduct: product!, fromSearch: false, alertShown: $alertShown)
-                                .blur(radius: alertShown ? 20 : 0)
-                                .animation(.spring())
-                        }
-                        .allowsHitTesting(!alertShown)
-                        if alertShown {
-                            AlertView(alertShown: $alertShown)
-                                .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
-                        }
+                ZStack {
+                    Group {
+                        ProductInfo(foundProduct: product!, fromSearch: false, alertShown: $alertShown)
+                            .blur(radius: alertShown ? 20 : 0)
+                            .animation(.spring())
                     }
-                    .frame(width: UIScreen.screenWidth - 50)
+                    .allowsHitTesting(!alertShown)
+                    if alertShown {
+                        AlertView(alertShown: $alertShown)
+                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
+                    }
                 }
+                .frame(width: UIScreen.screenWidth - 50)
             }
         }
         .frame(
@@ -71,9 +57,16 @@ struct ProductPage: View {
             maxHeight: .infinity
         )
         .onAppear {
-            networkRequests.getFoodByBarcode(barcode: camModel.scannedBarcode) { data in
-                status = data?.status
-                product = data?.product
+            
+            if camModel.scannedBarcode != "No Barcode Scanned Yet" {
+                networkRequests.getFoodByBarcode(barcode: camModel.scannedBarcode) { data in
+                    status = data?.status
+                    product = data?.product
+                }
+            }
+            else if foodViewModel.product != nil {
+                status = foodViewModel.status
+                product = foodViewModel.product
             }
         }
     }
