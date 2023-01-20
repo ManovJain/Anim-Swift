@@ -13,17 +13,18 @@ struct GradeOverlay: View {
     var grade: String
     
     var body: some View {
-        ZStack {
-            Text(grade.capitalized)
-                .font(.system(size: 30))
-                .foregroundColor(.white)
-                .multilineTextAlignment(.center)
-                .bold()
-                .padding(5)
-                .background(getColor(grade: grade))
-                .clipShape(Circle())
-        }
-        .padding(.horizontal, 5)
+        if grade != "NA" {
+            ZStack {
+                Text(grade.capitalized)
+                    .font(.system(size: 30))
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+                    .bold()
+                    .padding(5)
+                    .background(getColor(grade: grade))
+                    .clipShape(Circle())
+            }
+            .padding(.horizontal, 5)}
     }
     
     func getColor(grade: String) -> Color {

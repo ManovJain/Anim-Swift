@@ -14,9 +14,17 @@ enum CurrentTagSelected: String {
     case sugar = "sugar"
 }
 
-final class ScannedFoodViewModel: ObservableObject {
+final class FoodViewModel: ObservableObject {
     @Published var currentTagSelected: CurrentTagSelected = .fat
     
     @Published var currentTagLevel: String = "low"
+    
+    @Published var product: Product?
+    
+    @Published var searchTerm: String = ""
+    
+    @Published var searchResults: [FoodItem] = [FoodItem]()
+    
+    @Published var status: Int?
 }
 

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NutrientTag: View {
     
-    @EnvironmentObject var scannedFoodViewModel: ScannedFoodViewModel
+    @EnvironmentObject var foodViewModel: FoodViewModel
     
     
     var nutrient: String
@@ -37,18 +37,18 @@ struct NutrientTag: View {
     
     func changeSelectedTag() {
         alertShown = true
-        scannedFoodViewModel.currentTagLevel = level
+        foodViewModel.currentTagLevel = level
         if nutrient == "Fat" {
-            scannedFoodViewModel.currentTagSelected = .fat
+            foodViewModel.currentTagSelected = .fat
         }
         else if nutrient == "Salt" {
-            scannedFoodViewModel.currentTagSelected = .salt
+            foodViewModel.currentTagSelected = .salt
         }
         else if nutrient == "Saturated Fat" {
-            scannedFoodViewModel.currentTagSelected = .saturatedFat
+            foodViewModel.currentTagSelected = .saturatedFat
         }
         else if nutrient == "Sugar" {
-            scannedFoodViewModel.currentTagSelected = .sugar
+            foodViewModel.currentTagSelected = .sugar
         }
     }
     
