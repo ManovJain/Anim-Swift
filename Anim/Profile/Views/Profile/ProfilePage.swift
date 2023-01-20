@@ -42,12 +42,8 @@ struct ProfilePage: View {
                     SignUpPage()
                 }
                 profileMenu
-//                .frame(width: 40,height: 240)
-//                .background(Color(.lightGray).opacity(0.75))
-//                .clipShape(Capsule())
-//                .padding(.vertical)
-//                .position(x: UIScreen.screenWidth/2.5, y:UIScreen.screenHeight/3.5)
             }
+            .position(x: UIScreen.screenWidth/2.3, y:UIScreen.screenHeight/3.5)
         }
         .padding()
         .frame(

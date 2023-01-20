@@ -50,7 +50,6 @@ struct ProfileMenu: View {
                     Image(systemName: "star.fill")
                         .font(.system(size: 20))
                         .foregroundColor(.indigo)
-                        
                 }
                 else {
                     Image(systemName: "star")
