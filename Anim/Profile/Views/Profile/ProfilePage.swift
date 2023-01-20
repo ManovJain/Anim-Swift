@@ -25,20 +25,17 @@ struct ProfilePage: View {
                 .font(.system(size: 30))
                 .fontWeight(.bold)
             HStack {
-                //DYNAMIC CONTENT
-                if profileMenuViewModel.icon.rawValue == "user" {
+                switch profileMenuViewModel.icon.rawValue {
+                case "user":
                     User()
-                }
-                else if profileMenuViewModel.icon.rawValue == "animManager" {
+                case "animManager":
                     AnimManager()
-                }
-                else if profileMenuViewModel.icon.rawValue == "favorites" {
+                case "favorites":
                     VStack{
                         ButtonScroll()
                         Favorites()
                     }
-                }
-                else {
+                default:
                     SignUpPage()
                 }
                 profileMenu
@@ -47,11 +44,11 @@ struct ProfilePage: View {
         }
         .padding()
         .frame(
-              minWidth: 0,
-              maxWidth: .infinity,
-              minHeight: 0,
-              maxHeight: .infinity
-            )
+            minWidth: 0,
+            maxWidth: .infinity,
+            minHeight: 0,
+            maxHeight: .infinity
+        )
     }
 }
 

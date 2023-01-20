@@ -66,7 +66,6 @@ struct ProfileMenu: View {
                     Image(systemName: "gear")
                         .font(.system(size: 20))
                         .foregroundColor(.indigo)
-                        
                 }
                 else {
                     Image(systemName: "gear")
@@ -78,7 +77,6 @@ struct ProfileMenu: View {
         .frame(width: 40,height: 200)
         .background(Color(.lightGray).opacity(0.75))
         .clipShape(Capsule())
-//        .position(x: UIScreen.screenWidth/2.5, y:UIScreen.screenHeight/3.5)
     }
     
     func getIcon() -> String{
