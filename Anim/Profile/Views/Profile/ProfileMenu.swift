@@ -30,7 +30,7 @@ struct ProfileMenu: View {
             Button(action: {
                 profileMenuViewModel.icon = .animManager
             }) {
-                if profileMenuViewModel.icon.rawValue == "anim" {
+                if profileMenuViewModel.icon.rawValue == "animManager" {
                     Image(systemName: anim + ".fill")
                         .font(.system(size: 20))
                         .foregroundColor(.indigo)
@@ -46,7 +46,7 @@ struct ProfileMenu: View {
             Button(action: {
                 profileMenuViewModel.icon = .favorites
             }) {
-                if profileMenuViewModel.icon.rawValue == "star" {
+                if profileMenuViewModel.icon.rawValue == "favorites" {
                     Image(systemName: "star.fill")
                         .font(.system(size: 20))
                         .foregroundColor(.indigo)
