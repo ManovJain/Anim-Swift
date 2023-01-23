@@ -15,8 +15,6 @@ struct NutrientTag: View {
     var nutrient: String
     var level: String
     
-    var fromSearch: Bool
-    
     @Binding var alertShown: Bool
 
     var body: some View {
@@ -29,7 +27,7 @@ struct NutrientTag: View {
                         .multilineTextAlignment(.center)
                         .foregroundColor(.black)
                 }
-                .frame(width: (fromSearch ? (UIScreen.screenWidth - 60)/4 : (UIScreen.screenWidth - 50)/4), height: fromSearch ? (UIScreen.screenWidth - 60)/4 : (UIScreen.screenWidth - 50)/4)
+                .frame(width: (UIScreen.screenWidth - 50)/4, height: (UIScreen.screenWidth - 50)/4)
                 .background(getColor(level: level))
                 .cornerRadius(15)
             }
