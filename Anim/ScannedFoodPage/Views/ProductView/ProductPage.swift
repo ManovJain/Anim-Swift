@@ -37,7 +37,7 @@ struct ProductPage: View {
             else {
                 ZStack {
                     Group {
-                        ProductInfo(foundProduct: product!, fromSearch: false, alertShown: $alertShown)
+                        ProductInfo(foundProduct: product!, alertShown: $alertShown)
                             .blur(radius: alertShown ? 20 : 0)
                             .animation(.spring())
                     }

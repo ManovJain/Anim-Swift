@@ -11,23 +11,21 @@ struct NutrientTagsList: View {
     
     var nutrientLevels: NutrientLevels
     
-    var fromSearch: Bool
-    
     @Binding var alertShown: Bool
     
     var body: some View {
         HStack {
             if let fat = nutrientLevels.fat {
-                NutrientTag(nutrient: "Fat", level: fat, fromSearch: fromSearch, alertShown: $alertShown)
+                NutrientTag(nutrient: "Fat", level: fat, alertShown: $alertShown)
             }
             if let salt = nutrientLevels.salt {
-                NutrientTag(nutrient: "Salt", level: salt, fromSearch: fromSearch, alertShown: $alertShown)
+                NutrientTag(nutrient: "Salt", level: salt, alertShown: $alertShown)
             }
             if let sfat = nutrientLevels.saturatedFat {
-                NutrientTag(nutrient: "Saturated Fat", level: sfat, fromSearch: fromSearch, alertShown: $alertShown)
+                NutrientTag(nutrient: "Saturated Fat", level: sfat, alertShown: $alertShown)
             }
             if let sugar = nutrientLevels.sugars {
-                NutrientTag(nutrient: "Sugar", level: sugar, fromSearch: fromSearch, alertShown: $alertShown)
+                NutrientTag(nutrient: "Sugar", level: sugar, alertShown: $alertShown)
             }
         }
         .padding(.top)

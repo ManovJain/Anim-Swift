@@ -11,8 +11,6 @@ struct ProductInfo: View {
     
     var foundProduct: Product
     
-    var fromSearch: Bool
-    
     @Binding var alertShown: Bool
     
     var body: some View {
@@ -52,7 +50,7 @@ struct ProductInfo: View {
                         Allergens(tags: foundProduct.allergens_tags!)
                     }
                     if let levels = foundProduct.nutrient_levels {
-                        NutrientTagsList(nutrientLevels: levels, fromSearch: fromSearch, alertShown: $alertShown)
+                        NutrientTagsList(nutrientLevels: levels, alertShown: $alertShown)
                             .frame(width: UIScreen.screenWidth - 50)
                     }
                 }
