@@ -8,24 +8,16 @@
 import SwiftUI
 import Firebase
 import FirebaseCore
+import GoogleSignIn
+import FirebaseAuth
 
-
-class AppDelegate: NSObject, UIApplicationDelegate {
-  func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-    FirebaseApp.configure()
-
-    return true
-  }
-  
-//    let ref = Database.database().reference()
-
-    
-}
 
 @main
 struct AnimApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
+    init() {
+        FirebaseApp.configure()
+    }
     
     @StateObject private var cameraViewModel = CameraViewModel()
     
