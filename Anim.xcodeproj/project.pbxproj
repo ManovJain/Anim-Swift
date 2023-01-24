@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		43E0C69B2971E0F700022311 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 43E0C69A2971E0F700022311 /* GoogleService-Info.plist */; };
+		43E4B775297F02C000538495 /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B774297F02C000538495 /* PagingView.swift */; };
+		43E4B777297F18C800538495 /* InstructionSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B776297F18C800538495 /* InstructionSlider.swift */; };
 		8815B0A129402D9B007FBB17 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8815B0A029402D9B007FBB17 /* LoginPage.swift */; };
 		8815B0A3294034FB007FBB17 /* SignUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8815B0A2294034FB007FBB17 /* SignUpPage.swift */; };
 		8815B0AC29422FD3007FBB17 /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8815B0AB29422FD3007FBB17 /* FoodItem.swift */; };
@@ -60,6 +62,8 @@
 
 /* Begin PBXFileReference section */
 		43E0C69A2971E0F700022311 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		43E4B774297F02C000538495 /* PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
+		43E4B776297F18C800538495 /* InstructionSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionSlider.swift; sourceTree = "<group>"; };
 		8815B0A029402D9B007FBB17 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		8815B0A2294034FB007FBB17 /* SignUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPage.swift; sourceTree = "<group>"; };
 		8815B0AB29422FD3007FBB17 /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
@@ -122,6 +126,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43E4B772297F02A600538495 /* IntrusctionSliders */ = {
+			isa = PBXGroup;
+			children = (
+				43E4B773297F02AF00538495 /* Views */,
+			);
+			path = IntrusctionSliders;
+			sourceTree = "<group>";
+		};
+		43E4B773297F02AF00538495 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				43E4B774297F02C000538495 /* PagingView.swift */,
+				43E4B776297F18C800538495 /* InstructionSlider.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		882D1DBD29393F1A002EFDC8 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +162,7 @@
 		882D1DC829393F1A002EFDC8 /* Anim */ = {
 			isa = PBXGroup;
 			children = (
+				43E4B772297F02A600538495 /* IntrusctionSliders */,
 				882D1E0B293951F6002EFDC8 /* Global */,
 				882D1E08293951C5002EFDC8 /* Profile */,
 				882D1E07293951BF002EFDC8 /* SearchPage */,
@@ -499,6 +521,7 @@
 				882D1DF829394B02002EFDC8 /* ViewExtensions.swift in Sources */,
 				88BE1538294BB5C1001AE321 /* ProductPage.swift in Sources */,
 				88DA93812971EB6100674DB9 /* ProfileMenuViewModel.swift in Sources */,
+				43E4B777297F18C800538495 /* InstructionSlider.swift in Sources */,
 				882D1DFF29394C95002EFDC8 /* ProfilePage.swift in Sources */,
 				8815B0A129402D9B007FBB17 /* LoginPage.swift in Sources */,
 				88BE1526294BB3E1001AE321 /* NutrientsPage.swift in Sources */,
@@ -509,6 +532,7 @@
 				88BE1536294BB59C001AE321 /* ProductInfo.swift in Sources */,
 				882D1DF229394A7C002EFDC8 /* ButtonScroll.swift in Sources */,
 				88BE1519294BB2E1001AE321 /* Nutriments.swift in Sources */,
+				43E4B775297F02C000538495 /* PagingView.swift in Sources */,
 				88BE1524294BB3C2001AE321 /* IngredientsList.swift in Sources */,
 				88607D56294CFA6900602FE3 /* Favorites.swift in Sources */,
 				88BE1532294BB495001AE321 /* NutrientTagsList.swift in Sources */,

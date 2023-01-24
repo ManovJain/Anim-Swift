@@ -12,7 +12,12 @@ struct ContentView: View {
     @EnvironmentObject var navModel: NavModel
     @EnvironmentObject var camModel: CameraViewModel
     
+    @State var openedApp: Bool = false
+    
+    let defaults = UserDefaults.standard
+
     var body: some View {
+        
         ZStack {
             switch navModel.currentPage {
             case .camera:
@@ -25,7 +30,13 @@ struct ContentView: View {
                 ProfilePage(profileMenu: ProfileMenu())
             }
         }
-        .overlay(PillTabBar(), alignment: .bottom)
+        .overlay(openedApp ? nil : InstructionSlider(openedApp: $openedApp), alignment: .center)
+        .overlay(openedApp ? PillTabBar() : nil, alignment: .bottom)
+        
+        .onAppear {
+            openedApp = defaults.bool(forKey: "openedApp")
+
+        }
     }
 }
 
