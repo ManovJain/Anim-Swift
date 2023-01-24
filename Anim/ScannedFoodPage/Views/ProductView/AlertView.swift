@@ -15,7 +15,7 @@ struct AlertView: View {
     
     var body: some View {
         ZStack {
-            Color.black.opacity(0).edgesIgnoringSafeArea(.all)
+            Color.black.opacity(0.01).edgesIgnoringSafeArea(.all)
                 .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight)
                 .onTapGesture {
                     alertShown = false
