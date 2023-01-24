@@ -52,7 +52,7 @@ struct PillTabBar: View {
                 navModel.currentPage = .explore
             }) {
                 if navModel.currentPage == .explore {
-                    Image(systemName: "magnifyingglass")
+                    Image(systemName: "magnifyingglass.circle")
                         .font(.system(size: 20))
                         .frame(height: 35)
                         .foregroundColor(.green)

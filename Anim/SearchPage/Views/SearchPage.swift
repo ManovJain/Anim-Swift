@@ -95,9 +95,10 @@ struct SearchPage: View {
                     if !searchText.isEmpty {
                         var editedSearchText = searchText.replacingOccurrences(of: " ", with: "+")
                         editedSearchText = editedSearchText.replacingOccurrences(of: "’", with: "")
-                        print(editedSearchText)
+                        foodViewModel.searchTerm = editedSearchText
                         networkRequests.getOpenFoodSearch(searchTerm: editedSearchText) { data in
                             SearchResult = data!.products
+                            foodViewModel.searchResults = data!.products
                         }
                     }
                 }
