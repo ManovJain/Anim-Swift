@@ -57,11 +57,11 @@ struct ProductPage: View {
             maxHeight: .infinity
         )
         .onAppear {
-            
             if camModel.scannedBarcode != "No Barcode Scanned Yet" {
                 networkRequests.getFoodByBarcode(barcode: camModel.scannedBarcode) { data in
                     status = data?.status
                     product = data?.product
+                    //userVM.currentUser.scannedProduct.append
                 }
             }
             else if foodViewModel.product != nil {
