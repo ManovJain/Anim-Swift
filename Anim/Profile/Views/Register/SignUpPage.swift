@@ -6,11 +6,27 @@
 //
 
 import SwiftUI
+import GoogleSignIn
+
+//struct SignUpPage: UIViewRepresentable {
+//  @Environment(\.colorScheme) var colorScheme
+//
+//  private var button = GIDSignInButton()
+//
+//  func makeUIView(context: Context) -> GIDSignInButton {
+//    button.colorScheme = colorScheme == .dark ? .dark : .light
+//    return button
+//  }
+//
+//  func updateUIView(_ uiView: UIViewType, context: Context) {
+//    button.colorScheme = colorScheme == .dark ? .dark : .light
+//  }
+//}
 
 struct SignUpPage: View {
     @State private var email = ""
     @State private var password = ""
-    
+
     var body: some View {
         VStack {
             Spacer()
@@ -18,7 +34,7 @@ struct SignUpPage: View {
                 .frame(alignment: .center)
                 .font(.system(size: 30))
                 .fontWeight(.bold)
-            
+
             VStack(alignment: .leading, spacing: 15) {
               TextField("Email", text: self.$email)
                     .padding()

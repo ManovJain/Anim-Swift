@@ -36,7 +36,7 @@ struct ProfilePage: View {
                         Favorites()
                     }
                 default:
-                    SignUpPage()
+                    LoginPage()
                 }
                 profileMenu
             }

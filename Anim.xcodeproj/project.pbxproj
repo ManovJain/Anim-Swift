@@ -66,6 +66,8 @@
 		88FBE83B29808A7100813429 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 88FBE83A29808A7100813429 /* FirebaseStorage */; };
 		88FBE83E29808C6400813429 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 88FBE83D29808C6400813429 /* GoogleSignIn */; };
 		88FBE84029808C6400813429 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 88FBE83F29808C6400813429 /* GoogleSignInSwift */; };
+		88FBE8452980991100813429 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88FBE8442980991100813429 /* GoogleService-Info.plist */; };
+		88FBE8482980EEFF00813429 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FBE8472980EEFF00813429 /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,7 +119,10 @@
 		88BE153C294BBD6E001AE321 /* NavButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavButton.swift; sourceTree = "<group>"; };
 		88DA93802971EB6100674DB9 /* ProfileMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuViewModel.swift; sourceTree = "<group>"; };
 		88DAABA329505DE4001E0AC6 /* AnimManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimManager.swift; sourceTree = "<group>"; };
-		88FBE8422980910E00813429 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		88FBE8432980968000813429 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		88FBE8442980991100813429 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		88FBE8462980EAE900813429 /* Anim.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Anim.entitlements; sourceTree = "<group>"; };
+		88FBE8472980EEFF00813429 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +168,7 @@
 		882D1DBD29393F1A002EFDC8 = {
 			isa = PBXGroup;
 			children = (
+				88FBE8442980991100813429 /* GoogleService-Info.plist */,
 				882D1DC829393F1A002EFDC8 /* Anim */,
 				882D1DC729393F1A002EFDC8 /* Products */,
 			);
@@ -179,6 +185,8 @@
 		882D1DC829393F1A002EFDC8 /* Anim */ = {
 			isa = PBXGroup;
 			children = (
+				88FBE8462980EAE900813429 /* Anim.entitlements */,
+				88FBE8432980968000813429 /* Info.plist */,
 				43E4B772297F02A600538495 /* IntrusctionSliders */,
 				882D1E0B293951F6002EFDC8 /* Global */,
 				882D1E08293951C5002EFDC8 /* Profile */,
@@ -190,7 +198,6 @@
 				882D1DC929393F1A002EFDC8 /* AnimApp.swift */,
 				882D1DCB29393F1A002EFDC8 /* ContentView.swift */,
 				882D1DCD29393F1A002EFDC8 /* Assets.xcassets */,
-				88FBE8422980910E00813429 /* GoogleService-Info.plist */,
 				882D1DCF29393F1A002EFDC8 /* Preview Content */,
 			);
 			path = Anim;
@@ -403,6 +410,7 @@
 			isa = PBXGroup;
 			children = (
 				88DA93802971EB6100674DB9 /* ProfileMenuViewModel.swift */,
+				88FBE8472980EEFF00813429 /* LoginViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -510,6 +518,7 @@
 			files = (
 				882D1DD129393F1A002EFDC8 /* Preview Assets.xcassets in Resources */,
 				882D1DCE29393F1A002EFDC8 /* Assets.xcassets in Resources */,
+				88FBE8452980991100813429 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +529,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88FBE8482980EEFF00813429 /* LoginViewModel.swift in Sources */,
 				88BE152E294BB45F001AE321 /* Macros.swift in Sources */,
 				8815B0AE2942716B007FBB17 /* OpenFoodResult.swift in Sources */,
 				882D1E0129394CC9002EFDC8 /* User.swift in Sources */,
@@ -690,12 +700,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Anim/Anim.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Anim/Preview Content\"";
 				DEVELOPMENT_TEAM = 9HDBMQNLD8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Anim/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Anim;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Anim needs camera access to scan barcodes.";
@@ -726,12 +738,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Anim/Anim.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Anim/Preview Content\"";
 				DEVELOPMENT_TEAM = 9HDBMQNLD8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Anim/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Anim;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Anim needs camera access to scan barcodes.";

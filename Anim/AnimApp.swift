@@ -13,11 +13,16 @@ import FirebaseAuth
 
 
 @main
-struct AnimApp: App {
+struct AnimApp: App{
+    
+    //calling delegate...
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var
+        delegate
     
     init() {
         FirebaseApp.configure()
     }
+    
     
     @StateObject private var cameraViewModel = CameraViewModel()
     
@@ -44,5 +49,17 @@ struct AnimApp: App {
                     await cameraViewModel.requestDataScannerAccessStatus()
                 }
         }
+    }
+}
+
+//initializing firebase
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions:
+        [UIApplication.LaunchOptionsKey : Any]? = nil) ->
+        Bool {
+//            FirebaseApp.configure()
+            return true
     }
 }
