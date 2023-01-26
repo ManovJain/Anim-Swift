@@ -13,8 +13,6 @@ struct ContentView: View {
     @EnvironmentObject var navModel: NavModel
     @EnvironmentObject var camModel: CameraViewModel
     
-    @EnvironmentObject var firestoreRequests: FirestoreRequests
-    
     @State var openedApp: Bool = false
     
     @State var users = [UserModel]()
@@ -88,7 +86,6 @@ struct ContentView: View {
 //            firestoreRequests.getUser("AybUfF54p9uDIxjckAib") { data in
 //                print(data)
 //            }
-            firestoreRequests.addBarcodeToArray(uid: "new", array: "likes", barcode: "test")
             
         }
     }
