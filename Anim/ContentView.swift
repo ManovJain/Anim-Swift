@@ -6,13 +6,18 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct ContentView: View {
     
     @EnvironmentObject var navModel: NavModel
     @EnvironmentObject var camModel: CameraViewModel
     
+    @EnvironmentObject var firestoreRequests: FirestoreRequests
+    
     @State var openedApp: Bool = false
+    
+    @State var users = [UserModel]()
     
     let defaults = UserDefaults.standard
     
@@ -79,6 +84,11 @@ struct ContentView: View {
         
         .onAppear {
             openedApp = defaults.bool(forKey: "openedApp")
+//
+//            firestoreRequests.getUser("AybUfF54p9uDIxjckAib") { data in
+//                print(data)
+//            }
+            firestoreRequests.addBarcodeToArray(uid: "new", array: "likes", barcode: "test")
             
         }
     }

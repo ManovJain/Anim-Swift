@@ -9,5 +9,5 @@ import Foundation
 import Firebase
 
 final class UserViewModel: ObservableObject {
-    @Published var user: User?
+    @Published var user: UserModel?
 }
