@@ -19,6 +19,7 @@
 		43E4B7882980B5CD00538495 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 43E4B7872980B5CD00538495 /* FirebaseFirestoreSwift */; };
 		43E4B78B2980B88600538495 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B78A2980B88600538495 /* UserModel.swift */; };
 		43E4B78E29830A0500538495 /* FirestoreRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B78D29830A0500538495 /* FirestoreRequests.swift */; };
+		43E4B7902984407100538495 /* GradeAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B78F2984407100538495 /* GradeAlertView.swift */; };
 		8815B0A129402D9B007FBB17 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8815B0A029402D9B007FBB17 /* LoginPage.swift */; };
 		8815B0A3294034FB007FBB17 /* SignUpPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8815B0A2294034FB007FBB17 /* SignUpPage.swift */; };
 		8815B0AC29422FD3007FBB17 /* FoodItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8815B0AB29422FD3007FBB17 /* FoodItem.swift */; };
@@ -52,7 +53,7 @@
 		88BE151F294BB351001AE321 /* FoodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE151E294BB351001AE321 /* FoodViewModel.swift */; };
 		88BE1524294BB3C2001AE321 /* IngredientsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1523294BB3C2001AE321 /* IngredientsList.swift */; };
 		88BE1526294BB3E1001AE321 /* NutrientsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1525294BB3E1001AE321 /* NutrientsPage.swift */; };
-		88BE1528294BB41A001AE321 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1527294BB41A001AE321 /* AlertView.swift */; };
+		88BE1528294BB41A001AE321 /* TagAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1527294BB41A001AE321 /* TagAlertView.swift */; };
 		88BE152A294BB42B001AE321 /* Allergens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1529294BB42B001AE321 /* Allergens.swift */; };
 		88BE152C294BB44E001AE321 /* GradeOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE152B294BB44E001AE321 /* GradeOverlay.swift */; };
 		88BE152E294BB45F001AE321 /* Macros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE152D294BB45F001AE321 /* Macros.swift */; };
@@ -77,6 +78,7 @@
 		43E4B77C29809A6800538495 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		43E4B78A2980B88600538495 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		43E4B78D29830A0500538495 /* FirestoreRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreRequests.swift; sourceTree = "<group>"; };
+		43E4B78F2984407100538495 /* GradeAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeAlertView.swift; sourceTree = "<group>"; };
 		8815B0A029402D9B007FBB17 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		8815B0A2294034FB007FBB17 /* SignUpPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPage.swift; sourceTree = "<group>"; };
 		8815B0AB29422FD3007FBB17 /* FoodItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodItem.swift; sourceTree = "<group>"; };
@@ -109,7 +111,7 @@
 		88BE151E294BB351001AE321 /* FoodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewModel.swift; sourceTree = "<group>"; };
 		88BE1523294BB3C2001AE321 /* IngredientsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsList.swift; sourceTree = "<group>"; };
 		88BE1525294BB3E1001AE321 /* NutrientsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientsPage.swift; sourceTree = "<group>"; };
-		88BE1527294BB41A001AE321 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		88BE1527294BB41A001AE321 /* TagAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagAlertView.swift; sourceTree = "<group>"; };
 		88BE1529294BB42B001AE321 /* Allergens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Allergens.swift; sourceTree = "<group>"; };
 		88BE152B294BB44E001AE321 /* GradeOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeOverlay.swift; sourceTree = "<group>"; };
 		88BE152D294BB45F001AE321 /* Macros.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macros.swift; sourceTree = "<group>"; };
@@ -397,7 +399,7 @@
 		88BE1522294BB39F001AE321 /* ProductView */ = {
 			isa = PBXGroup;
 			children = (
-				88BE1527294BB41A001AE321 /* AlertView.swift */,
+				88BE1527294BB41A001AE321 /* TagAlertView.swift */,
 				88BE1529294BB42B001AE321 /* Allergens.swift */,
 				88BE152B294BB44E001AE321 /* GradeOverlay.swift */,
 				88BE152D294BB45F001AE321 /* Macros.swift */,
@@ -407,6 +409,7 @@
 				88BE1535294BB59C001AE321 /* ProductInfo.swift */,
 				88BE1537294BB5C1001AE321 /* ProductPage.swift */,
 				88BE1539294BB5EC001AE321 /* FoodButtonRow.swift */,
+				43E4B78F2984407100538495 /* GradeAlertView.swift */,
 			);
 			path = ProductView;
 			sourceTree = "<group>";
@@ -548,7 +551,7 @@
 				88BE1517294BB2CD001AE321 /* NutrientLevels.swift in Sources */,
 				882D1DEE29394978002EFDC8 /* CameraViewModel.swift in Sources */,
 				882D1DFA29394B3C002EFDC8 /* PillTabBar.swift in Sources */,
-				88BE1528294BB41A001AE321 /* AlertView.swift in Sources */,
+				88BE1528294BB41A001AE321 /* TagAlertView.swift in Sources */,
 				43E4B77B2980969E00538495 /* DragGestures.swift in Sources */,
 				88BE151B294BB2FC001AE321 /* Product.swift in Sources */,
 				88BE1515294BB2B8001AE321 /* Ingredient.swift in Sources */,
@@ -562,6 +565,7 @@
 				88DA93812971EB6100674DB9 /* ProfileMenuViewModel.swift in Sources */,
 				43E4B777297F18C800538495 /* InstructionSlider.swift in Sources */,
 				882D1DFF29394C95002EFDC8 /* ProfilePage.swift in Sources */,
+				43E4B7902984407100538495 /* GradeAlertView.swift in Sources */,
 				8815B0A129402D9B007FBB17 /* LoginPage.swift in Sources */,
 				88BE1526294BB3E1001AE321 /* NutrientsPage.swift in Sources */,
 				882D1DF429394A99002EFDC8 /* CameraView.swift in Sources */,

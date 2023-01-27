@@ -20,7 +20,6 @@ class FirestoreRequests: ObservableObject {
         
         user.getDocument{(document, error) in
             if let document = document, document.exists {
-                print("check")
                 let uid = document.get("uid") as! String
                 let username = document.get("username") as! String
                 let email = document.get("email") as! String

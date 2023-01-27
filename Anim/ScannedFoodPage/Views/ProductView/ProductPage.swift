@@ -18,7 +18,9 @@ struct ProductPage: View {
     
     @State var status: Int?
     
-    @State var alertShown = false
+    @State var tagAlertShown = false
+    
+    @State var gradeAlertShown = false
     
     var body: some View {
         NavigationView {
@@ -37,13 +39,18 @@ struct ProductPage: View {
             else {
                 ZStack {
                     Group {
-                        ProductInfo(foundProduct: product!, alertShown: $alertShown)
-                            .blur(radius: alertShown ? 20 : 0)
+                        ProductInfo(foundProduct: product!, tagAlertShown: $tagAlertShown, gradeAlertShown: $gradeAlertShown)
+                            .blur(radius: tagAlertShown ? 20 : 0)
+                            .blur(radius: gradeAlertShown ? 20 : 0)
                             .animation(.spring())
                     }
-                    .allowsHitTesting(!alertShown)
-                    if alertShown {
-                        AlertView(alertShown: $alertShown)
+                    .allowsHitTesting(!tagAlertShown)
+                    if tagAlertShown {
+                        TagAlertView(tagAlertShown: $tagAlertShown)
+                            .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
+                    }
+                    if gradeAlertShown {
+                        GradeAlertView(gradeAlertShown: $gradeAlertShown)
                             .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
                     }
                 }

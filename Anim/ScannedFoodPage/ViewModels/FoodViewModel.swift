@@ -19,6 +19,8 @@ final class FoodViewModel: ObservableObject {
     
     @Published var currentTagLevel: String = "low"
     
+    @Published var currentGradeSelected: String = "A"
+    
     @Published var product: Product?
     
     @Published var searchTerm: String = ""
