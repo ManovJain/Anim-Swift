@@ -18,75 +18,38 @@ struct SearchPage: View {
     
     @EnvironmentObject var navModel: NavModel
     
-    @State private var SearchResult: [FoodItem] = [FoodItem]()
+    @State private var searchResults: [FoodItem] = [FoodItem]()
+    
+    @State private var recentSearches: [String] = []
     
     @State var searchText: String = ""
-    
-    @State var foundTopFood: Bool = false
     
     @Environment(\.isSearching) private var isSearching: Bool
     
     var body: some View {
         NavigationView{
             List {
-                ForEach(SearchResult, id: \._id) { result in
-                    Button {
-                        networkRequests.getFoodByBarcode(barcode: result.code!) { data in
-                            foodViewModel.status = data?.status
-                            foodViewModel.product = data?.product
-                            foodViewModel.searchResults = SearchResult
-                            foodViewModel.searchTerm = searchText
-                            cameraModel.scannedBarcode = "No Barcode Scanned Yet"
-                            navModel.currentPage = .food
-                        }
-                    }
-                label: {
-                    HStack{
-                        if result.product_name_en != nil {
-                            CachedAsyncImage(
-                                url: URL(string: result.image_front_url ?? "https://spng.pngfind.com/pngs/s/5-56881_apple-icon-apple-icon-cartoon-png-transparent-png.png")) { image in
-                                    image.resizable()
-                                        .frame(width: 45, height: 45)
-                                } placeholder: {
-                                    ProgressView()
+                if searchText.isEmpty {
+                    Section {
+                        ForEach(recentSearches, id: \.self) { result in
+                            Button {
+                                searchText = result
+                                networkRequests.getOpenFoodSearch(searchTerm: result) { data in
+                                    searchResults = data!.products
+                                    foodViewModel.searchResults = data!.products
                                 }
-                                .padding()
-                            if let name = result.product_name_en{
-                                if name != ""{
-                                    Text(name)
-                                        .font(.headline)
-                                }
-                            }
-                            Spacer()
-                            if let nScore = result.nutriscore_grade {
-                                if nScore == "a" {
-                                    Text(nScore.uppercased())
-                                        .font(.caption)
-                                        .padding(5)
-                                        .background(.green)
-                                        .clipShape(Circle())
-                                        .foregroundColor(.primary)
-                                }
-                                else if nScore == "b" || nScore == "c" {
-                                    Text(nScore.uppercased())
-                                        .font(.caption)
-                                        .padding(5)
-                                        .background(.yellow)
-                                        .clipShape(Circle())
-                                        .foregroundColor(.primary)
-                                }
-                                else {
-                                    Text(nScore.uppercased())
-                                        .font(.caption)
-                                        .padding(5)
-                                        .background(.red)
-                                        .clipShape(Circle())
-                                        .foregroundColor(.primary)
-                                }
+                            } label: {
+                                Text(result)
                             }
                         }
+                    } header: {
+                        Text("Recent Searches")
                     }
                 }
+                else {
+                    ForEach(searchResults, id: \._id) { result in
+                        SearchResultButton(searchResults: searchResults, searchResult: result, searchText: searchText)
+                    }
                     
                 }
             }.foregroundColor(.primary)
@@ -97,7 +60,7 @@ struct SearchPage: View {
                         editedSearchText = editedSearchText.replacingOccurrences(of: "’", with: "")
                         foodViewModel.searchTerm = editedSearchText
                         networkRequests.getOpenFoodSearch(searchTerm: editedSearchText) { data in
-                            SearchResult = data!.products
+                            searchResults = data!.products
                             foodViewModel.searchResults = data!.products
                         }
                     }
@@ -105,11 +68,11 @@ struct SearchPage: View {
         }
         .onAppear {
             searchText = foodViewModel.searchTerm
-            SearchResult = foodViewModel.searchResults
+            searchResults = foodViewModel.searchResults
         }
         .onChange(of: searchText) { searchText in
             if searchText.isEmpty && !isSearching {
-                SearchResult = [FoodItem]()
+                searchResults = [FoodItem]()
                 
             }
         }
@@ -122,10 +85,4 @@ struct SearchPage: View {
         )
     }
     
-}
-
-struct SearchPage_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchPage()
-    }
 }

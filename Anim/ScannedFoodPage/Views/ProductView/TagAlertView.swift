@@ -37,7 +37,7 @@ struct TagAlertView: View {
             .cornerRadius(30)
             .overlay(
                 RoundedRectangle(cornerRadius: 30)
-                    .stroke(borderColor, lineWidth: 4)
+                    .stroke(borderColor, lineWidth: 3)
             )
         }
     }

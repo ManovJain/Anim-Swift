@@ -26,11 +26,12 @@ class FirestoreRequests: ObservableObject {
                 let productsFromSearch = document.get("productsFromSearch") as! Int
                 let productsScanned = document.get("productsScanned") as! Int
                 let productsViewed = document.get("productsViewed") as! [String]
-                let likes = document.get("productsViewed") as! [String]
-                let dislikes = document.get("productsViewed") as! [String]
-                let favorites = document.get("productsViewed") as! [String]
-                let allergens = document.get("productsViewed") as! [String]
-                let foundUser = UserModel(uid: uid, username: username, email: email, productsFromSearch: productsFromSearch, productsScanned: productsScanned, productsViewed: productsViewed, likes: likes, dislikes: dislikes, favorites: favorites, allergens: allergens)
+                let likes = document.get("likes") as! [String]
+                let dislikes = document.get("dislikes") as! [String]
+                let favorites = document.get("favorites") as! [String]
+                let allergens = document.get("allergens") as! [String]
+                let recentSearches = document.get("recentSearches") as! [String]
+                let foundUser = UserModel(uid: uid, username: username, email: email, productsFromSearch: productsFromSearch, productsScanned: productsScanned, productsViewed: productsViewed, likes: likes, dislikes: dislikes, favorites: favorites, allergens: allergens, recentSearches: recentSearches)
                 completion(foundUser)
             }
         }
@@ -51,12 +52,13 @@ class FirestoreRequests: ObservableObject {
                       "likes": [],
                       "dislikes": [],
                       "favorites": [],
-                      "allergens": []]) { error in
+                      "allergens": [],
+                      "recentSearches": []]) { error in
             if let error = error {
                 print("Error writing document: \(error)")
             }
             else {
-                completion(UserModel(uid: uid, username: username, email: email, productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: []))
+                completion(UserModel(uid: uid, username: username, email: email, productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: []))
             }
         }
     }

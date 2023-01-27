@@ -27,4 +27,5 @@ struct UserModel: Codable, Hashable {
     let dislikes: [String]?
     let favorites: [String]?
     let allergens: [String]?
+    let recentSearches: [String]?
 }
