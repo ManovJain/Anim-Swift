@@ -51,6 +51,25 @@ final class UserViewModel: ObservableObject {
             
             //user successfully logged into firebaes
             print("Log in success")
+            
+            let db = Firestore.firestore()
+            
+            let docRef = db.collection("users").document(Auth.auth().currentUser!.uid)
+            
+            docRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                    self.firestoreRequests.getUser(Auth.auth().currentUser!.uid) { data in
+                        completion(data!)
+                    }
+                } else {
+                    self.firestoreRequests.createUser(uid: Auth.auth().currentUser!.uid, username: "", email: "") { data in
+                        completion(data!)
+                    }
+                }
+            }
+            
+            
             self.firestoreRequests.getUser(Auth.auth().currentUser!.uid) { data in
                 completion(data!)
             }
