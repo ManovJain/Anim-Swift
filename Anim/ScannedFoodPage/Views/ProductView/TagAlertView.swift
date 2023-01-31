@@ -7,18 +7,18 @@
 
 import SwiftUI
 
-struct AlertView: View {
+struct TagAlertView: View {
     
     @EnvironmentObject var foodViewModel: FoodViewModel
     
-    @Binding var alertShown: Bool
+    @Binding var tagAlertShown: Bool
     
     var body: some View {
         ZStack {
             Color.black.opacity(0.01).edgesIgnoringSafeArea(.all)
                 .frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight)
                 .onTapGesture {
-                    alertShown = false
+                    tagAlertShown = false
                 }
             VStack {
                 Text("This product has a \(foodViewModel.currentTagLevel) \(foodViewModel.currentTagSelected.rawValue) content.")
@@ -27,7 +27,7 @@ struct AlertView: View {
                     .bold()
                     .padding()
                 Button {
-                    alertShown = false
+                    tagAlertShown = false
                 } label: {
                     Text("OK")
                 }
@@ -37,7 +37,7 @@ struct AlertView: View {
             .cornerRadius(30)
             .overlay(
                 RoundedRectangle(cornerRadius: 30)
-                    .stroke(borderColor, lineWidth: 4)
+                    .stroke(borderColor, lineWidth: 3)
             )
         }
     }

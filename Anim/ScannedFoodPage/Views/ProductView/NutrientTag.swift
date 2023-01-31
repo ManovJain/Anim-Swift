@@ -15,7 +15,7 @@ struct NutrientTag: View {
     var nutrient: String
     var level: String
     
-    @Binding var alertShown: Bool
+    @Binding var tagAlertShown: Bool
 
     var body: some View {
             Button {
@@ -34,7 +34,7 @@ struct NutrientTag: View {
     }
     
     func changeSelectedTag() {
-        alertShown = true
+        tagAlertShown = true
         foodViewModel.currentTagLevel = level
         if nutrient == "Fat" {
             foodViewModel.currentTagSelected = .fat

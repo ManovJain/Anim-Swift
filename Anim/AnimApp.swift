@@ -31,11 +31,14 @@ struct AnimApp: App {
     
     var networkRequests = NetworkRequests()
     
+    var firestoreRequests = FirestoreRequests()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(navModel)
                 .environmentObject(networkRequests)
+                .environmentObject(firestoreRequests)
                 .environmentObject(cameraViewModel)
                 .environmentObject(profileMenuViewModel)
                 .environmentObject(userViewModel)

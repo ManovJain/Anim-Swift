@@ -12,6 +12,8 @@ struct ProductImage: View {
     var imageURL: String
     var grade: String
     
+    @Binding var gradeAlertShown: Bool
+    
     var body: some View {
         AsyncImage(
             url: URL(string: imageURL)) { image in
@@ -25,7 +27,7 @@ struct ProductImage: View {
             } placeholder: {
                 ProgressView()
             }
-            .overlay(GradeOverlay(grade: grade), alignment: .bottomTrailing)
+            .overlay(GradeOverlay(grade: grade, gradeAlertShown: $gradeAlertShown), alignment: .bottomTrailing)
             .padding(.bottom)
     }
 }

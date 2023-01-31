@@ -10,10 +10,20 @@ import SwiftUI
 
 struct GradeOverlay: View {
     
+    @EnvironmentObject var foodViewModel: FoodViewModel
+    
     var grade: String
+    
+    @Binding var gradeAlertShown: Bool
+    
     
     var body: some View {
         if grade != "NA" {
+        
+        Button {
+            foodViewModel.currentGradeSelected = grade
+            gradeAlertShown = true
+        } label: {
             ZStack {
                 Text(grade.capitalized)
                     .font(.system(size: 30))
@@ -25,6 +35,7 @@ struct GradeOverlay: View {
                     .clipShape(Circle())
             }
             .padding(.horizontal, 5)}
+        }
     }
     
     func getColor(grade: String) -> Color {

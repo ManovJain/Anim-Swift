@@ -11,7 +11,9 @@ struct ProductInfo: View {
     
     var foundProduct: Product
     
-    @Binding var alertShown: Bool
+    @Binding var tagAlertShown: Bool
+    
+    @Binding var gradeAlertShown: Bool
     
     var body: some View {
         VStack {
@@ -37,10 +39,10 @@ struct ProductInfo: View {
                     .frame(alignment: .center)
             }
             if let imageURL = foundProduct.image_front_url {
-                ProductImage(imageURL: imageURL, grade: foundProduct.nutriscore_grade ?? "NA")
+                ProductImage(imageURL: imageURL, grade: foundProduct.nutriscore_grade ?? "NA", gradeAlertShown: $gradeAlertShown)
             }
             else {
-                ProductImage(imageURL: "https://i.imgur.com/9eJFAzo.png", grade: foundProduct.nutriscore_grade ?? "NA")
+                ProductImage(imageURL: "https://i.imgur.com/9eJFAzo.png", grade: foundProduct.nutriscore_grade ?? "NA", gradeAlertShown: $gradeAlertShown)
             }
             VStack (alignment: .leading, spacing: 8) {
                 FoodButtonRow(nutriments: foundProduct.nutriments!)
@@ -50,7 +52,7 @@ struct ProductInfo: View {
                         Allergens(tags: foundProduct.allergens_tags!)
                     }
                     if let levels = foundProduct.nutrient_levels {
-                        NutrientTagsList(nutrientLevels: levels, alertShown: $alertShown)
+                        NutrientTagsList(nutrientLevels: levels, tagAlertShown: $tagAlertShown)
                             .frame(width: UIScreen.screenWidth - 50)
                     }
                 }
