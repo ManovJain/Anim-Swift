@@ -1,40 +1,62 @@
-//
-//  Login.swift
+////
+////  Login.swift
 //  Anim
 //
 //  Created by Manovski on 12/6/22.
 //
-
 import SwiftUI
-
+import _AuthenticationServices_SwiftUI
+import GoogleSignIn
+//import GoogleSignInSwift
 struct LoginPage: View {
-    @State private var email = ""
-    @State private var password = ""
-      
-    // MARK: - View
+    
+    @StateObject var loginData = UserViewModel()
+    
     var body: some View {
-        VStack {
+        //        ScrollView(.vertical, showsIndicators: false) {
+        VStack(alignment: .leading, spacing: 15){
+            Image(systemName: "triangle")
+                .font(.system(size:38))
+                .foregroundColor(.indigo)
+            Text("welcome to Anim")
+            Text("Login to continue")
+            //GOOGLE SIGN IN
+            GoogleSignInButton()
+                .padding()
+                .onTapGesture {
+                    loginData.signIn()
+                }
             Spacer()
-            Text("LOGIN")
-                .frame(alignment: .center)
-                .font(.system(size: 30))
-                .fontWeight(.bold)
-            
-            VStack(alignment: .leading, spacing: 15) {
-              TextField("Email", text: self.$email)
-                    .padding()
-              SecureField("Password", text: self.$password)
-                    .padding()
+            //APPLE SIGN IN
+            SignInWithAppleButton { (request) in
+                //requesting parameters from apple login
+                loginData.nonce = randomNonceString()
+                request.requestedScopes = [.email, .fullName]
+                request.nonce = sha256(loginData.nonce)
+            } onCompletion: { (result) in
+                switch result{
+                case .success(let user):
+                    print("success")
+                    guard let credential  = user.credential as? ASAuthorizationAppleIDCredential else {
+                        print("error with firebase")
+                        return
+                    }
+                    loginData.authenticate(credential: credential)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
             }
-            Text("Already have an account? Sign in")
-            Spacer()
+            .signInWithAppleButtonStyle(.black)
+            .frame(width: 200, height: 50)
+            .clipShape(Capsule())
         }
-        .padding()
-        .frame(
-              minWidth: 0,
-              maxWidth: .infinity,
-              minHeight: 0,
-              maxHeight: .infinity
-            )
+    }
+    
+    
+}
+
+struct LoginPage_Previews: PreviewProvider {
+    static var previews: some View {
+        LoginPage()
     }
 }
