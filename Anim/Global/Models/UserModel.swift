@@ -18,14 +18,14 @@ struct UserModel: Codable, Hashable {
     }
     
     let uid: String?
-    let username: String?
+    var username: String?
     let email: String?
-    let productsFromSearch: Int?
-    let productsScanned: Int?
-    let productsViewed: [String]?
-    let likes: [String]?
-    let dislikes: [String]?
-    let favorites: [String]?
-    let allergens: [String]?
-    let recentSearches: [String]?
+    var productsFromSearch: Int?
+    var productsScanned: Int?
+    var productsViewed: [String]?
+    var likes: [String]?
+    var dislikes: [String]?
+    var favorites: [String]?
+    var allergens: [String]?
+    var recentSearches: [String]?
 }

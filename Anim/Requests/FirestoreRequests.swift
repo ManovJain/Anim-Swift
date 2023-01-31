@@ -10,7 +10,7 @@ import Alamofire
 import SwiftUI
 import Firebase
 
-class FirestoreRequests: ObservableObject {
+class FirestoreRequests {
     
     func getUser(_ userID: String, completion: @escaping (UserModel?) -> ()) {
         
