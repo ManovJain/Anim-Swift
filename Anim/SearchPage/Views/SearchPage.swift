@@ -18,6 +18,10 @@ struct SearchPage: View {
     
     @EnvironmentObject var navModel: NavModel
     
+    @EnvironmentObject var userViewModel: UserViewModel
+    
+    @State var firestoreRequests: FirestoreRequests = FirestoreRequests()
+    
     @State private var searchResults: [FoodItem] = [FoodItem]()
     
     @State private var recentSearches: [String] = []
@@ -59,6 +63,14 @@ struct SearchPage: View {
                         var editedSearchText = searchText.replacingOccurrences(of: " ", with: "+")
                         editedSearchText = editedSearchText.replacingOccurrences(of: "’", with: "")
                         foodViewModel.searchTerm = editedSearchText
+                        recentSearches.append(editedSearchText)
+                        //add to user vm
+                        if let uid = userViewModel.userModel.uid {
+                            if uid != "" {
+                                userViewModel.userModel.recentSearches?.append(editedSearchText)
+                                firestoreRequests.addBarcodeToArray(uid: uid, array: "recentSearches", barcode: editedSearchText)
+                            }
+                        }
                         networkRequests.getOpenFoodSearch(searchTerm: editedSearchText) { data in
                             searchResults = data!.products
                             foodViewModel.searchResults = data!.products
@@ -69,6 +81,7 @@ struct SearchPage: View {
         .onAppear {
             searchText = foodViewModel.searchTerm
             searchResults = foodViewModel.searchResults
+            recentSearches = userViewModel.userModel.recentSearches ?? []
         }
         .onChange(of: searchText) { searchText in
             if searchText.isEmpty && !isSearching {

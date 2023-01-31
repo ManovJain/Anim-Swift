@@ -18,12 +18,16 @@ final class UserViewModel: ObservableObject {
         case signedOut
     }
     
-    @Published var user: UserModel?
+    @Published var userModel: UserModel = UserModel(uid: "", username: "", email: "", productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [])
     @Published var nonce = ""
     @Published var state: SignInState = .signedOut
+    @Published var test = "not changed"
     //    @AppStorage("log_status") var log_Status = false
     
-    func authenticate(credential: ASAuthorizationAppleIDCredential) {
+    
+    var firestoreRequests = FirestoreRequests()
+    
+    func authenticate(credential: ASAuthorizationAppleIDCredential, completion: @escaping (UserModel?) -> ()) {
         //getting Token
         guard let token = credential.identityToken else {
             print("error with firebase")
@@ -47,16 +51,40 @@ final class UserViewModel: ObservableObject {
             
             //user successfully logged into firebaes
             print("Log in success")
-            print(Auth.auth().currentUser!.uid)
+            
+            let db = Firestore.firestore()
+            
+            let docRef = db.collection("users").document(Auth.auth().currentUser!.uid)
+            
+            docRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                    self.firestoreRequests.getUser(Auth.auth().currentUser!.uid) { data in
+                        completion(data!)
+                    }
+                } else {
+                    self.firestoreRequests.createUser(uid: Auth.auth().currentUser!.uid, username: "", email: "") { data in
+                        completion(data!)
+                    }
+                }
+            }
+            
+            
+            self.firestoreRequests.getUser(Auth.auth().currentUser!.uid) { data in
+                completion(data!)
+            }
         }
     }
     
     //GOOGLE SIGN IN
-    func signIn() {
+    func signIn(completion: @escaping (UserModel?) -> ()) {
         // 1
         if GIDSignIn.sharedInstance.hasPreviousSignIn() {
             GIDSignIn.sharedInstance.restorePreviousSignIn { [unowned self] user, error in
                 authenticateUser(for: user, with: error)
+                firestoreRequests.getUser(Auth.auth().currentUser!.uid) { data in
+                    completion(data!)
+                }
             }
         } else {
             // 2
@@ -72,6 +100,9 @@ final class UserViewModel: ObservableObject {
             // 5
             GIDSignIn.sharedInstance.signIn(with: configuration, presenting: rootViewController) { [unowned self] user, error in
                 authenticateUser(for: user, with: error)
+                firestoreRequests.createUser(uid: Auth.auth().currentUser!.uid, username: (user?.profile?.name) ?? "", email: user?.profile?.email ?? "") { data in
+                    completion(data!)
+                }
             }
         }
     }

@@ -10,7 +10,9 @@ import GoogleSignIn
 //import GoogleSignInSwift
 struct LoginPage: View {
     
-    @StateObject var loginData = UserViewModel()
+    @EnvironmentObject var userViewModel: UserViewModel
+    
+    @StateObject var loginModel = UserViewModel()
     
     var body: some View {
         //        ScrollView(.vertical, showsIndicators: false) {
@@ -24,15 +26,17 @@ struct LoginPage: View {
             GoogleSignInButton()
                 .padding()
                 .onTapGesture {
-                    loginData.signIn()
+                    loginModel.signIn() { data in
+                        userViewModel.userModel = data!
+                    }
                 }
             Spacer()
             //APPLE SIGN IN
             SignInWithAppleButton { (request) in
                 //requesting parameters from apple login
-                loginData.nonce = randomNonceString()
+                loginModel.nonce = randomNonceString()
                 request.requestedScopes = [.email, .fullName]
-                request.nonce = sha256(loginData.nonce)
+                request.nonce = sha256(loginModel.nonce)
             } onCompletion: { (result) in
                 switch result{
                 case .success(let user):
@@ -41,7 +45,9 @@ struct LoginPage: View {
                         print("error with firebase")
                         return
                     }
-                    loginData.authenticate(credential: credential)
+                    loginModel.authenticate(credential: credential) { data in
+                        userViewModel.userModel = data!
+                    }
                 case .failure(let error):
                     print(error.localizedDescription)
                 }

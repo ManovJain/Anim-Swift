@@ -13,6 +13,9 @@ struct ProductPage: View {
     @EnvironmentObject var networkRequests: NetworkRequests
     @EnvironmentObject var camModel: CameraViewModel
     @EnvironmentObject var foodViewModel: FoodViewModel
+    @EnvironmentObject var userViewModel: UserViewModel
+    
+    @State var firestoreRequests: FirestoreRequests = FirestoreRequests()
     
     @State var product: Product?
     
@@ -68,12 +71,33 @@ struct ProductPage: View {
                 networkRequests.getFoodByBarcode(barcode: camModel.scannedBarcode) { data in
                     status = data?.status
                     product = data?.product
+                    if let uid = userViewModel.userModel.uid {
+                        if uid != "" {
+                            if !(userViewModel.userModel.productsViewed!.contains(camModel.scannedBarcode)) {
+                                userViewModel.userModel.productsScanned = userViewModel.userModel.productsScanned! + 1
+                                userViewModel.userModel.productsViewed?.append(camModel.scannedBarcode)
+                                firestoreRequests.addBarcodeToArray(uid: uid, array: "productsViewed", barcode: camModel.scannedBarcode)
+                                firestoreRequests.addProductScanned(uid: uid)
+                            }
+                            
+                        }
+                    }
                     //userVM.currentUser.scannedProduct.append
                 }
             }
             else if foodViewModel.product != nil {
                 status = foodViewModel.status
                 product = foodViewModel.product
+                if let uid = userViewModel.userModel.uid {
+                    if uid != "" {
+                        if !(userViewModel.userModel.productsViewed!.contains((foodViewModel.product?._id)!)) {
+                            userViewModel.userModel.productsScanned = userViewModel.userModel.productsScanned! + 1
+                            userViewModel.userModel.productsViewed?.append((foodViewModel.product?._id)!)
+                            firestoreRequests.addBarcodeToArray(uid: uid, array: "productsViewed", barcode: (foodViewModel.product?._id)!)
+                            firestoreRequests.addProductFromSearch(uid: uid)
+                        }
+                    }
+                }
             }
         }
     }
