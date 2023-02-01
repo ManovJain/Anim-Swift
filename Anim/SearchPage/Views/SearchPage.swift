@@ -54,9 +54,10 @@ struct SearchPage: View {
                     ForEach(searchResults, id: \._id) { result in
                         SearchResultButton(searchResults: searchResults, searchResult: result, searchText: searchText)
                     }
-                    
                 }
-            }.foregroundColor(.primary)
+                
+            }
+            .foregroundColor(.primary)
                 .searchable(text: $searchText, prompt: "Search for a food...")
                 .onSubmit(of: .search) {
                     if !searchText.isEmpty {
