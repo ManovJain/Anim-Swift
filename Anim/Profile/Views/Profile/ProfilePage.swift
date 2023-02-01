@@ -15,6 +15,8 @@ struct ProfilePage: View {
     
     @State var profileMenu: ProfileMenu
     
+    @State var user: UserViewModel
+    
     
     var body: some View {
         VStack{
@@ -22,17 +24,22 @@ struct ProfilePage: View {
                 .frame(alignment: .center)
                 .font(.system(size: 30))
                 .fontWeight(.bold)
-            switch profileMenuViewModel.icon.rawValue {
-            case "user":
-                User()
-            case "animManager":
-                AnimManager()
-            case "favorites":
-                VStack{
-                    ButtonScroll()
-                    Favorites()
+            if(user.state == .signedIn){
+                switch profileMenuViewModel.icon.rawValue {
+                case "user":
+                    User()
+                case "animManager":
+                    AnimManager()
+                case "favorites":
+                    VStack{
+                        ButtonScroll()
+                        Favorites()
+                    }
+                default:
+                    User()
                 }
-            default:
+            }
+            else{
                 LoginPage()
             }
         }
@@ -52,6 +59,6 @@ struct ProfilePage: View {
 
 struct ProfilePage_Previews: PreviewProvider {
     static var previews: some View {
-        ProfilePage(profileMenu: ProfileMenu())
+        ProfilePage(profileMenu: ProfileMenu(), user: UserViewModel())
     }
 }
