@@ -6,7 +6,7 @@ struct ProfileMenu: View {
     @EnvironmentObject var profileMenuViewModel: ProfileMenuViewModel
     
     @State private var icon = "profile"
-    @State private var anim = "bird" //dynamic
+    @State private var anim = "AppIcon" //dynamic
     
     var body: some View {
         VStack {
@@ -31,12 +31,16 @@ struct ProfileMenu: View {
                 profileMenuViewModel.icon = .animManager
             }) {
                 if profileMenuViewModel.icon.rawValue == "animManager" {
-                    Image(systemName: anim + ".fill")
+                    Image(uiImage: UIImage(named: "AppIcon") ?? UIImage())
+                        .resizable()
+                        .frame(width: 23, height: 23)
                         .font(.system(size: 20))
                         .foregroundColor(.indigo)
                 }
                 else {
-                    Image(systemName: anim)
+                    Image(uiImage: UIImage(named: "AppIcon") ?? UIImage())
+                        .resizable()
+                        .frame(width: 23, height: 23)
                         .font(.system(size: 20))
                         .foregroundColor(.primary)
                 }

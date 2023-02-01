@@ -15,8 +15,6 @@ struct ProfilePage: View {
     
     @State var profileMenu: ProfileMenu
     
-    @State private var anim = "bird"
-    
     
     var body: some View {
         VStack{
@@ -24,24 +22,24 @@ struct ProfilePage: View {
                 .frame(alignment: .center)
                 .font(.system(size: 30))
                 .fontWeight(.bold)
-            HStack {
-                switch profileMenuViewModel.icon.rawValue {
-                case "user":
-                    User()
-                case "animManager":
-                    AnimManager()
-                case "favorites":
-                    VStack{
-                        ButtonScroll()
-                        Favorites()
-                    }
-                default:
-                    LoginPage()
+            switch profileMenuViewModel.icon.rawValue {
+            case "user":
+                User()
+            case "animManager":
+                AnimManager()
+            case "favorites":
+                VStack{
+                    ButtonScroll()
+                    Favorites()
                 }
-                profileMenu
+            default:
+                LoginPage()
             }
-            .position(x: UIScreen.screenWidth/2.3, y:UIScreen.screenHeight/3.5)
         }
+        .overlay( profileMenu
+            .position(x: UIScreen.screenWidth/1.15, y:UIScreen.screenHeight/2.7)
+
+        )
         .padding()
         .frame(
             minWidth: 0,
