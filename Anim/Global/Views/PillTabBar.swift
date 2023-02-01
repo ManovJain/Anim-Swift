@@ -11,6 +11,8 @@ struct PillTabBar: View {
     
     @EnvironmentObject var navModel: NavModel
     
+    @EnvironmentObject var userViewModel: UserViewModel
+    
     var body: some View {
         HStack {
             Spacer()
@@ -70,15 +72,18 @@ struct PillTabBar: View {
                 navModel.currentPage = .profile
             }) {
                 if navModel.currentPage == .profile {
-                    Image(systemName: "person")
-                        .font(.system(size: 20))
-                        .frame(height: 35)
-                        .foregroundColor(.green)
-                        .border(width: 2, edges: [.bottom], color: .green)
+                    VStack {
+                        Image("\(userViewModel.userModel.anim ?? "default")Green")
+                            .resizable()
+                            .frame(width: 23, height: 23)
+                    }
+                    .frame(height: 35)
+                    .border(width: 2, edges: [.bottom], color: .green)
                 }
                 else {
-                    Image(systemName: "person")
-                        .font(.system(size: 20))
+                    Image("\(userViewModel.userModel.anim ?? "default")")
+                        .resizable()
+                        .frame(width: 23, height: 23)
                         .foregroundColor(.primary)
                 }
             }

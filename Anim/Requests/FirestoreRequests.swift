@@ -31,7 +31,8 @@ class FirestoreRequests {
                 let favorites = document.get("favorites") as! [String]
                 let allergens = document.get("allergens") as! [String]
                 let recentSearches = document.get("recentSearches") as! [String]
-                let foundUser = UserModel(uid: uid, username: username, email: email, productsFromSearch: productsFromSearch, productsScanned: productsScanned, productsViewed: productsViewed, likes: likes, dislikes: dislikes, favorites: favorites, allergens: allergens, recentSearches: recentSearches)
+                let anim = document.get("anim") as! String
+                let foundUser = UserModel(uid: uid, username: username, email: email, productsFromSearch: productsFromSearch, productsScanned: productsScanned, productsViewed: productsViewed, likes: likes, dislikes: dislikes, favorites: favorites, allergens: allergens, recentSearches: recentSearches, anim: anim)
                 completion(foundUser)
             }
         }
@@ -53,12 +54,13 @@ class FirestoreRequests {
                       "dislikes": [],
                       "favorites": [],
                       "allergens": [],
-                      "recentSearches": []]) { error in
+                      "recentSearches": [],
+                      "anim": "default"]) { error in
             if let error = error {
                 print("Error writing document: \(error)")
             }
             else {
-                completion(UserModel(uid: uid, username: username, email: email, productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: []))
+                completion(UserModel(uid: uid, username: username, email: email, productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default"))
             }
         }
     }

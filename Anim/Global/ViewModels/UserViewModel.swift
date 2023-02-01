@@ -18,7 +18,7 @@ final class UserViewModel: ObservableObject {
         case signedOut
     }
     
-    @Published var userModel: UserModel = UserModel(uid: "", username: "", email: "", productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [])
+    @Published var userModel: UserModel = UserModel(uid: "", username: "", email: "", productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default")
     @Published var nonce = ""
     @Published var state: SignInState = .signedOut
     @Published var test = "not changed"
