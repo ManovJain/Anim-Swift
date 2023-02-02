@@ -15,22 +15,18 @@ struct LoginPage: View {
     @StateObject var loginModel = UserViewModel()
     
     var body: some View {
-        //        ScrollView(.vertical, showsIndicators: false) {
-        VStack(alignment: .leading, spacing: 15){
-            Image(systemName: "triangle")
-                .font(.system(size:38))
-                .foregroundColor(.indigo)
-            Text("welcome to Anim")
-            Text("Login to continue")
-            //GOOGLE SIGN IN
-            GoogleSignInButton()
-                .padding()
-                .onTapGesture {
-                    loginModel.signIn() { data in
-                        userViewModel.userModel = data!
-                    }
-                }
+        Spacer()
+            .frame(height: UIScreen.screenHeight/4.0)
+        VStack(alignment: .center){
+            Image(uiImage: UIImage(named: "AppIcon") ?? UIImage())
+                .resizable()
+                .frame(width: 120, height: 120)
             Spacer()
+            Text("Welcome to Anim")
+            Spacer()
+            Text("Login to continue")
+            Spacer()
+                .frame(height: 100)
             //APPLE SIGN IN
             SignInWithAppleButton { (request) in
                 //requesting parameters from apple login
@@ -53,9 +49,17 @@ struct LoginPage: View {
                 }
             }
             .signInWithAppleButtonStyle(.black)
-            .frame(width: 200, height: 50)
-            .clipShape(Capsule())
+            .frame(width: UIScreen.screenWidth - 36, height: 40)
+            .clipShape(Rectangle())
+            //GOOGLE SIGN IN
+            GoogleSignInButton()
+                .onTapGesture {
+                    loginModel.signIn() { data in
+                        userViewModel.userModel = data!
+                    }
+                }
         }
+        
     }
     
     

@@ -63,7 +63,7 @@ struct ContentView: View {
                         }
                     )
             case .profile:
-                ProfilePage(profileMenu: ProfileMenu())
+                ProfilePage(profileMenu: ProfileMenu(), user: UserViewModel())
                     .gesture(DragGesture()
                         .onEnded { value in
                             let direction = detectDirection(value: value)

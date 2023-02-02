@@ -15,7 +15,7 @@ struct ProfilePage: View {
     
     @State var profileMenu: ProfileMenu
     
-    @State private var anim = "bird"
+    @State var user: UserViewModel
     
     
     var body: some View {
@@ -24,7 +24,7 @@ struct ProfilePage: View {
                 .frame(alignment: .center)
                 .font(.system(size: 30))
                 .fontWeight(.bold)
-            HStack {
+            if(user.state == .signedIn){
                 switch profileMenuViewModel.icon.rawValue {
                 case "user":
                     User()
@@ -36,12 +36,17 @@ struct ProfilePage: View {
                         Favorites()
                     }
                 default:
-                    LoginPage()
+                    User()
                 }
-                profileMenu
             }
-            .position(x: UIScreen.screenWidth/2.3, y:UIScreen.screenHeight/3.5)
+            else{
+                LoginPage()
+            }
         }
+        .overlay( profileMenu
+            .position(x: UIScreen.screenWidth/1.15, y:UIScreen.screenHeight/2.7)
+
+        )
         .padding()
         .frame(
             minWidth: 0,
@@ -54,6 +59,6 @@ struct ProfilePage: View {
 
 struct ProfilePage_Previews: PreviewProvider {
     static var previews: some View {
-        ProfilePage(profileMenu: ProfileMenu())
+        ProfilePage(profileMenu: ProfileMenu(), user: UserViewModel())
     }
 }

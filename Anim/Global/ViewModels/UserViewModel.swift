@@ -216,4 +216,3 @@ func randomNonceString(length: Int = 32) -> String {
     
     return result
 }
-

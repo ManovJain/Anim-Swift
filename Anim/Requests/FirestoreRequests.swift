@@ -17,7 +17,7 @@ class FirestoreRequests {
         let db = Firestore.firestore()
         
         let user = db.collection("users").document(userID)
-        
+
         user.getDocument{(document, error) in
             if let document = document, document.exists {
                 let uid = document.get("uid") as! String
