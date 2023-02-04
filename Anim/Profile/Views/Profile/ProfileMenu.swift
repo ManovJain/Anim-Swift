@@ -5,7 +5,7 @@ struct ProfileMenu: View {
     @EnvironmentObject var navModel: NavModel
     @EnvironmentObject var profileMenuViewModel: ProfileMenuViewModel
     
-    @State private var icon = "profile"
+    @State private var icon = "settings"
     @State private var anim = "AppIcon" //dynamic
     
     var body: some View {

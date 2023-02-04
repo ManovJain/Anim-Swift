@@ -13,9 +13,7 @@ struct ProfilePage: View {
     
     @EnvironmentObject var profileMenuViewModel: ProfileMenuViewModel
     
-    @State var profileMenu: ProfileMenu
-    
-    @State var user: UserViewModel
+    @EnvironmentObject var userViewModel: UserViewModel
     
     
     var body: some View {
@@ -24,7 +22,7 @@ struct ProfilePage: View {
                 .frame(alignment: .center)
                 .font(.system(size: 30))
                 .fontWeight(.bold)
-            if(user.state == .signedIn){
+//            if(user.state == .signedIn){
                 switch profileMenuViewModel.icon.rawValue {
                 case "user":
                     User()
@@ -36,17 +34,15 @@ struct ProfilePage: View {
                         Favorites()
                     }
                 default:
-                    User()
-                }
-            }
-            else{
-                LoginPage()
-            }
+                    LoginPage()                }
+//            }
+//            else{
+//                LoginPage()
+//            }
         }
-        .overlay( profileMenu
+        .overlay(((userViewModel.state ==  .signedIn) ? ProfileMenu(): nil)
             .position(x: UIScreen.screenWidth/1.15, y:UIScreen.screenHeight/2.7)
-
-        )
+            )
         .padding()
         .frame(
             minWidth: 0,
@@ -59,6 +55,6 @@ struct ProfilePage: View {
 
 struct ProfilePage_Previews: PreviewProvider {
     static var previews: some View {
-        ProfilePage(profileMenu: ProfileMenu(), user: UserViewModel())
+        ProfilePage()
     }
 }

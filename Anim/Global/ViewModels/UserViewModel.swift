@@ -22,7 +22,6 @@ final class UserViewModel: ObservableObject {
     @Published var nonce = ""
     @Published var state: SignInState = .signedOut
     @Published var test = "not changed"
-    //    @AppStorage("log_status") var log_Status = false
     
     
     var firestoreRequests = FirestoreRequests()
@@ -49,8 +48,11 @@ final class UserViewModel: ObservableObject {
                 return
             }
             
-            //user successfully logged into firebaes
+            //user successfully logged into firebase
             print("Log in success")
+            
+            self.state = .signedIn
+            print(self.state)
             
             let db = Firestore.firestore()
             
@@ -78,56 +80,59 @@ final class UserViewModel: ObservableObject {
     
     //GOOGLE SIGN IN
     func signIn(completion: @escaping (UserModel?) -> ()) {
-        // 1
-        if GIDSignIn.sharedInstance.hasPreviousSignIn() {
-            GIDSignIn.sharedInstance.restorePreviousSignIn { [unowned self] user, error in
-                authenticateUser(for: user, with: error)
-                firestoreRequests.getUser(Auth.auth().currentUser!.uid) { data in
-                    completion(data!)
+            // 1
+            if GIDSignIn.sharedInstance.hasPreviousSignIn() && Auth.auth().currentUser != nil {
+                GIDSignIn.sharedInstance.restorePreviousSignIn { [unowned self] user, error in
+                    authenticateUser(for: user, with: error) {
+                        firestoreRequests.getUser(Auth.auth().currentUser!.uid) { data in
+                            completion(data!)
+                        }
+                    }
                 }
-            }
-        } else {
-            // 2
-            guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-            
-            // 3
-            let configuration = GIDConfiguration(clientID: clientID)
-            
-            // 4
-            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-            guard let rootViewController = windowScene.windows.first?.rootViewController else { return }
-            
-            // 5
-            GIDSignIn.sharedInstance.signIn(with: configuration, presenting: rootViewController) { [unowned self] user, error in
-                authenticateUser(for: user, with: error)
-                firestoreRequests.createUser(uid: Auth.auth().currentUser!.uid, username: (user?.profile?.name) ?? "", email: user?.profile?.email ?? "") { data in
-                    completion(data!)
+            } else {
+                // 2
+                guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+                
+                // 3
+                let configuration = GIDConfiguration(clientID: clientID)
+                
+                // 4
+                guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+                guard let rootViewController = windowScene.windows.first?.rootViewController else { return }
+                
+                // 5
+                GIDSignIn.sharedInstance.signIn(with: configuration, presenting: rootViewController) { [unowned self] user, error in
+                    authenticateUser(for: user, with: error) {
+                        firestoreRequests.createUser(uid: Auth.auth().currentUser!.uid, username: (user?.profile?.name) ?? "", email: user?.profile?.email ?? "") { data in
+                            completion(data!)
+                        }
+                    }
                 }
             }
         }
-    }
-    
-    private func authenticateUser(for user: GIDGoogleUser?, with error: Error?) {
-        // 1
-        if let error = error {
-            print(error.localizedDescription)
-            return
-        }
         
-        // 2
-        guard let authentication = user?.authentication, let idToken = authentication.idToken else { return }
-        
-        let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authentication.accessToken)
-        
-        // 3
-        Auth.auth().signIn(with: credential) { [unowned self] (_, error) in
+        private func authenticateUser(for user: GIDGoogleUser?, with error: Error?, completion: @escaping () -> ()) {
+            // 1
             if let error = error {
                 print(error.localizedDescription)
-            } else {
-                self.state = .signedIn
+                return
+            }
+            
+            // 2
+            guard let authentication = user?.authentication, let idToken = authentication.idToken else { return }
+            
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authentication.accessToken)
+            
+            // 3
+            Auth.auth().signIn(with: credential) { [unowned self] (_, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    completion()
+                    self.state = .signedIn
+                }
             }
         }
-    }
     
     func signOut() {
         // 1
@@ -136,8 +141,8 @@ final class UserViewModel: ObservableObject {
         do {
             // 2
             try Auth.auth().signOut()
-            
-            state = .signedOut
+            self.state = .signedOut
+            print(self.state)
         } catch {
             print(error.localizedDescription)
         }

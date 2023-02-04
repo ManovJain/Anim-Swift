@@ -7,58 +7,77 @@
 import SwiftUI
 import _AuthenticationServices_SwiftUI
 import GoogleSignIn
+import Firebase
 //import GoogleSignInSwift
 struct LoginPage: View {
     
     @EnvironmentObject var userViewModel: UserViewModel
     
-    @StateObject var loginModel = UserViewModel()
+    @EnvironmentObject var profileMenuViewModel: ProfileMenuViewModel
     
     var body: some View {
-        Spacer()
-            .frame(height: UIScreen.screenHeight/4.0)
+//        Spacer()
+//            .frame(height: UIScreen.screenHeight/4.0)
         VStack(alignment: .center){
             Image(uiImage: UIImage(named: "AppIcon") ?? UIImage())
                 .resizable()
                 .frame(width: 120, height: 120)
-            Spacer()
             Text("Welcome to Anim")
-            Spacer()
             Text("Login to continue")
-            Spacer()
-                .frame(height: 100)
-            //APPLE SIGN IN
-            SignInWithAppleButton { (request) in
-                //requesting parameters from apple login
-                loginModel.nonce = randomNonceString()
-                request.requestedScopes = [.email, .fullName]
-                request.nonce = sha256(loginModel.nonce)
-            } onCompletion: { (result) in
-                switch result{
-                case .success(let user):
-                    print("success")
-                    guard let credential  = user.credential as? ASAuthorizationAppleIDCredential else {
-                        print("error with firebase")
-                        return
+            
+            if(userViewModel.state == .signedOut){
+                VStack{
+                    //APPLE SIGN IN
+                    SignInWithAppleButton { (request) in
+                        //requesting parameters from apple login
+                        userViewModel.nonce = randomNonceString()
+                        request.requestedScopes = [.email, .fullName]
+                        request.nonce = sha256(userViewModel.nonce)
+                    } onCompletion: { (result) in
+                        switch result{
+                        case .success(let user):
+                            print("success")
+                            guard let credential  = user.credential as? ASAuthorizationAppleIDCredential else {
+                                print("error with firebase")
+                                return
+                            }
+                            userViewModel.authenticate(credential: credential) { data in
+                                userViewModel.userModel = data!
+                                profileMenuViewModel.icon = .user
+                            }
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
                     }
-                    loginModel.authenticate(credential: credential) { data in
-                        userViewModel.userModel = data!
-                    }
-                case .failure(let error):
-                    print(error.localizedDescription)
+                    .signInWithAppleButtonStyle(.black)
+                    .frame(width: UIScreen.screenWidth - 36, height: 40)
+                    .clipShape(Rectangle())
+                    //GOOGLE SIGN IN
+                    GoogleSignInButton()
+                        .onTapGesture {
+                            userViewModel.signIn() { data in
+                                userViewModel.userModel = data!
+                                profileMenuViewModel.icon = .user
+                            }
+                        }
                 }
             }
-            .signInWithAppleButtonStyle(.black)
-            .frame(width: UIScreen.screenWidth - 36, height: 40)
-            .clipShape(Rectangle())
-            //GOOGLE SIGN IN
-            GoogleSignInButton()
-                .onTapGesture {
-                    loginModel.signIn() { data in
-                        userViewModel.userModel = data!
-                    }
-                }
+            else {
+                Button(action: {
+                    userViewModel.signOut()
+                    NotificationCenter.default.post(name: NSNotification.signInStateChange, object: nil) //may not need
+                    profileMenuViewModel.icon = .settings
+                }, label: {
+                    Text("LogOut")
+                })
+            }
         }
+        .frame(
+            minWidth: 0,
+            maxWidth: .infinity,
+            minHeight: 0,
+            maxHeight: .infinity
+        )
         
     }
     
