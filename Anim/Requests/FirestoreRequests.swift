@@ -97,4 +97,16 @@ class FirestoreRequests {
             array: FieldValue.arrayUnion([barcode])
         ])
     }
+    
+    
+    func removeItemFromArray(uid: String, array: String, barcode: String) {
+        
+        let db = Firestore.firestore()
+        
+        let user = db.collection("users").document(uid)
+        
+        user.updateData([
+            array: FieldValue.arrayRemove([barcode])
+        ])
+    }
 }
