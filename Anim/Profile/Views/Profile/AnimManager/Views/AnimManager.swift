@@ -11,9 +11,7 @@ import SwiftUI
 struct AnimManager: View {
     
     @EnvironmentObject var userViewModel: UserViewModel
-    
-    @State var firestoreRequests: FirestoreRequests = FirestoreRequests()
-    
+
     var iconVM = IconVM()
     
     let rows = [
@@ -40,7 +38,6 @@ struct AnimManager: View {
                     ForEach(iconVM.searchIcons, id: \.self) { icon in
                         Button(action: {
                             userViewModel.userModel.anim = icon.name
-                            firestoreRequests.setIcon(uid: userViewModel.userModel.uid!, icon: icon.name)
                         }) {
                             VStack {
                                 if (productsFromSearch >= icon.numNeeded) {
@@ -80,7 +77,6 @@ struct AnimManager: View {
                     ForEach(iconVM.scanIcons, id: \.self) { icon in
                         Button(action: {
                             userViewModel.userModel.anim = icon.name
-                            firestoreRequests.setIcon(uid: userViewModel.userModel.uid!, icon: icon.name)
                         }) {
                             VStack {
                                 if (productsScanned >= icon.numNeeded) {
@@ -117,7 +113,6 @@ struct AnimManager: View {
             }
         }
         .onAppear {
-            print(userViewModel.userModel)
             productsFromSearch = userViewModel.userModel.productsFromSearch!
             productsScanned = userViewModel.userModel.productsScanned!
         }

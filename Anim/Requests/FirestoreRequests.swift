@@ -120,4 +120,22 @@ class FirestoreRequests {
             array: FieldValue.arrayRemove([barcode])
         ])
     }
+    
+    func updateUser(uid: String, userModel: UserModel) {
+        let db = Firestore.firestore()
+        
+        let user = db.collection("users").document(uid)
+        
+        user.updateData([
+            "productsFromSearch": userModel.productsFromSearch,
+            "productsScanned": userModel.productsScanned,
+            "productsViewed": userModel.productsViewed,
+            "likes": userModel.likes,
+            "dislikes": userModel.dislikes,
+            "favorites": userModel.favorites,
+            "allergens": userModel.allergens,
+            "recentSearches": userModel.recentSearches,
+            "anim": userModel.anim
+        ])
+    }
 }
