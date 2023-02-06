@@ -81,7 +81,7 @@ struct ContentView: View {
         .overlay(openedApp ? PillTabBar() : nil, alignment: .bottom)
         
         .onAppear {
-//            openedApp = defaults.bool(forKey: "openedApp")
+            openedApp = defaults.bool(forKey: "openedApp")
         }
     }
 }

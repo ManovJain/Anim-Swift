@@ -19,6 +19,9 @@ struct AnimManager: View {
     let rows = [
         GridItem(.fixed(70))
     ]
+    
+    @State var productsFromSearch = 0
+    @State var productsScanned = 0
 
     var body: some View {
         VStack {
@@ -40,7 +43,7 @@ struct AnimManager: View {
                             firestoreRequests.setIcon(uid: userViewModel.userModel.uid!, icon: icon.name)
                         }) {
                             VStack {
-                                if (userViewModel.userModel.productsFromSearch! >= icon.numNeeded) {
+                                if (productsFromSearch >= icon.numNeeded) {
                                     Image(icon.name)
                                         .resizable()
                                         .frame(width: 70, height: 70)
@@ -49,17 +52,17 @@ struct AnimManager: View {
                                     Image(icon.name)
                                         .resizable()
                                         .frame(width: 50, height: 50)
-                                        .blur(radius: userViewModel.userModel.productsFromSearch! < icon.numNeeded ? 15 : 0)
+                                        .blur(radius: productsFromSearch < icon.numNeeded ? 15 : 0)
                                         .padding(10)
                                 }
-                                if (userViewModel.userModel.productsFromSearch! >= icon.numNeeded) {
+                                if (productsFromSearch >= icon.numNeeded) {
                                     Text("Anim Earned!")
                                         .lineLimit(nil)
                                         .font(.system(size: 15))
                                         .foregroundColor(.primary)
                                 }
                                 else {
-                                    Text("Search \(icon.numNeeded - userViewModel.userModel.productsFromSearch!) more")
+                                    Text("Search \(icon.numNeeded - productsFromSearch) more")
                                         .lineLimit(nil)
                                         .font(.system(size: 15))
                                         .foregroundColor(.primary)
@@ -67,7 +70,7 @@ struct AnimManager: View {
                             }
                             .frame(width: 70, height: 300)
                         }
-                        .disabled(userViewModel.userModel.productsFromSearch! < icon.numNeeded)
+                        .disabled(productsFromSearch < icon.numNeeded)
                     }
                     .padding()
                 }
@@ -80,7 +83,7 @@ struct AnimManager: View {
                             firestoreRequests.setIcon(uid: userViewModel.userModel.uid!, icon: icon.name)
                         }) {
                             VStack {
-                                if (userViewModel.userModel.productsScanned! >= icon.numNeeded) {
+                                if (productsScanned >= icon.numNeeded) {
                                     Image(icon.name)
                                         .resizable()
                                         .frame(width: 70, height: 70)
@@ -89,17 +92,17 @@ struct AnimManager: View {
                                     Image(icon.name)
                                         .resizable()
                                         .frame(width: 50, height: 50)
-                                        .blur(radius: userViewModel.userModel.productsScanned! < icon.numNeeded ? 15 : 0)
+                                        .blur(radius: productsScanned < icon.numNeeded ? 15 : 0)
                                         .padding(10)
                                 }
-                                if (userViewModel.userModel.productsScanned! >= icon.numNeeded) {
+                                if (productsScanned >= icon.numNeeded) {
                                     Text("Anim Earned!")
                                         .lineLimit(nil)
                                         .font(.system(size: 15))
                                         .foregroundColor(.primary)
                                 }
                                 else {
-                                    Text("Scan \(icon.numNeeded - userViewModel.userModel.productsScanned!) more")
+                                    Text("Scan \(icon.numNeeded - productsScanned) more")
                                         .lineLimit(nil)
                                         .font(.system(size: 15))
                                         .foregroundColor(.primary)
@@ -107,11 +110,16 @@ struct AnimManager: View {
                             }
                             .frame(width: 70, height: 300)
                         }
-                        .disabled(userViewModel.userModel.productsScanned! < icon.numNeeded)
+                        .disabled(productsScanned < icon.numNeeded)
                     }
                     .padding()
                 }
             }
+        }
+        .onAppear {
+            print(userViewModel.userModel)
+            productsFromSearch = userViewModel.userModel.productsFromSearch!
+            productsScanned = userViewModel.userModel.productsScanned!
         }
         .padding()
         .frame(
