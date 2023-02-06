@@ -10,8 +10,13 @@ import Firebase
 
 struct ContentView: View {
     
+    @Environment(\.scenePhase) var scenePhase
+    
     @EnvironmentObject var navModel: NavModel
     @EnvironmentObject var camModel: CameraViewModel
+    @EnvironmentObject var userViewModel: UserViewModel
+    
+    var fireStoreRequests = FirestoreRequests()
     
     @State var openedApp: Bool = false
     
@@ -77,6 +82,11 @@ struct ContentView: View {
                     )
             }
         }
+        .onChange(of: scenePhase) { newPhase in
+            if newPhase == .background {
+                            fireStoreRequests.updateUser(uid: userViewModel.userModel.uid!, userModel: userViewModel.userModel)
+                        }
+                    }
         .overlay(openedApp ? nil : InstructionSlider(openedApp: $openedApp), alignment: .center)
         .overlay(openedApp ? PillTabBar() : nil, alignment: .bottom)
         

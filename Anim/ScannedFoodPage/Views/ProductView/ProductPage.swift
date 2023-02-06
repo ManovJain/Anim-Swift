@@ -14,9 +14,7 @@ struct ProductPage: View {
     @EnvironmentObject var camModel: CameraViewModel
     @EnvironmentObject var foodViewModel: FoodViewModel
     @EnvironmentObject var userViewModel: UserViewModel
-    
-    @State var firestoreRequests: FirestoreRequests = FirestoreRequests()
-    
+
     @State var product: Product?
     
     @State var status: Int?
@@ -59,7 +57,6 @@ struct ProductPage: View {
                     Button {
                         if !(userViewModel.userModel.favorites!.contains((product?._id)!)) {
                             userViewModel.userModel.favorites?.append((product?._id)!)
-                            firestoreRequests.addBarcodeToArray(uid: userViewModel.userModel.uid!, array: "favorites", barcode: (product?._id)!)
                         }
                     } label: {
                         Text("Save");
@@ -86,8 +83,6 @@ struct ProductPage: View {
                             if !(userViewModel.userModel.productsViewed!.contains(camModel.scannedBarcode)) {
                                 userViewModel.userModel.productsScanned = userViewModel.userModel.productsScanned! + 1
                                 userViewModel.userModel.productsViewed?.append(camModel.scannedBarcode)
-                                firestoreRequests.addBarcodeToArray(uid: uid, array: "productsViewed", barcode: camModel.scannedBarcode)
-                                firestoreRequests.addProductScanned(uid: uid)
                             }
                             
                         }
@@ -103,8 +98,6 @@ struct ProductPage: View {
                         if !(userViewModel.userModel.productsViewed!.contains((foodViewModel.product?._id)!)) {
                             userViewModel.userModel.productsFromSearch = userViewModel.userModel.productsFromSearch! + 1
                             userViewModel.userModel.productsViewed?.append((foodViewModel.product?._id)!)
-                            firestoreRequests.addBarcodeToArray(uid: uid, array: "productsViewed", barcode: (foodViewModel.product?._id)!)
-                            firestoreRequests.addProductFromSearch(uid: uid)
                         }
                     }
                 }

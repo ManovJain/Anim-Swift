@@ -20,8 +20,6 @@ struct SearchPage: View {
     
     @EnvironmentObject var userViewModel: UserViewModel
     
-    @State var firestoreRequests: FirestoreRequests = FirestoreRequests()
-    
     @State private var searchResults: [FoodItem] = [FoodItem]()
     
     @State private var recentSearches: [String] = []
@@ -69,7 +67,6 @@ struct SearchPage: View {
                         if let uid = userViewModel.userModel.uid {
                             if uid != "" {
                                 userViewModel.userModel.recentSearches?.append(editedSearchText)
-                                firestoreRequests.addBarcodeToArray(uid: uid, array: "recentSearches", barcode: editedSearchText)
                             }
                         }
                         networkRequests.getOpenFoodSearch(searchTerm: editedSearchText) { data in
