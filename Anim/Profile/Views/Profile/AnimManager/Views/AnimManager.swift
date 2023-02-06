@@ -11,7 +11,7 @@ import SwiftUI
 struct AnimManager: View {
     
     @EnvironmentObject var userViewModel: UserViewModel
-
+    
     var iconVM = IconVM()
     
     let rows = [
@@ -20,97 +20,108 @@ struct AnimManager: View {
     
     @State var productsFromSearch = 0
     @State var productsScanned = 0
-
+    
     var body: some View {
         VStack {
             Image(userViewModel.userModel.anim!)
                 .resizable()
                 .frame(width: 80, height: 80)
                 .padding()
-                .border(.primary)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(.green, lineWidth: 3)
+                    )
             Text("My Anim")
                 .lineLimit(nil)
                 .foregroundColor(.primary)
             Spacer()
                 .frame(height: 50)
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHGrid(rows: rows, alignment: .center) {
-                    ForEach(iconVM.searchIcons, id: \.self) { icon in
-                        Button(action: {
-                            userViewModel.userModel.anim = icon.name
-                        }) {
-                            VStack {
-                                if (productsFromSearch >= icon.numNeeded) {
-                                    Image(icon.name)
-                                        .resizable()
-                                        .frame(width: 70, height: 70)
+            VStack {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHGrid(rows: rows, alignment: .center) {
+                        ForEach(iconVM.searchIcons, id: \.self) { icon in
+                            Button(action: {
+                                userViewModel.userModel.anim = icon.name
+                            }) {
+                                VStack {
+                                    if (productsFromSearch >= icon.numNeeded) {
+                                        Image(icon.name)
+                                            .resizable()
+                                            .frame(width: 70, height: 70)
+                                    }
+                                    else {
+                                        Image(icon.name)
+                                            .resizable()
+                                            .frame(width: 50, height: 50)
+                                            .blur(radius: productsFromSearch < icon.numNeeded ? 15 : 0)
+                                            .padding(10)
+                                    }
+                                    if (productsFromSearch >= icon.numNeeded) {
+                                        Text("Anim Earned!")
+                                            .lineLimit(nil)
+                                            .font(.system(size: 15))
+                                            .foregroundColor(.primary)
+                                    }
+                                    else {
+                                        Text("Search \(icon.numNeeded - productsFromSearch) more")
+                                            .lineLimit(nil)
+                                            .font(.system(size: 15))
+                                            .foregroundColor(.primary)
+                                    }
                                 }
-                                else {
-                                    Image(icon.name)
-                                        .resizable()
-                                        .frame(width: 50, height: 50)
-                                        .blur(radius: productsFromSearch < icon.numNeeded ? 15 : 0)
-                                        .padding(10)
-                                }
-                                if (productsFromSearch >= icon.numNeeded) {
-                                    Text("Anim Earned!")
-                                        .lineLimit(nil)
-                                        .font(.system(size: 15))
-                                        .foregroundColor(.primary)
-                                }
-                                else {
-                                    Text("Search \(icon.numNeeded - productsFromSearch) more")
-                                        .lineLimit(nil)
-                                        .font(.system(size: 15))
-                                        .foregroundColor(.primary)
-                                }
+                                .frame(width: 70, height: 200)
                             }
-                            .frame(width: 70, height: 300)
+                            .disabled(productsFromSearch < icon.numNeeded)
                         }
-                        .disabled(productsFromSearch < icon.numNeeded)
+                        .padding()
                     }
-                    .padding()
+                }
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHGrid(rows: rows, alignment: .center) {
+                        ForEach(iconVM.scanIcons, id: \.self) { icon in
+                            Button(action: {
+                                userViewModel.userModel.anim = icon.name
+                            }) {
+                                VStack {
+                                    if (productsScanned >= icon.numNeeded) {
+                                        Image(icon.name)
+                                            .resizable()
+                                            .frame(width: 70, height: 70)
+                                    }
+                                    else {
+                                        Image(icon.name)
+                                            .resizable()
+                                            .frame(width: 50, height: 50)
+                                            .blur(radius: productsScanned < icon.numNeeded ? 15 : 0)
+                                            .padding(10)
+                                    }
+                                    if (productsScanned >= icon.numNeeded) {
+                                        Text("Anim Earned!")
+                                            .lineLimit(nil)
+                                            .font(.system(size: 15))
+                                            .foregroundColor(.primary)
+                                    }
+                                    else {
+                                        Text("Scan \(icon.numNeeded - productsScanned) more")
+                                            .lineLimit(nil)
+                                            .font(.system(size: 15))
+                                            .foregroundColor(.primary)
+                                    }
+                                }
+                                .frame(width: 70, height: 200)
+                            }
+                            .disabled(productsScanned < icon.numNeeded)
+                        }
+                        .padding()
+                    }
                 }
             }
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHGrid(rows: rows, alignment: .center) {
-                    ForEach(iconVM.scanIcons, id: \.self) { icon in
-                        Button(action: {
-                            userViewModel.userModel.anim = icon.name
-                        }) {
-                            VStack {
-                                if (productsScanned >= icon.numNeeded) {
-                                    Image(icon.name)
-                                        .resizable()
-                                        .frame(width: 70, height: 70)
-                                }
-                                else {
-                                    Image(icon.name)
-                                        .resizable()
-                                        .frame(width: 50, height: 50)
-                                        .blur(radius: productsScanned < icon.numNeeded ? 15 : 0)
-                                        .padding(10)
-                                }
-                                if (productsScanned >= icon.numNeeded) {
-                                    Text("Anim Earned!")
-                                        .lineLimit(nil)
-                                        .font(.system(size: 15))
-                                        .foregroundColor(.primary)
-                                }
-                                else {
-                                    Text("Scan \(icon.numNeeded - productsScanned) more")
-                                        .lineLimit(nil)
-                                        .font(.system(size: 15))
-                                        .foregroundColor(.primary)
-                                }
-                            }
-                            .frame(width: 70, height: 300)
-                        }
-                        .disabled(productsScanned < icon.numNeeded)
-                    }
-                    .padding()
-                }
-            }
+            .frame(height: 300)
+            .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(.green, lineWidth: 3)
+                )
         }
         .onAppear {
             productsFromSearch = userViewModel.userModel.productsFromSearch!

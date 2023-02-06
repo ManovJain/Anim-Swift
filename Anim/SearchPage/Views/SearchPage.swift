@@ -30,32 +30,34 @@ struct SearchPage: View {
     
     var body: some View {
         NavigationView{
-            List {
-                if searchText.isEmpty {
-                    Section {
-                        ForEach(recentSearches, id: \.self) { result in
-                            Button {
-                                searchText = result
-                                networkRequests.getOpenFoodSearch(searchTerm: result) { data in
-                                    searchResults = data!.products
-                                    foodViewModel.searchResults = data!.products
+            ZStack {
+                Color("background").edgesIgnoringSafeArea(.all)
+                List {
+                    if searchText.isEmpty {
+                        Section {
+                            ForEach(recentSearches, id: \.self) { result in
+                                Button {
+                                    searchText = result
+                                    networkRequests.getOpenFoodSearch(searchTerm: result) { data in
+                                        searchResults = data!.products
+                                        foodViewModel.searchResults = data!.products
+                                    }
+                                } label: {
+                                    Text(result)
                                 }
-                            } label: {
-                                Text(result)
                             }
+                        } header: {
+                            Text("Recent Searches")
                         }
-                    } header: {
-                        Text("Recent Searches")
                     }
-                }
-                else {
-                    ForEach(searchResults, id: \._id) { result in
-                        SearchResultButton(searchResults: searchResults, searchResult: result, searchText: searchText)
+                    else {
+                        ForEach(searchResults, id: \._id) { result in
+                            SearchResultButton(searchResults: searchResults, searchResult: result, searchText: searchText)
+                        }
                     }
+                    
                 }
-                
-            }
-            .foregroundColor(.primary)
+                .foregroundColor(.primary)
                 .searchable(text: $searchText, prompt: "Search for a food...")
                 .onSubmit(of: .search) {
                     if !searchText.isEmpty {
@@ -75,6 +77,7 @@ struct SearchPage: View {
                         }
                     }
                 }
+            }
         }
         .onAppear {
             searchText = foodViewModel.searchTerm
@@ -88,6 +91,8 @@ struct SearchPage: View {
             }
         }
         .padding()
+        .background(Color("background"))
+        .scrollContentBackground(.hidden)
         .frame(
             minWidth: 0,
             maxWidth: .infinity,

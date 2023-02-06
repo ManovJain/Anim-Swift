@@ -12,7 +12,7 @@ struct NutrientsPage: View {
     
     var body: some View {
         ZStack{
-            Color.white.edgesIgnoringSafeArea(.all)
+            Color("background").edgesIgnoringSafeArea(.all)
             List {
                 if let calories = nutriments.energy_kcal_serving {
                     HStack {
@@ -105,13 +105,13 @@ struct NutrientsPage: View {
                 }
             }
         }
-
+        .background(Color("background"))
+        .scrollContentBackground(.hidden)
         .frame(
             minWidth: 0,
             maxWidth: .infinity,
             minHeight: 0,
             maxHeight: .infinity
         )
-        .background(Color.primary)
     }
 }
