@@ -15,7 +15,7 @@ struct InstructionSlider: View {
     
     @Binding var openedApp: Bool
 
-    var images = ["10-12", "10-13", "10-14", "10-15"]
+    var images = ["AnimIntro", "ScanIntro", "SearchIntro", "ProfileIntro", "AnimOutro"]
     
     var body: some View {
         VStack(spacing: 20) {
