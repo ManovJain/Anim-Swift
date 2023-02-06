@@ -65,6 +65,17 @@ class FirestoreRequests {
         }
     }
     
+    func setIcon(uid: String, icon: String) {
+        
+        let db = Firestore.firestore()
+        
+        let user = db.collection("users").document(uid)
+        
+        user.updateData([
+            "anim": icon
+        ])
+    }
+    
     func addProductScanned(uid: String) {
         
         let db = Firestore.firestore()

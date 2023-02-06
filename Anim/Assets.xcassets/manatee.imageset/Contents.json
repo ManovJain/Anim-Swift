@@ -11,7 +11,7 @@
           "value" : "light"
         }
       ],
-      "filename" : "manatee.png",
+      "filename" : "icons8-manatee-100.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -22,7 +22,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "manateeBlack.png",
+      "filename" : "icons8-manatee-100 (1).png",
       "idiom" : "universal",
       "scale" : "1x"
     },

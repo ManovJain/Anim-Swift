@@ -9,7 +9,7 @@ import Foundation
 
 enum Icon: String {
     case user = "user"
-    case animManager = "animManager"
+    case animManager = "Anim Manager"
     case favorites = "favorites"
     case settings = "settings"
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4355DEA9299178B200C388A4 /* IconModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4355DEA8299178B200C388A4 /* IconModel.swift */; };
+		4355DEAB299178EF00C388A4 /* IconVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4355DEAA299178EF00C388A4 /* IconVM.swift */; };
 		43E4B775297F02C000538495 /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B774297F02C000538495 /* PagingView.swift */; };
 		43E4B777297F18C800538495 /* InstructionSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B776297F18C800538495 /* InstructionSlider.swift */; };
 		43E4B77929808EF100538495 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B77829808EF100538495 /* UserViewModel.swift */; };
@@ -73,6 +75,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4355DEA8299178B200C388A4 /* IconModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconModel.swift; sourceTree = "<group>"; };
+		4355DEAA299178EF00C388A4 /* IconVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconVM.swift; sourceTree = "<group>"; };
 		43E4B774297F02C000538495 /* PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
 		43E4B776297F18C800538495 /* InstructionSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionSlider.swift; sourceTree = "<group>"; };
 		43E4B77829808EF100538495 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
@@ -152,6 +156,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4355DEA42991788C00C388A4 /* AnimManager */ = {
+			isa = PBXGroup;
+			children = (
+				4355DEA7299178A400C388A4 /* ViewModels */,
+				4355DEA6299178A000C388A4 /* Models */,
+				4355DEA52991789B00C388A4 /* Views */,
+			);
+			path = AnimManager;
+			sourceTree = "<group>";
+		};
+		4355DEA52991789B00C388A4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				88DAABA329505DE4001E0AC6 /* AnimManager.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4355DEA6299178A000C388A4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4355DEA8299178B200C388A4 /* IconModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4355DEA7299178A400C388A4 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				4355DEAA299178EF00C388A4 /* IconVM.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		43E4B772297F02A600538495 /* IntrusctionSliders */ = {
 			isa = PBXGroup;
 			children = (
@@ -435,13 +473,13 @@
 		88DAABA029505242001E0AC6 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				4355DEA42991788C00C388A4 /* AnimManager */,
 				882D1DFE29394C95002EFDC8 /* ProfilePage.swift */,
 				88607D51294C5BEB00602FE3 /* ProfileMenu.swift */,
 				882D1E0029394CC9002EFDC8 /* User.swift */,
 				88607D55294CFA6900602FE3 /* Favorites.swift */,
 				88607D53294CF79800602FE3 /* Stats.swift */,
 				882D1DF129394A7C002EFDC8 /* ButtonScroll.swift */,
-				88DAABA329505DE4001E0AC6 /* AnimManager.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -578,6 +616,7 @@
 				43E4B777297F18C800538495 /* InstructionSlider.swift in Sources */,
 				882D1DFF29394C95002EFDC8 /* ProfilePage.swift in Sources */,
 				43E4B7902984407100538495 /* GradeAlertView.swift in Sources */,
+				4355DEAB299178EF00C388A4 /* IconVM.swift in Sources */,
 				8815B0A129402D9B007FBB17 /* LoginPage.swift in Sources */,
 				88BE1526294BB3E1001AE321 /* NutrientsPage.swift in Sources */,
 				882D1DF429394A99002EFDC8 /* CameraView.swift in Sources */,
@@ -587,6 +626,7 @@
 				88BE1536294BB59C001AE321 /* ProductInfo.swift in Sources */,
 				882D1DF229394A7C002EFDC8 /* ButtonScroll.swift in Sources */,
 				88BE1519294BB2E1001AE321 /* Nutriments.swift in Sources */,
+				4355DEA9299178B200C388A4 /* IconModel.swift in Sources */,
 				43E4B775297F02C000538495 /* PagingView.swift in Sources */,
 				88BE1524294BB3C2001AE321 /* IngredientsList.swift in Sources */,
 				88607D56294CFA6900602FE3 /* Favorites.swift in Sources */,
