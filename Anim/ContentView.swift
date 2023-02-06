@@ -82,11 +82,6 @@ struct ContentView: View {
         
         .onAppear {
             openedApp = defaults.bool(forKey: "openedApp")
-//
-//            firestoreRequests.getUser("AybUfF54p9uDIxjckAib") { data in
-//                print(data)
-//            }
-            
         }
     }
 }

@@ -11,7 +11,7 @@
           "value" : "light"
         }
       ],
-      "filename" : "icons8-dolphin-100.png",
+      "filename" : "icons8-user-100.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -22,7 +22,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "icons8-dolphin-100 (1).png",
+      "filename" : "icons8-user-100 (1).png",
       "idiom" : "universal",
       "scale" : "1x"
     },
