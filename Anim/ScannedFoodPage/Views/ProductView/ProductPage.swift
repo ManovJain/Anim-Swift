@@ -101,7 +101,7 @@ struct ProductPage: View {
                 if let uid = userViewModel.userModel.uid {
                     if uid != "" {
                         if !(userViewModel.userModel.productsViewed!.contains((foodViewModel.product?._id)!)) {
-                            userViewModel.userModel.productsScanned = userViewModel.userModel.productsScanned! + 1
+                            userViewModel.userModel.productsFromSearch = userViewModel.userModel.productsFromSearch! + 1
                             userViewModel.userModel.productsViewed?.append((foodViewModel.product?._id)!)
                             firestoreRequests.addBarcodeToArray(uid: uid, array: "productsViewed", barcode: (foodViewModel.product?._id)!)
                             firestoreRequests.addProductFromSearch(uid: uid)
