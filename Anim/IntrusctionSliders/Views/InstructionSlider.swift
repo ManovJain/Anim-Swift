@@ -24,19 +24,18 @@ struct InstructionSlider: View {
                     Image(imageName)
                         .resizable()
                         .scaledToFill()
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
                 }
+                .overlay(index == images.count - 1 ? DismissButton(openedApp: $openedApp) : nil, alignment: .bottom)
             }
-            Button {
-                defaults.set(true, forKey: "openedApp")
-                openedApp = true
-            }
-        label: {
-            Text("Dismiss")
-        }
-            //            .aspectRatio(contentMode: .fill)
-        .clipShape(RoundedRectangle(cornerRadius: 15))
         }
         .padding()
-        
+        .frame(
+              minWidth: 0,
+              maxWidth: .infinity,
+              minHeight: 0,
+              maxHeight: .infinity
+            )
+        .background(Color(UIColor(red: 247/255, green: 242/255, blue: 237/255, alpha: 1)))
     }
 }
