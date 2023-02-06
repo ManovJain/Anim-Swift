@@ -82,6 +82,7 @@ struct ContentView: View {
                     )
             }
         }
+        .background(Color("background"))
         .onChange(of: scenePhase) { newPhase in
             if newPhase == .background {
                             fireStoreRequests.updateUser(uid: userViewModel.userModel.uid!, userModel: userViewModel.userModel)

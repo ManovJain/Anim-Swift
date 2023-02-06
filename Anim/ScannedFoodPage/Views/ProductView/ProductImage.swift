@@ -22,7 +22,7 @@ struct ProductImage: View {
                     .frame(width: UIScreen.screenWidth - 120, height: UIScreen.screenWidth - 120)
                     .clipShape(Rectangle())
                     .padding(10)
-                    .background(Color.white)
+                    .background(Color("background"))
                     .border(.green, width: 2)
             } placeholder: {
                 ProgressView()
