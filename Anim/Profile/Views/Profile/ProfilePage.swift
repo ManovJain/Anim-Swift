@@ -30,7 +30,6 @@ struct ProfilePage: View {
                     AnimManager()
                 case "favorites":
                     VStack{
-                        ButtonScroll()
                         Favorites()
                     }
                 default:

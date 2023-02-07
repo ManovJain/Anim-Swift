@@ -8,10 +8,13 @@ import SwiftUI
 
 struct FoodButtonRow: View {
     
+    @EnvironmentObject var userViewModel: UserViewModel
+    
     @State var isLiked: Bool = false
     @State var isDisliked: Bool = false
     
     @State var nutriments: Nutriments
+    @State var product: Product
     
     var body: some View {
         HStack {
@@ -30,8 +33,22 @@ struct FoodButtonRow: View {
                                 .stroke(.blue, lineWidth: 1)
                         )
                         .font(.system(size: 18))
-                    
                 }
+                Button {
+                    if !(userViewModel.userModel.favorites!.contains((product._id)!)) {
+                        userViewModel.userModel.favorites?.append((product._id)!)
+                    }
+                } label: {
+                    Text("Save")
+                        .foregroundColor(.white)
+                        .fontWeight(.heavy)
+                }
+                .padding()
+                .background(.green)
+                .cornerRadius(15)
+                .padding(.horizontal)
+                .clipShape(Capsule())
+                .disabled((userViewModel.state ==  .signedOut))
             }
             //                else {
             //                    Image(systemName: "heart.fill")

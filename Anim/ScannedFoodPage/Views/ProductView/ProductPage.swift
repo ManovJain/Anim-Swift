@@ -56,14 +56,6 @@ struct ProductPage: View {
                             GradeAlertView(gradeAlertShown: $gradeAlertShown)
                                 .transition(AnyTransition.opacity.animation(.easeInOut(duration: 0.2)))
                         }
-                        Button {
-                            if !(userViewModel.userModel.favorites!.contains((product?._id)!)) {
-                                userViewModel.userModel.favorites?.append((product?._id)!)
-                            }
-                        } label: {
-                            Text("Save");
-                        }
-                        .disabled((userViewModel.state ==  .signedOut))
                         
                     }
                     .frame(width: UIScreen.screenWidth - 50)
