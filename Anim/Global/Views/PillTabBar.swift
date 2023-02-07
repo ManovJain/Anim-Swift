@@ -20,15 +20,18 @@ struct PillTabBar: View {
                 navModel.currentPage = .camera
             }) {
                 if navModel.currentPage == .camera {
-                    Image(systemName: "camera")
-                        .font(.system(size: 20))
-                        .frame(height: 35)
-                        .foregroundColor(.green)
-                        .border(width: 2, edges: [.bottom], color: .green)
+                    VStack {
+                        Image("cameraGreen")
+                            .resizable()
+                            .frame(width: 23, height: 23)
+                    }
+                    .frame(height: 35)
+                    .border(width: 2, edges: [.bottom], color: .green)
                 }
                 else {
-                    Image(systemName: "camera")
-                        .font(.system(size: 20))
+                    Image("camera")
+                        .resizable()
+                        .frame(width: 23, height: 23)
                         .foregroundColor(.primary)
                 }
             }
@@ -37,15 +40,18 @@ struct PillTabBar: View {
                 navModel.currentPage = .food
             }) {
                 if navModel.currentPage == .food {
-                    Image(systemName: "fork.knife.circle")
-                        .font(.system(size: 20))
-                        .frame(height: 35)
-                        .foregroundColor(.green)
-                        .border(width: 2, edges: [.bottom], color: .green)
+                    VStack {
+                        Image("forkGreen")
+                            .resizable()
+                            .frame(width: 23, height: 23)
+                    }
+                    .frame(height: 35)
+                    .border(width: 2, edges: [.bottom], color: .green)
                 }
                 else {
-                    Image(systemName: "fork.knife.circle")
-                        .font(.system(size: 20))
+                    Image("fork")
+                        .resizable()
+                        .frame(width: 23, height: 23)
                         .foregroundColor(.primary)
                 }
             }
@@ -54,15 +60,18 @@ struct PillTabBar: View {
                 navModel.currentPage = .explore
             }) {
                 if navModel.currentPage == .explore {
-                    Image(systemName: "magnifyingglass.circle")
-                        .font(.system(size: 20))
-                        .frame(height: 35)
-                        .foregroundColor(.green)
-                        .border(width: 2, edges: [.bottom], color: .green)
+                    VStack {
+                        Image("searchGreen")
+                            .resizable()
+                            .frame(width: 23, height: 23)
+                    }
+                    .frame(height: 35)
+                    .border(width: 2, edges: [.bottom], color: .green)
                 }
                 else {
-                    Image(systemName: "magnifyingglass.circle")
-                        .font(.system(size: 20))
+                    Image("search")
+                        .resizable()
+                        .frame(width: 23, height: 23)
                         .foregroundColor(.primary)
                 }
             }
