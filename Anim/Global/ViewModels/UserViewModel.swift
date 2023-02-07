@@ -13,6 +13,8 @@ import AuthenticationServices
 
 final class UserViewModel: ObservableObject {
     
+    let defaults = UserDefaults.standard
+    
     enum SignInState {
         case signedIn
         case signedOut
@@ -51,8 +53,11 @@ final class UserViewModel: ObservableObject {
             //user successfully logged into firebase
             print("Log in success")
             
+            
+            self.defaults.set(true, forKey: "signedIn")
+            
+            
             self.state = .signedIn
-            print(self.state)
             
             let db = Firestore.firestore()
             
@@ -142,6 +147,7 @@ final class UserViewModel: ObservableObject {
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
+                    defaults.set(true, forKey: "signedIn")
                     completion()
                     self.state = .signedIn
                 }
@@ -149,6 +155,7 @@ final class UserViewModel: ObservableObject {
         }
     
     func signOut() {
+        
         // 1
         GIDSignIn.sharedInstance.signOut()
         
