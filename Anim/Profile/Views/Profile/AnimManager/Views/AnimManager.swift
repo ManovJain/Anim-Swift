@@ -22,6 +22,10 @@ struct AnimManager: View {
     @State var productsScanned = 0
     
     var body: some View {
+        Text("Anim Manager")
+            .frame(alignment: .center)
+            .font(.system(size: 30))
+            .fontWeight(.bold)
         VStack {
             Image(userViewModel.userModel.anim!)
                 .resizable()
