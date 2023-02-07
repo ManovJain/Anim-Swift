@@ -10,9 +10,23 @@ import SwiftUI
 
 struct Favorites: View {
     @EnvironmentObject var userViewModel: UserViewModel
+    @EnvironmentObject var networkRequests: NetworkRequests
+    @EnvironmentObject var cameraModel: CameraViewModel
+    @EnvironmentObject var foodViewModel: FoodViewModel
+    @EnvironmentObject var navModel: NavModel
     
-    var favorites = ["saved", "liked", "disliked"]
+    let columns = [
+            GridItem(.flexible()),
+            GridItem(.flexible())
+        ]
+    
+//    var favorites = ["saved", "liked", "disliked"]
+    var favorites = ["saved"]
     var body: some View {
+        Text("Favorites")
+            .frame(alignment: .center)
+            .font(.system(size: 30))
+            .fontWeight(.bold)
         VStack(){
             HStack(){
                 ForEach(favorites, id: \.self) { favorite in
@@ -27,38 +41,49 @@ struct Favorites: View {
                     .padding()
                     .background(.green)
                     .cornerRadius(15)
-                    .clipShape(Capsule())            }
+                    .clipShape(Capsule())
+                }
             }
             VStack(alignment: .leading) {
                 ScrollView{
-                    ForEach(userViewModel.userModel.favorites!, id: \.self) { favorite in
-                        Button() {
-                            print("Button tapped!")
-                        } label: {
-                            HStack{
-                                Image(systemName: "bird")
-                                    .foregroundColor(.indigo)
-                                Text(favorite)
-                                    .foregroundColor(.indigo)
-                                Spacer()
+                    ScrollView {
+                                LazyVGrid(columns: columns, spacing: 20) {
+                                    ForEach(userViewModel.userModel.favorites!, id: \.self) { favorite in
+                                        Button() {
+                                            print("Button tapped!")
+                                            networkRequests.getFoodByBarcode(barcode: favorite) { data in
+                                                foodViewModel.status = data?.status
+                                                foodViewModel.product = data?.product
+                                                cameraModel.scannedBarcode = "No Barcode Scanned Yet"
+                                                navModel.currentPage = .food
+                                            }   
+                                        } label: {
+                                            HStack{
+                                                Image(systemName: "bird")
+                                                    .foregroundColor(.indigo)
+                                                Text(favorite)
+                                                    .foregroundColor(.indigo)
+                                                Spacer()
 
-                                Text("A")
-                                    .font(.caption)
-                                    .padding(10)
-                                    .background(.green)
-                                    .clipShape(Circle())
-                                    .foregroundColor(.primary)
-                                Spacer()
+                                                Text("A")
+                                                    .font(.caption)
+                                                    .padding(10)
+                                                    .background(.green)
+                                                    .clipShape(Circle())
+                                                    .foregroundColor(.primary)
+                                                Spacer()
+                                            }
+                                            .padding()
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 4)
+                                                    .stroke(.indigo, lineWidth: 4)
+                                            )
+                                        }
+                                    }
+                                }
+                                .padding(.horizontal)
                             }
-                            .padding()
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 4)
-                                    .stroke(.indigo, lineWidth: 4)
-                            )
-                        }
-                    }
-//                    ForEach((1...10).reversed(), id: \.self) {_ in
-//                    }
+                            .frame(maxHeight: 300)
                 }
             }
         }

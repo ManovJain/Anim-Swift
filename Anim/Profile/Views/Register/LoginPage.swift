@@ -18,14 +18,28 @@ struct LoginPage: View {
     @EnvironmentObject var profileMenuViewModel: ProfileMenuViewModel
     
     var body: some View {
-//        Spacer()
-//            .frame(height: UIScreen.screenHeight/4.0)
+        if(userViewModel.state == .signedIn){
+            if userViewModel.userModel.username != "" {
+                Text(userViewModel.userModel.username! + "'s Settings")
+                    .frame(alignment: .center)
+                    .font(.system(size: 30))
+                    .fontWeight(.bold)
+            } else {
+                Text("Settings")
+                    .frame(alignment: .center)
+                    .font(.system(size: 30))
+                    .fontWeight(.bold)
+            }
+        } else {
+            Text("Login")
+                .frame(alignment: .center)
+                .font(.system(size: 30))
+                .fontWeight(.bold)
+        }
         VStack(alignment: .center){
             Image(uiImage: UIImage(named: "AppIcon") ?? UIImage())
                 .resizable()
                 .frame(width: 120, height: 120)
-            Text("Welcome to Anim")
-            Text("Login to continue")
             
             if(userViewModel.state == .signedOut){
                 VStack{
