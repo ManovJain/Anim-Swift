@@ -1,17 +1,29 @@
 import SwiftUI
+import Combine
 
 struct ProfileMenu: View {
-    
+
     @EnvironmentObject var navModel: NavModel
     @EnvironmentObject var profileMenuViewModel: ProfileMenuViewModel
     
     @State private var icon = "settings"
     @State private var anim = "AppIcon" //dynamic
     
+    @State var secondsElapsed = 0
+    @State var timer: Timer.TimerPublisher = Timer.publish(every: 1, on: .main, in: .common)
+    @State var connectedTimer: Cancellable? = nil
+    
+    @State var opacity = 1.0
+    
     var body: some View {
         VStack {
             Spacer()
             Button(action: {
+                self.resetCounter()
+                withAnimation {
+                    opacity += 0.8
+                    secondsElapsed = 0
+                }
                 profileMenuViewModel.icon = .user
             }) {
                 if profileMenuViewModel.icon.rawValue == "user" {
@@ -28,16 +40,20 @@ struct ProfileMenu: View {
             Spacer()
             
             Button(action: {
+                self.resetCounter()
+                withAnimation {
+                    opacity += 0.8
+                }
                 profileMenuViewModel.icon = .animManager
             }) {
                 if profileMenuViewModel.icon.rawValue == "Anim Manager" {
-                    Image(uiImage: UIImage(named: "animLogoIconBlue")!)
+                    Image("animLogoIconBlue")
                         .resizable()
                         .frame(width: 23, height: 23)
                         .font(.system(size: 20))
                 }
                 else {
-                    Image(uiImage: UIImage(named: "animLogoIcon")!)
+                    Image("animLogoIcon")
                         .resizable()
                         .frame(width: 23, height: 23)
                         .font(.system(size: 20))
@@ -46,6 +62,10 @@ struct ProfileMenu: View {
             Spacer()
             
             Button(action: {
+                self.resetCounter()
+                withAnimation {
+                    opacity += 0.8
+                }
                 profileMenuViewModel.icon = .favorites
             }) {
                 if profileMenuViewModel.icon.rawValue == "favorites" {
@@ -62,6 +82,10 @@ struct ProfileMenu: View {
             Spacer()
             
             Button(action: {
+                self.resetCounter()
+                withAnimation {
+                    opacity += 0.8
+                }
                 profileMenuViewModel.icon = .settings
             }) {
                 if profileMenuViewModel.icon.rawValue == "settings" {
@@ -80,10 +104,47 @@ struct ProfileMenu: View {
         .frame(width: 40,height: 200)
         .background(Color(.lightGray).opacity(0.75))
         .clipShape(Capsule())
+        .opacity(opacity)
+        .onAppear(){
+            self.instantiateTimer()
+        }
+        
+        .onReceive(timer) { _ in
+            self.secondsElapsed += 1
+            if secondsElapsed >= 5 && opacity > 0.5 {
+                withAnimation {
+                    opacity -= 0.8
+                }
+                self.resetCounter()
+            }
+        }
     }
     
     func getIcon() -> String{
         return icon
+    }
+    
+    func instantiateTimer() {
+        self.timer = Timer.publish(every: 1, on: .main, in: .common)
+        self.connectedTimer = self.timer.connect()
+        return
+    }
+    
+    func cancelTimer() {
+        self.connectedTimer?.cancel()
+        return
+    }
+    
+    func resetCounter() {
+        self.secondsElapsed = 0
+        return
+    }
+    
+    func restartTimer() {
+        self.secondsElapsed = 0
+        self.cancelTimer()
+        self.instantiateTimer()
+        return
     }
 }
 
