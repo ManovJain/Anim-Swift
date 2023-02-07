@@ -35,19 +35,20 @@ struct SearchResultButton: View {
             }
         } label: {
             HStack{
-                if searchResult.product_name_en != nil {
-                    AsyncImage(
-                        url: URL(string: searchResult.image_front_url ?? "https://spng.pngfind.com/pngs/s/5-56881_apple-icon-apple-icon-cartoon-png-transparent-png.png")) { image in
-                            image.resizable()
-                                .frame(width: 45, height: 45)
-                        } placeholder: {
-                            ProgressView()
-                        }
-                        .padding()
+                if searchResult.product_name_en != nil || searchResult.product_name_en != ""{
+//                    AsyncImage(
+//                        url: URL(string: searchResult.image_front_url ?? "https://spng.pngfind.com/pngs/s/5-56881_apple-icon-apple-icon-cartoon-png-transparent-png.png")) { image in
+//                            image.resizable()
+//                                .frame(width: 45, height: 45)
+//                        } placeholder: {
+//                            ProgressView()
+//                        }
+//                        .padding()
                     if let name = searchResult.product_name_en{
                         if name != ""{
                             Text(name)
                                 .font(.headline)
+                                .lineLimit(1)
                         }
                     }
                     Spacer()
@@ -80,6 +81,7 @@ struct SearchResultButton: View {
                 }
             }
         }
+        .frame(height: 40)
     }
 }
 
