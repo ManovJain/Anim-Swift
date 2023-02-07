@@ -35,13 +35,10 @@ struct SearchPage: View {
                 List {
                     if searchText.isEmpty {
                         Section {
-                            ForEach(recentSearches, id: \.self) { result in
+                            ForEach(recentSearches.reversed(), id: \.self) { result in
                                 Button {
                                     searchText = result
-                                    networkRequests.getOpenFoodSearch(searchTerm: result) { data in
-                                        searchResults = data!.products
-                                        foodViewModel.searchResults = data!.products
-                                    }
+                                    search(searchText: searchText)
                                 } label: {
                                     Text(result)
                                 }
@@ -61,20 +58,7 @@ struct SearchPage: View {
                 .searchable(text: $searchText, prompt: "Search for a food...")
                 .onSubmit(of: .search) {
                     if !searchText.isEmpty {
-                        var editedSearchText = searchText.replacingOccurrences(of: " ", with: "+")
-                        editedSearchText = editedSearchText.replacingOccurrences(of: "’", with: "")
-                        foodViewModel.searchTerm = editedSearchText
-                        recentSearches.append(editedSearchText)
-                        //add to user vm
-                        if let uid = userViewModel.userModel.uid {
-                            if uid != "" {
-                                userViewModel.userModel.recentSearches?.append(editedSearchText)
-                            }
-                        }
-                        networkRequests.getOpenFoodSearch(searchTerm: editedSearchText) { data in
-                            searchResults = data!.products
-                            foodViewModel.searchResults = data!.products
-                        }
+                        search(searchText: searchText)
                     }
                 }
             }
@@ -87,7 +71,8 @@ struct SearchPage: View {
         .onChange(of: searchText) { searchText in
             if searchText.isEmpty && !isSearching {
                 searchResults = [FoodItem]()
-                
+                foodViewModel.searchTerm = searchText
+                foodViewModel.searchResults = [FoodItem]()
             }
         }
         .padding()
@@ -101,4 +86,31 @@ struct SearchPage: View {
         )
     }
     
+    func search(searchText: String) {
+        var editedSearchText = searchText.replacingOccurrences(of: " ", with: "+")
+        editedSearchText = editedSearchText.replacingOccurrences(of: "’", with: "")
+        foodViewModel.searchTerm = editedSearchText
+        if recentSearches.contains(searchText) {
+            while let idx = recentSearches.firstIndex(of:searchText) {
+                recentSearches.remove(at: idx)
+            }
+        }
+        recentSearches.append(searchText)
+        //add to user vm
+        if let uid = userViewModel.userModel.uid {
+            if uid != "" {
+                if userViewModel.userModel.recentSearches!.contains(searchText) {
+                    while let idx = userViewModel.userModel.recentSearches!.firstIndex(of:searchText) {
+                        userViewModel.userModel.recentSearches!.remove(at: idx)
+                    }
+                }
+                userViewModel.userModel.recentSearches?.append(searchText)
+                recentSearches = userViewModel.userModel.recentSearches!
+            }
+        }
+        networkRequests.getOpenFoodSearch(searchTerm: editedSearchText) { data in
+            searchResults = data!.products
+            foodViewModel.searchResults = data!.products
+        }
+    }
 }
