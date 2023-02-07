@@ -18,11 +18,6 @@ struct ProfilePage: View {
     
     var body: some View {
         VStack{
-            Text(profileMenuViewModel.icon.rawValue)
-                .frame(alignment: .center)
-                .font(.system(size: 30))
-                .fontWeight(.bold)
-//            if(user.state == .signedIn){
                 switch profileMenuViewModel.icon.rawValue {
                 case "user":
                     User()
@@ -30,15 +25,10 @@ struct ProfilePage: View {
                     AnimManager()
                 case "favorites":
                     VStack{
-                        ButtonScroll()
                         Favorites()
                     }
                 default:
                     LoginPage()                }
-//            }
-//            else{
-//                LoginPage()
-//            }
         }
         .overlay(((userViewModel.state ==  .signedIn) ? ProfileMenu(): nil)
             .position(x: UIScreen.screenWidth/1.15, y:UIScreen.screenHeight/2.7)

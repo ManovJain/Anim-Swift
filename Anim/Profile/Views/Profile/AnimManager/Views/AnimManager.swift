@@ -24,6 +24,10 @@ struct AnimManager: View {
     let defaults = UserDefaults.standard
     
     var body: some View {
+        Text("Anim Manager")
+            .frame(alignment: .center)
+            .font(.system(size: 30))
+            .fontWeight(.bold)
         VStack {
             Image(userViewModel.userModel.anim!)
                 .resizable()

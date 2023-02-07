@@ -45,7 +45,7 @@ struct ProductInfo: View {
                 ProductImage(imageURL: "https://i.imgur.com/9eJFAzo.png", grade: foundProduct.nutriscore_grade ?? "NA", gradeAlertShown: $gradeAlertShown)
             }
             VStack (alignment: .leading, spacing: 8) {
-                FoodButtonRow(nutriments: foundProduct.nutriments!)
+                FoodButtonRow(nutriments: foundProduct.nutriments!, product: foundProduct)
                 VStack (spacing: 2){
                     Macros(nutriments: foundProduct.nutriments!)
                     if foundProduct.allergens_tags!.count > 0 {
