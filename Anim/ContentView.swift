@@ -93,6 +93,15 @@ struct ContentView: View {
         
         .onAppear {
             openedApp = defaults.bool(forKey: "openedApp")
+            
+            //get user stored in default user if signedIn before is true
+            
+            if defaults.bool(forKey: "signedIn") {
+                fireStoreRequests.getUser(defaults.string(forKey: "uid")!) { data in
+                    userViewModel.userModel = data!
+                    userViewModel.state = .signedIn
+                }
+            }
         }
     }
 }

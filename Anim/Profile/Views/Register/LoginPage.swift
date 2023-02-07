@@ -11,6 +11,8 @@ import Firebase
 //import GoogleSignInSwift
 struct LoginPage: View {
     
+    let defaults = UserDefaults.standard
+    
     @EnvironmentObject var userViewModel: UserViewModel
     
     @EnvironmentObject var profileMenuViewModel: ProfileMenuViewModel
@@ -44,6 +46,7 @@ struct LoginPage: View {
                             userViewModel.authenticate(credential: credential) { data in
                                 userViewModel.userModel = data!
                                 profileMenuViewModel.icon = .user
+                                defaults.set(userViewModel.userModel.uid!, forKey: "uid")
                             }
                         case .failure(let error):
                             print(error.localizedDescription)
@@ -58,6 +61,7 @@ struct LoginPage: View {
                             userViewModel.signIn() { data in
                                 userViewModel.userModel = data!
                                 profileMenuViewModel.icon = .user
+                                defaults.set(userViewModel.userModel.uid!, forKey: "uid")
                             }
                         }
                 }
@@ -65,7 +69,17 @@ struct LoginPage: View {
             else {
                 Button(action: {
                     userViewModel.signOut()
-                    NotificationCenter.default.post(name: NSNotification.signInStateChange, object: nil) //may not need
+                    
+                    NotificationCenter.default.post(name: NSNotification.signInStateChange, object: nil)
+                    
+                    userViewModel.userModel = UserModel(uid: "", username: "", email: "", productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default")
+                    
+                    defaults.set(false, forKey: "signedIn")
+                    
+                    defaults.set(nil, forKey: "uid")
+                    
+                    
+                    //may not need
                     profileMenuViewModel.icon = .settings
                 }, label: {
                     Text("LogOut")
