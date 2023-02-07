@@ -21,6 +21,8 @@ struct AnimManager: View {
     @State var productsFromSearch = 0
     @State var productsScanned = 0
     
+    let defaults = UserDefaults.standard
+    
     var body: some View {
         VStack {
             Image(userViewModel.userModel.anim!)
@@ -42,6 +44,7 @@ struct AnimManager: View {
                         ForEach(iconVM.searchIcons, id: \.self) { icon in
                             Button(action: {
                                 userViewModel.userModel.anim = icon.name
+                                self.defaults.set(icon.name, forKey: "anim")
                             }) {
                                 VStack {
                                     if (productsFromSearch >= icon.numNeeded) {
@@ -81,6 +84,7 @@ struct AnimManager: View {
                         ForEach(iconVM.scanIcons, id: \.self) { icon in
                             Button(action: {
                                 userViewModel.userModel.anim = icon.name
+                                self.defaults.set(icon.name, forKey: "anim")
                             }) {
                                 VStack {
                                     if (productsScanned >= icon.numNeeded) {

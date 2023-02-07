@@ -30,19 +30,17 @@ struct ProfileMenu: View {
             Button(action: {
                 profileMenuViewModel.icon = .animManager
             }) {
-                if profileMenuViewModel.icon.rawValue == "animManager" {
-                    Image(uiImage: UIImage(named: "AppIcon") ?? UIImage())
+                if profileMenuViewModel.icon.rawValue == "Anim Manager" {
+                    Image(uiImage: UIImage(named: "animLogoIconBlue")!)
                         .resizable()
                         .frame(width: 23, height: 23)
                         .font(.system(size: 20))
-                        .foregroundColor(.indigo)
                 }
                 else {
-                    Image(uiImage: UIImage(named: "AppIcon") ?? UIImage())
+                    Image(uiImage: UIImage(named: "animLogoIcon")!)
                         .resizable()
                         .frame(width: 23, height: 23)
                         .font(.system(size: 20))
-                        .foregroundColor(.primary)
                 }
             }
             Spacer()
