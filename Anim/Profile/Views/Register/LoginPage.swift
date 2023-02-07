@@ -96,8 +96,15 @@ struct LoginPage: View {
                     //may not need
                     profileMenuViewModel.icon = .settings
                 }, label: {
-                    Text("LogOut")
+                    Text("Log Out")
+                        .foregroundColor(.white)
+                        .fontWeight(.heavy)
+                        .lineLimit(1)
                 })
+                .padding()
+                .background(.green)
+                .cornerRadius(15)
+                .clipShape(Capsule())
             }
         }
         .frame(
