@@ -22,11 +22,13 @@ struct LoginPage: View {
             if userViewModel.userModel.username != "" {
                 Text(userViewModel.userModel.username! + "'s Settings")
                     .frame(alignment: .center)
-                    .font(.custom("Montserrat-Bold", size: 30))
+                    .font(.system(size: 30))
+                    .fontWeight(.bold)
             } else {
                 Text("Settings")
                     .frame(alignment: .center)
-                    .font(.custom("Montserrat-Bold", size: 30))
+                    .font(.system(size: 30))
+                    .fontWeight(.bold)
             }
         } else {
             Text("Login")
@@ -95,7 +97,7 @@ struct LoginPage: View {
                 }, label: {
                     Text("Log Out")
                         .foregroundColor(.white)
-                        .font(.custom("Montserrat-Bold", size: 18))
+                        .fontWeight(.heavy)
                         .lineLimit(1)
                 })
                 .padding()
