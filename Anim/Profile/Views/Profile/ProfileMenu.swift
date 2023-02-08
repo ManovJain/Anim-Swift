@@ -20,10 +20,9 @@ struct ProfileMenu: View {
             Spacer()
             Button(action: {
                 self.resetCounter()
-                withAnimation {
-                    opacity += 0.8
-                    secondsElapsed = 0
-                }
+                    withAnimation {
+                        opacity = 1
+                    }
                 profileMenuViewModel.icon = .user
             }) {
                 if profileMenuViewModel.icon.rawValue == "user" {
@@ -42,7 +41,7 @@ struct ProfileMenu: View {
             Button(action: {
                 self.resetCounter()
                 withAnimation {
-                    opacity += 0.8
+                    opacity = 1
                 }
                 profileMenuViewModel.icon = .animManager
             }) {
@@ -64,7 +63,7 @@ struct ProfileMenu: View {
             Button(action: {
                 self.resetCounter()
                 withAnimation {
-                    opacity += 0.8
+                    opacity = 1
                 }
                 profileMenuViewModel.icon = .favorites
             }) {
@@ -84,7 +83,7 @@ struct ProfileMenu: View {
             Button(action: {
                 self.resetCounter()
                 withAnimation {
-                    opacity += 0.8
+                    opacity = 1
                 }
                 profileMenuViewModel.icon = .settings
             }) {
@@ -113,7 +112,7 @@ struct ProfileMenu: View {
             self.secondsElapsed += 1
             if secondsElapsed >= 5 && opacity > 0.5 {
                 withAnimation {
-                    opacity -= 0.8
+                    opacity = 0.2
                 }
                 self.resetCounter()
             }
