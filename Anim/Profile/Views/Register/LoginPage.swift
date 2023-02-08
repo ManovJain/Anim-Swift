@@ -33,7 +33,8 @@ struct LoginPage: View {
         } else {
             Text("Login")
                 .frame(alignment: .center)
-                .font(.custom("Montserrat-Bold", size: 30))
+                .font(.system(size: 30))
+                .fontWeight(.bold)
         }
         VStack(alignment: .center){
             Image(uiImage: UIImage(named: "AppIcon") ?? UIImage())
