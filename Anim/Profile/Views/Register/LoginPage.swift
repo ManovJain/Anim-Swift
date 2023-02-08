@@ -22,19 +22,16 @@ struct LoginPage: View {
             if userViewModel.userModel.username != "" {
                 Text(userViewModel.userModel.username! + "'s Settings")
                     .frame(alignment: .center)
-                    .font(.system(size: 30))
-                    .fontWeight(.bold)
+                    .font(.custom("Montserrat-Bold", size: 30))
             } else {
                 Text("Settings")
                     .frame(alignment: .center)
-                    .font(.system(size: 30))
-                    .fontWeight(.bold)
+                    .font(.custom("Montserrat-Bold", size: 30))
             }
         } else {
             Text("Login")
                 .frame(alignment: .center)
-                .font(.system(size: 30))
-                .fontWeight(.bold)
+                .font(.custom("Montserrat-Bold", size: 30))
         }
         VStack(alignment: .center){
             Image(uiImage: UIImage(named: "AppIcon") ?? UIImage())
@@ -98,7 +95,7 @@ struct LoginPage: View {
                 }, label: {
                     Text("Log Out")
                         .foregroundColor(.white)
-                        .fontWeight(.heavy)
+                        .font(.custom("Montserrat-Bold", size: 18))
                         .lineLimit(1)
                 })
                 .padding()

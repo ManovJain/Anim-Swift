@@ -17,6 +17,7 @@ struct CameraView: View {
             mainView
         case .cameraUnavailable:
             Text("Your device does not have a camera")
+            
                 .frame(
                     minWidth: 0,
                     maxWidth: .infinity,

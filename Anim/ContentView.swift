@@ -92,6 +92,7 @@ struct ContentView: View {
         .overlay(openedApp ? PillTabBar() : nil, alignment: .bottom)
         
         .onAppear {
+            
             openedApp = defaults.bool(forKey: "openedApp")
             
             userViewModel.userModel.anim = defaults.string(forKey: "anim")
