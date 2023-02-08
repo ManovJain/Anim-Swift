@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43037D842994167A00B81CBD /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43037D80299415FE00B81CBD /* Montserrat-Bold.ttf */; };
 		4355DEA9299178B200C388A4 /* IconModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4355DEA8299178B200C388A4 /* IconModel.swift */; };
 		4355DEAB299178EF00C388A4 /* IconVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4355DEAA299178EF00C388A4 /* IconVM.swift */; };
 		4355DEAD299193FC00C388A4 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4355DEAC299193FC00C388A4 /* DismissButton.swift */; };
+		43E23AA529941C3A00DC1B9B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43E23AA429941C3A00DC1B9B /* Launch Screen.storyboard */; };
 		43E4B775297F02C000538495 /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B774297F02C000538495 /* PagingView.swift */; };
 		43E4B777297F18C800538495 /* InstructionSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B776297F18C800538495 /* InstructionSlider.swift */; };
 		43E4B77929808EF100538495 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B77829808EF100538495 /* UserViewModel.swift */; };
@@ -74,9 +76,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		43037D80299415FE00B81CBD /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.ttf"; path = "../../../../../Downloads/Montserrat/static/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		4355DEA8299178B200C388A4 /* IconModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconModel.swift; sourceTree = "<group>"; };
 		4355DEAA299178EF00C388A4 /* IconVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconVM.swift; sourceTree = "<group>"; };
 		4355DEAC299193FC00C388A4 /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
+		43E23AA429941C3A00DC1B9B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		43E4B774297F02C000538495 /* PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
 		43E4B776297F18C800538495 /* InstructionSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionSlider.swift; sourceTree = "<group>"; };
 		43E4B77829808EF100538495 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
@@ -154,6 +158,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43037D7929940FC200B81CBD /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				43037D80299415FE00B81CBD /* Montserrat-Bold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		4355DEA42991788C00C388A4 /* AnimManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,12 +200,12 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		43E4B772297F02A600538495 /* IntrusctionSliders */ = {
+		43E4B772297F02A600538495 /* IntsructionSliders */ = {
 			isa = PBXGroup;
 			children = (
 				43E4B773297F02AF00538495 /* Views */,
 			);
-			path = IntrusctionSliders;
+			path = IntsructionSliders;
 			sourceTree = "<group>";
 		};
 		43E4B773297F02AF00538495 /* Views */ = {
@@ -236,7 +248,7 @@
 				8820643C298C9A640094F94F /* Anim.entitlements */,
 				88CB6AAF2988A14D00184BC2 /* Info.plist */,
 				43E4B77C29809A6800538495 /* GoogleService-Info.plist */,
-				43E4B772297F02A600538495 /* IntrusctionSliders */,
+				43E4B772297F02A600538495 /* IntsructionSliders */,
 				882D1E0B293951F6002EFDC8 /* Global */,
 				882D1E08293951C5002EFDC8 /* Profile */,
 				882D1E07293951BF002EFDC8 /* SearchPage */,
@@ -244,10 +256,12 @@
 				882D1E05293951A9002EFDC8 /* Camera */,
 				882D1DFD29394C04002EFDC8 /* Helpers */,
 				882D1DDD29394787002EFDC8 /* Requests */,
+				43037D7929940FC200B81CBD /* Fonts */,
 				882D1DC929393F1A002EFDC8 /* AnimApp.swift */,
 				882D1DCB29393F1A002EFDC8 /* ContentView.swift */,
 				882D1DCD29393F1A002EFDC8 /* Assets.xcassets */,
 				882D1DCF29393F1A002EFDC8 /* Preview Content */,
+				43E23AA429941C3A00DC1B9B /* Launch Screen.storyboard */,
 			);
 			path = Anim;
 			sourceTree = "<group>";
@@ -565,8 +579,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43037D842994167A00B81CBD /* Montserrat-Bold.ttf in Resources */,
 				882D1DD129393F1A002EFDC8 /* Preview Assets.xcassets in Resources */,
 				882D1DCE29393F1A002EFDC8 /* Assets.xcassets in Resources */,
+				43E23AA529941C3A00DC1B9B /* Launch Screen.storyboard in Resources */,
 				43E4B77D29809A6800538495 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -769,7 +785,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "Anim needs camera access to scan barcodes.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -807,7 +823,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "Anim needs camera access to scan barcodes.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
