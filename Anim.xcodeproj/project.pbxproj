@@ -53,7 +53,7 @@
 		88BE1517294BB2CD001AE321 /* NutrientLevels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1516294BB2CD001AE321 /* NutrientLevels.swift */; };
 		88BE1519294BB2E1001AE321 /* Nutriments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1518294BB2E1001AE321 /* Nutriments.swift */; };
 		88BE151B294BB2FC001AE321 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE151A294BB2FC001AE321 /* Product.swift */; };
-		88BE151D294BB321001AE321 /* ScannedProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE151C294BB321001AE321 /* ScannedProduct.swift */; };
+		88BE151D294BB321001AE321 /* ScannedBarcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE151C294BB321001AE321 /* ScannedBarcode.swift */; };
 		88BE151F294BB351001AE321 /* FoodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE151E294BB351001AE321 /* FoodViewModel.swift */; };
 		88BE1524294BB3C2001AE321 /* IngredientsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1523294BB3C2001AE321 /* IngredientsList.swift */; };
 		88BE1526294BB3E1001AE321 /* NutrientsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1525294BB3E1001AE321 /* NutrientsPage.swift */; };
@@ -117,7 +117,7 @@
 		88BE1516294BB2CD001AE321 /* NutrientLevels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientLevels.swift; sourceTree = "<group>"; };
 		88BE1518294BB2E1001AE321 /* Nutriments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutriments.swift; sourceTree = "<group>"; };
 		88BE151A294BB2FC001AE321 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
-		88BE151C294BB321001AE321 /* ScannedProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannedProduct.swift; sourceTree = "<group>"; };
+		88BE151C294BB321001AE321 /* ScannedBarcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannedBarcode.swift; sourceTree = "<group>"; };
 		88BE151E294BB351001AE321 /* FoodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewModel.swift; sourceTree = "<group>"; };
 		88BE1523294BB3C2001AE321 /* IngredientsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsList.swift; sourceTree = "<group>"; };
 		88BE1525294BB3E1001AE321 /* NutrientsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientsPage.swift; sourceTree = "<group>"; };
@@ -422,7 +422,7 @@
 				88BE1516294BB2CD001AE321 /* NutrientLevels.swift */,
 				88BE1518294BB2E1001AE321 /* Nutriments.swift */,
 				88BE151A294BB2FC001AE321 /* Product.swift */,
-				88BE151C294BB321001AE321 /* ScannedProduct.swift */,
+				88BE151C294BB321001AE321 /* ScannedBarcode.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -635,7 +635,7 @@
 				882D1DF429394A99002EFDC8 /* CameraView.swift in Sources */,
 				882D1DFC29394B69002EFDC8 /* Placeholder.swift in Sources */,
 				882D1DF029394992002EFDC8 /* NavModel.swift in Sources */,
-				88BE151D294BB321001AE321 /* ScannedProduct.swift in Sources */,
+				88BE151D294BB321001AE321 /* ScannedBarcode.swift in Sources */,
 				88BE1536294BB59C001AE321 /* ProductInfo.swift in Sources */,
 				88BE1519294BB2E1001AE321 /* Nutriments.swift in Sources */,
 				4355DEA9299178B200C388A4 /* IconModel.swift in Sources */,

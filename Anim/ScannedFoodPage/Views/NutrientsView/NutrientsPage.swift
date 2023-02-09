@@ -19,7 +19,7 @@ struct NutrientsPage: View {
                         Text("Calories")
                             .bold()
                         Spacer()
-                        Text("\(calories)")
+                        Text("\(Int(ceil(calories)))")
                     }
                 }
                 if let fat = nutriments.fat_unit {

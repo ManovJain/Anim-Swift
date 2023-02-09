@@ -7,9 +7,6 @@
 
 import Foundation
 
-
-import Foundation
-
 struct ScannedBarcode: Codable {
     let code: String?
     let product: Product?

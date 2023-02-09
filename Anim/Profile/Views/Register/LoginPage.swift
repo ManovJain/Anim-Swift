@@ -37,11 +37,12 @@ struct LoginPage: View {
                 .fontWeight(.bold)
         }
         VStack(alignment: .center){
+            Spacer()
             Image(uiImage: UIImage(named: "AppIcon") ?? UIImage())
                 .resizable()
                 .frame(width: 120, height: 120)
-            
             if(userViewModel.state == .signedOut){
+
                 VStack{
                     //APPLE SIGN IN
                     SignInWithAppleButton { (request) in
@@ -106,6 +107,10 @@ struct LoginPage: View {
                 .cornerRadius(15)
                 .clipShape(Capsule())
             }
+            Spacer()
+            Link("Icons by Icons8",
+                  destination: URL(string: "https://icons8.com")!)
+                .padding(.bottom, 50)
         }
         .frame(
             minWidth: 0,
