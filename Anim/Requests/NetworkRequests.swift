@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 import SwiftUI
 
+
 class NetworkRequests: ObservableObject {
     
 //    func getFoodSearch(searchTerm: String, completion: @escaping (SearchResult?) -> ()) {
@@ -49,6 +50,7 @@ class NetworkRequests: ObservableObject {
                     completion(jsonData)
                     
                 case .failure(let error):
+                    print("it didnt' worked")
                     print(error)
                 }
             }

@@ -14,7 +14,7 @@ struct Nutriments: Codable {
     let carbohydrates_unit: String?
     let cholesterol_serving: Float?
     let cholesterol_unit: String?
-    let energy_kcal_serving: Int?
+    let energy_kcal_serving: Float?
     let energy_unit: String?
     let fat_serving: Float?
     let fat_unit: String?
