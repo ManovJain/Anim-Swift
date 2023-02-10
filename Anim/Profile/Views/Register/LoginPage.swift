@@ -67,7 +67,7 @@ struct LoginPage: View {
                             print(error.localizedDescription)
                         }
                     }
-                    .signInWithAppleButtonStyle(.black)
+                    .signInWithAppleButtonStyle(.whiteOutline)
                     .frame(width: UIScreen.screenWidth - 36, height: 40)
                     .clipShape(Rectangle())
                     //GOOGLE SIGN IN

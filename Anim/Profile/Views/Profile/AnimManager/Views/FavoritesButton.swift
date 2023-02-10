@@ -12,6 +12,7 @@ struct FavoritesButton: View {
     @EnvironmentObject var networkRequests: NetworkRequests
     @EnvironmentObject var foodViewModel: FoodViewModel
     @EnvironmentObject var navModel: NavModel
+    @EnvironmentObject var camModel: CameraViewModel
     
     @State var product: Product?
     @State var status: Int?
@@ -25,6 +26,7 @@ struct FavoritesButton: View {
             Button() {
                 foodViewModel.product = product
                 foodViewModel.status = status
+                camModel.scannedBarcode = "No Barcode Scanned Yet"
                 navModel.currentPage = .food
                 print("Button tapped!")
             } label: {
