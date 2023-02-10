@@ -30,22 +30,22 @@ struct Favorites: View {
             .font(.system(size: 30))
             .fontWeight(.bold)
         VStack(){
-            HStack(){
-                ForEach(favorites, id: \.self) { favorite in
-                    Button(){
-                        
-                    } label: {
-                        Text(favorite)
-                            .foregroundColor(.white)
-                            .fontWeight(.heavy)
-                            .lineLimit(1)
-                    }
-                    .padding()
-                    .background(.green)
-                    .cornerRadius(15)
-                    .clipShape(Capsule())
-                }
-            }
+//            HStack(){
+//                ForEach(favorites, id: \.self) { favorite in
+//                    Button(){
+//                        
+//                    } label: {
+//                        Text(favorite)
+//                            .foregroundColor(.white)
+//                            .fontWeight(.heavy)
+//                            .lineLimit(1)
+//                    }
+//                    .padding()
+//                    .background(.green)
+//                    .cornerRadius(15)
+//                    .clipShape(Capsule())
+//                }
+//            }
             VStack(alignment: .leading) {
                 ScrollView{
                     ScrollView {
