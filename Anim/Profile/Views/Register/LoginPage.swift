@@ -17,6 +17,8 @@ struct LoginPage: View {
     
     @EnvironmentObject var profileMenuViewModel: ProfileMenuViewModel
     
+    @State var showAlert = false
+    
     var body: some View {
         if(userViewModel.state == .signedIn){
             if userViewModel.userModel.username != "" {
@@ -93,6 +95,7 @@ struct LoginPage: View {
                     
                     defaults.set(nil, forKey: "uid")
                     
+                    defaults.set("default", forKey: "anim")
                     
                     //may not need
                     profileMenuViewModel.icon = .settings
@@ -104,6 +107,19 @@ struct LoginPage: View {
                 })
                 .padding()
                 .background(.green)
+                .cornerRadius(15)
+                .clipShape(Capsule())
+                
+                Button {
+                    showAlert = true
+                } label: {
+                    Text("Delete Account")
+                        .foregroundColor(.white)
+                        .fontWeight(.heavy)
+                        .lineLimit(1)
+                }
+                .padding()
+                .background(.red)
                 .cornerRadius(15)
                 .clipShape(Capsule())
             }
@@ -118,14 +134,38 @@ struct LoginPage: View {
             minHeight: 0,
             maxHeight: .infinity
         )
+        .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("Are you sure?"),
+                    message: Text("You will lose all of the data associated with your account."),
+                    primaryButton: .default(
+                        Text("Keep Account"),
+                        action: {showAlert = false}
+                    ),
+                    secondaryButton: .destructive(
+                        Text("Delete Account"),
+                        action: deleteAccount
+                    )
+                )
+            }
+    }
+ 
+    func deleteAccount() {
+        userViewModel.deleteAccount()
+        FirestoreRequests().deleteAccount(uid: userViewModel.userModel.uid!)
+        showAlert = false
+        userViewModel.userModel = UserModel(uid: "", username: "", email: "", productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default")
         
+        defaults.set(false, forKey: "signedIn")
+        
+        defaults.set(nil, forKey: "uid")
+        
+        defaults.set("default", forKey: "anim")
+        
+        
+        
+        //may not need
+        profileMenuViewModel.icon = .settings
     }
     
-    
-}
-
-struct LoginPage_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginPage()
-    }
 }

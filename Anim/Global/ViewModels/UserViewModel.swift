@@ -170,6 +170,19 @@ final class UserViewModel: ObservableObject {
     }
     
     
+    func deleteAccount() {
+
+        Auth.auth().currentUser?.delete() { error in
+            if let error = error {
+                print(error)
+            }
+            else {
+                self.state = .signedOut
+            }
+        }
+    }
+    
+    
     
     
     //    func logGoogleUser(user: GIDGoogleUser){

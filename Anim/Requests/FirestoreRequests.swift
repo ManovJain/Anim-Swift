@@ -17,7 +17,7 @@ class FirestoreRequests {
         let db = Firestore.firestore()
         
         let user = db.collection("users").document(userID)
-
+        
         user.getDocument{(document, error) in
             if let document = document, document.exists {
                 let uid = document.get("uid") as! String
@@ -65,6 +65,19 @@ class FirestoreRequests {
         }
     }
     
+    func deleteAccount(uid: String) {
+        let db = Firestore.firestore()
+        
+        db.collection("users").document(uid).delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            }
+            else {
+                print("Document successfully removed!")
+            }
+        }
+    }
+    
     func setIcon(uid: String, icon: String) {
         
         let db = Firestore.firestore()
@@ -107,6 +120,20 @@ class FirestoreRequests {
         user.updateData([
             array: FieldValue.arrayUnion([barcode])
         ])
+    }
+    
+    func addBarcodeToMissing(array: String, barcode: String) {
+        
+        let db = Firestore.firestore()
+        
+        let barcode = db.collection(array).document(barcode)
+        
+        barcode.setData(["barcode": barcode]) { error in
+            if let error = error {
+                print("Error writing document: \(error)")
+            }
+        }
+                      
     }
     
     

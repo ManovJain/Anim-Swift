@@ -34,7 +34,7 @@ struct ProductPage: View {
                         .frame(alignment: .center)
                 }
                 else if status == 0 {
-                    Text("Product not found")
+                    Text("Oh no! We don't have data on this product yet but our team is currently working to solve that issue.")
                         .font(.title)
                         .fontWeight(.bold)
                         .frame(alignment: .center)
@@ -72,6 +72,9 @@ struct ProductPage: View {
                     networkRequests.getFoodByBarcode(barcode: camModel.scannedBarcode) { data in
                         status = data?.status
                         product = data?.product
+                        if status != 1 {
+                            FirestoreRequests().addBarcodeToMissing(array: "missingBarcode", barcode: camModel.scannedBarcode)
+                        }
                         if let uid = userViewModel.userModel.uid {
                             if uid != "" {
                                 if !(userViewModel.userModel.productsViewed!.contains(camModel.scannedBarcode)) {
