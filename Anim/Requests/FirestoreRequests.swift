@@ -32,7 +32,8 @@ class FirestoreRequests {
                 let allergens = document.get("allergens") as! [String]
                 let recentSearches = document.get("recentSearches") as! [String]
                 let anim = document.get("anim") as! String
-                let foundUser = UserModel(uid: uid, username: username, email: email, productsFromSearch: productsFromSearch, productsScanned: productsScanned, productsViewed: productsViewed, likes: likes, dislikes: dislikes, favorites: favorites, allergens: allergens, recentSearches: recentSearches, anim: anim)
+                let earnedAnims = document.get("earnedAnims") as! [String]
+                let foundUser = UserModel(uid: uid, username: username, email: email, productsFromSearch: productsFromSearch, productsScanned: productsScanned, productsViewed: productsViewed, likes: likes, dislikes: dislikes, favorites: favorites, allergens: allergens, recentSearches: recentSearches, anim: anim, earnedAnims: earnedAnims)
                 completion(foundUser)
             }
         }
@@ -55,12 +56,13 @@ class FirestoreRequests {
                       "favorites": [],
                       "allergens": [],
                       "recentSearches": [],
-                      "anim": "default"]) { error in
+                      "anim": "default",
+                      "earnedAnims": []]) { error in
             if let error = error {
                 print("Error writing document: \(error)")
             }
             else {
-                completion(UserModel(uid: uid, username: username, email: email, productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default"))
+                completion(UserModel(uid: uid, username: username, email: email, productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default", earnedAnims: []))
             }
         }
     }
@@ -162,7 +164,8 @@ class FirestoreRequests {
             "favorites": userModel.favorites,
             "allergens": userModel.allergens,
             "recentSearches": userModel.recentSearches,
-            "anim": userModel.anim
+            "anim": userModel.anim,
+            "earnedAnims": userModel.earnedAnims
         ])
     }
 }

@@ -11,4 +11,5 @@ import SwiftUI
 
 extension NSNotification {
     static let signInStateChange = Notification.Name.init("signInStateChange")
+    static let showAnimAlert = Notification.Name.init("showAnimAlert")
 }

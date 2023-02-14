@@ -29,4 +29,5 @@ struct UserModel: Codable, Hashable {
     var allergens: [String]?
     var recentSearches: [String]?
     var anim: String?
+    var earnedAnims: [String]?
 }

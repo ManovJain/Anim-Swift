@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		430D1A10299C2B9200FD43EC /* AnimEarnedAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430D1A0F299C2B9200FD43EC /* AnimEarnedAlert.swift */; };
 		4355DEA9299178B200C388A4 /* IconModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4355DEA8299178B200C388A4 /* IconModel.swift */; };
 		4355DEAB299178EF00C388A4 /* IconVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4355DEAA299178EF00C388A4 /* IconVM.swift */; };
 		4355DEAD299193FC00C388A4 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4355DEAC299193FC00C388A4 /* DismissButton.swift */; };
@@ -76,6 +77,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		430D1A0F299C2B9200FD43EC /* AnimEarnedAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimEarnedAlert.swift; sourceTree = "<group>"; };
 		4355DEA8299178B200C388A4 /* IconModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconModel.swift; sourceTree = "<group>"; };
 		4355DEAA299178EF00C388A4 /* IconVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconVM.swift; sourceTree = "<group>"; };
 		4355DEAC299193FC00C388A4 /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
@@ -475,6 +477,7 @@
 				88BE1537294BB5C1001AE321 /* ProductPage.swift */,
 				88BE1539294BB5EC001AE321 /* FoodButtonRow.swift */,
 				43E4B78F2984407100538495 /* GradeAlertView.swift */,
+				430D1A0F299C2B9200FD43EC /* AnimEarnedAlert.swift */,
 			);
 			path = ProductView;
 			sourceTree = "<group>";
@@ -613,6 +616,7 @@
 				882D1DEE29394978002EFDC8 /* CameraViewModel.swift in Sources */,
 				882D1DFA29394B3C002EFDC8 /* PillTabBar.swift in Sources */,
 				88BE1528294BB41A001AE321 /* TagAlertView.swift in Sources */,
+				430D1A10299C2B9200FD43EC /* AnimEarnedAlert.swift in Sources */,
 				43E4B77B2980969E00538495 /* DragGestures.swift in Sources */,
 				88BE151B294BB2FC001AE321 /* Product.swift in Sources */,
 				88BE1515294BB2B8001AE321 /* Ingredient.swift in Sources */,

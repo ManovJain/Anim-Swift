@@ -10,6 +10,8 @@ import CachedAsyncImage
 
 struct ProductPage: View {
     
+    var iconVM = IconVM()
+    
     @EnvironmentObject var networkRequests: NetworkRequests
     @EnvironmentObject var camModel: CameraViewModel
     @EnvironmentObject var foodViewModel: FoodViewModel
@@ -23,6 +25,8 @@ struct ProductPage: View {
     
     @State var gradeAlertShown = false
     
+    @State var iconEarned = "default"
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -36,6 +40,7 @@ struct ProductPage: View {
                 else if status == 0 {
                     Text("Oh no! We don't have data on this product yet but our team is currently working to solve that issue.")
                         .font(.title)
+                        .padding()
                         .fontWeight(.bold)
                         .frame(alignment: .center)
                 }
@@ -68,6 +73,7 @@ struct ProductPage: View {
                 maxHeight: .infinity
             )
             .onAppear {
+                NotificationCenter.default.post(name: NSNotification.showAnimAlert, object: nil)
                 if camModel.scannedBarcode != "No Barcode Scanned Yet" {
                     networkRequests.getFoodByBarcode(barcode: camModel.scannedBarcode) { data in
                         status = data?.status
@@ -95,6 +101,36 @@ struct ProductPage: View {
                             if !(userViewModel.userModel.productsViewed!.contains((foodViewModel.product?._id)!)) {
                                 userViewModel.userModel.productsFromSearch = userViewModel.userModel.productsFromSearch! + 1
                                 userViewModel.userModel.productsViewed?.append((foodViewModel.product?._id)!)
+                            }
+                        }
+                    }
+                }
+                
+                
+                if let uid = userViewModel.userModel.uid {
+                    if uid != "" {
+                        for icon in iconVM.searchIcons {
+                            if userViewModel.userModel.productsFromSearch! >= icon.numNeeded {
+                                if userViewModel.userModel.earnedAnims!.contains(icon.name) {
+                                    
+                                }
+                                else {
+                                    userViewModel.userModel.earnedAnims?.append(icon.name)
+                                    iconEarned = icon.name
+                                    NotificationCenter.default.post(name: NSNotification.showAnimAlert, object: nil)
+                                }
+                            }
+                        }
+                        for icon in iconVM.scanIcons {
+                            if userViewModel.userModel.productsScanned! >= icon.numNeeded {
+                                if userViewModel.userModel.earnedAnims!.contains(icon.name) {
+                                    
+                                }
+                                else {
+                                    userViewModel.userModel.earnedAnims?.append(icon.name)
+                                    iconEarned = icon.name
+                                    NotificationCenter.default.post(name: NSNotification.showAnimAlert, object: nil)
+                                }
                             }
                         }
                     }
