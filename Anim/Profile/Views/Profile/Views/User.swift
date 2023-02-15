@@ -15,13 +15,13 @@ struct User: View {
         if((userViewModel.userModel.username) != ""){
             Text(userViewModel.userModel.username!)
                 .frame(alignment: .center)
-                .font(Font.custom("Monsterrat-Bold", size: 30))
-                .foregroundColor(Color("background"))
+                .font(Font.custom("DMSans-Medium", size: 30))
+                .foregroundColor(Color("AnimGreen"))
         } else {
             Text("User")
                 .frame(alignment: .center)
-                .font(Font.custom("Monsterrat-Bold", size: 30))
-                .foregroundColor(Color("background"))
+                .font(Font.custom("DMSans-Medium", size: 30))
+                .foregroundColor(Color("AnimGreen"))
         }
         VStack(){
             Image(userViewModel.userModel.anim!)
@@ -40,12 +40,12 @@ struct User: View {
                 } label: {
                     if userViewModel.userModel.email != ""{
                         Text(userViewModel.userModel.email!)
-                            .font(Font.custom("Monsterrat-Bold", size: 20))
+                            .font(Font.custom("DMSans-Medium", size: 20))
                             .foregroundColor(Color("background"))
                             .lineLimit(1)
                     } else {
                         Text("No email shared")
-                            .font(Font.custom("Monsterrat-Bold", size: 20))
+                            .font(Font.custom("DMSans-Medium", size: 20))
                             .foregroundColor(Color("background"))
                             .lineLimit(1)
                     }
@@ -60,7 +60,7 @@ struct User: View {
                     
                 } label: {
                     Text("Products Viewed: \(userViewModel.userModel.productsViewed!.count)")
-                        .font(Font.custom("Monsterrat-Bold", size: 20))
+                        .font(Font.custom("DMSans-Medium", size: 20))
                         .foregroundColor(Color("background"))
                         .lineLimit(1)
                 }
@@ -74,7 +74,7 @@ struct User: View {
                     
                 } label: {
                     Text("Products Scanned: \(userViewModel.userModel.productsScanned!)")
-                        .font(Font.custom("Monsterrat-Bold", size: 20))
+                        .font(Font.custom("DMSans-Medium", size: 20))
                         .foregroundColor(Color("background"))
                         .lineLimit(1)
                 }
@@ -88,7 +88,7 @@ struct User: View {
                     
                 } label: {
                     Text("Products Searched: \(userViewModel.userModel.productsFromSearch!)")
-                        .font(Font.custom("Monsterrat-Bold", size: 20))
+                        .font(Font.custom("DMSans-Medium", size: 20))
                         .foregroundColor(Color("background"))
                         .lineLimit(1)
                 }

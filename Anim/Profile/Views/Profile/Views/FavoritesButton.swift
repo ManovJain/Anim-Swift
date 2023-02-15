@@ -28,7 +28,6 @@ struct FavoritesButton: View {
                 foodViewModel.status = status
                 camModel.scannedBarcode = "No Barcode Scanned Yet"
                 navModel.currentPage = .food
-                print("Button tapped!")
             } label: {
                 VStack{
                     HStack{
@@ -70,13 +69,14 @@ struct FavoritesButton: View {
                         }
                     }
                     Text(product?.product_name_en ?? "name")
-                        .foregroundColor(.green)
+                        .font(Font.custom("DMSans-Medium", size: 15))
+                        .foregroundColor(Color("AnimGreen"))
                         .lineLimit(1)
                 }
                 .padding()
                 .overlay(
                     RoundedRectangle(cornerRadius: 16)
-                        .stroke(.green, lineWidth: 3))
+                        .stroke(Color("AnimGreen"), lineWidth: 3))
             }
             .frame(
                 minWidth: 0,
