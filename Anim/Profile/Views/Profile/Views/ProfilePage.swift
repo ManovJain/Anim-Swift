@@ -15,6 +15,7 @@ struct ProfilePage: View {
     
     @EnvironmentObject var userViewModel: UserViewModel
     
+    @Binding var darkMode: Bool
     
     var body: some View {
         VStack{
@@ -28,7 +29,7 @@ struct ProfilePage: View {
                         Favorites()
                     }
                 default:
-                    LoginPage()                }
+                    LoginPage(darkMode: $darkMode)                }
         }
         .overlay(((userViewModel.state ==  .signedIn) ? ProfileMenu(): nil)
             .position(x: UIScreen.screenWidth/1.15, y:UIScreen.screenHeight/4.7)
@@ -43,8 +44,3 @@ struct ProfilePage: View {
     }
 }
 
-struct ProfilePage_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfilePage()
-    }
-}

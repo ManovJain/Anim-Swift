@@ -19,6 +19,8 @@ struct LoginPage: View {
     
     @State var showAlert = false
     
+    @Binding var darkMode: Bool
+    
     var body: some View {
         if(userViewModel.state == .signedIn){
             if userViewModel.user.username != "" {
@@ -43,8 +45,18 @@ struct LoginPage: View {
             Image(uiImage: UIImage(named: "animLogoIconGreen") ?? UIImage())
                 .resizable()
                 .frame(width: 120, height: 120)
+            VStack {
+                Text("Dark Mode")
+                    .font(Font.custom("DMSans-Medium", size: 15))
+                Toggle("DarkMode", isOn: $darkMode).labelsHidden()
+                    .tint(Color("AnimGreen"))
+            }
+            .padding()
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color("AnimGreen"), lineWidth: 3))
             Spacer()
-                .frame(height: 50)
+                .frame(height: 20)
             if(userViewModel.state == .signedOut){
 
                 VStack{

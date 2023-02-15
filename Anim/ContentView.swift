@@ -16,6 +16,8 @@ struct ContentView: View {
     @EnvironmentObject var camModel: CameraViewModel
     @EnvironmentObject var userViewModel: UserViewModel
     
+    @AppStorage("darkMode") var darkMode = false
+
     var fireStoreRequests = FirestoreRequests()
     
     @State var openedApp: Bool = false
@@ -66,7 +68,7 @@ struct ContentView: View {
                         }
                     )
             case .profile:
-                ProfilePage()
+                ProfilePage(darkMode: $darkMode)
                     .gesture(DragGesture()
                         .onEnded { value in
                             let direction = detectDirection(value: value)
@@ -88,6 +90,8 @@ struct ContentView: View {
                     }
         .overlay(openedApp ? nil : InstructionSlider(openedApp: $openedApp), alignment: .center)
         .overlay(openedApp ? PillTabBar() : nil, alignment: .bottom)
+        
+        .preferredColorScheme(darkMode ? .dark : .light)
         
         .onAppear {
             
