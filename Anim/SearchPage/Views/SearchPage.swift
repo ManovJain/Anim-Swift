@@ -35,16 +35,31 @@ struct SearchPage: View {
                 List {
                     if searchText.isEmpty {
                         Section {
-                            ForEach(recentSearches.reversed(), id: \.self) { result in
-                                Button {
-                                    searchText = result
-                                    search(searchText: searchText)
-                                } label: {
-                                    Text(result)
+                            if recentSearches.count < 4 {
+                                ForEach(recentSearches.reversed(), id: \.self) { result in
+                                    Button {
+                                        searchText = result
+                                        search(searchText: searchText)
+                                    } label: {
+                                        Text(result)
+                                            .font(Font.custom("DMSans-Medium", size: 15))
+                                    }
+                                }
+                            }
+                            else {
+                                ForEach(recentSearches.reversed()[0...4], id: \.self) { result in
+                                    Button {
+                                        searchText = result
+                                        search(searchText: searchText)
+                                    } label: {
+                                        Text(result)
+                                            .font(Font.custom("DMSans-Medium", size: 15))
+                                    }
                                 }
                             }
                         } header: {
                             Text("Recent Searches")
+                                .font(Font.custom("DMSans-Medium", size: 12))
                         }
                     }
                     else {
@@ -56,6 +71,7 @@ struct SearchPage: View {
                 }
                 .foregroundColor(.primary)
                 .searchable(text: $searchText, prompt: "Search for a food...")
+                .font(Font.custom("DMSans-Medium", size: 15))
                 .onSubmit(of: .search) {
                     if !searchText.isEmpty {
                         search(searchText: searchText)
