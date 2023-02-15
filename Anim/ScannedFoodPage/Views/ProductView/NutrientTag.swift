@@ -25,7 +25,7 @@ struct NutrientTag: View {
                     Text(nutrient)
                         .font(Font.custom("DMSans-Medium", size: 15))
                         .multilineTextAlignment(.center)
-                        .foregroundColor(.primary)
+                        .foregroundColor(.black)
                 }
                 .frame(width: (UIScreen.screenWidth - 50)/4, height: (UIScreen.screenWidth - 50)/4)
                 .background(getColor(level: level))

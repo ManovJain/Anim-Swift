@@ -128,6 +128,7 @@ struct LoginPage: View {
             Spacer()
             Link("Icons by Icons8",
                   destination: URL(string: "https://icons8.com")!)
+                .font(Font.custom("DMSans-Medium", size: 13))
                 .padding(.bottom, 50)
         }
         .frame(
