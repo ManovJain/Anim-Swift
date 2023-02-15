@@ -66,7 +66,7 @@ struct SearchPage: View {
         .onAppear {
             searchText = foodViewModel.searchTerm
             searchResults = foodViewModel.searchResults
-            recentSearches = userViewModel.userModel.recentSearches ?? []
+            recentSearches = userViewModel.user.recentSearches ?? []
         }
         .onChange(of: searchText) { searchText in
             if searchText.isEmpty && !isSearching {
@@ -97,15 +97,15 @@ struct SearchPage: View {
         }
         recentSearches.append(searchText)
         //add to user vm
-        if let uid = userViewModel.userModel.uid {
+        if let uid = userViewModel.user.uid {
             if uid != "" {
-                if userViewModel.userModel.recentSearches!.contains(searchText) {
-                    while let idx = userViewModel.userModel.recentSearches!.firstIndex(of:searchText) {
-                        userViewModel.userModel.recentSearches!.remove(at: idx)
+                if userViewModel.user.recentSearches!.contains(searchText) {
+                    while let idx = userViewModel.user.recentSearches!.firstIndex(of:searchText) {
+                        userViewModel.user.recentSearches!.remove(at: idx)
                     }
                 }
-                userViewModel.userModel.recentSearches?.append(searchText)
-                recentSearches = userViewModel.userModel.recentSearches!
+                userViewModel.user.recentSearches?.append(searchText)
+                recentSearches = userViewModel.user.recentSearches!
             }
         }
         networkRequests.getOpenFoodSearch(searchTerm: editedSearchText) { data in

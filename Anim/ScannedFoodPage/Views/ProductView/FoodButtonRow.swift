@@ -19,7 +19,7 @@ struct FoodButtonRow: View {
     var body: some View {
         HStack {
             Spacer()
-            if let check = nutriments.sodium_serving {
+            if nutriments.sodium_serving != nil {
                 NavigationLink {
                     NutrientsPage(nutriments: nutriments)
                 } label: {
@@ -36,13 +36,13 @@ struct FoodButtonRow: View {
                 }
             }
             Button {
-                if !(userViewModel.userModel.favorites!.contains((product._id)!)) {
-                    userViewModel.userModel.favorites?.append((product._id)!)
+                if !(userViewModel.user.favorites!.contains((product._id)!)) {
+                    userViewModel.user.favorites?.append((product._id)!)
                 } else {
-                    userViewModel.userModel.favorites = userViewModel.userModel.favorites?.filter { $0 != (product._id)! }
+                    userViewModel.user.favorites = userViewModel.user.favorites?.filter { $0 != (product._id)! }
                 }
             } label: {
-                if !(userViewModel.userModel.favorites!.contains((product._id)!)) {
+                if !(userViewModel.user.favorites!.contains((product._id)!)) {
                     Text("Save")
                         .font(Font.custom("DMSans-Medium", size: 20))
                         .foregroundColor(Color("background"))

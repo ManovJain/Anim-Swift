@@ -81,11 +81,11 @@ struct ProductPage: View {
                         if status != 1 {
                             FirestoreRequests().addBarcodeToMissing(array: "missingBarcode", barcode: camModel.scannedBarcode)
                         }
-                        if let uid = userViewModel.userModel.uid {
+                        if let uid = userViewModel.user.uid {
                             if uid != "" {
-                                if !(userViewModel.userModel.productsViewed!.contains(camModel.scannedBarcode)) {
-                                    userViewModel.userModel.productsScanned = userViewModel.userModel.productsScanned! + 1
-                                    userViewModel.userModel.productsViewed?.append(camModel.scannedBarcode)
+                                if !(userViewModel.user.productsViewed!.contains(camModel.scannedBarcode)) {
+                                    userViewModel.user.productsScanned = userViewModel.user.productsScanned! + 1
+                                    userViewModel.user.productsViewed?.append(camModel.scannedBarcode)
                                 }
                                 
                             }
@@ -96,38 +96,38 @@ struct ProductPage: View {
                 else if foodViewModel.product != nil {
                     status = foodViewModel.status
                     product = foodViewModel.product
-                    if let uid = userViewModel.userModel.uid {
+                    if let uid = userViewModel.user.uid {
                         if uid != "" {
-                            if !(userViewModel.userModel.productsViewed!.contains((foodViewModel.product?._id)!)) {
-                                userViewModel.userModel.productsFromSearch = userViewModel.userModel.productsFromSearch! + 1
-                                userViewModel.userModel.productsViewed?.append((foodViewModel.product?._id)!)
+                            if !(userViewModel.user.productsViewed!.contains((foodViewModel.product?._id)!)) {
+                                userViewModel.user.productsFromSearch = userViewModel.user.productsFromSearch! + 1
+                                userViewModel.user.productsViewed?.append((foodViewModel.product?._id)!)
                             }
                         }
                     }
                 }
                 
                 
-                if let uid = userViewModel.userModel.uid {
+                if let uid = userViewModel.user.uid {
                     if uid != "" {
                         for icon in iconVM.searchIcons {
-                            if userViewModel.userModel.productsFromSearch! >= icon.numNeeded {
-                                if userViewModel.userModel.earnedAnims!.contains(icon.name) {
+                            if userViewModel.user.productsFromSearch! >= icon.numNeeded {
+                                if userViewModel.user.earnedAnims!.contains(icon.name) {
                                     
                                 }
                                 else {
-                                    userViewModel.userModel.earnedAnims?.append(icon.name)
+                                    userViewModel.user.earnedAnims?.append(icon.name)
                                     iconEarned = icon.name
                                     NotificationCenter.default.post(name: NSNotification.showAnimAlert, object: nil)
                                 }
                             }
                         }
                         for icon in iconVM.scanIcons {
-                            if userViewModel.userModel.productsScanned! >= icon.numNeeded {
-                                if userViewModel.userModel.earnedAnims!.contains(icon.name) {
+                            if userViewModel.user.productsScanned! >= icon.numNeeded {
+                                if userViewModel.user.earnedAnims!.contains(icon.name) {
                                     
                                 }
                                 else {
-                                    userViewModel.userModel.earnedAnims?.append(icon.name)
+                                    userViewModel.user.earnedAnims?.append(icon.name)
                                     iconEarned = icon.name
                                     NotificationCenter.default.post(name: NSNotification.showAnimAlert, object: nil)
                                 }

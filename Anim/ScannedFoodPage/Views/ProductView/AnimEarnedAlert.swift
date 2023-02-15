@@ -31,7 +31,7 @@ struct AnimEarnedAlert: View {
         }
         .overlay(
                 RoundedRectangle(cornerRadius: 16)
-                    .stroke(.green, lineWidth: 2)
+                    .stroke(Color("AnimGreen"), lineWidth: 2)
             )
         .frame(width: 180, height: 45)
         .padding()

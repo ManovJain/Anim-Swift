@@ -23,7 +23,7 @@ struct ProductImage: View {
                     .clipShape(Rectangle())
                     .padding(10)
                     .background(Color("background"))
-                    .border(.green, width: 2)
+                    .border(Color("AnimGreen"), width: 2)
             } placeholder: {
                 ProgressView()
             }

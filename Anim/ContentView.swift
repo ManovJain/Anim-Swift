@@ -20,8 +20,6 @@ struct ContentView: View {
     
     @State var openedApp: Bool = false
     
-    @State var users = [UserModel]()
-    
     let defaults = UserDefaults.standard
     
     var body: some View {
@@ -85,7 +83,7 @@ struct ContentView: View {
         .background(Color("background"))
         .onChange(of: scenePhase) { newPhase in
             if newPhase == .background {
-                            fireStoreRequests.updateUser(uid: userViewModel.userModel.uid!, userModel: userViewModel.userModel)
+                            fireStoreRequests.updateUser(uid: userViewModel.user.uid!, user: userViewModel.user)
                         }
                     }
         .overlay(openedApp ? nil : InstructionSlider(openedApp: $openedApp), alignment: .center)
@@ -95,13 +93,13 @@ struct ContentView: View {
             
             openedApp = defaults.bool(forKey: "openedApp")
             
-            userViewModel.userModel.anim = defaults.string(forKey: "anim")
+            userViewModel.user.anim = defaults.string(forKey: "anim")
             
             //get user stored in default user if signedIn before is true
             
             if defaults.bool(forKey: "signedIn") {
                 fireStoreRequests.getUser(defaults.string(forKey: "uid")!) { data in
-                    userViewModel.userModel = data!
+                    userViewModel.user = data!
                     userViewModel.state = .signedIn
                 }
             }

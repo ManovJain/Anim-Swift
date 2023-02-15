@@ -21,8 +21,8 @@ struct LoginPage: View {
     
     var body: some View {
         if(userViewModel.state == .signedIn){
-            if userViewModel.userModel.username != "" {
-                Text(userViewModel.userModel.username! + "'s Settings")
+            if userViewModel.user.username != "" {
+                Text(userViewModel.user.username! + "'s Settings")
                     .frame(alignment: .center)
                     .font(Font.custom("DMSans-Medium", size: 30))
                     .foregroundColor(Color("AnimGreen"))
@@ -63,9 +63,9 @@ struct LoginPage: View {
                                 return
                             }
                             userViewModel.authenticate(credential: credential) { data in
-                                userViewModel.userModel = data!
+                                userViewModel.user = data!
                                 profileMenuViewModel.icon = .user
-                                defaults.set(userViewModel.userModel.uid!, forKey: "uid")
+                                defaults.set(userViewModel.user.uid!, forKey: "uid")
                             }
                         case .failure(let error):
                             print(error.localizedDescription)
@@ -78,9 +78,9 @@ struct LoginPage: View {
                     GoogleSignInButton()
                         .onTapGesture {
                             userViewModel.signIn() { data in
-                                userViewModel.userModel = data!
+                                userViewModel.user = data!
                                 profileMenuViewModel.icon = .user
-                                defaults.set(userViewModel.userModel.uid!, forKey: "uid")
+                                defaults.set(userViewModel.user.uid!, forKey: "uid")
                             }
                         }
                 }
@@ -91,7 +91,7 @@ struct LoginPage: View {
                     
                     NotificationCenter.default.post(name: NSNotification.signInStateChange, object: nil)
                     
-                    userViewModel.userModel = UserModel(uid: "", username: "", email: "", productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default")
+                    userViewModel.user = User(uid: "", username: "", email: "", productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default")
                     
                     defaults.set(false, forKey: "signedIn")
                     
@@ -154,9 +154,9 @@ struct LoginPage: View {
  
     func deleteAccount() {
         userViewModel.deleteAccount()
-        FirestoreRequests().deleteAccount(uid: userViewModel.userModel.uid!)
+        FirestoreRequests().deleteAccount(uid: userViewModel.user.uid!)
         showAlert = false
-        userViewModel.userModel = UserModel(uid: "", username: "", email: "", productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default")
+        userViewModel.user = User(uid: "", username: "", email: "", productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default")
         
         defaults.set(false, forKey: "signedIn")
         

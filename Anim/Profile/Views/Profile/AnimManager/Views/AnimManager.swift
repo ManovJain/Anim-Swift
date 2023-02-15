@@ -30,7 +30,7 @@ struct AnimManager: View {
             .lineLimit(1)
             .frame(alignment: .center)
         VStack {
-            Image(userViewModel.userModel.anim!)
+            Image(userViewModel.user.anim!)
                 .resizable()
                 .frame(width: 80, height: 80)
                 .padding()
@@ -49,7 +49,7 @@ struct AnimManager: View {
                     LazyHGrid(rows: rows, alignment: .center) {
                         ForEach(iconVM.searchIcons, id: \.self) { icon in
                             Button(action: {
-                                userViewModel.userModel.anim = icon.name
+                                userViewModel.user.anim = icon.name
                                 self.defaults.set(icon.name, forKey: "anim")
                             }) {
                                 VStack {
@@ -89,7 +89,7 @@ struct AnimManager: View {
                     LazyHGrid(rows: rows, alignment: .center) {
                         ForEach(iconVM.scanIcons, id: \.self) { icon in
                             Button(action: {
-                                userViewModel.userModel.anim = icon.name
+                                userViewModel.user.anim = icon.name
                                 self.defaults.set(icon.name, forKey: "anim")
                             }) {
                                 VStack {
@@ -134,8 +134,8 @@ struct AnimManager: View {
                 )
         }
         .onAppear {
-            productsFromSearch = userViewModel.userModel.productsFromSearch!
-            productsScanned = userViewModel.userModel.productsScanned!
+            productsFromSearch = userViewModel.user.productsFromSearch!
+            productsScanned = userViewModel.user.productsScanned!
         }
         .padding()
         .frame(

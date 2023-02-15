@@ -20,7 +20,7 @@ struct ProfilePage: View {
         VStack{
                 switch profileMenuViewModel.icon.rawValue {
                 case "user":
-                    User()
+                    UserView()
                 case "Anim Manager":
                     AnimManager()
                 case "favorites":
@@ -31,7 +31,7 @@ struct ProfilePage: View {
                     LoginPage()                }
         }
         .overlay(((userViewModel.state ==  .signedIn) ? ProfileMenu(): nil)
-            .position(x: UIScreen.screenWidth/1.15, y:UIScreen.screenHeight/2.7)
+            .position(x: UIScreen.screenWidth/1.15, y:UIScreen.screenHeight/4.7)
             )
         .padding()
         .frame(

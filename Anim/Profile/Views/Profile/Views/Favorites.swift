@@ -50,7 +50,7 @@ struct Favorites: View {
                 ScrollView{
                     ScrollView {
                         LazyVGrid(columns: columns, spacing: 20) {
-                            ForEach(userViewModel.userModel.favorites!, id: \.self) { favorite in
+                            ForEach(userViewModel.user.favorites!, id: \.self) { favorite in
                                 FavoritesButton(id: favorite)
                                 
                             }
