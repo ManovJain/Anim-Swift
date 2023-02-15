@@ -68,7 +68,7 @@ struct FavoritesButton: View {
                             }
                         }
                     }
-                    Text(product?.product_name_en ?? "name")
+                    Text(product?.product_name_en ?? "")
                         .font(Font.custom("DMSans-Medium", size: 15))
                         .foregroundColor(Color("AnimGreen"))
                         .lineLimit(1)
