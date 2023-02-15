@@ -15,13 +15,13 @@ struct User: View {
         if((userViewModel.userModel.username) != ""){
             Text(userViewModel.userModel.username!)
                 .frame(alignment: .center)
-                .font(.system(size: 30))
-                .fontWeight(.bold)
+                .font(Font.custom("DMSans-Medium", size: 30))
+                .foregroundColor(Color("AnimGreen"))
         } else {
             Text("User")
                 .frame(alignment: .center)
-                .font(.system(size: 30))
-                .fontWeight(.bold)
+                .font(Font.custom("DMSans-Medium", size: 30))
+                .foregroundColor(Color("AnimGreen"))
         }
         VStack(){
             Image(userViewModel.userModel.anim!)
@@ -30,7 +30,7 @@ struct User: View {
                 .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 16)
-                            .stroke(.green, lineWidth: 3)
+                            .stroke(Color("AnimGreen"), lineWidth: 3)
                     )
             Spacer()
                 .frame(height: 25)
@@ -40,18 +40,18 @@ struct User: View {
                 } label: {
                     if userViewModel.userModel.email != ""{
                         Text(userViewModel.userModel.email!)
-                            .foregroundColor(.white)
-                            .fontWeight(.heavy)
+                            .font(Font.custom("DMSans-Medium", size: 20))
+                            .foregroundColor(Color("background"))
                             .lineLimit(1)
                     } else {
                         Text("No email shared")
-                            .foregroundColor(.white)
-                            .fontWeight(.heavy)
+                            .font(Font.custom("DMSans-Medium", size: 20))
+                            .foregroundColor(Color("background"))
                             .lineLimit(1)
                     }
                 }
                 .padding()
-                .background(.green)
+                .background(Color("AnimGreen"))
                 .cornerRadius(15)
                 .clipShape(Capsule())
                 Spacer()
@@ -60,12 +60,12 @@ struct User: View {
                     
                 } label: {
                     Text("Products Viewed: \(userViewModel.userModel.productsViewed!.count)")
-                        .foregroundColor(.white)
-                        .fontWeight(.heavy)
+                        .font(Font.custom("DMSans-Medium", size: 20))
+                        .foregroundColor(Color("background"))
                         .lineLimit(1)
                 }
                 .padding()
-                .background(.green)
+                .background(Color("AnimGreen"))
                 .cornerRadius(15)
                 .clipShape(Capsule())
                 Spacer()
@@ -74,12 +74,12 @@ struct User: View {
                     
                 } label: {
                     Text("Products Scanned: \(userViewModel.userModel.productsScanned!)")
-                        .foregroundColor(.white)
-                        .fontWeight(.heavy)
+                        .font(Font.custom("DMSans-Medium", size: 20))
+                        .foregroundColor(Color("background"))
                         .lineLimit(1)
                 }
                 .padding()
-                .background(.green)
+                .background(Color("AnimGreen"))
                 .cornerRadius(15)
                 .clipShape(Capsule())
                 Spacer()
@@ -88,12 +88,12 @@ struct User: View {
                     
                 } label: {
                     Text("Products Searched: \(userViewModel.userModel.productsFromSearch!)")
-                        .foregroundColor(.white)
-                        .fontWeight(.heavy)
+                        .font(Font.custom("DMSans-Medium", size: 20))
+                        .foregroundColor(Color("background"))
                         .lineLimit(1)
                 }
                 .padding()
-                .background(.green)
+                .background(Color("AnimGreen"))
                 .cornerRadius(15)
                 .clipShape(Capsule())
             }

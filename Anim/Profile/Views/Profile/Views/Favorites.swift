@@ -27,8 +27,8 @@ struct Favorites: View {
     var body: some View {
         Text("Favorites")
             .frame(alignment: .center)
-            .font(.system(size: 30))
-            .fontWeight(.bold)
+            .font(Font.custom("DMSans-Medium", size: 30))
+            .foregroundColor(Color("AnimGreen"))
         VStack(){
 //            HStack(){
 //                ForEach(favorites, id: \.self) { favorite in

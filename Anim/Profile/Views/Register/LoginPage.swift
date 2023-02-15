@@ -24,25 +24,27 @@ struct LoginPage: View {
             if userViewModel.userModel.username != "" {
                 Text(userViewModel.userModel.username! + "'s Settings")
                     .frame(alignment: .center)
-                    .font(.system(size: 30))
-                    .fontWeight(.bold)
+                    .font(Font.custom("DMSans-Medium", size: 30))
+                    .foregroundColor(Color("AnimGreen"))
             } else {
                 Text("Settings")
                     .frame(alignment: .center)
-                    .font(.system(size: 30))
-                    .fontWeight(.bold)
+                    .font(Font.custom("DMSans-Medium", size: 30))
+                    .foregroundColor(Color("AnimGreen"))
             }
         } else {
             Text("Login")
                 .frame(alignment: .center)
-                .font(.system(size: 30))
-                .fontWeight(.bold)
+                .font(Font.custom("DMSans-Medium", size: 30))
+                .foregroundColor(Color("AnimGreen"))
         }
         VStack(alignment: .center){
             Spacer()
-            Image(uiImage: UIImage(named: "AppIcon") ?? UIImage())
+            Image(uiImage: UIImage(named: "animLogoIconGreen") ?? UIImage())
                 .resizable()
                 .frame(width: 120, height: 120)
+            Spacer()
+                .frame(height: 50)
             if(userViewModel.state == .signedOut){
 
                 VStack{
@@ -101,12 +103,12 @@ struct LoginPage: View {
                     profileMenuViewModel.icon = .settings
                 }, label: {
                     Text("Log Out")
-                        .foregroundColor(.white)
-                        .fontWeight(.heavy)
+                        .font(Font.custom("DMSans-Medium", size: 20))
+                        .foregroundColor(Color("background"))
                         .lineLimit(1)
                 })
                 .padding()
-                .background(.green)
+                .background(Color("AnimGreen"))
                 .cornerRadius(15)
                 .clipShape(Capsule())
                 
@@ -114,8 +116,8 @@ struct LoginPage: View {
                     showAlert = true
                 } label: {
                     Text("Delete Account")
-                        .foregroundColor(.white)
-                        .fontWeight(.heavy)
+                        .font(Font.custom("DMSans-Medium", size: 20))
+                        .foregroundColor(Color("background"))
                         .lineLimit(1)
                 }
                 .padding()
