@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "logoDarkGreen.png",
+      "filename" : "download (2) 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,7 +12,7 @@
           "value" : "light"
         }
       ],
-      "filename" : "logoDarkGreen 1.png",
+      "filename" : "download (2).png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -23,7 +23,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "logoPaleGreen.png",
+      "filename" : "download (3).png",
       "idiom" : "universal",
       "scale" : "1x"
     },
