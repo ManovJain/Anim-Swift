@@ -20,7 +20,7 @@ final class UserViewModel: ObservableObject {
         case signedOut
     }
     
-    @Published var userModel: UserModel = UserModel(uid: "", username: "", email: "", productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default")
+    @Published var user: User = User(uid: "", username: "", email: "", productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default")
     @Published var nonce = ""
     @Published var state: SignInState = .signedOut
     @Published var test = "not changed"
@@ -28,7 +28,7 @@ final class UserViewModel: ObservableObject {
     
     var firestoreRequests = FirestoreRequests()
     
-    func authenticate(credential: ASAuthorizationAppleIDCredential, completion: @escaping (UserModel?) -> ()) {
+    func authenticate(credential: ASAuthorizationAppleIDCredential, completion: @escaping (User?) -> ()) {
         //getting Token
         guard let token = credential.identityToken else {
             print("error with firebase")
@@ -84,7 +84,7 @@ final class UserViewModel: ObservableObject {
     }
     
     //GOOGLE SIGN IN
-    func signIn(completion: @escaping (UserModel?) -> ()) {
+    func signIn(completion: @escaping (User?) -> ()) {
             // 1
             if GIDSignIn.sharedInstance.hasPreviousSignIn() && Auth.auth().currentUser != nil {
                 GIDSignIn.sharedInstance.restorePreviousSignIn { [unowned self] user, error in

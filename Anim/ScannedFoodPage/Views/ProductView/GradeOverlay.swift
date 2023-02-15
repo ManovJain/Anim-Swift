@@ -26,7 +26,7 @@ struct GradeOverlay: View {
         } label: {
             ZStack {
                 Text(grade.capitalized)
-                    .font(.system(size: 30))
+                    .font(Font.custom("DMSans-Medium", size: 28))
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     .bold()

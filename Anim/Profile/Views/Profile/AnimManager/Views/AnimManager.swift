@@ -25,21 +25,23 @@ struct AnimManager: View {
     
     var body: some View {
         Text("Anim Manager")
+            .font(Font.custom("DMSans-Medium", size: 30))
+            .foregroundColor(Color("AnimGreen"))
+            .lineLimit(1)
             .frame(alignment: .center)
-            .font(.system(size: 30))
-            .fontWeight(.bold)
         VStack {
-            Image(userViewModel.userModel.anim!)
+            Image(userViewModel.user.anim!)
                 .resizable()
                 .frame(width: 80, height: 80)
                 .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 16)
-                            .stroke(.green, lineWidth: 3)
+                            .stroke(Color("AnimGreen"), lineWidth: 3)
                     )
             Text("My Anim")
                 .lineLimit(nil)
-                .foregroundColor(.primary)
+                .font(Font.custom("DMSans-Medium", size: 20))
+                .foregroundColor(Color("AnimGreen"))
             Spacer()
                 .frame(height: 50)
             VStack {
@@ -47,7 +49,7 @@ struct AnimManager: View {
                     LazyHGrid(rows: rows, alignment: .center) {
                         ForEach(iconVM.searchIcons, id: \.self) { icon in
                             Button(action: {
-                                userViewModel.userModel.anim = icon.name
+                                userViewModel.user.anim = icon.name
                                 self.defaults.set(icon.name, forKey: "anim")
                             }) {
                                 VStack {
@@ -66,14 +68,14 @@ struct AnimManager: View {
                                     if (productsFromSearch >= icon.numNeeded) {
                                         Text("Anim Earned!")
                                             .lineLimit(nil)
-                                            .font(.system(size: 15))
-                                            .foregroundColor(.primary)
+                                            .font(Font.custom("DMSans-Medium", size: 15))
+                                            .foregroundColor(Color("AnimGreen"))
                                     }
                                     else {
                                         Text("Search \(icon.numNeeded - productsFromSearch) more")
                                             .lineLimit(nil)
-                                            .font(.system(size: 15))
-                                            .foregroundColor(.primary)
+                                            .font(Font.custom("DMSans-Medium", size: 15))
+                                            .foregroundColor(Color("AnimGreen"))
                                     }
                                 }
                                 .frame(width: 70, height: 200)
@@ -87,7 +89,7 @@ struct AnimManager: View {
                     LazyHGrid(rows: rows, alignment: .center) {
                         ForEach(iconVM.scanIcons, id: \.self) { icon in
                             Button(action: {
-                                userViewModel.userModel.anim = icon.name
+                                userViewModel.user.anim = icon.name
                                 self.defaults.set(icon.name, forKey: "anim")
                             }) {
                                 VStack {
@@ -106,14 +108,14 @@ struct AnimManager: View {
                                     if (productsScanned >= icon.numNeeded) {
                                         Text("Anim Earned!")
                                             .lineLimit(nil)
-                                            .font(.system(size: 15))
-                                            .foregroundColor(.primary)
+                                            .font(Font.custom("DMSans-Medium", size: 15))
+                                            .foregroundColor(Color("AnimGreen"))
                                     }
                                     else {
                                         Text("Scan \(icon.numNeeded - productsScanned) more")
                                             .lineLimit(nil)
-                                            .font(.system(size: 15))
-                                            .foregroundColor(.primary)
+                                            .font(Font.custom("DMSans-Medium", size: 15))
+                                            .foregroundColor(Color("AnimGreen"))
                                     }
                                 }
                                 .frame(width: 70, height: 200)
@@ -128,12 +130,12 @@ struct AnimManager: View {
             .padding()
                 .overlay(
                     RoundedRectangle(cornerRadius: 16)
-                        .stroke(.green, lineWidth: 3)
+                        .stroke(Color("AnimGreen"), lineWidth: 3)
                 )
         }
         .onAppear {
-            productsFromSearch = userViewModel.userModel.productsFromSearch!
-            productsScanned = userViewModel.userModel.productsScanned!
+            productsFromSearch = userViewModel.user.productsFromSearch!
+            productsScanned = userViewModel.user.productsScanned!
         }
         .padding()
         .frame(

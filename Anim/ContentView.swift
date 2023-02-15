@@ -16,11 +16,11 @@ struct ContentView: View {
     @EnvironmentObject var camModel: CameraViewModel
     @EnvironmentObject var userViewModel: UserViewModel
     
+    @AppStorage("darkMode") var darkMode = false
+
     var fireStoreRequests = FirestoreRequests()
     
     @State var openedApp: Bool = false
-    
-    @State var users = [UserModel]()
     
     let defaults = UserDefaults.standard
     
@@ -68,7 +68,7 @@ struct ContentView: View {
                         }
                     )
             case .profile:
-                ProfilePage()
+                ProfilePage(darkMode: $darkMode)
                     .gesture(DragGesture()
                         .onEnded { value in
                             let direction = detectDirection(value: value)
@@ -85,23 +85,25 @@ struct ContentView: View {
         .background(Color("background"))
         .onChange(of: scenePhase) { newPhase in
             if newPhase == .background {
-                            fireStoreRequests.updateUser(uid: userViewModel.userModel.uid!, userModel: userViewModel.userModel)
+                            fireStoreRequests.updateUser(uid: userViewModel.user.uid!, user: userViewModel.user)
                         }
                     }
         .overlay(openedApp ? nil : InstructionSlider(openedApp: $openedApp), alignment: .center)
         .overlay(openedApp ? PillTabBar() : nil, alignment: .bottom)
         
+        .preferredColorScheme(darkMode ? .dark : .light)
+        
         .onAppear {
             
             openedApp = defaults.bool(forKey: "openedApp")
             
-            userViewModel.userModel.anim = defaults.string(forKey: "anim")
+            userViewModel.user.anim = defaults.string(forKey: "anim")
             
             //get user stored in default user if signedIn before is true
             
             if defaults.bool(forKey: "signedIn") {
                 fireStoreRequests.getUser(defaults.string(forKey: "uid")!) { data in
-                    userViewModel.userModel = data!
+                    userViewModel.user = data!
                     userViewModel.state = .signedIn
                 }
             }

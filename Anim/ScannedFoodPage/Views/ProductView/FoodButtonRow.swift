@@ -19,7 +19,7 @@ struct FoodButtonRow: View {
     var body: some View {
         HStack {
             Spacer()
-            if let check = nutriments.sodium_serving {
+            if nutriments.sodium_serving != nil {
                 NavigationLink {
                     NutrientsPage(nutriments: nutriments)
                 } label: {
@@ -27,25 +27,33 @@ struct FoodButtonRow: View {
                     //                            .foregroundColor(.red)
                     //                            .font(.system(size: 25))
                     Text("Nutrition Information")
+                        .font(Font.custom("DMSans-Medium", size: 17))
                         .padding(6)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(.blue, lineWidth: 1)
                         )
-                        .font(.system(size: 18))
                 }
             }
             Button {
-                if !(userViewModel.userModel.favorites!.contains((product._id)!)) {
-                    userViewModel.userModel.favorites?.append((product._id)!)
+                if !(userViewModel.user.favorites!.contains((product._id)!)) {
+                    userViewModel.user.favorites?.append((product._id)!)
+                } else {
+                    userViewModel.user.favorites = userViewModel.user.favorites?.filter { $0 != (product._id)! }
                 }
             } label: {
-                Text("Save")
-                    .foregroundColor(.white)
-                    .fontWeight(.heavy)
+                if !(userViewModel.user.favorites!.contains((product._id)!)) {
+                    Text("Save")
+                        .font(Font.custom("DMSans-Medium", size: 20))
+                        .foregroundColor(Color("background"))
+                } else {
+                    Text("Unsave")
+                        .font(Font.custom("DMSans-Medium", size: 20))
+                        .foregroundColor(Color("background"))
+                }
             }
             .padding()
-            .background(.green)
+            .background(Color("AnimGreen"))
             .cornerRadius(15)
             .padding(.horizontal)
             .clipShape(Capsule())

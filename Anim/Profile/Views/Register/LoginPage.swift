@@ -19,30 +19,44 @@ struct LoginPage: View {
     
     @State var showAlert = false
     
+    @Binding var darkMode: Bool
+    
     var body: some View {
         if(userViewModel.state == .signedIn){
-            if userViewModel.userModel.username != "" {
-                Text(userViewModel.userModel.username! + "'s Settings")
+            if userViewModel.user.username != "" {
+                Text(userViewModel.user.username! + "'s Settings")
                     .frame(alignment: .center)
-                    .font(.system(size: 30))
-                    .fontWeight(.bold)
+                    .font(Font.custom("DMSans-Medium", size: 30))
+                    .foregroundColor(Color("AnimGreen"))
             } else {
                 Text("Settings")
                     .frame(alignment: .center)
-                    .font(.system(size: 30))
-                    .fontWeight(.bold)
+                    .font(Font.custom("DMSans-Medium", size: 30))
+                    .foregroundColor(Color("AnimGreen"))
             }
         } else {
             Text("Login")
                 .frame(alignment: .center)
-                .font(.system(size: 30))
-                .fontWeight(.bold)
+                .font(Font.custom("DMSans-Medium", size: 30))
+                .foregroundColor(Color("AnimGreen"))
         }
         VStack(alignment: .center){
             Spacer()
-            Image(uiImage: UIImage(named: "AppIcon") ?? UIImage())
+            Image(uiImage: UIImage(named: "animLogoIconGreen") ?? UIImage())
                 .resizable()
                 .frame(width: 120, height: 120)
+            VStack {
+                Text("Dark Mode")
+                    .font(Font.custom("DMSans-Medium", size: 15))
+                Toggle("DarkMode", isOn: $darkMode).labelsHidden()
+                    .tint(Color("AnimGreen"))
+            }
+            .padding()
+            .overlay(
+                RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color("AnimGreen"), lineWidth: 3))
+            Spacer()
+                .frame(height: 20)
             if(userViewModel.state == .signedOut){
 
                 VStack{
@@ -61,9 +75,9 @@ struct LoginPage: View {
                                 return
                             }
                             userViewModel.authenticate(credential: credential) { data in
-                                userViewModel.userModel = data!
+                                userViewModel.user = data!
                                 profileMenuViewModel.icon = .user
-                                defaults.set(userViewModel.userModel.uid!, forKey: "uid")
+                                defaults.set(userViewModel.user.uid!, forKey: "uid")
                             }
                         case .failure(let error):
                             print(error.localizedDescription)
@@ -76,9 +90,9 @@ struct LoginPage: View {
                     GoogleSignInButton()
                         .onTapGesture {
                             userViewModel.signIn() { data in
-                                userViewModel.userModel = data!
+                                userViewModel.user = data!
                                 profileMenuViewModel.icon = .user
-                                defaults.set(userViewModel.userModel.uid!, forKey: "uid")
+                                defaults.set(userViewModel.user.uid!, forKey: "uid")
                             }
                         }
                 }
@@ -89,7 +103,7 @@ struct LoginPage: View {
                     
                     NotificationCenter.default.post(name: NSNotification.signInStateChange, object: nil)
                     
-                    userViewModel.userModel = UserModel(uid: "", username: "", email: "", productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default")
+                    userViewModel.user = User(uid: "", username: "", email: "", productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default")
                     
                     defaults.set(false, forKey: "signedIn")
                     
@@ -101,12 +115,12 @@ struct LoginPage: View {
                     profileMenuViewModel.icon = .settings
                 }, label: {
                     Text("Log Out")
-                        .foregroundColor(.white)
-                        .fontWeight(.heavy)
+                        .font(Font.custom("DMSans-Medium", size: 20))
+                        .foregroundColor(Color("background"))
                         .lineLimit(1)
                 })
                 .padding()
-                .background(.green)
+                .background(Color("AnimGreen"))
                 .cornerRadius(15)
                 .clipShape(Capsule())
                 
@@ -114,8 +128,8 @@ struct LoginPage: View {
                     showAlert = true
                 } label: {
                     Text("Delete Account")
-                        .foregroundColor(.white)
-                        .fontWeight(.heavy)
+                        .font(Font.custom("DMSans-Medium", size: 20))
+                        .foregroundColor(Color("background"))
                         .lineLimit(1)
                 }
                 .padding()
@@ -126,6 +140,7 @@ struct LoginPage: View {
             Spacer()
             Link("Icons by Icons8",
                   destination: URL(string: "https://icons8.com")!)
+                .font(Font.custom("DMSans-Medium", size: 13))
                 .padding(.bottom, 50)
         }
         .frame(
@@ -152,9 +167,9 @@ struct LoginPage: View {
  
     func deleteAccount() {
         userViewModel.deleteAccount()
-        FirestoreRequests().deleteAccount(uid: userViewModel.userModel.uid!)
+        FirestoreRequests().deleteAccount(uid: userViewModel.user.uid!)
         showAlert = false
-        userViewModel.userModel = UserModel(uid: "", username: "", email: "", productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default")
+        userViewModel.user = User(uid: "", username: "", email: "", productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default")
         
         defaults.set(false, forKey: "signedIn")
         

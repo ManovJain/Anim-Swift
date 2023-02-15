@@ -23,7 +23,7 @@ struct NutrientTag: View {
             } label: {
                 VStack {
                     Text(nutrient)
-                        .bold()
+                        .font(Font.custom("DMSans-Medium", size: 15))
                         .multilineTextAlignment(.center)
                         .foregroundColor(.black)
                 }

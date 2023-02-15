@@ -12,7 +12,7 @@ import Firebase
 
 class FirestoreRequests {
     
-    func getUser(_ userID: String, completion: @escaping (UserModel?) -> ()) {
+    func getUser(_ userID: String, completion: @escaping (User?) -> ()) {
         
         let db = Firestore.firestore()
         
@@ -32,13 +32,14 @@ class FirestoreRequests {
                 let allergens = document.get("allergens") as! [String]
                 let recentSearches = document.get("recentSearches") as! [String]
                 let anim = document.get("anim") as! String
-                let foundUser = UserModel(uid: uid, username: username, email: email, productsFromSearch: productsFromSearch, productsScanned: productsScanned, productsViewed: productsViewed, likes: likes, dislikes: dislikes, favorites: favorites, allergens: allergens, recentSearches: recentSearches, anim: anim)
+                let earnedAnims = document.get("earnedAnims") as! [String]
+                let foundUser = User(uid: uid, username: username, email: email, productsFromSearch: productsFromSearch, productsScanned: productsScanned, productsViewed: productsViewed, likes: likes, dislikes: dislikes, favorites: favorites, allergens: allergens, recentSearches: recentSearches, anim: anim, earnedAnims: earnedAnims)
                 completion(foundUser)
             }
         }
     }
     
-    func createUser(uid: String, username: String, email: String, completion: @escaping (UserModel?) -> ()) {
+    func createUser(uid: String, username: String, email: String, completion: @escaping (User?) -> ()) {
         
         let db = Firestore.firestore()
         
@@ -55,12 +56,13 @@ class FirestoreRequests {
                       "favorites": [],
                       "allergens": [],
                       "recentSearches": [],
-                      "anim": "default"]) { error in
+                      "anim": "default",
+                      "earnedAnims": []]) { error in
             if let error = error {
                 print("Error writing document: \(error)")
             }
             else {
-                completion(UserModel(uid: uid, username: username, email: email, productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default"))
+                completion(User(uid: uid, username: username, email: email, productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default", earnedAnims: []))
             }
         }
     }
@@ -148,21 +150,22 @@ class FirestoreRequests {
         ])
     }
     
-    func updateUser(uid: String, userModel: UserModel) {
+    func updateUser(uid: String, user: User) {
         let db = Firestore.firestore()
         
-        let user = db.collection("users").document(uid)
+        let firestoreUser = db.collection("users").document(uid)
         
-        user.updateData([
-            "productsFromSearch": userModel.productsFromSearch,
-            "productsScanned": userModel.productsScanned,
-            "productsViewed": userModel.productsViewed,
-            "likes": userModel.likes,
-            "dislikes": userModel.dislikes,
-            "favorites": userModel.favorites,
-            "allergens": userModel.allergens,
-            "recentSearches": userModel.recentSearches,
-            "anim": userModel.anim
+        firestoreUser.updateData([
+            "productsFromSearch": user.productsFromSearch,
+            "productsScanned": user.productsScanned,
+            "productsViewed": user.productsViewed,
+            "likes": user.likes,
+            "dislikes": user.dislikes,
+            "favorites": user.favorites,
+            "allergens": user.allergens,
+            "recentSearches": user.recentSearches,
+            "anim": user.anim,
+            "earnedAnims": user.earnedAnims
         ])
     }
 }

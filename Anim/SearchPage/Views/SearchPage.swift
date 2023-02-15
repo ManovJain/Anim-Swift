@@ -35,16 +35,31 @@ struct SearchPage: View {
                 List {
                     if searchText.isEmpty {
                         Section {
-                            ForEach(recentSearches.reversed(), id: \.self) { result in
-                                Button {
-                                    searchText = result
-                                    search(searchText: searchText)
-                                } label: {
-                                    Text(result)
+                            if recentSearches.count < 4 {
+                                ForEach(recentSearches.reversed(), id: \.self) { result in
+                                    Button {
+                                        searchText = result
+                                        search(searchText: searchText)
+                                    } label: {
+                                        Text(result)
+                                            .font(Font.custom("DMSans-Medium", size: 15))
+                                    }
+                                }
+                            }
+                            else {
+                                ForEach(recentSearches.reversed()[0...4], id: \.self) { result in
+                                    Button {
+                                        searchText = result
+                                        search(searchText: searchText)
+                                    } label: {
+                                        Text(result)
+                                            .font(Font.custom("DMSans-Medium", size: 15))
+                                    }
                                 }
                             }
                         } header: {
                             Text("Recent Searches")
+                                .font(Font.custom("DMSans-Medium", size: 12))
                         }
                     }
                     else {
@@ -56,6 +71,7 @@ struct SearchPage: View {
                 }
                 .foregroundColor(.primary)
                 .searchable(text: $searchText, prompt: "Search for a food...")
+                .font(Font.custom("DMSans-Medium", size: 15))
                 .onSubmit(of: .search) {
                     if !searchText.isEmpty {
                         search(searchText: searchText)
@@ -66,7 +82,7 @@ struct SearchPage: View {
         .onAppear {
             searchText = foodViewModel.searchTerm
             searchResults = foodViewModel.searchResults
-            recentSearches = userViewModel.userModel.recentSearches ?? []
+            recentSearches = userViewModel.user.recentSearches ?? []
         }
         .onChange(of: searchText) { searchText in
             if searchText.isEmpty && !isSearching {
@@ -97,15 +113,15 @@ struct SearchPage: View {
         }
         recentSearches.append(searchText)
         //add to user vm
-        if let uid = userViewModel.userModel.uid {
+        if let uid = userViewModel.user.uid {
             if uid != "" {
-                if userViewModel.userModel.recentSearches!.contains(searchText) {
-                    while let idx = userViewModel.userModel.recentSearches!.firstIndex(of:searchText) {
-                        userViewModel.userModel.recentSearches!.remove(at: idx)
+                if userViewModel.user.recentSearches!.contains(searchText) {
+                    while let idx = userViewModel.user.recentSearches!.firstIndex(of:searchText) {
+                        userViewModel.user.recentSearches!.remove(at: idx)
                     }
                 }
-                userViewModel.userModel.recentSearches?.append(searchText)
-                recentSearches = userViewModel.userModel.recentSearches!
+                userViewModel.user.recentSearches?.append(searchText)
+                recentSearches = userViewModel.user.recentSearches!
             }
         }
         networkRequests.getOpenFoodSearch(searchTerm: editedSearchText) { data in

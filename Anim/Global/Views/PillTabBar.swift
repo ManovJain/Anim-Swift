@@ -26,7 +26,7 @@ struct PillTabBar: View {
                             .frame(width: 23, height: 23)
                     }
                     .frame(height: 35)
-                    .border(width: 2, edges: [.bottom], color: .green)
+                    .border(width: 2, edges: [.bottom], color: Color("AnimGreen"))
                 }
                 else {
                     Image("camera")
@@ -46,7 +46,7 @@ struct PillTabBar: View {
                             .frame(width: 23, height: 23)
                     }
                     .frame(height: 35)
-                    .border(width: 2, edges: [.bottom], color: .green)
+                    .border(width: 2, edges: [.bottom], color: Color("AnimGreen"))
                 }
                 else {
                     Image("fork")
@@ -66,7 +66,7 @@ struct PillTabBar: View {
                             .frame(width: 23, height: 23)
                     }
                     .frame(height: 35)
-                    .border(width: 2, edges: [.bottom], color: .green)
+                    .border(width: 2, edges: [.bottom], color: Color("AnimGreen"))
                 }
                 else {
                     Image("search")
@@ -82,15 +82,15 @@ struct PillTabBar: View {
             }) {
                 if navModel.currentPage == .profile {
                     VStack {
-                        Image("\(userViewModel.userModel.anim ?? "default")Green")
+                        Image("\(userViewModel.user.anim ?? "default")Green")
                             .resizable()
                             .frame(width: 23, height: 23)
                     }
                     .frame(height: 35)
-                    .border(width: 2, edges: [.bottom], color: .green)
+                    .border(width: 2, edges: [.bottom], color: Color("AnimGreen"))
                 }
                 else {
-                    Image("\(userViewModel.userModel.anim ?? "default")")
+                    Image("\(userViewModel.user.anim ?? "default")")
                         .resizable()
                         .frame(width: 23, height: 23)
                         .foregroundColor(.primary)
