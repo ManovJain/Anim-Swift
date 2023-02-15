@@ -23,9 +23,9 @@ struct NutrientTag: View {
             } label: {
                 VStack {
                     Text(nutrient)
-                        .bold()
+                        .font(Font.custom("DMSans-Medium", size: 15))
                         .multilineTextAlignment(.center)
-                        .foregroundColor(.black)
+                        .foregroundColor(.primary)
                 }
                 .frame(width: (UIScreen.screenWidth - 50)/4, height: (UIScreen.screenWidth - 50)/4)
                 .background(getColor(level: level))

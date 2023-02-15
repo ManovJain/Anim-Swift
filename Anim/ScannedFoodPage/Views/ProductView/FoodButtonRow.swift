@@ -27,7 +27,7 @@ struct FoodButtonRow: View {
                     //                            .foregroundColor(.red)
                     //                            .font(.system(size: 25))
                     Text("Nutrition Information")
-                        .font(Font.custom("DMSans-Medium", size: 20))
+                        .font(Font.custom("DMSans-Medium", size: 17))
                         .padding(6)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)

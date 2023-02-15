@@ -33,15 +33,15 @@ struct ProductPage: View {
                 Color("background").edgesIgnoringSafeArea(.all)
                 if status == nil{
                     Text("Search or scan a product")
-                        .font(.title)
-                        .fontWeight(.bold)
+                        .font(Font.custom("DMSans-Medium", size: 24))
+                        .foregroundColor(Color("AnimGreen"))
                         .frame(alignment: .center)
                 }
                 else if status == 0 {
                     Text("Oh no! We don't have data on this product yet but our team is currently working to solve that issue.")
-                        .font(.title)
                         .padding()
-                        .fontWeight(.bold)
+                        .font(Font.custom("DMSans-Medium", size: 24))
+                        .foregroundColor(Color("AnimGreen"))
                         .frame(alignment: .center)
                 }
                 else {

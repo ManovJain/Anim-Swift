@@ -17,7 +17,8 @@ struct CameraView: View {
             mainView
         case .cameraUnavailable:
             Text("Your device does not have a camera")
-            
+                .font(Font.custom("DMSans-Medium", size: 15))
+                .foregroundColor(Color("AnimGreen"))
                 .frame(
                     minWidth: 0,
                     maxWidth: .infinity,
@@ -25,7 +26,9 @@ struct CameraView: View {
                     maxHeight: .infinity
                 )
         case .scannerUnavailable:
-            Text("You device does not support barcode scanning.")
+            Text("Your device does not support barcode scanning.")
+                .font(Font.custom("DMSans-Medium", size: 15))
+                .foregroundColor(Color("AnimGreen"))
                 .frame(
                     minWidth: 0,
                     maxWidth: .infinity,
@@ -34,6 +37,8 @@ struct CameraView: View {
                 )
         case .accessDenied:
             Text("Please provide access to the camera in Settings")
+                .font(Font.custom("DMSans-Medium", size: 15))
+                .foregroundColor(Color("AnimGreen"))
                 .frame(
                     minWidth: 0,
                     maxWidth: .infinity,
@@ -42,6 +47,8 @@ struct CameraView: View {
                 )
         case .unknown:
             Text("Requesting camera access...")
+                .font(Font.custom("DMSans-Medium", size: 15))
+                .foregroundColor(Color("AnimGreen"))
                 .frame(
                     minWidth: 0,
                     maxWidth: .infinity,

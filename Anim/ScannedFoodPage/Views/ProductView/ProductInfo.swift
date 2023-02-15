@@ -23,7 +23,7 @@ struct ProductInfo: View {
                 }
             label: {
                 Text(((foundProduct.generic_name_en) ?? (foundProduct.product_name_en ?? "Food")).capitalized)
-                    .font(.title2)
+                    .font(Font.custom("DMSans-Medium", size: 20))
                     .fontWeight(.bold)
                     .foregroundColor(.primary)
                     .multilineTextAlignment(.center)
@@ -32,7 +32,7 @@ struct ProductInfo: View {
             }
             else {
                 Text(((foundProduct.generic_name_en) ?? (foundProduct.product_name_en ?? "Food")).capitalized)
-                    .font(.title2)
+                    .font(Font.custom("DMSans-Medium", size: 20))
                     .fontWeight(.bold)
                     .foregroundColor(.primary)
                     .multilineTextAlignment(.center)

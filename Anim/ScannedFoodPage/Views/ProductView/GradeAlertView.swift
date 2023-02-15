@@ -25,14 +25,14 @@ struct GradeAlertView: View {
                     Text("This product has an \(foodViewModel.currentGradeSelected.capitalized) grade. This grade is based on the FSA nutritional score created by the Food Standars Agency in the UK.")
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
-                        .bold()
+                        .font(Font.custom("DMSans-Medium", size: 15))
                         .padding()
                 }
                 else {
                     Text("This product has a \(foodViewModel.currentGradeSelected.capitalized) grade. This grade is based on the FSA nutritional score created by the Food Standars Agency in the UK.")
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
-                        .bold()
+                        .font(Font.custom("DMSans-Medium", size: 15))
                         .padding()
                 }
                 Button {

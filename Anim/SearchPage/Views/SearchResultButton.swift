@@ -55,7 +55,7 @@ struct SearchResultButton: View {
                     if let nScore = searchResult.nutriscore_grade {
                         if nScore == "a" {
                             Text(nScore.uppercased())
-                                .font(.caption)
+                                .font(Font.custom("DMSans-Medium", size: 12))
                                 .padding(5)
                                 .background(.green)
                                 .clipShape(Circle())
@@ -63,7 +63,7 @@ struct SearchResultButton: View {
                         }
                         else if nScore == "b" || nScore == "c" {
                             Text(nScore.uppercased())
-                                .font(.caption)
+                                .font(Font.custom("DMSans-Medium", size: 12))
                                 .padding(5)
                                 .background(.yellow)
                                 .clipShape(Circle())
@@ -71,7 +71,7 @@ struct SearchResultButton: View {
                         }
                         else {
                             Text(nScore.uppercased())
-                                .font(.caption)
+                                .font(Font.custom("DMSans-Medium", size: 12))
                                 .padding(5)
                                 .background(.red)
                                 .clipShape(Circle())

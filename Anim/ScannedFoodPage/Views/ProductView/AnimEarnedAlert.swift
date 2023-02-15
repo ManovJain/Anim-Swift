@@ -26,6 +26,7 @@ struct AnimEarnedAlert: View {
                     .resizable()
                     .frame(width: 30, height: 30)
                 Text("New anim earned!")
+                    .font(Font.custom("DMSans-Medium", size: 15))
             }
             .padding()
         }

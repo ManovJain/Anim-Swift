@@ -22,6 +22,7 @@ struct TagAlertView: View {
                 }
             VStack {
                 Text("This product has a \(foodViewModel.currentTagLevel) \(foodViewModel.currentTagSelected.rawValue) content.")
+                    .font(Font.custom("DMSans-Medium", size: 15))
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .bold()
@@ -30,6 +31,7 @@ struct TagAlertView: View {
                     tagAlertShown = false
                 } label: {
                     Text("OK")
+                        .font(Font.custom("DMSans-Medium", size: 15))
                 }
             }
             .frame(width: UIScreen.screenWidth - 100, height: UIScreen.screenHeight / 6)

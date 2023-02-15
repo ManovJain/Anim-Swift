@@ -44,7 +44,7 @@ struct FavoritesButton: View {
                         if let nScore = product?.nutriscore_grade {
                             if nScore == "a" {
                                 Text(nScore.uppercased())
-                                    .font(.caption)
+                                    .font(Font.custom("DMSans-Medium", size: 12))
                                     .padding(10)
                                     .background(.green)
                                     .clipShape(Circle())
@@ -52,7 +52,7 @@ struct FavoritesButton: View {
                             }
                             else if nScore == "b" || nScore == "c" {
                                 Text(nScore.uppercased())
-                                    .font(.caption)
+                                    .font(Font.custom("DMSans-Medium", size: 12))
                                     .padding(10)
                                     .background(.yellow)
                                     .clipShape(Circle())
@@ -60,7 +60,7 @@ struct FavoritesButton: View {
                             }
                             else {
                                 Text(nScore.uppercased())
-                                    .font(.caption)
+                                    .font(Font.custom("DMSans-Medium", size: 12))
                                     .padding(10)
                                     .background(.red)
                                     .clipShape(Circle())
