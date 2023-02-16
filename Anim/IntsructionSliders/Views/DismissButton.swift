@@ -20,7 +20,7 @@ struct DismissButton: View {
             openedApp = true
         }
         .padding()
-        .foregroundColor(Color(red: 247/255, green: 242/255, blue: 237/255))
+        .foregroundColor(Color("AnimGreen" ))
         .background(Color(red: 51/255, green: 114/255, blue: 58/255))
         .clipShape(Capsule())
     }

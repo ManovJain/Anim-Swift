@@ -47,7 +47,9 @@ struct SearchResultButton: View {
                     if let name = searchResult.product_name_en{
                         if name != ""{
                             Text(name)
-                                .font(.headline)
+                                .font(Font.custom("DMSans-Medium", size: 15))
+                                .foregroundColor(Color("background"))
+                                .colorInvert()
                                 .lineLimit(1)
                         }
                     }
