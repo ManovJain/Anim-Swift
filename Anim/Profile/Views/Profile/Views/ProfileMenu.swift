@@ -28,7 +28,7 @@ struct ProfileMenu: View {
                 if profileMenuViewModel.icon.rawValue == "user" {
                     Image(systemName: "person.fill")
                         .font(.system(size: 20))
-                        .foregroundColor(.indigo)
+                        .foregroundColor(Color("AnimGreen"))
                 }
                 else {
                     Image(systemName: "person")
@@ -46,7 +46,7 @@ struct ProfileMenu: View {
                 profileMenuViewModel.icon = .animManager
             }) {
                 if profileMenuViewModel.icon.rawValue == "Anim Manager" {
-                    Image("animLogoIconBlue")
+                    Image("animLogoIconGreen")
                         .resizable()
                         .frame(width: 23, height: 23)
                         .font(.system(size: 20))
@@ -70,7 +70,7 @@ struct ProfileMenu: View {
                 if profileMenuViewModel.icon.rawValue == "favorites" {
                     Image(systemName: "star.fill")
                         .font(.system(size: 20))
-                        .foregroundColor(.indigo)
+                        .foregroundColor(Color("AnimGreen"))
                 }
                 else {
                     Image(systemName: "star")
@@ -90,7 +90,7 @@ struct ProfileMenu: View {
                 if profileMenuViewModel.icon.rawValue == "settings" {
                     Image(systemName: "gear")
                         .font(.system(size: 20))
-                        .foregroundColor(.indigo)
+                        .foregroundColor(Color("AnimGreen"))
                 }
                 else {
                     Image(systemName: "gear")
