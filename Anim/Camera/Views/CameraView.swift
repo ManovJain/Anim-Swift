@@ -60,6 +60,7 @@ struct CameraView: View {
     
     private var mainView: some View {
         DataScannerView(recognizedItems: $cameraViewModel.recognizedItems, recognizedDataType: cameraViewModel.recognizedDataType, recognizesMultipleItems: cameraViewModel.recognizesMultipleItems)
+            .ignoresSafeArea()
     }
 }
 
