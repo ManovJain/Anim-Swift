@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import CachedAsyncImage
 
 struct FavoritesButton: View {
     @EnvironmentObject var networkRequests: NetworkRequests
@@ -31,7 +32,7 @@ struct FavoritesButton: View {
             } label: {
                 VStack{
                     HStack{
-                        AsyncImage(
+                        CachedAsyncImage(
                             url: URL(string: product?.image_front_url ?? "https://i.imgur.com/9eJFAzo.png")) { image in
                                 image.resizable()
                                     .aspectRatio(contentMode: .fit)
