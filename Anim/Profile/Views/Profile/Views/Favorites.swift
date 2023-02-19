@@ -47,8 +47,7 @@ struct Favorites: View {
 //                }
 //            }
             VStack(alignment: .leading) {
-                ScrollView{
-                    ScrollView {
+                    ScrollView(showsIndicators: false) {
                         LazyVGrid(columns: columns, spacing: 20) {
                             ForEach(userViewModel.user.favorites!, id: \.self) { favorite in
                                 FavoritesButton(id: favorite)
@@ -56,7 +55,6 @@ struct Favorites: View {
                             }
                         }
                     }
-                }
             }
         }
         .padding()

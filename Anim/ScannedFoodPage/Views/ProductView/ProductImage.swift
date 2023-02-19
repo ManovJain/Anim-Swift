@@ -33,9 +33,5 @@ struct ProductImage: View {
                 .overlay(GradeOverlay(grade: grade, gradeAlertShown: $gradeAlertShown), alignment: .bottomTrailing)
                 .padding(.bottom)
         }
-//        .frame(width: UIScreen.screenWidth - 120, height: UIScreen.screenWidth - 120)
-//        .clipShape(RoundedRectangle(cornerRadius: 25.0, style: .circular))
-//        .background(Color("background"))
-//        .border(Color("AnimGreen"), width: 2)
     }
 }
