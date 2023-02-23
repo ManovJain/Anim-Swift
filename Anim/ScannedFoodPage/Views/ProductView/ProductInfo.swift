@@ -60,6 +60,14 @@ struct ProductInfo: View {
             Spacer()
                 .frame(height: UIScreen.screenHeight / 10)
         }
+        .onAppear {
+            if foundProduct.ingredients == nil {
+                FirestoreRequests().addBarcodeToMissing(array: "missingData", barcode: foundProduct._id!)
+            }
+            if foundProduct.image_front_url == nil {
+                FirestoreRequests().addBarcodeToMissing(array: "missingPhoto", barcode: foundProduct._id!)
+            }
+        }
         .frame(width: UIScreen.screenWidth - 50)
     }
 }

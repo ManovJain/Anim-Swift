@@ -45,86 +45,8 @@ struct AnimManager: View {
             Spacer()
                 .frame(height: 50)
             VStack {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHGrid(rows: rows, alignment: .center) {
-                        ForEach(iconVM.searchIcons, id: \.self) { icon in
-                            Button(action: {
-                                userViewModel.user.anim = icon.name
-                                self.defaults.set(icon.name, forKey: "anim")
-                            }) {
-                                VStack {
-                                    if (productsFromSearch >= icon.numNeeded) {
-                                        Image(icon.name)
-                                            .resizable()
-                                            .frame(width: 70, height: 70)
-                                    }
-                                    else {
-                                        Image(icon.name)
-                                            .resizable()
-                                            .frame(width: 50, height: 50)
-                                            .blur(radius: productsFromSearch < icon.numNeeded ? 15 : 0)
-                                            .padding(10)
-                                    }
-                                    if (productsFromSearch >= icon.numNeeded) {
-                                        Text("Anim Earned!")
-                                            .lineLimit(nil)
-                                            .font(Font.custom("DMSans-Medium", size: 15))
-                                            .foregroundColor(Color("AnimGreen"))
-                                    }
-                                    else {
-                                        Text("Search \(icon.numNeeded - productsFromSearch) more")
-                                            .lineLimit(nil)
-                                            .font(Font.custom("DMSans-Medium", size: 15))
-                                            .foregroundColor(Color("AnimGreen"))
-                                    }
-                                }
-                                .frame(width: 70, height: 200)
-                            }
-                            .disabled(productsFromSearch < icon.numNeeded)
-                        }
-                        .padding()
-                    }
-                }
-                ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHGrid(rows: rows, alignment: .center) {
-                        ForEach(iconVM.scanIcons, id: \.self) { icon in
-                            Button(action: {
-                                userViewModel.user.anim = icon.name
-                                self.defaults.set(icon.name, forKey: "anim")
-                            }) {
-                                VStack {
-                                    if (productsScanned >= icon.numNeeded) {
-                                        Image(icon.name)
-                                            .resizable()
-                                            .frame(width: 70, height: 70)
-                                    }
-                                    else {
-                                        Image(icon.name)
-                                            .resizable()
-                                            .frame(width: 50, height: 50)
-                                            .blur(radius: productsScanned < icon.numNeeded ? 15 : 0)
-                                            .padding(10)
-                                    }
-                                    if (productsScanned >= icon.numNeeded) {
-                                        Text("Anim Earned!")
-                                            .lineLimit(nil)
-                                            .font(Font.custom("DMSans-Medium", size: 15))
-                                            .foregroundColor(Color("AnimGreen"))
-                                    }
-                                    else {
-                                        Text("Scan \(icon.numNeeded - productsScanned) more")
-                                            .lineLimit(nil)
-                                            .font(Font.custom("DMSans-Medium", size: 15))
-                                            .foregroundColor(Color("AnimGreen"))
-                                    }
-                                }
-                                .frame(width: 70, height: 200)
-                            }
-                            .disabled(productsScanned < icon.numNeeded)
-                        }
-                        .padding()
-                    }
-                }
+                AnimScroller(icons: iconVM.searchIcons)
+                AnimScroller(icons: iconVM.scanIcons)
             }
             .frame(height: 300)
             .padding()
@@ -132,10 +54,6 @@ struct AnimManager: View {
                     RoundedRectangle(cornerRadius: 16)
                         .stroke(Color("AnimGreen"), lineWidth: 3)
                 )
-        }
-        .onAppear {
-            productsFromSearch = userViewModel.user.productsFromSearch!
-            productsScanned = userViewModel.user.productsScanned!
         }
         .padding()
         .frame(

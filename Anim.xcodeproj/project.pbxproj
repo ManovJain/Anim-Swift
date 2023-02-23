@@ -13,6 +13,8 @@
 		4355DEA9299178B200C388A4 /* IconModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4355DEA8299178B200C388A4 /* IconModel.swift */; };
 		4355DEAB299178EF00C388A4 /* IconVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4355DEAA299178EF00C388A4 /* IconVM.swift */; };
 		4355DEAD299193FC00C388A4 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4355DEAC299193FC00C388A4 /* DismissButton.swift */; };
+		4387FE2129A7CA9B005C2464 /* SearchLoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4387FE2029A7CA9B005C2464 /* SearchLoadingScreen.swift */; };
+		4387FE2329A7D470005C2464 /* AnimScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4387FE2229A7D470005C2464 /* AnimScroller.swift */; };
 		43E23AA529941C3A00DC1B9B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43E23AA429941C3A00DC1B9B /* Launch Screen.storyboard */; };
 		43E4B775297F02C000538495 /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B774297F02C000538495 /* PagingView.swift */; };
 		43E4B777297F18C800538495 /* InstructionSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B776297F18C800538495 /* InstructionSlider.swift */; };
@@ -84,6 +86,8 @@
 		4355DEA8299178B200C388A4 /* IconModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconModel.swift; sourceTree = "<group>"; };
 		4355DEAA299178EF00C388A4 /* IconVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconVM.swift; sourceTree = "<group>"; };
 		4355DEAC299193FC00C388A4 /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
+		4387FE2029A7CA9B005C2464 /* SearchLoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLoadingScreen.swift; sourceTree = "<group>"; };
+		4387FE2229A7D470005C2464 /* AnimScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimScroller.swift; sourceTree = "<group>"; };
 		43E23AA429941C3A00DC1B9B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		43E4B774297F02C000538495 /* PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
 		43E4B776297F18C800538495 /* InstructionSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionSlider.swift; sourceTree = "<group>"; };
@@ -238,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				88DAABA329505DE4001E0AC6 /* AnimManager.swift */,
+				4387FE2229A7D470005C2464 /* AnimScroller.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -404,6 +409,7 @@
 			children = (
 				882D1E0229394CE4002EFDC8 /* SearchPage.swift */,
 				43E4B7912984547300538495 /* SearchResultButton.swift */,
+				4387FE2029A7CA9B005C2464 /* SearchLoadingScreen.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -616,6 +622,7 @@
 				882D1E0129394CC9002EFDC8 /* UserView.swift in Sources */,
 				88607D52294C5BEB00602FE3 /* ProfileMenu.swift in Sources */,
 				430D1A15299D6D8600FD43EC /* ProfilePage.swift in Sources */,
+				4387FE2129A7CA9B005C2464 /* SearchLoadingScreen.swift in Sources */,
 				882D1DCC29393F1A002EFDC8 /* ContentView.swift in Sources */,
 				88BE1530294BB478001AE321 /* NutrientTag.swift in Sources */,
 				882D1DCA29393F1A002EFDC8 /* AnimApp.swift in Sources */,
@@ -643,6 +650,7 @@
 				88DA93812971EB6100674DB9 /* ProfileMenuViewModel.swift in Sources */,
 				43E4B7922984547300538495 /* SearchResultButton.swift in Sources */,
 				43E4B777297F18C800538495 /* InstructionSlider.swift in Sources */,
+				4387FE2329A7D470005C2464 /* AnimScroller.swift in Sources */,
 				8864360E2994AD4100FB28D4 /* FavoritesButton.swift in Sources */,
 				43E4B7902984407100538495 /* GradeAlertView.swift in Sources */,
 				4355DEAB299178EF00C388A4 /* IconVM.swift in Sources */,
@@ -792,7 +800,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Anim/Preview Content\"";
-				DEVELOPMENT_TEAM = 9HDBMQNLD8;
+				DEVELOPMENT_TEAM = NNT6SKZK9Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Anim/Info.plist;
@@ -830,7 +838,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Anim/Preview Content\"";
-				DEVELOPMENT_TEAM = 9HDBMQNLD8;
+				DEVELOPMENT_TEAM = NNT6SKZK9Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Anim/Info.plist;
