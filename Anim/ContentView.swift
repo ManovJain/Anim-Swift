@@ -102,9 +102,11 @@ struct ContentView: View {
             //get user stored in default user if signedIn before is true
             
             if defaults.bool(forKey: "signedIn") {
-                fireStoreRequests.getUser(defaults.string(forKey: "uid")!) { data in
-                    userViewModel.user = data!
-                    userViewModel.state = .signedIn
+                if defaults.string(forKey: "uid") != nil {
+                    fireStoreRequests.getUser(defaults.string(forKey: "uid")!) { data in
+                        userViewModel.user = data!
+                        userViewModel.state = .signedIn
+                    }
                 }
             }
         }

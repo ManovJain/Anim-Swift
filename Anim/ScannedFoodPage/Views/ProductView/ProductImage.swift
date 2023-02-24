@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CachedAsyncImage
 
 struct ProductImage: View {
     
@@ -17,7 +16,7 @@ struct ProductImage: View {
     
     var body: some View {
         VStack(){
-            CachedAsyncImage(
+            AsyncImage(
                 url: URL(string: imageURL)) { image in
                     image.resizable()
                         .aspectRatio(contentMode: .fit)

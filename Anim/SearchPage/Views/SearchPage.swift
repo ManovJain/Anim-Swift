@@ -28,10 +28,15 @@ struct SearchPage: View {
     
     @Environment(\.isSearching) private var isSearching: Bool
     
+    @State private var loadingSearch: Bool = false
+    
     var body: some View {
         NavigationView{
             ZStack {
                 Color("background").edgesIgnoringSafeArea(.all)
+                if loadingSearch {
+                    SearchLoadingScreen()
+                }
                 List {
                     if searchText.isEmpty {
                         Section {
@@ -103,6 +108,7 @@ struct SearchPage: View {
     }
     
     func search(searchText: String) {
+        loadingSearch = true;
         var editedSearchText = searchText.replacingOccurrences(of: " ", with: "+")
         editedSearchText = editedSearchText.replacingOccurrences(of: "’", with: "")
         foodViewModel.searchTerm = editedSearchText
@@ -125,6 +131,7 @@ struct SearchPage: View {
             }
         }
         networkRequests.getOpenFoodSearch(searchTerm: editedSearchText) { data in
+            loadingSearch = false;
             searchResults = data!.products
             foodViewModel.searchResults = data!.products
         }

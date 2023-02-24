@@ -26,11 +26,16 @@ struct ProductPage: View {
     @State var gradeAlertShown = false
     
     @State var iconEarned = "default"
+    
+    @State var findingProduct = false
 
     var body: some View {
         NavigationView {
             ZStack {
                 Color("background").edgesIgnoringSafeArea(.all)
+                if findingProduct {
+                    ProgressView()
+                }
                 if status == nil{
                     Text("Search or scan a product")
                         .font(Font.custom("DMSans-Medium", size: 24))
@@ -75,7 +80,9 @@ struct ProductPage: View {
             .onAppear {
                 NotificationCenter.default.post(name: NSNotification.showAnimAlert, object: nil)
                 if camModel.scannedBarcode != "No Barcode Scanned Yet" {
+                    findingProduct = true
                     networkRequests.getFoodByBarcode(barcode: camModel.scannedBarcode) { data in
+                        findingProduct = false
                         status = data?.status
                         product = data?.product
                         if status != 1 {
@@ -94,8 +101,10 @@ struct ProductPage: View {
                     }
                 }
                 else if foodViewModel.product != nil {
+                    findingProduct = true
                     status = foodViewModel.status
                     product = foodViewModel.product
+                    findingProduct = false
                     if let uid = userViewModel.user.uid {
                         if uid != "" {
                             if !(userViewModel.user.productsViewed!.contains((foodViewModel.product?._id)!)) {
