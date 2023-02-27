@@ -151,6 +151,6 @@ struct ProfileMenu: View {
 
 struct ProfileMenu_Previews: PreviewProvider {
     static var previews: some View {
-        PillTabBar()
+        ProfileMenu()
     }
 }

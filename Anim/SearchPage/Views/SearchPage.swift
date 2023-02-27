@@ -66,6 +66,12 @@ struct SearchPage: View {
                             Text("Recent Searches")
                                 .font(Font.custom("DMSans-Medium", size: 12))
                         }
+                        Section {
+                            Filter()
+                        } header: {
+                            Text("Filter & Sort")
+                                .font(Font.custom("DMSans-Medium", size: 12))
+                        }
                     }
                     else {
                         ForEach(searchResults, id: \._id) { result in

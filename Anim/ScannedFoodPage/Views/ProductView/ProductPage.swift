@@ -36,7 +36,7 @@ struct ProductPage: View {
                 if findingProduct {
                     ProgressView()
                 }
-                if status == nil{
+                else if status == nil{
                     Text("Search or scan a product")
                         .font(Font.custom("DMSans-Medium", size: 24))
                         .foregroundColor(Color("AnimGreen"))
