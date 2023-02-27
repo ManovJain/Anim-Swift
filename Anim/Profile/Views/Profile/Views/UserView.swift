@@ -11,6 +11,8 @@ struct UserView: View {
     
     @EnvironmentObject var userViewModel: UserViewModel
     
+    @State var display: String
+    
     var body: some View {
         if((userViewModel.user.username) != ""){
             Text(userViewModel.user.username!)
@@ -34,68 +36,99 @@ struct UserView: View {
                     )
             Spacer()
                 .frame(height: 25)
-            ScrollView(.vertical, showsIndicators: false) {
-                Button(){
-                    
+            
+            HStack{
+                Button {
+                    display = "info"
                 } label: {
-                    if userViewModel.user.email != ""{
-                        Text(userViewModel.user.email!)
-                            .font(Font.custom("DMSans-Medium", size: 20))
-                            .foregroundColor(Color("background"))
-                            .lineLimit(1)
-                    } else {
-                        Text("No email shared")
+                    Text("Info")
+                        .font(Font.custom("DMSans-Medium", size: 20))
+                        .foregroundColor(Color("AnimGreen"))
+                        .lineLimit(1)
+                }
+                Button {
+                    display = "filter"
+                } label: {
+                    Text("Filter")
+                        .font(Font.custom("DMSans-Medium", size: 20))
+                        .foregroundColor(Color("AnimGreen"))
+                        .lineLimit(1)
+                }
+            }
+            
+            ScrollView(.vertical, showsIndicators: false) {
+                if display == "filter" {
+                    Section {
+                        Filter()
+                    } header: {
+                        Text("Filter & Sort")
+                            .font(Font.custom("DMSans-Medium", size: 12))
+                    }
+                }
+                else {
+                    Button(){
+                        
+                    } label: {
+                        if userViewModel.user.email != ""{
+                            Text(userViewModel.user.email!)
+                                .font(Font.custom("DMSans-Medium", size: 20))
+                                .foregroundColor(Color("background"))
+                                .lineLimit(1)
+                        } else {
+                            Text("No email shared")
+                                .font(Font.custom("DMSans-Medium", size: 20))
+                                .foregroundColor(Color("background"))
+                                .lineLimit(1)
+                        }
+                    }
+                    .padding()
+                    .background(Color("AnimGreen"))
+                    .cornerRadius(15)
+                    .clipShape(Capsule())
+                    Spacer()
+                        .frame(height: 25)
+                    Button(){
+
+                    } label: {
+                        Text("Products Viewed: \(userViewModel.user.productsViewed!.count)")
                             .font(Font.custom("DMSans-Medium", size: 20))
                             .foregroundColor(Color("background"))
                             .lineLimit(1)
                     }
+                    .padding()
+                    .background(Color("AnimGreen"))
+                    .cornerRadius(15)
+                    .clipShape(Capsule())
+                    Spacer()
+                        .frame(height: 25)
+                    Button(){
+
+                    } label: {
+                        Text("Products Scanned: \(userViewModel.user.productsScanned!)")
+                            .font(Font.custom("DMSans-Medium", size: 20))
+                            .foregroundColor(Color("background"))
+                            .lineLimit(1)
+                    }
+                    .padding()
+                    .background(Color("AnimGreen"))
+                    .cornerRadius(15)
+                    .clipShape(Capsule())
+                    Spacer()
+                        .frame(height: 25)
+                    Button(){
+
+                    } label: {
+                        Text("Products Searched: \(userViewModel.user.productsFromSearch!)")
+                            .font(Font.custom("DMSans-Medium", size: 20))
+                            .foregroundColor(Color("background"))
+                            .lineLimit(1)
+                    }
+                    .padding()
+                    .background(Color("AnimGreen"))
+                    .cornerRadius(15)
+                    .clipShape(Capsule())
                 }
-                .padding()
-                .background(Color("AnimGreen"))
-                .cornerRadius(15)
-                .clipShape(Capsule())
-                Spacer()
-                    .frame(height: 25)
-                Button(){
-                    
-                } label: {
-                    Text("Products Viewed: \(userViewModel.user.productsViewed!.count)")
-                        .font(Font.custom("DMSans-Medium", size: 20))
-                        .foregroundColor(Color("background"))
-                        .lineLimit(1)
-                }
-                .padding()
-                .background(Color("AnimGreen"))
-                .cornerRadius(15)
-                .clipShape(Capsule())
-                Spacer()
-                    .frame(height: 25)
-                Button(){
-                    
-                } label: {
-                    Text("Products Scanned: \(userViewModel.user.productsScanned!)")
-                        .font(Font.custom("DMSans-Medium", size: 20))
-                        .foregroundColor(Color("background"))
-                        .lineLimit(1)
-                }
-                .padding()
-                .background(Color("AnimGreen"))
-                .cornerRadius(15)
-                .clipShape(Capsule())
-                Spacer()
-                    .frame(height: 25)
-                Button(){
-                    
-                } label: {
-                    Text("Products Searched: \(userViewModel.user.productsFromSearch!)")
-                        .font(Font.custom("DMSans-Medium", size: 20))
-                        .foregroundColor(Color("background"))
-                        .lineLimit(1)
-                }
-                .padding()
-                .background(Color("AnimGreen"))
-                .cornerRadius(15)
-                .clipShape(Capsule())
+
             }
         }
         .padding()

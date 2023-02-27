@@ -9,8 +9,9 @@ import Foundation
 import Alamofire
 import SwiftUI
 
-
 class NetworkRequests: ObservableObject {
+
+    @EnvironmentObject var filterViewModel: FilterViewModel
     
 //    func getFoodSearch(searchTerm: String, completion: @escaping (SearchResult?) -> ()) {
 //        let url = "https://api.jsonbin.io/v3/qs/63900bab962da34f5389ac91"
@@ -27,8 +28,11 @@ class NetworkRequests: ObservableObject {
 //    }
     
     func getOpenFoodSearch(searchTerm: String, completion: @escaping (SearchResult?) -> ()) {
+//        print(filterViewModel.scoreFilter.rawValue)
 //            let url = "https://us.openfoodfacts.org/cgi/search.pl?action=process&tagtype_0=categories&tag_contains_0=contains&tag_0=\(searchTerm)&json=true"
+//        let url = "https://us.openfoodfacts.org/cgi/search.pl?search_terms=\(searchTerm)\(filterViewModel.scoreFilter.rawValue)&json=true"
         let url = "https://us.openfoodfacts.org/cgi/search.pl?search_terms=\(searchTerm)&json=true"
+        print(url)
             AF.request(url, method: .get, parameters: nil).validate(statusCode: 200 ..< 299).responseData { response in
                 switch response.result {
                 case .success(let data):
