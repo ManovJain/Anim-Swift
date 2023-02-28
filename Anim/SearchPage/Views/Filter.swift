@@ -21,16 +21,19 @@ struct Filter: View {
                 } label: {
                     Geo(location: "world", filterVal: filterViewModel.geoFilter.rawValue)
                 }
+                .buttonStyle(.plain)
                 Button{
                     filterViewModel.geoFilter = .us
                 } label: {
                     Geo(location: "us", filterVal: filterViewModel.geoFilter.rawValue)
                 }
+                .buttonStyle(.plain)
                 Button{
                     filterViewModel.geoFilter = .es
                 } label: {
                     Geo(location: "es", filterVal: filterViewModel.geoFilter.rawValue)
                 }
+                .buttonStyle(.plain)
             }
             Text("Show products with nutriscore: " + filterViewModel.scoreFilter.rawValue)
                 .font(Font.custom("DMSans-Medium", size: 12))
@@ -48,6 +51,7 @@ struct Filter: View {
                         Grade(grade: "A", noColor: false)
                     }
                 }
+                .buttonStyle(.plain)
                 Spacer()
                 Button{
                     filterViewModel.scoreFilter = .b
@@ -61,6 +65,7 @@ struct Filter: View {
                         Grade(grade: "B", noColor: false)
                     }
                 }
+                .buttonStyle(.plain)
                 Spacer()
                 Button{
                     filterViewModel.scoreFilter = .c
@@ -74,6 +79,7 @@ struct Filter: View {
                         Grade(grade: "C", noColor: false)
                     }
                 }
+                .buttonStyle(.plain)
                 Spacer()
                 Button{
                     filterViewModel.scoreFilter = .d
@@ -87,6 +93,7 @@ struct Filter: View {
                         Grade(grade: "D", noColor: false)
                     }
                 }
+                .buttonStyle(.plain)
                 Spacer()
             }
             .frame(width: 200,height: 40)
