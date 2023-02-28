@@ -194,4 +194,26 @@ class FirestoreRequests {
                 }
         }
     }
+    
+    func addMissingNutritionInfo(id: String, calories: Int, carbs: Float, cholesterol: Float, fat: Float, fiber: Float, protein: Float, sat_fat: Float, sodium: Float, sugar: Float, trans_fat: Float) {
+        
+        let db = Firestore.firestore()
+        
+        let item = db.collection("nutritionData").document(id)
+        
+        item.setData(["calories": calories,
+                      "carbs": carbs,
+                      "cholesterol": cholesterol,
+                      "fat": fat,
+                      "fiber": fiber,
+                      "protein": protein,
+                      "sat_fat": sat_fat,
+                      "sodium": sodium,
+                      "sugar": sugar,
+                      "trans_fat": trans_fat]) { error in
+            if let error = error {
+                print("Error writing document: \(error)")
+            }
+        }
+    }
 }

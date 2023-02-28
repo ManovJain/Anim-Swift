@@ -15,6 +15,8 @@
 		4355DEAD299193FC00C388A4 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4355DEAC299193FC00C388A4 /* DismissButton.swift */; };
 		4387FE2129A7CA9B005C2464 /* SearchLoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4387FE2029A7CA9B005C2464 /* SearchLoadingScreen.swift */; };
 		4387FE2329A7D470005C2464 /* AnimScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4387FE2229A7D470005C2464 /* AnimScroller.swift */; };
+		43C035AE29AE6F9D00FB9A43 /* IncorrectInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C035AD29AE6F9D00FB9A43 /* IncorrectInfoView.swift */; };
+		43C035B029AE7FF300FB9A43 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C035AF29AE7FF300FB9A43 /* Toast.swift */; };
 		43E23AA529941C3A00DC1B9B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43E23AA429941C3A00DC1B9B /* Launch Screen.storyboard */; };
 		43E4B775297F02C000538495 /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B774297F02C000538495 /* PagingView.swift */; };
 		43E4B777297F18C800538495 /* InstructionSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B776297F18C800538495 /* InstructionSlider.swift */; };
@@ -92,6 +94,8 @@
 		4355DEAC299193FC00C388A4 /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
 		4387FE2029A7CA9B005C2464 /* SearchLoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLoadingScreen.swift; sourceTree = "<group>"; };
 		4387FE2229A7D470005C2464 /* AnimScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimScroller.swift; sourceTree = "<group>"; };
+		43C035AD29AE6F9D00FB9A43 /* IncorrectInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncorrectInfoView.swift; sourceTree = "<group>"; };
+		43C035AF29AE7FF300FB9A43 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		43E23AA429941C3A00DC1B9B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		43E4B774297F02C000538495 /* PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
 		43E4B776297F18C800538495 /* InstructionSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionSlider.swift; sourceTree = "<group>"; };
@@ -343,6 +347,7 @@
 			children = (
 				882D1E11293952C4002EFDC8 /* Extensions */,
 				88BE153C294BBD6E001AE321 /* NavButton.swift */,
+				43C035AF29AE7FF300FB9A43 /* Toast.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -487,6 +492,7 @@
 			isa = PBXGroup;
 			children = (
 				88BE1525294BB3E1001AE321 /* NutrientsPage.swift */,
+				43C035AD29AE6F9D00FB9A43 /* IncorrectInfoView.swift */,
 			);
 			path = NutrientsView;
 			sourceTree = "<group>";
@@ -668,6 +674,7 @@
 				88BE152A294BB42B001AE321 /* Allergens.swift in Sources */,
 				88C76D4329AC6F6B00289E57 /* Geo.swift in Sources */,
 				882D1DF629394AD6002EFDC8 /* DataScannerView.swift in Sources */,
+				43C035B029AE7FF300FB9A43 /* Toast.swift in Sources */,
 				882D1DF829394B02002EFDC8 /* ViewExtensions.swift in Sources */,
 				88BE1538294BB5C1001AE321 /* ProductPage.swift in Sources */,
 				88DA93812971EB6100674DB9 /* ProfileMenuViewModel.swift in Sources */,
@@ -682,6 +689,7 @@
 				882D1DF429394A99002EFDC8 /* CameraView.swift in Sources */,
 				882D1DFC29394B69002EFDC8 /* Placeholder.swift in Sources */,
 				882D1DF029394992002EFDC8 /* NavModel.swift in Sources */,
+				43C035AE29AE6F9D00FB9A43 /* IncorrectInfoView.swift in Sources */,
 				88BE151D294BB321001AE321 /* ScannedBarcode.swift in Sources */,
 				88BE1536294BB59C001AE321 /* ProductInfo.swift in Sources */,
 				88BE1519294BB2E1001AE321 /* Nutriments.swift in Sources */,
@@ -824,7 +832,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Anim/Preview Content\"";
-				DEVELOPMENT_TEAM = 9HDBMQNLD8;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Anim/Info.plist;
@@ -862,7 +870,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Anim/Preview Content\"";
-				DEVELOPMENT_TEAM = 9HDBMQNLD8;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Anim/Info.plist;

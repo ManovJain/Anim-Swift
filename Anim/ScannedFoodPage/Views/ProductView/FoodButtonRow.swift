@@ -21,11 +21,8 @@ struct FoodButtonRow: View {
             Spacer()
             if nutriments.sodium_serving != nil {
                 NavigationLink {
-                    NutrientsPage(nutriments: nutriments)
+                    NutrientsPage(nutriments: nutriments, foodID: product._id!)
                 } label: {
-                    //                        Image(systemName: "heart.fill")
-                    //                            .foregroundColor(.red)
-                    //                            .font(.system(size: 25))
                     Text("Nutrition Information")
                         .font(Font.custom("DMSans-Medium", size: 17))
                         .padding(6)
