@@ -38,7 +38,7 @@ struct SearchPage: View {
                     SearchLoadingScreen()
                 }
                 List {
-                    if searchText.isEmpty {
+                    if searchText.isEmpty && userViewModel.state == .signedIn {
                         Section {
                             if recentSearches.count < 4 {
                                 ForEach(recentSearches.reversed(), id: \.self) { result in
@@ -64,6 +64,12 @@ struct SearchPage: View {
                             }
                         } header: {
                             Text("Recent Searches")
+                                .font(Font.custom("DMSans-Medium", size: 12))
+                        }
+                        Section {
+                            Filter()
+                        } header: {
+                            Text("Filter & Sort")
                                 .font(Font.custom("DMSans-Medium", size: 12))
                         }
                     }

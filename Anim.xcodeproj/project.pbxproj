@@ -72,6 +72,10 @@
 		88BE1538294BB5C1001AE321 /* ProductPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1537294BB5C1001AE321 /* ProductPage.swift */; };
 		88BE153A294BB5EC001AE321 /* FoodButtonRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1539294BB5EC001AE321 /* FoodButtonRow.swift */; };
 		88BE153D294BBD6E001AE321 /* NavButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE153C294BBD6E001AE321 /* NavButton.swift */; };
+		88C76D3B29A8816000289E57 /* FilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C76D3A29A8816000289E57 /* FilterViewModel.swift */; };
+		88C76D3D29A8826300289E57 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C76D3C29A8826300289E57 /* Filter.swift */; };
+		88C76D4129AC55F000289E57 /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C76D4029AC55F000289E57 /* Grade.swift */; };
+		88C76D4329AC6F6B00289E57 /* Geo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C76D4229AC6F6B00289E57 /* Geo.swift */; };
 		88CB6AAB29889F8000184BC2 /* GoogleSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB6AAA29889F8000184BC2 /* GoogleSignInButton.swift */; };
 		88CB6AAE2988A0B000184BC2 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 88CB6AAD2988A0B000184BC2 /* GoogleSignIn */; };
 		88DA93812971EB6100674DB9 /* ProfileMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DA93802971EB6100674DB9 /* ProfileMenuViewModel.swift */; };
@@ -140,6 +144,10 @@
 		88BE1537294BB5C1001AE321 /* ProductPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductPage.swift; sourceTree = "<group>"; };
 		88BE1539294BB5EC001AE321 /* FoodButtonRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodButtonRow.swift; sourceTree = "<group>"; };
 		88BE153C294BBD6E001AE321 /* NavButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavButton.swift; sourceTree = "<group>"; };
+		88C76D3A29A8816000289E57 /* FilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewModel.swift; sourceTree = "<group>"; };
+		88C76D3C29A8826300289E57 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		88C76D4029AC55F000289E57 /* Grade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grade.swift; sourceTree = "<group>"; };
+		88C76D4229AC6F6B00289E57 /* Geo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geo.swift; sourceTree = "<group>"; };
 		88CB6AAA29889F8000184BC2 /* GoogleSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInButton.swift; sourceTree = "<group>"; };
 		88CB6AAF2988A14D00184BC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		88DA93802971EB6100674DB9 /* ProfileMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuViewModel.swift; sourceTree = "<group>"; };
@@ -361,6 +369,7 @@
 		882D1E07293951BF002EFDC8 /* SearchPage */ = {
 			isa = PBXGroup;
 			children = (
+				88C76D3929A8810900289E57 /* ViewModels */,
 				882D1DDE29394795002EFDC8 /* Models */,
 				882D1E0F29395265002EFDC8 /* Views */,
 			);
@@ -410,6 +419,9 @@
 				882D1E0229394CE4002EFDC8 /* SearchPage.swift */,
 				43E4B7912984547300538495 /* SearchResultButton.swift */,
 				4387FE2029A7CA9B005C2464 /* SearchLoadingScreen.swift */,
+				88C76D3C29A8826300289E57 /* Filter.swift */,
+				88C76D4029AC55F000289E57 /* Grade.swift */,
+				88C76D4229AC6F6B00289E57 /* Geo.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -496,6 +508,14 @@
 				430D1A0F299C2B9200FD43EC /* AnimEarnedAlert.swift */,
 			);
 			path = ProductView;
+			sourceTree = "<group>";
+		};
+		88C76D3929A8810900289E57 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				88C76D3A29A8816000289E57 /* FilterViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		88DA937F2971EB3F00674DB9 /* ViewModels */ = {
@@ -636,6 +656,7 @@
 				882D1DEE29394978002EFDC8 /* CameraViewModel.swift in Sources */,
 				882D1DFA29394B3C002EFDC8 /* PillTabBar.swift in Sources */,
 				88BE1528294BB41A001AE321 /* TagAlertView.swift in Sources */,
+				88C76D3B29A8816000289E57 /* FilterViewModel.swift in Sources */,
 				430D1A10299C2B9200FD43EC /* AnimEarnedAlert.swift in Sources */,
 				43E4B77B2980969E00538495 /* DragGestures.swift in Sources */,
 				88BE151B294BB2FC001AE321 /* Product.swift in Sources */,
@@ -643,7 +664,9 @@
 				4355DEAD299193FC00C388A4 /* DismissButton.swift in Sources */,
 				88BE153D294BBD6E001AE321 /* NavButton.swift in Sources */,
 				882D1E0329394CE4002EFDC8 /* SearchPage.swift in Sources */,
+				88C76D3D29A8826300289E57 /* Filter.swift in Sources */,
 				88BE152A294BB42B001AE321 /* Allergens.swift in Sources */,
+				88C76D4329AC6F6B00289E57 /* Geo.swift in Sources */,
 				882D1DF629394AD6002EFDC8 /* DataScannerView.swift in Sources */,
 				882D1DF829394B02002EFDC8 /* ViewExtensions.swift in Sources */,
 				88BE1538294BB5C1001AE321 /* ProductPage.swift in Sources */,
@@ -665,6 +688,7 @@
 				4355DEA9299178B200C388A4 /* IconModel.swift in Sources */,
 				43E4B775297F02C000538495 /* PagingView.swift in Sources */,
 				88BE1524294BB3C2001AE321 /* IngredientsList.swift in Sources */,
+				88C76D4129AC55F000289E57 /* Grade.swift in Sources */,
 				88607D56294CFA6900602FE3 /* Favorites.swift in Sources */,
 				88BE1532294BB495001AE321 /* NutrientTagsList.swift in Sources */,
 				88DAABA429505DE4001E0AC6 /* AnimManager.swift in Sources */,

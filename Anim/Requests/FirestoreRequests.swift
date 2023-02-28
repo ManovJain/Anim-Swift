@@ -14,6 +14,8 @@ class FirestoreRequests {
     
     func getUser(_ userID: String, completion: @escaping (User?) -> ()) {
         
+        print(userID)
+        
         let db = Firestore.firestore()
         
         let user = db.collection("users").document(userID)
@@ -167,5 +169,29 @@ class FirestoreRequests {
             "anim": user.anim,
             "earnedAnims": user.earnedAnims
         ])
+    }
+    
+    func addField(field: String) {
+        let db = Firestore.firestore()
+        db.collection("users")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let doc = db.collection("users").document(document.documentID)
+                        doc.updateData([
+                            field: []
+                        ]) { err in
+                            if let err = err {
+                                print("Error updating document: \(err)")
+                            } else {
+                                print("Document successfully updated")
+                            }
+                        }
+
+                    }
+                }
+        }
     }
 }

@@ -21,7 +21,7 @@ struct ProfilePage: View {
         VStack{
                 switch profileMenuViewModel.icon.rawValue {
                 case "user":
-                    UserView()
+                    UserView(display: "filter")
                 case "Anim Manager":
                     AnimManager()
                 case "favorites":

@@ -30,7 +30,7 @@ struct AnimManager: View {
             .lineLimit(1)
             .frame(alignment: .center)
         VStack {
-            Image(userViewModel.user.anim!)
+            Image(userViewModel.user.anim ?? "animLogoIcon")
                 .resizable()
                 .frame(width: 80, height: 80)
                 .padding()
