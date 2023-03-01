@@ -97,7 +97,6 @@ struct ProductPage: View {
                                 
                             }
                         }
-                        //userVM.currentUser.scannedProduct.append
                     }
                 }
                 else if foodViewModel.product != nil {
