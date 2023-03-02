@@ -20,6 +20,8 @@ struct Product: Codable {
     let countries: String?
     let food_groups_tags: [String]?
     let generic_name_en: String?
+    let product_name_es: String?
+    let product_name: String?
     let image_front_url: String?
     let image_ingredients_url: String?
     let image_nutrition_url: String?

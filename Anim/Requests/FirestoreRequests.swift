@@ -13,9 +13,7 @@ import Firebase
 class FirestoreRequests {
     
     func getUser(_ userID: String, completion: @escaping (User?) -> ()) {
-        
-        print(userID)
-        
+
         let db = Firestore.firestore()
         
         let user = db.collection("users").document(userID)

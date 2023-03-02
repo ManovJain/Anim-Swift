@@ -22,7 +22,7 @@ struct ProductInfo: View {
                     IngredientsList(ingredients: ingredients)
                 }
             label: {
-                Text(((foundProduct.product_name_en) ?? (foundProduct.generic_name_en ?? "Food")).capitalized)
+                Text(((foundProduct.product_name) ?? (foundProduct.generic_name_en ?? "Food")).capitalized)
                     .font(Font.custom("DMSans-Medium", size: 20))
                     .fontWeight(.bold)
                     .foregroundColor(.primary)
@@ -31,7 +31,7 @@ struct ProductInfo: View {
             }
             }
             else {
-                Text(((foundProduct.product_name_en) ?? (foundProduct.product_name_en ?? "Food")).capitalized)
+                Text(((foundProduct.product_name) ?? (foundProduct.product_name ?? "Food")).capitalized)
                     .font(Font.custom("DMSans-Medium", size: 20))
                     .fontWeight(.bold)
                     .foregroundColor(.primary)

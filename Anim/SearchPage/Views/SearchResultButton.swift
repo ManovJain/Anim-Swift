@@ -35,24 +35,18 @@ struct SearchResultButton: View {
             }
         } label: {
             HStack{
-                if searchResult.product_name_en != nil || searchResult.product_name_en != ""{
-//                    AsyncImage(
-//                        url: URL(string: searchResult.image_front_url ?? "https://spng.pngfind.com/pngs/s/5-56881_apple-icon-apple-icon-cartoon-png-transparent-png.png")) { image in
-//                            image.resizable()
-//                                .frame(width: 45, height: 45)
-//                        } placeholder: {
-//                            ProgressView()
-//                        }
-//                        .padding()
-                    if let name = searchResult.product_name_en{
-                        if name != ""{
-                            Text(name)
-                                .font(Font.custom("DMSans-Medium", size: 15))
-                                .foregroundColor(Color("background"))
-                                .colorInvert()
-                                .lineLimit(1)
+                if searchResult.product_name != nil || searchResult.product_name != ""{
+
+                        if let name = searchResult.product_name{
+                            if name != ""{
+                                Text(name.capitalized)
+                                    .font(Font.custom("DMSans-Medium", size: 15))
+                                    .foregroundColor(Color("background"))
+                                    .colorInvert()
+                                    .lineLimit(1)
+                            }
                         }
-                    }
+                    
                     Spacer()
                     if let nScore = searchResult.nutriscore_grade {
                         if nScore == "a" {

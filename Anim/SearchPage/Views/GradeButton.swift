@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-struct Grade: View {
+struct GradeButton: View {
     
     var grade: String
     var noColor: Bool

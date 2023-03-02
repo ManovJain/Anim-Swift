@@ -59,7 +59,7 @@ struct UserView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 if display == "filter" {
                     Section {
-                        Filter()
+                        FilterModalView()
                     } header: {
                         Text("Filter & Sort")
                             .font(Font.custom("DMSans-Medium", size: 12))
