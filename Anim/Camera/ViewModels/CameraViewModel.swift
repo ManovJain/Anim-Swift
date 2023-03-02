@@ -32,6 +32,9 @@ final class CameraViewModel: ObservableObject {
     @Published var recognizesMultipleItems = false
     @Published var scannedBarcode: String = "No Barcode Scanned Yet"
     @Published var searchedBarcode: String = "No Barcode Scanned Yet"
+    @Published var addingToFridge: Bool = false
+    @Published var foundFridgeProduct: Bool = false
+    @Published var notFoundFridgeProduct: Bool = false
     
     var recognizedDataType: DataScannerViewController.RecognizedDataType {
         scanType == .barcode ? .barcode() : .text(textContentType: textContentType)

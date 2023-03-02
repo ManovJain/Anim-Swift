@@ -55,6 +55,7 @@
 		88607D52294C5BEB00602FE3 /* ProfileMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88607D51294C5BEB00602FE3 /* ProfileMenu.swift */; };
 		88607D56294CFA6900602FE3 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88607D55294CFA6900602FE3 /* Favorites.swift */; };
 		8864360E2994AD4100FB28D4 /* FavoritesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864360D2994AD4100FB28D4 /* FavoritesButton.swift */; };
+		88B6C90029B14D5E00756D10 /* CameraTabsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B6C8FF29B14D5E00756D10 /* CameraTabsOverlay.swift */; };
 		88BE1515294BB2B8001AE321 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1514294BB2B8001AE321 /* Ingredient.swift */; };
 		88BE1517294BB2CD001AE321 /* NutrientLevels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1516294BB2CD001AE321 /* NutrientLevels.swift */; };
 		88BE1519294BB2E1001AE321 /* Nutriments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1518294BB2E1001AE321 /* Nutriments.swift */; };
@@ -128,6 +129,7 @@
 		88607D51294C5BEB00602FE3 /* ProfileMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenu.swift; sourceTree = "<group>"; };
 		88607D55294CFA6900602FE3 /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		8864360D2994AD4100FB28D4 /* FavoritesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesButton.swift; sourceTree = "<group>"; };
+		88B6C8FF29B14D5E00756D10 /* CameraTabsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabsOverlay.swift; sourceTree = "<group>"; };
 		88BE1514294BB2B8001AE321 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		88BE1516294BB2CD001AE321 /* NutrientLevels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientLevels.swift; sourceTree = "<group>"; };
 		88BE1518294BB2E1001AE321 /* Nutriments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutriments.swift; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 			children = (
 				882D1DF329394A99002EFDC8 /* CameraView.swift */,
 				882D1DF529394AD6002EFDC8 /* DataScannerView.swift */,
+				88B6C8FF29B14D5E00756D10 /* CameraTabsOverlay.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -675,6 +678,7 @@
 				8815B0A129402D9B007FBB17 /* LoginPage.swift in Sources */,
 				88BE1526294BB3E1001AE321 /* NutrientsPage.swift in Sources */,
 				882D1DF429394A99002EFDC8 /* CameraView.swift in Sources */,
+				88B6C90029B14D5E00756D10 /* CameraTabsOverlay.swift in Sources */,
 				882D1DFC29394B69002EFDC8 /* Placeholder.swift in Sources */,
 				882D1DF029394992002EFDC8 /* NavModel.swift in Sources */,
 				43C035AE29AE6F9D00FB9A43 /* IncorrectInfoView.swift in Sources */,
@@ -820,7 +824,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Anim/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 9HDBMQNLD8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Anim/Info.plist;
@@ -858,7 +862,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Anim/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 9HDBMQNLD8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Anim/Info.plist;

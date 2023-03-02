@@ -15,6 +15,13 @@ struct CameraView: View {
         switch cameraViewModel.dataScannerAccessStatus {
         case .scannerAvailable:
             mainView
+                .overlay(CameraTabsOverlay(), alignment: .top)
+                .toast(message: "Product added to fridge",
+                       isShowing: $cameraViewModel.foundFridgeProduct,
+                             duration: Toast.short)
+                .toast(message: "Product not found",
+                       isShowing: $cameraViewModel.notFoundFridgeProduct,
+                             duration: Toast.short)
         case .cameraUnavailable:
             Text("Your device does not have a camera")
                 .font(Font.custom("DMSans-Medium", size: 15))
