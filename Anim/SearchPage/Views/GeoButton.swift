@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-struct Geo: View {
+struct GeoButton: View {
     
     var location: String
     var filterVal: String

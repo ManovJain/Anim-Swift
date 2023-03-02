@@ -50,9 +50,6 @@ final class UserViewModel: ObservableObject {
                 return
             }
             
-            //user successfully logged into firebase
-            print("Log in success")
-            
             
             self.defaults.set(true, forKey: "signedIn")
             
@@ -163,7 +160,6 @@ final class UserViewModel: ObservableObject {
             // 2
             try Auth.auth().signOut()
             self.state = .signedOut
-            print(self.state)
         } catch {
             print(error.localizedDescription)
         }
@@ -182,19 +178,6 @@ final class UserViewModel: ObservableObject {
         }
     }
     
-    
-    
-    
-    //    func logGoogleUser(user: GIDGoogleUser){
-    //        guard let idToken = user.idToken else {return}
-    //        let accessToken = user.accessToken
-    //
-    //        let credential = OAuthProvider.credential(withProviderID: idToken, accessToken: accessToken)
-    //
-    //        try await Auth.auth().signIn(with: credential)
-    //
-    //        print("success")
-    //    }
     
     
     

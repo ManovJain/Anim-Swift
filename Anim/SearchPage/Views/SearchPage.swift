@@ -67,7 +67,7 @@ struct SearchPage: View {
                                 .font(Font.custom("DMSans-Medium", size: 12))
                         }
                         Section {
-                            Filter()
+                            FilterModalView()
                         } header: {
                             Text("Filter & Sort")
                                 .font(Font.custom("DMSans-Medium", size: 12))

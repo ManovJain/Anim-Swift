@@ -21,6 +21,8 @@ struct FoodItem: Codable, Hashable {
     
     let _id: String?
     let product_name_en: String?
+    let product_name: String?
+    let product_name_es: String?
     let image_front_url: String?
     let nutriscore_grade: String?
     let code: String?
