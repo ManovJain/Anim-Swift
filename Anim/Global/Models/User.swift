@@ -30,4 +30,7 @@ struct User: Codable, Hashable {
     var recentSearches: [String]?
     var anim: String?
     var earnedAnims: [String]?
+    var fridgeItems: [String]?
+    var geoPreference: String?
+    var gradePreference: String?
 }

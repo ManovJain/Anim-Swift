@@ -94,7 +94,6 @@ struct ContentView: View {
         .preferredColorScheme(darkMode ? .dark : .light)
         
         .onAppear {
-            
             openedApp = defaults.bool(forKey: "openedApp")
             
             userViewModel.user.anim = defaults.string(forKey: "anim")
