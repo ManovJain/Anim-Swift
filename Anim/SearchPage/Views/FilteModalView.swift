@@ -124,6 +124,9 @@ struct FilterModalView: View {
             }
             Spacer()
         }
+        
+        //toggle
+        //on toggle set networkRequests.geoFilter = user.selectedGeoFilter
     }
 }
 
