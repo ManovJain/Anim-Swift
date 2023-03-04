@@ -25,10 +25,23 @@ enum GeoFilter: String {
     case es = "es"
 }
 
+enum AllergenFilter: String {
+    case none = "none"
+    case milk = "milk"
+    case gluten = "gluten"
+    case soybeans = "soybeans"
+    case eggs = "eggs"
+    case nuts = "nuts"
+    case fish = "fish"
+    case mustard = "mustard"
+    case peanuts = "peanuts"
+}
+
 
 class NetworkRequests: ObservableObject {
     @Published var scoreFilter: ScoreFilter = .none
     @Published var geoFilter: GeoFilter = .us
+    @Published var allergenFilter: AllergenFilter = .none
 
     func getOpenFoodSearch(searchTerm: String, completion: @escaping (SearchResult?) -> ()) {
         let url = "https://\(geoFilter.rawValue).openfoodfacts.org/cgi/search.pl?search_terms=\(searchTerm)\(scoreFilter.rawValue)&json=true"
@@ -57,5 +70,17 @@ class NetworkRequests: ObservableObject {
                 }
             }
         }
+    
+//    func setUserPrefs(userPrefs: Bool){
+//        if userPrefs == true {
+//            geoFilter = userViewModel.geoFilter
+//            scoreFilter = userViewModel.scoreFilter
+//            allergenFilter = userViewModel.allergenFilter
+//        }
+//        else {
+//            
+//        }
+//        
+//    }
     
 }

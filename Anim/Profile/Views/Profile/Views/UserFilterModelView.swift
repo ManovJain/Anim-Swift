@@ -1,19 +1,21 @@
 //
-//  Filter.swift
+//  UserFilterModelView.swift
 //  Anim
 //
-//  Created by Manovski on 2/23/23.
+//  Created by Manovski on 3/4/23.
 //
 
 import SwiftUI
 
-struct FilterModalView: View {
+struct UserFilterModalView: View {
     
-    @EnvironmentObject var networkRequests: NetworkRequests
+    @EnvironmentObject var userViewModel: UserViewModel
     
     @State var selectedGeoFilterMessage = "Show US products only"
     
     @State var selectedGradeFilterMessage = "Select below to filter by grade"
+    
+    @State var selectedAllergensFilterMessage = "Filter by allergens"
     
     var body: some View {
         HStack {
@@ -23,36 +25,37 @@ struct FilterModalView: View {
                     .font(Font.custom("DMSans-Medium", size: 12))
                 HStack {
                     Button{
-                        networkRequests.geoFilter = .world
+                        userViewModel.geoFilter = .world
                         selectedGeoFilterMessage = "Show products from all countries"
                     } label: {
-                        GeoButton(location: "world", filterVal: networkRequests.geoFilter.rawValue)
+                        GeoButton(location: "world", filterVal: userViewModel.geoFilter.rawValue)
                     }
                     .buttonStyle(.plain)
                     Button{
-                        networkRequests.geoFilter = .us
+                        userViewModel.geoFilter = .us
                         selectedGeoFilterMessage = "Show US products only"
                     } label: {
-                        GeoButton(location: "us", filterVal: networkRequests.geoFilter.rawValue)
+                        GeoButton(location: "us", filterVal: userViewModel.geoFilter.rawValue)
                     }
                     .buttonStyle(.plain)
                     Button{
-                        networkRequests.geoFilter = .es
+                        userViewModel.geoFilter = .es
                         selectedGeoFilterMessage = "Show Spanish products only"
                     } label: {
-                        GeoButton(location: "es", filterVal: networkRequests.geoFilter.rawValue)
+                        GeoButton(location: "es", filterVal: userViewModel.geoFilter.rawValue)
                     }
                     .buttonStyle(.plain)
                 }
+                //NUTRITION GRADES
                 Text(selectedGradeFilterMessage)
                     .font(Font.custom("DMSans-Medium", size: 12))
                 HStack {
                     Spacer()
                     Button{
-                        networkRequests.scoreFilter = .a
+                        userViewModel.scoreFilter = .a
                         selectedGradeFilterMessage = "Show only products with an A grade"
                     } label: {
-                        if networkRequests.scoreFilter != .a {
+                        if userViewModel.scoreFilter != .a {
                             GradeButton(grade: "A", noColor: true)
                         }
                         else {
@@ -62,10 +65,10 @@ struct FilterModalView: View {
                     .buttonStyle(.plain)
                     Spacer()
                     Button{
-                        networkRequests.scoreFilter = .b
+                        userViewModel.scoreFilter = .b
                         selectedGradeFilterMessage = "Show only products with a B grade"
                     } label: {
-                        if networkRequests.scoreFilter != .b {
+                        if userViewModel.scoreFilter != .b {
                             GradeButton(grade: "B", noColor: true)
                         }
                         else {
@@ -75,10 +78,10 @@ struct FilterModalView: View {
                     .buttonStyle(.plain)
                     Spacer()
                     Button{
-                        networkRequests.scoreFilter = .c
+                        userViewModel.scoreFilter = .c
                         selectedGradeFilterMessage = "Show only products with a C grade"
                     } label: {
-                        if networkRequests.scoreFilter != .c {
+                        if userViewModel.scoreFilter != .c {
                             GradeButton(grade: "C", noColor: true)
                         }
                         else {
@@ -88,10 +91,10 @@ struct FilterModalView: View {
                     .buttonStyle(.plain)
                     Spacer()
                     Button{
-                        networkRequests.scoreFilter = .d
+                        userViewModel.scoreFilter = .d
                         selectedGradeFilterMessage = "Show only products with a D grade"
                     } label: {
-                        if networkRequests.scoreFilter != .d {
+                        if userViewModel.scoreFilter != .d {
                             GradeButton(grade: "D", noColor: true)
                         }
                         else {
@@ -105,11 +108,48 @@ struct FilterModalView: View {
                 .background(Color("AnimGreen"))
                 .clipShape(Capsule())
                 
+                //ALLERGENS
+                Text(selectedAllergensFilterMessage)
+                    .font(Font.custom("DMSans-Medium", size: 12))
+                HStack {
+                    Spacer()
+                    Button{
+                        userViewModel.allergenFilter = .milk
+                        selectedAllergensFilterMessage = "Show products without milk"
+                    } label: {
+                        AllergenButton(name: "milk", filterVal: userViewModel.allergenFilter.rawValue)
+                    }
+                    .buttonStyle(.plain)
+                    Spacer()
+                    Button{
+                        userViewModel.allergenFilter = .peanuts
+                        selectedAllergensFilterMessage = "Show products without peanuts"
+                    } label: {
+                        AllergenButton(name: "peanuts", filterVal: userViewModel.allergenFilter.rawValue)
+                    }
+                    .buttonStyle(.plain)
+                    Spacer()
+                    Button{
+                        userViewModel.allergenFilter = .gluten
+                        selectedAllergensFilterMessage = "Show products without gluten"
+                    } label: {
+                        AllergenButton(name: "gluten", filterVal: userViewModel.allergenFilter.rawValue)
+                    }
+                    .buttonStyle(.plain)
+                    Spacer()
+                }
+                .frame(width: 200,height: 40)
+                .background(Color("AnimGreen"))
+                .clipShape(Capsule())
+                
+                //CLEAR FILTER
                 Button {
-                    networkRequests.geoFilter = .us
-                    networkRequests.scoreFilter = .none
+                    userViewModel.geoFilter = .us
+                    userViewModel.scoreFilter = .none
+                    userViewModel.allergenFilter = .none
                     selectedGeoFilterMessage = "Show US products only"
                     selectedGradeFilterMessage = "Select below to filter by grade"
+                    selectedAllergensFilterMessage = "Filter by allergens"
                 } label: {
                     Text("Clear Filter")
                         .font(Font.custom("DMSans-Medium", size: 12))
@@ -126,7 +166,7 @@ struct FilterModalView: View {
         }
         
         //toggle
-        //on toggle set networkRequests.geoFilter = user.selectedGeoFilter
+        //on toggle set userViewModel.geoFilter = user.selectedGeoFilter
     }
 }
 
