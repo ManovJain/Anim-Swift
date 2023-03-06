@@ -15,33 +15,6 @@ final class UserViewModel: ObservableObject {
     
     let defaults = UserDefaults.standard
     
-    enum ScoreFilter: String {
-        case none = ""
-        case a = "&nutrition_grades_tags=a"
-        case b = "&nutrition_grades_tags=b"
-        case c = "&nutrition_grades_tags=c"
-        case d = "&nutrition_grades_tags=d"
-        case e = "&nutrition_grades_tags=e"
-    }
-
-    enum GeoFilter: String {
-        case world = "world"
-        case us = "us"
-        case es = "es"
-    }
-
-    enum AllergenFilter: String {
-        case none = "none"
-        case milk = "milk"
-        case gluten = "gluten"
-        case soybeans = "soybeans"
-        case eggs = "eggs"
-        case nuts = "nuts"
-        case fish = "fish"
-        case mustard = "mustard"
-        case peanuts = "peanuts"
-    }
-    
     enum SignInState {
         case signedIn
         case signedOut

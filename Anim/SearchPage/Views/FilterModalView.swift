@@ -147,12 +147,7 @@ struct FilterModalView: View {
                 
                 //CLEAR FILTER
                 Button {
-                    networkRequests.geoFilter = .us
-                    networkRequests.scoreFilter = .none
-                    networkRequests.allergenFilter = .none
-                    selectedGeoFilterMessage = "Show US products only"
-                    selectedGradeFilterMessage = "Select below to filter by grade"
-                    selectedAllergensFilterMessage = "Filter by allergens"
+                    setUserPrefs(userPrefs: false)
                 } label: {
                     Text("Clear Filter")
                         .font(Font.custom("DMSans-Medium", size: 12))
@@ -170,30 +165,30 @@ struct FilterModalView: View {
         
         //toggle
         //on toggle set networkRequests.geoFilter = user.selectedGeoFilter
-//        Toggle("Use user's preferences", isOn: $userPrefs)
-//            .onChange(of: userPrefs){ value in
-////                networkRequests.geoFilter = userViewModel.geoFilter
-////                networkRequests.scoreFilter = userViewModel.scoreFilter
-////                networkRequests.allergenFilter = userViewModel.allergenFilter
-//                setUserPrefs(userPrefs: userPrefs)
-//                print("user values set")
-//            }
-//            .toggleStyle(SwitchToggleStyle(tint: Color("AnimGreen")))
+        Toggle("Use user's preferences", isOn: $userPrefs)
+            .onChange(of: userPrefs){ value in
+                networkRequests.geoFilter = userViewModel.geoFilter
+                networkRequests.scoreFilter = userViewModel.scoreFilter
+                networkRequests.allergenFilter = userViewModel.allergenFilter
+                setUserPrefs(userPrefs: userPrefs)
+                print("user values set")
+            }
+            .toggleStyle(SwitchToggleStyle(tint: Color("AnimGreen")))
     }
-//    func setUserPrefs(userPrefs: Bool){
-//        if userPrefs == true {
-//            networkRequests.geoFilter = userViewModel.geoFilter
-//            networkRequests.scoreFilter = userViewModel.scoreFilter
-//            networkRequests.allergenFilter = userViewModel.allergenFilter
-//        }
-//        else {
-//            networkRequests.geoFilter = .us
-//            networkRequests.scoreFilter = .none
-//            networkRequests.allergenFilter = .none
-//            selectedGeoFilterMessage = "Show US products only"
-//            selectedGradeFilterMessage = "Select below to filter by grade"
-//            selectedAllergensFilterMessage = "Filter by allergens"
-//        }
-//    }
+    func setUserPrefs(userPrefs: Bool){
+        if userPrefs == true {
+            networkRequests.geoFilter = userViewModel.geoFilter
+            networkRequests.scoreFilter = userViewModel.scoreFilter
+            networkRequests.allergenFilter = userViewModel.allergenFilter
+        }
+        else {
+            networkRequests.geoFilter = .us
+            networkRequests.scoreFilter = .none
+            networkRequests.allergenFilter = .none
+            selectedGeoFilterMessage = "Show US products only"
+            selectedGradeFilterMessage = "Select below to filter by grade"
+            selectedAllergensFilterMessage = "Filter by allergens"
+        }
+    }
 }
 
