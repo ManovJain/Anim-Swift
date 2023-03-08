@@ -45,10 +45,11 @@ struct AnimManager: View {
             Spacer()
                 .frame(height: 50)
             VStack {
-                AnimScroller(icons: iconVM.searchIcons)
-                AnimScroller(icons: iconVM.scanIcons)
+                AnimScroller(icons: iconVM.searchIcons, animEarnedType: .search)
+                AnimScroller(icons: iconVM.scanIcons, animEarnedType: .scanned)
+                AnimScroller(icons: iconVM.nutrimentsIcons, animEarnedType: .nutrimentsFixed)
             }
-            .frame(height: 300)
+            .frame(height: 400)
             .padding()
                 .overlay(
                     RoundedRectangle(cornerRadius: 16)

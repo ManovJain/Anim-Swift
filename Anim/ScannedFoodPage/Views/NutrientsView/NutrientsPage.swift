@@ -138,7 +138,7 @@ struct NutrientsPage: View {
             }
             .toast(message: "Thank you for helping improve our data!",
                          isShowing: $showToast,
-                         duration: Toast.short)
+                   duration: Toast.long)
         }
         .background(Color("background"))
         .scrollContentBackground(.hidden)

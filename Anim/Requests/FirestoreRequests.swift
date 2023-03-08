@@ -36,7 +36,8 @@ class FirestoreRequests {
                 let fridgeItems = document.get("fridgeItems") as! [String]
                 let geoPreference = document.get("geoPreference") as! String
                 let gradePreference = document.get("gradePreference") as! String
-                let foundUser = User(uid: uid, username: username, email: email, productsFromSearch: productsFromSearch, productsScanned: productsScanned, productsViewed: productsViewed, likes: likes, dislikes: dislikes, favorites: favorites, allergens: allergens, recentSearches: recentSearches, anim: anim, earnedAnims: earnedAnims, fridgeItems: fridgeItems, geoPreference: geoPreference, gradePreference: gradePreference)
+                let numNutrimentsReported = document.get("numNutrimentsReported") as! Int
+                let foundUser = User(uid: uid, username: username, email: email, productsFromSearch: productsFromSearch, productsScanned: productsScanned, productsViewed: productsViewed, likes: likes, dislikes: dislikes, favorites: favorites, allergens: allergens, recentSearches: recentSearches, anim: anim, earnedAnims: earnedAnims, fridgeItems: fridgeItems, geoPreference: geoPreference, gradePreference: gradePreference, numNutrimentsReported: numNutrimentsReported)
                 completion(foundUser)
             }
         }
@@ -63,12 +64,13 @@ class FirestoreRequests {
                       "earnedAnims": [],
                       "fridgeItems": [],
                       "geoPreference": "us",
-                      "gradePreference": ""]) { error in
+                      "gradePreference": "",
+                      "numNutrimentsReported": 0]) { error in
             if let error = error {
                 print("Error writing document: \(error)")
             }
             else {
-                completion(User(uid: uid, username: username, email: email, productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default", earnedAnims: [], fridgeItems: [], geoPreference: "us", gradePreference: ""))
+                completion(User(uid: uid, username: username, email: email, productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default", earnedAnims: [], fridgeItems: [], geoPreference: "us", gradePreference: "", numNutrimentsReported: 0))
             }
         }
     }
@@ -172,7 +174,10 @@ class FirestoreRequests {
             "recentSearches": user.recentSearches,
             "anim": user.anim,
             "earnedAnims": user.earnedAnims,
-            "fridgeItems": user.fridgeItems
+            "fridgeItems": user.fridgeItems,
+            "geoPreference": user.geoPreference,
+            "gradePreference": user.gradePreference,
+            "numNutrimentsReported": user.numNutrimentsReported
         ])
     }
     
@@ -186,7 +191,7 @@ class FirestoreRequests {
                     for document in querySnapshot!.documents {
                         let doc = db.collection("users").document(document.documentID)
                         doc.updateData([
-                            field: ""
+                            field: 0
                         ]) { err in
                             if let err = err {
                                 print("Error updating document: \(err)")

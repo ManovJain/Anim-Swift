@@ -46,7 +46,7 @@ class NetworkRequests: ObservableObject {
     
     func getFoodByBarcode(barcode: String, completion: @escaping (ScannedBarcode?) -> ()) {
             let url = "https://world.openfoodfacts.org/api/v0/product/\(barcode).json"
-            AF.request(url, method: .get, parameters: nil).validate(statusCode: 200 ..< 299).responseData { response in
+            AF.request(url, method: .get, parameters: nil).validate(statusCode: 200 ..< 600).responseData { response in
                 switch response.result {
                 case .success(let data):
                     let jsonData = try? JSONDecoder().decode(ScannedBarcode.self, from: data)

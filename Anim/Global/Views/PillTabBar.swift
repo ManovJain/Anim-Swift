@@ -17,7 +17,12 @@ struct PillTabBar: View {
         HStack {
             Spacer()
             Button(action: {
-                navModel.currentPage = .camera
+                navModel.cameraEdge = Edge.leading
+                navModel.productEdge = Edge.trailing
+                navModel.exploreEdge = Edge.trailing
+                withAnimation() {
+                    navModel.currentPage = .camera
+                }
             }) {
                 if navModel.currentPage == .camera {
                     VStack {
@@ -37,7 +42,10 @@ struct PillTabBar: View {
             }
             Spacer()
             Button(action: {
-                navModel.currentPage = .food
+                navModel.exploreEdge = Edge.trailing
+                withAnimation() {
+                    navModel.currentPage = .food
+                }
             }) {
                 if navModel.currentPage == .food {
                     VStack {
@@ -57,7 +65,10 @@ struct PillTabBar: View {
             }
             Spacer()
             Button(action: {
-                navModel.currentPage = .explore
+                navModel.productEdge = Edge.leading
+                withAnimation() {
+                    navModel.currentPage = .explore
+                }
             }) {
                 if navModel.currentPage == .explore {
                     VStack {
@@ -78,7 +89,10 @@ struct PillTabBar: View {
             
             Spacer()
             Button(action: {
-                navModel.currentPage = .profile
+                navModel.exploreEdge = Edge.leading
+                withAnimation() {
+                    navModel.currentPage = .profile
+                }
             }) {
                 if navModel.currentPage == .profile {
                     VStack {

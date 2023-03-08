@@ -33,53 +33,70 @@ struct ContentView: View {
                     .gesture(DragGesture()
                         .onEnded { value in
                             let direction = detectDirection(value: value)
-                            if direction == .left {
-                                navModel.currentPage.previous()
-                            }
                             if direction == .right {
-                                navModel.currentPage.next()
+                                withAnimation {
+                                    navModel.currentPage.next()
+                                }
                             }
                         }
                     )
+                    .transition(.move(edge: navModel.cameraEdge))
             case .food:
                 ProductPage()
                     .gesture(DragGesture()
                         .onEnded { value in
                             let direction = detectDirection(value: value)
                             if direction == .left {
-                                navModel.currentPage.previous()
+                                navModel.productEdge = Edge.trailing
+                                withAnimation {
+                                    navModel.currentPage.previous()
+                                }
                             }
                             if direction == .right {
-                                navModel.currentPage.next()
+                                navModel.productEdge = Edge.leading
+                                withAnimation {
+                                    navModel.currentPage.next()
+                                }
                             }
                         }
                     )
+                    .onAppear {
+                        navModel.exploreEdge = Edge.trailing
+                    }
+                    .transition(.move(edge: navModel.productEdge))
             case .explore:
                 SearchPage()
                     .gesture(DragGesture()
                         .onEnded { value in
                             let direction = detectDirection(value: value)
                             if direction == .left {
-                                navModel.currentPage.previous()
+                                navModel.exploreEdge = Edge.trailing
+                                withAnimation  {
+                                    navModel.currentPage.previous()
+                                }
                             }
                             if direction == .right {
-                                navModel.currentPage.next()
+                                navModel.exploreEdge = Edge.leading
+                                withAnimation {
+                                    navModel.currentPage.next()
+                                }
                             }
                         }
                     )
+                    .transition(.move(edge: navModel.exploreEdge))
             case .profile:
                 ProfilePage(darkMode: $darkMode)
                     .gesture(DragGesture()
                         .onEnded { value in
                             let direction = detectDirection(value: value)
                             if direction == .left {
-                                navModel.currentPage.previous()
-                            }
-                            if direction == .right {
-                                navModel.currentPage.next()
+                                withAnimation  {
+                                    navModel.currentPage.previous()
+                                }
                             }
                         }
                     )
+                    .transition(.move(edge: navModel.profileEdge))
             }
         }
         .background(Color("background"))
@@ -94,6 +111,7 @@ struct ContentView: View {
         .preferredColorScheme(darkMode ? .dark : .light)
         
         .onAppear {
+            
             openedApp = defaults.bool(forKey: "openedApp")
             
             userViewModel.user.anim = defaults.string(forKey: "anim")
