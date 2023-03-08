@@ -6,43 +6,46 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct UserFilterModalView: View {
     
     @EnvironmentObject var userViewModel: UserViewModel
     
-    @State var selectedGeoFilterMessage = "Show US products only"
+    @State var selectedgeoPreferenceMessage = "Show US products only"
     
     @State var selectedGradeFilterMessage = "Select below to filter by grade"
     
     @State var selectedAllergensFilterMessage = "Filter by allergens"
     
+    var fireStoreRequests = FirestoreRequests()
+    
     var body: some View {
         HStack {
             Spacer()
             VStack (alignment: .center){
-                Text(selectedGeoFilterMessage)
+                Text(selectedgeoPreferenceMessage)
                     .font(Font.custom("DMSans-Medium", size: 12))
                 HStack {
                     Button{
-                        userViewModel.geoFilter = .world
-                        selectedGeoFilterMessage = "Show products from all countries"
+                        userViewModel.geoPreference = .world
+                        selectedgeoPreferenceMessage = "Show products from all countries"
                     } label: {
-                        GeoButton(location: "world", filterVal: userViewModel.geoFilter.rawValue)
+                        GeoButton(location: "world", filterVal: userViewModel.geoPreference.rawValue)
                     }
                     .buttonStyle(.plain)
                     Button{
-                        userViewModel.geoFilter = .us
-                        selectedGeoFilterMessage = "Show US products only"
+                        userViewModel.geoPreference = .us
+                        selectedgeoPreferenceMessage = "Show US products only"
                     } label: {
-                        GeoButton(location: "us", filterVal: userViewModel.geoFilter.rawValue)
+                        GeoButton(location: "us", filterVal: userViewModel.geoPreference.rawValue)
                     }
                     .buttonStyle(.plain)
                     Button{
-                        userViewModel.geoFilter = .es
-                        selectedGeoFilterMessage = "Show Spanish products only"
+                        userViewModel.geoPreference = .es
+                        selectedgeoPreferenceMessage = "Show Spanish products only"
                     } label: {
-                        GeoButton(location: "es", filterVal: userViewModel.geoFilter.rawValue)
+                        GeoButton(location: "es", filterVal: userViewModel.geoPreference.rawValue)
                     }
                     .buttonStyle(.plain)
                 }
@@ -52,10 +55,10 @@ struct UserFilterModalView: View {
                 HStack {
                     Spacer()
                     Button{
-                        userViewModel.scoreFilter = .a
+                        userViewModel.gradePreference = .a
                         selectedGradeFilterMessage = "Show only products with an A grade"
                     } label: {
-                        if userViewModel.scoreFilter != .a {
+                        if userViewModel.gradePreference != .a {
                             GradeButton(grade: "A", noColor: true)
                         }
                         else {
@@ -65,10 +68,10 @@ struct UserFilterModalView: View {
                     .buttonStyle(.plain)
                     Spacer()
                     Button{
-                        userViewModel.scoreFilter = .b
+                        userViewModel.gradePreference = .b
                         selectedGradeFilterMessage = "Show only products with a B grade"
                     } label: {
-                        if userViewModel.scoreFilter != .b {
+                        if userViewModel.gradePreference != .b {
                             GradeButton(grade: "B", noColor: true)
                         }
                         else {
@@ -78,10 +81,10 @@ struct UserFilterModalView: View {
                     .buttonStyle(.plain)
                     Spacer()
                     Button{
-                        userViewModel.scoreFilter = .c
+                        userViewModel.gradePreference = .c
                         selectedGradeFilterMessage = "Show only products with a C grade"
                     } label: {
-                        if userViewModel.scoreFilter != .c {
+                        if userViewModel.gradePreference != .c {
                             GradeButton(grade: "C", noColor: true)
                         }
                         else {
@@ -91,10 +94,10 @@ struct UserFilterModalView: View {
                     .buttonStyle(.plain)
                     Spacer()
                     Button{
-                        userViewModel.scoreFilter = .d
+                        userViewModel.gradePreference = .d
                         selectedGradeFilterMessage = "Show only products with a D grade"
                     } label: {
-                        if userViewModel.scoreFilter != .d {
+                        if userViewModel.gradePreference != .d {
                             GradeButton(grade: "D", noColor: true)
                         }
                         else {
@@ -114,26 +117,26 @@ struct UserFilterModalView: View {
                 HStack {
                     Spacer()
                     Button{
-                        userViewModel.allergenFilter = .milk
+                        userViewModel.allergenPreference = .milk
                         selectedAllergensFilterMessage = "Show products without milk"
                     } label: {
-                        AllergenButton(name: "milk", filterVal: userViewModel.allergenFilter.rawValue)
+                        AllergenButton(name: "milk", filterVal: userViewModel.allergenPreference.rawValue)
                     }
                     .buttonStyle(.plain)
                     Spacer()
                     Button{
-                        userViewModel.allergenFilter = .peanuts
+                        userViewModel.allergenPreference = .peanuts
                         selectedAllergensFilterMessage = "Show products without peanuts"
                     } label: {
-                        AllergenButton(name: "peanuts", filterVal: userViewModel.allergenFilter.rawValue)
+                        AllergenButton(name: "peanuts", filterVal: userViewModel.allergenPreference.rawValue)
                     }
                     .buttonStyle(.plain)
                     Spacer()
                     Button{
-                        userViewModel.allergenFilter = .gluten
+                        userViewModel.allergenPreference = .gluten
                         selectedAllergensFilterMessage = "Show products without gluten"
                     } label: {
-                        AllergenButton(name: "gluten", filterVal: userViewModel.allergenFilter.rawValue)
+                        AllergenButton(name: "gluten", filterVal: userViewModel.allergenPreference.rawValue)
                     }
                     .buttonStyle(.plain)
                     Spacer()
@@ -144,10 +147,10 @@ struct UserFilterModalView: View {
                 
                 //CLEAR FILTER
                 Button {
-                    userViewModel.geoFilter = .us
-                    userViewModel.scoreFilter = .none
-                    userViewModel.allergenFilter = .none
-                    selectedGeoFilterMessage = "Show US products only"
+                    userViewModel.geoPreference = .us
+                    userViewModel.gradePreference = .none
+                    userViewModel.allergenPreference = .none
+                    selectedgeoPreferenceMessage = "Show US products only"
                     selectedGradeFilterMessage = "Select below to filter by grade"
                     selectedAllergensFilterMessage = "Filter by allergens"
                 } label: {
@@ -164,9 +167,12 @@ struct UserFilterModalView: View {
             }
             Spacer()
         }
-        
-        //toggle
-        //on toggle set userViewModel.geoFilter = user.selectedGeoFilter
+        Button {
+            fireStoreRequests.setGeoPreference(uid: userViewModel.user.uid!, geo: userViewModel.geoPreference.rawValue)
+            fireStoreRequests.setGradePreference(uid: userViewModel.user.uid!, grade: userViewModel.gradePreference.rawValue)
+        } label: {
+            Text("click me")
+        }
     }
 }
 

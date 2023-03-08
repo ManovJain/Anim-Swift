@@ -12,7 +12,7 @@ struct FilterModalView: View {
     @EnvironmentObject var networkRequests: NetworkRequests
     @EnvironmentObject var userViewModel: UserViewModel
     
-    @State var selectedGeoFilterMessage = "Show US products only"
+    @State var selectedgeoPreferenceMessage = "Show US products only"
     
     @State var selectedGradeFilterMessage = "Select below to filter by grade"
     
@@ -24,28 +24,28 @@ struct FilterModalView: View {
         HStack {
             Spacer()
             VStack (alignment: .center){
-                Text(selectedGeoFilterMessage)
+                Text(selectedgeoPreferenceMessage)
                     .font(Font.custom("DMSans-Medium", size: 12))
                 HStack {
                     Button{
-                        networkRequests.geoFilter = .world
-                        selectedGeoFilterMessage = "Show products from all countries"
+                        networkRequests.geoPreference = .world
+                        selectedgeoPreferenceMessage = "Show products from all countries"
                     } label: {
-                        GeoButton(location: "world", filterVal: networkRequests.geoFilter.rawValue)
+                        GeoButton(location: "world", filterVal: networkRequests.geoPreference.rawValue)
                     }
                     .buttonStyle(.plain)
                     Button{
-                        networkRequests.geoFilter = .us
-                        selectedGeoFilterMessage = "Show US products only"
+                        networkRequests.geoPreference = .us
+                        selectedgeoPreferenceMessage = "Show US products only"
                     } label: {
-                        GeoButton(location: "us", filterVal: networkRequests.geoFilter.rawValue)
+                        GeoButton(location: "us", filterVal: networkRequests.geoPreference.rawValue)
                     }
                     .buttonStyle(.plain)
                     Button{
-                        networkRequests.geoFilter = .es
-                        selectedGeoFilterMessage = "Show Spanish products only"
+                        networkRequests.geoPreference = .es
+                        selectedgeoPreferenceMessage = "Show Spanish products only"
                     } label: {
-                        GeoButton(location: "es", filterVal: networkRequests.geoFilter.rawValue)
+                        GeoButton(location: "es", filterVal: networkRequests.geoPreference.rawValue)
                     }
                     .buttonStyle(.plain)
                 }
@@ -55,10 +55,10 @@ struct FilterModalView: View {
                 HStack {
                     Spacer()
                     Button{
-                        networkRequests.scoreFilter = .a
+                        networkRequests.gradePreference = .a
                         selectedGradeFilterMessage = "Show only products with an A grade"
                     } label: {
-                        if networkRequests.scoreFilter != .a {
+                        if networkRequests.gradePreference != .a {
                             GradeButton(grade: "A", noColor: true)
                         }
                         else {
@@ -68,10 +68,10 @@ struct FilterModalView: View {
                     .buttonStyle(.plain)
                     Spacer()
                     Button{
-                        networkRequests.scoreFilter = .b
+                        networkRequests.gradePreference = .b
                         selectedGradeFilterMessage = "Show only products with a B grade"
                     } label: {
-                        if networkRequests.scoreFilter != .b {
+                        if networkRequests.gradePreference != .b {
                             GradeButton(grade: "B", noColor: true)
                         }
                         else {
@@ -81,10 +81,10 @@ struct FilterModalView: View {
                     .buttonStyle(.plain)
                     Spacer()
                     Button{
-                        networkRequests.scoreFilter = .c
+                        networkRequests.gradePreference = .c
                         selectedGradeFilterMessage = "Show only products with a C grade"
                     } label: {
-                        if networkRequests.scoreFilter != .c {
+                        if networkRequests.gradePreference != .c {
                             GradeButton(grade: "C", noColor: true)
                         }
                         else {
@@ -94,10 +94,10 @@ struct FilterModalView: View {
                     .buttonStyle(.plain)
                     Spacer()
                     Button{
-                        networkRequests.scoreFilter = .d
+                        networkRequests.gradePreference = .d
                         selectedGradeFilterMessage = "Show only products with a D grade"
                     } label: {
-                        if networkRequests.scoreFilter != .d {
+                        if networkRequests.gradePreference != .d {
                             GradeButton(grade: "D", noColor: true)
                         }
                         else {
@@ -117,26 +117,26 @@ struct FilterModalView: View {
                 HStack {
                     Spacer()
                     Button{
-                        networkRequests.allergenFilter = .milk
+                        networkRequests.allergenPreference = .milk
                         selectedAllergensFilterMessage = "Show products without milk"
                     } label: {
-                        AllergenButton(name: "milk", filterVal: networkRequests.allergenFilter.rawValue)
+                        AllergenButton(name: "milk", filterVal: networkRequests.allergenPreference.rawValue)
                     }
                     .buttonStyle(.plain)
                     Spacer()
                     Button{
-                        networkRequests.allergenFilter = .peanuts
+                        networkRequests.allergenPreference = .peanuts
                         selectedAllergensFilterMessage = "Show products without peanuts"
                     } label: {
-                        AllergenButton(name: "peanuts", filterVal: networkRequests.allergenFilter.rawValue)
+                        AllergenButton(name: "peanuts", filterVal: networkRequests.allergenPreference.rawValue)
                     }
                     .buttonStyle(.plain)
                     Spacer()
                     Button{
-                        networkRequests.allergenFilter = .gluten
+                        networkRequests.allergenPreference = .gluten
                         selectedAllergensFilterMessage = "Show products without gluten"
                     } label: {
-                        AllergenButton(name: "gluten", filterVal: networkRequests.allergenFilter.rawValue)
+                        AllergenButton(name: "gluten", filterVal: networkRequests.allergenPreference.rawValue)
                     }
                     .buttonStyle(.plain)
                     Spacer()
@@ -164,12 +164,12 @@ struct FilterModalView: View {
         }
         
         //toggle
-        //on toggle set networkRequests.geoFilter = user.selectedGeoFilter
+        //on toggle set networkRequests.geoPreference = user.selectedgeoPreference
         Toggle("Use user's preferences", isOn: $userPrefs)
             .onChange(of: userPrefs){ value in
-                networkRequests.geoFilter = userViewModel.geoFilter
-                networkRequests.scoreFilter = userViewModel.scoreFilter
-                networkRequests.allergenFilter = userViewModel.allergenFilter
+                networkRequests.geoPreference = userViewModel.geoPreference
+                networkRequests.gradePreference = userViewModel.gradePreference
+                networkRequests.allergenPreference = userViewModel.allergenPreference
                 setUserPrefs(userPrefs: userPrefs)
                 print("user values set")
             }
@@ -177,15 +177,15 @@ struct FilterModalView: View {
     }
     func setUserPrefs(userPrefs: Bool){
         if userPrefs == true {
-            networkRequests.geoFilter = userViewModel.geoFilter
-            networkRequests.scoreFilter = userViewModel.scoreFilter
-            networkRequests.allergenFilter = userViewModel.allergenFilter
+            networkRequests.geoPreference = userViewModel.geoPreference
+            networkRequests.gradePreference = userViewModel.gradePreference
+            networkRequests.allergenPreference = userViewModel.allergenPreference
         }
         else {
-            networkRequests.geoFilter = .us
-            networkRequests.scoreFilter = .none
-            networkRequests.allergenFilter = .none
-            selectedGeoFilterMessage = "Show US products only"
+            networkRequests.geoPreference = .us
+            networkRequests.gradePreference = .none
+            networkRequests.allergenPreference = .none
+            selectedgeoPreferenceMessage = "Show US products only"
             selectedGradeFilterMessage = "Select below to filter by grade"
             selectedAllergensFilterMessage = "Filter by allergens"
         }
