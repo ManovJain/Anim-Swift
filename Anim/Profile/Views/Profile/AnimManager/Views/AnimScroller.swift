@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-enum AnimEarnedType {
+enum NumNeededType {
     case search
-    case scanned
-    case nutrimentsFixed
+    case scan
+    case nutriments
 }
 
 struct AnimScroller: View {
@@ -23,13 +23,12 @@ struct AnimScroller: View {
         GridItem(.fixed(70))
     ]
     
-    @State var productsFromSearch = 0
-    @State var productsScanned = 0
-    @State var nutrimentsFixed = 0
     
     @State var icons: [IconModel]
     
-    @State var animEarnedType: AnimEarnedType
+    @State var numNeeded: Int
+    
+    @State var numNeededType: NumNeededType
     
     let defaults = UserDefaults.standard
     
@@ -42,97 +41,50 @@ struct AnimScroller: View {
                         self.defaults.set(icon.name, forKey: "anim")
                     }) {
                         VStack {
-                            switch animEarnedType {
-                            case .search:
-                                if (productsFromSearch >= icon.numNeeded) {
-                                    Image(icon.name)
-                                        .resizable()
-                                        .frame(width: 70, height: 70)
-                                }
-                                else {
-                                    Image(icon.name)
-                                        .resizable()
-                                        .frame(width: 50, height: 50)
-                                        .blur(radius: productsFromSearch < icon.numNeeded ? 15 : 0)
-                                        .padding(10)
-                                }
-                                if (productsFromSearch >= icon.numNeeded) {
-                                    Text("Anim Earned!")
+                            if (numNeeded >= icon.numNeeded) {
+                                Image(icon.name)
+                                    .resizable()
+                                    .frame(width: 70, height: 70)
+                            }
+                            else {
+                                Image(icon.name)
+                                    .resizable()
+                                    .frame(width: 50, height: 50)
+                                    .blur(radius: numNeeded < icon.numNeeded ? 15 : 0)
+                                    .padding(10)
+                            }
+                            if (numNeeded >= icon.numNeeded) {
+                                Text("Anim Earned!")
+                                    .lineLimit(nil)
+                                    .font(Font.custom("DMSans-Medium", size: 13))
+                                    .foregroundColor(Color("AnimGreen"))
+                            }
+                            else {
+                                switch numNeededType {
+                                case .search:
+                                    Text("Search \(icon.numNeeded - numNeeded) more")
                                         .lineLimit(nil)
                                         .font(Font.custom("DMSans-Medium", size: 13))
                                         .foregroundColor(Color("AnimGreen"))
-                                }
-                                else {
-                                    Text("Search \(icon.numNeeded - productsFromSearch) more")
+                                case .scan:
+                                    Text("Scan \(icon.numNeeded - numNeeded) more")
                                         .lineLimit(nil)
                                         .font(Font.custom("DMSans-Medium", size: 13))
                                         .foregroundColor(Color("AnimGreen"))
-                                }
-                            case .scanned:
-                                if (productsScanned >= icon.numNeeded) {
-                                    Image(icon.name)
-                                        .resizable()
-                                        .frame(width: 70, height: 70)
-                                }
-                                else {
-                                    Image(icon.name)
-                                        .resizable()
-                                        .frame(width: 50, height: 50)
-                                        .blur(radius: productsScanned < icon.numNeeded ? 15 : 0)
-                                        .padding(10)
-                                }
-                                if (productsScanned >= icon.numNeeded) {
-                                    Text("Anim Earned!")
+                                case .nutriments:
+                                    Text("Submit \(icon.numNeeded - numNeeded) more fixes")
                                         .lineLimit(nil)
-                                        .font(Font.custom("DMSans-Medium", size: 13))
-                                        .foregroundColor(Color("AnimGreen"))
-                                }
-                                else {
-                                    Text("Scan \(icon.numNeeded - productsScanned) more")
-                                        .lineLimit(nil)
-                                        .font(Font.custom("DMSans-Medium", size: 13))
-                                        .foregroundColor(Color("AnimGreen"))
-                                }
-                            case .nutrimentsFixed:
-                                if (nutrimentsFixed >= icon.numNeeded) {
-                                    Image(icon.name)
-                                        .resizable()
-                                        .frame(width: 70, height: 70)
-                                }
-                                else {
-                                    Image(icon.name)
-                                        .resizable()
-                                        .frame(width: 50, height: 50)
-                                        .blur(radius: nutrimentsFixed < icon.numNeeded ? 15 : 0)
-                                        .padding(10)
-                                }
-                                if (nutrimentsFixed >= icon.numNeeded) {
-                                    Text("Anim Earned!")
-                                        .lineLimit(nil)
-                                        .font(Font.custom("DMSans-Medium", size: 13))
-                                        .foregroundColor(Color("AnimGreen"))
-                                }
-                                else {
-                                    Text("Fix \(icon.numNeeded - nutrimentsFixed) more products")
-                                        .lineLimit(nil)
-                                        .font(Font.custom("DMSans-Medium", size: 10))
+                                        .font(Font.custom("DMSans-Medium", size: 11))
                                         .foregroundColor(Color("AnimGreen"))
                                 }
                             }
                         }
                         .frame(width: 70, height: 200)
                     }
-                    .disabled(productsFromSearch < icon.numNeeded)
+                    .disabled(numNeeded < icon.numNeeded)
                 }
                 .padding()
             }
-        }
-        .onAppear {
-            productsFromSearch = userViewModel.user.productsFromSearch!
-            productsScanned = userViewModel.user.productsScanned!
-            nutrimentsFixed = userViewModel.user.numNutrimentsReported!
-            
-            print(nutrimentsFixed)
         }
     }
     
