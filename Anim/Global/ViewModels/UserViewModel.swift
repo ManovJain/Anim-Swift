@@ -25,6 +25,11 @@ final class UserViewModel: ObservableObject {
     @Published var state: SignInState = .signedOut
     @Published var test = "not changed"
     
+    //USER FILTERS
+    @Published var gradePreference: GradePreference = .none
+    @Published var geoPreference: GeoPreference = .us
+    @Published var allergenPreference: AllergenPreference = .none
+    
     
     var firestoreRequests = FirestoreRequests()
     

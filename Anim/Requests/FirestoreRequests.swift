@@ -181,6 +181,8 @@ class FirestoreRequests {
         ])
     }
     
+
+    
     func addField(field: String) {
         let db = Firestore.firestore()
         db.collection("users")
@@ -246,6 +248,17 @@ class FirestoreRequests {
         
         user.updateData([
             "gradePreference": grade
+        ])
+    }
+    
+    func setAllergensPreference(uid: String, allergens: String) {
+        
+        let db = Firestore.firestore()
+        
+        let user = db.collection("users").document(uid)
+        
+        user.updateData([
+            "allergens": allergens
         ])
     }
 }

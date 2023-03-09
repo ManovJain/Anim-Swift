@@ -10,7 +10,7 @@ import Alamofire
 import SwiftUI
 
 
-enum ScoreFilter: String {
+enum GradePreference: String {
     case none = ""
     case a = "&nutrition_grades_tags=a"
     case b = "&nutrition_grades_tags=b"
@@ -19,19 +19,40 @@ enum ScoreFilter: String {
     case e = "&nutrition_grades_tags=e"
 }
 
-enum GeoFilter: String {
+enum GeoPreference: String {
     case world = "world"
     case us = "us"
     case es = "es"
 }
 
+enum AllergenPreference: String {
+    case none = "none"
+    case milk = "milk"
+    case gluten = "gluten"
+    case soybeans = "soybeans"
+    case eggs = "eggs"
+    case nuts = "nuts"
+    case fish = "fish"
+    case mustard = "mustard"
+    case peanuts = "peanuts"
+}
+
+struct AllergensList: List {
+    case none = []
+}
+
+//AllergenPreference: [] {
+//
+//}
+
 
 class NetworkRequests: ObservableObject {
-    @Published var scoreFilter: ScoreFilter = .none
-    @Published var geoFilter: GeoFilter = .us
+    @Published var gradePreference: GradePreference = .none
+    @Published var geoPreference: GeoPreference = .us
+    @Published var allergenPreference: AllergenPreference = .none
 
     func getOpenFoodSearch(searchTerm: String, completion: @escaping (SearchResult?) -> ()) {
-        let url = "https://\(geoFilter.rawValue).openfoodfacts.org/cgi/search.pl?search_terms=\(searchTerm)\(scoreFilter.rawValue)&json=true"
+        let url = "https://\(geoPreference.rawValue).openfoodfacts.org/cgi/search.pl?search_terms=\(searchTerm)\(gradePreference.rawValue)&json=true"
             AF.request(url, method: .get, parameters: nil).validate(statusCode: 200 ..< 299).responseData { response in
                 switch response.result {
                 case .success(let data):
@@ -57,5 +78,17 @@ class NetworkRequests: ObservableObject {
                 }
             }
         }
+    
+//    func setUserPrefs(userPrefs: Bool){
+//        if userPrefs == true {
+//            geoPreference = userViewModel.geoPreference
+//            gradePreference = userViewModel.gradePreference
+//            allergenFilter = userViewModel.allergenFilter
+//        }
+//        else {
+//            
+//        }
+//        
+//    }
     
 }
