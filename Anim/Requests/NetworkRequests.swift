@@ -37,9 +37,9 @@ enum AllergenPreference: String {
     case peanuts = "peanuts"
 }
 
-struct AllergensList: List {
-    case none = []
-}
+//struct AllergensList: List {
+//    case none = []
+//}
 
 //AllergenPreference: [] {
 //
