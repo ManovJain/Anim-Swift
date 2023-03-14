@@ -10,14 +10,16 @@ import SwiftUI
 struct AllergenButton: View {
     
     var name: String
-    var filterVal: String
+    //var filterVal: String
+    var selected: Bool
     
     
     var body: some View {
         Text(getname(name: name))
             .font(Font.custom("DMSans-Medium", size: 15))
             .padding(5)
-            .background(filterColor(name: name, filterVal: filterVal))
+ //           .background(filterColor(name: name, filterVal: filterVal))
+            .background(getColor(selected: selected))
             .clipShape(Circle())
             .foregroundColor(.primary)
     }
@@ -37,8 +39,17 @@ struct AllergenButton: View {
         }
     }
     
-    func filterColor(name: String, filterVal: String) -> Color{
-        if filterVal == name {
+//    func filterColor(name: String, filterVal: String) -> Color{
+//        if filterVal == name {
+//            return Color("AnimGreen")
+//        }
+//        else {
+//            return Color.white
+//        }
+//    }
+    
+    func getColor(selected: Bool) -> Color {
+        if selected == true {
             return Color("AnimGreen")
         }
         else {

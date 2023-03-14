@@ -37,9 +37,9 @@ enum AllergenPreference: String {
     case peanuts = "peanuts"
 }
 
-struct AllergensList: List {
-    case none = []
-}
+//struct AllergensList: List {
+//    case none = []
+//}
 
 //AllergenPreference: [] {
 //
@@ -58,6 +58,7 @@ class NetworkRequests: ObservableObject {
                 case .success(let data):
                     let jsonData = try? JSONDecoder().decode(SearchResult.self, from: data)
                     completion(jsonData)
+                    print(url)
                     
                 case .failure(let error):
                     print(error)
@@ -78,17 +79,4 @@ class NetworkRequests: ObservableObject {
                 }
             }
         }
-    
-//    func setUserPrefs(userPrefs: Bool){
-//        if userPrefs == true {
-//            geoPreference = userViewModel.geoPreference
-//            gradePreference = userViewModel.gradePreference
-//            allergenFilter = userViewModel.allergenFilter
-//        }
-//        else {
-//            
-//        }
-//        
-//    }
-    
 }

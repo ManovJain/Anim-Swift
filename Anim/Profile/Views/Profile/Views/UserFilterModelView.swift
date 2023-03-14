@@ -115,31 +115,31 @@ struct UserFilterModalView: View {
                 Text(selectedAllergensFilterMessage)
                     .font(Font.custom("DMSans-Medium", size: 12))
                 HStack {
-                    Spacer()
-                    Button{
-                        userViewModel.allergenPreference = .milk
-                        selectedAllergensFilterMessage = "Show products without milk"
-                    } label: {
-                        AllergenButton(name: "milk", filterVal: userViewModel.allergenPreference.rawValue)
-                    }
-                    .buttonStyle(.plain)
-                    Spacer()
-                    Button{
-                        userViewModel.allergenPreference = .peanuts
-                        selectedAllergensFilterMessage = "Show products without peanuts"
-                    } label: {
-                        AllergenButton(name: "peanuts", filterVal: userViewModel.allergenPreference.rawValue)
-                    }
-                    .buttonStyle(.plain)
-                    Spacer()
-                    Button{
-                        userViewModel.allergenPreference = .gluten
-                        selectedAllergensFilterMessage = "Show products without gluten"
-                    } label: {
-                        AllergenButton(name: "gluten", filterVal: userViewModel.allergenPreference.rawValue)
-                    }
-                    .buttonStyle(.plain)
-                    Spacer()
+//                    Spacer()
+//                    Button{
+//                        userViewModel.allergenPreference = .milk
+//                        selectedAllergensFilterMessage = "Show products without milk"
+//                    } label: {
+//                        AllergenButton(name: "milk", filterVal: userViewModel.allergenPreference.rawValue)
+//                    }
+//                    .buttonStyle(.plain)
+//                    Spacer()
+//                    Button{
+//                        userViewModel.allergenPreference = .peanuts
+//                        selectedAllergensFilterMessage = "Show products without peanuts"
+//                    } label: {
+//                        AllergenButton(name: "peanuts", filterVal: userViewModel.allergenPreference.rawValue)
+//                    }
+//                    .buttonStyle(.plain)
+//                    Spacer()
+//                    Button{
+//                        userViewModel.allergenPreference = .gluten
+//                        selectedAllergensFilterMessage = "Show products without gluten"
+//                    } label: {
+//                        AllergenButton(name: "gluten", filterVal: userViewModel.allergenPreference.rawValue)
+//                    }
+//                    .buttonStyle(.plain)
+//                    Spacer()
                 }
                 .frame(width: 200,height: 40)
                 .background(Color("AnimGreen"))
