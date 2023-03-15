@@ -26,10 +26,11 @@ struct ProfilePage: View {
                     AnimManager()
                 case "favorites":
                     VStack{
-                        Favorites()
+                        ListsView(selection: "favorites")
                     }
                 default:
-                    LoginPage(darkMode: $darkMode)                }
+                    LoginPage(darkMode: $darkMode)
+                }
         }
         .overlay(((userViewModel.state ==  .signedIn) ? ProfileMenu(): nil)
             .position(x: UIScreen.screenWidth/1.15, y:UIScreen.screenHeight/4.7)

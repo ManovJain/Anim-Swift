@@ -57,6 +57,9 @@
 		88607D52294C5BEB00602FE3 /* ProfileMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88607D51294C5BEB00602FE3 /* ProfileMenu.swift */; };
 		88607D56294CFA6900602FE3 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88607D55294CFA6900602FE3 /* Favorites.swift */; };
 		8864360E2994AD4100FB28D4 /* FavoritesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864360D2994AD4100FB28D4 /* FavoritesButton.swift */; };
+		88902BCF29C13D5B001D41FD /* AllergensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88902BCE29C13D5B001D41FD /* AllergensView.swift */; };
+		88902BD129C13E6C001D41FD /* AllergensViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88902BD029C13E6C001D41FD /* AllergensViewButton.swift */; };
+		88902BD329C14287001D41FD /* ListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88902BD229C14287001D41FD /* ListsView.swift */; };
 		88BE1515294BB2B8001AE321 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1514294BB2B8001AE321 /* Ingredient.swift */; };
 		88BE1517294BB2CD001AE321 /* NutrientLevels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1516294BB2CD001AE321 /* NutrientLevels.swift */; };
 		88BE1519294BB2E1001AE321 /* Nutriments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1518294BB2E1001AE321 /* Nutriments.swift */; };
@@ -132,6 +135,9 @@
 		88607D51294C5BEB00602FE3 /* ProfileMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenu.swift; sourceTree = "<group>"; };
 		88607D55294CFA6900602FE3 /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		8864360D2994AD4100FB28D4 /* FavoritesButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesButton.swift; sourceTree = "<group>"; };
+		88902BCE29C13D5B001D41FD /* AllergensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergensView.swift; sourceTree = "<group>"; };
+		88902BD029C13E6C001D41FD /* AllergensViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergensViewButton.swift; sourceTree = "<group>"; };
+		88902BD229C14287001D41FD /* ListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsView.swift; sourceTree = "<group>"; };
 		88BE1514294BB2B8001AE321 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		88BE1516294BB2CD001AE321 /* NutrientLevels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientLevels.swift; sourceTree = "<group>"; };
 		88BE1518294BB2E1001AE321 /* Nutriments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutriments.swift; sourceTree = "<group>"; };
@@ -207,6 +213,9 @@
 				8864360D2994AD4100FB28D4 /* FavoritesButton.swift */,
 				430D1A14299D6D8600FD43EC /* ProfilePage.swift */,
 				884490ED29B3F88D00C7BA07 /* UserFilterModelView.swift */,
+				88902BCE29C13D5B001D41FD /* AllergensView.swift */,
+				88902BD029C13E6C001D41FD /* AllergensViewButton.swift */,
+				88902BD229C14287001D41FD /* ListsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -647,6 +656,7 @@
 				4387FE2129A7CA9B005C2464 /* SearchLoadingScreen.swift in Sources */,
 				882D1DCC29393F1A002EFDC8 /* ContentView.swift in Sources */,
 				88BE1530294BB478001AE321 /* NutrientTag.swift in Sources */,
+				88902BD129C13E6C001D41FD /* AllergensViewButton.swift in Sources */,
 				882D1DCA29393F1A002EFDC8 /* AnimApp.swift in Sources */,
 				882D1DE2293947DB002EFDC8 /* NetworkRequests.swift in Sources */,
 				8815B0AC29422FD3007FBB17 /* FoodItem.swift in Sources */,
@@ -655,6 +665,7 @@
 				88BE151F294BB351001AE321 /* FoodViewModel.swift in Sources */,
 				88BE152C294BB44E001AE321 /* GradeOverlay.swift in Sources */,
 				88BE1517294BB2CD001AE321 /* NutrientLevels.swift in Sources */,
+				88902BCF29C13D5B001D41FD /* AllergensView.swift in Sources */,
 				882D1DEE29394978002EFDC8 /* CameraViewModel.swift in Sources */,
 				882D1DFA29394B3C002EFDC8 /* PillTabBar.swift in Sources */,
 				88BE1528294BB41A001AE321 /* TagAlertView.swift in Sources */,
@@ -663,6 +674,7 @@
 				88BE151B294BB2FC001AE321 /* Product.swift in Sources */,
 				88BE1515294BB2B8001AE321 /* Ingredient.swift in Sources */,
 				4355DEAD299193FC00C388A4 /* DismissButton.swift in Sources */,
+				88902BD329C14287001D41FD /* ListsView.swift in Sources */,
 				88BE153D294BBD6E001AE321 /* NavButton.swift in Sources */,
 				882D1E0329394CE4002EFDC8 /* SearchPage.swift in Sources */,
 				88C76D3D29A8826300289E57 /* FilterModalView.swift in Sources */,

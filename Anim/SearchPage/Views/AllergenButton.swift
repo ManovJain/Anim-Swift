@@ -10,7 +10,6 @@ import SwiftUI
 struct AllergenButton: View {
     
     var name: String
-    //var filterVal: String
     var selected: Bool
     
     
@@ -18,7 +17,6 @@ struct AllergenButton: View {
         Text(getname(name: name))
             .font(Font.custom("DMSans-Medium", size: 15))
             .padding(5)
- //           .background(filterColor(name: name, filterVal: filterVal))
             .background(getColor(selected: selected))
             .clipShape(Circle())
             .foregroundColor(.primary)

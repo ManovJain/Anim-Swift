@@ -1,14 +1,14 @@
 //
-//  Favorites.swift
+//  AllergensView.swift
 //  Anim
 //
-//  Created by Manovski on 12/16/22.
+//  Created by Manovski on 3/14/23.
 //
 
 import Foundation
 import SwiftUI
 
-struct Favorites: View {
+struct AllergensView: View {
     @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var networkRequests: NetworkRequests
     
@@ -21,20 +21,40 @@ struct Favorites: View {
         GridItem(.flexible())
     ]
     
+    
+    var allergens = ["milk", "peanuts", "gluten"]
+    
     var body: some View {
         Text("Favorites")
             .frame(alignment: .center)
             .font(Font.custom("DMSans-Medium", size: 30))
             .foregroundColor(Color("AnimGreen"))
         VStack(){
+//            HStack(){
+//                ForEach(favorites, id: \.self) { favorite in
+//                    Button(){
+//
+//                    } label: {
+//                        Text(favorite)
+//                            .foregroundColor(.white)
+//                            .fontWeight(.heavy)
+//                            .lineLimit(1)
+//                    }
+//                    .padding()
+//                    .background(.green)
+//                    .cornerRadius(15)
+//                    .clipShape(Capsule())
+//                }
+//            }
             VStack(alignment: .leading) {
                     ScrollView(showsIndicators: false) {
                         LazyVGrid(columns: columns, spacing: 20) {
-                            ForEach(userViewModel.user.favorites!, id: \.self) { favorite in
-                                FavoritesButton(id: favorite)
+                            ForEach(allergens, id: \.self) { allergen in
+                                AllergensViewButton(name: allergen, selected: false)
                                 
                             }
                         }
+                        .padding(10)
                     }
             }
         }
@@ -48,8 +68,9 @@ struct Favorites: View {
     }
 }
 
-struct Favorites_Previews: PreviewProvider {
+
+struct AllergensView_Previews: PreviewProvider {
     static var previews: some View {
-        Favorites()
+        AllergensView()
     }
 }
