@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AllergenButton: View {
     
+    @EnvironmentObject var networkRequests: NetworkRequests
+    
     var name: String
     var selected: Bool
     
@@ -17,10 +19,11 @@ struct AllergenButton: View {
         Text(getname(name: name))
             .font(Font.custom("DMSans-Medium", size: 15))
             .padding(5)
-            .background(getColor(selected: selected))
+            .background(getColor())
             .clipShape(Circle())
             .foregroundColor(.primary)
     }
+
     
     func getname(name: String) -> String {
         if name == "milk" {
@@ -32,26 +35,31 @@ struct AllergenButton: View {
         else if name == "peanuts" {
             return "🥜"
         }
+        else if name == "soybeans" {
+            return "🫘"
+        }
+        else if name == "eggs" {
+            return "🥚"
+        }
+        else if name == "nuts" {
+            return "🌰"
+        }
+        else if name == "fish" {
+            return "🐠"
+        }
         else {
             return "🚫"
         }
     }
     
-//    func filterColor(name: String, filterVal: String) -> Color{
-//        if filterVal == name {
-//            return Color("AnimGreenInverse")
-//        }
-//        else {
-//            return Color.white
-//        }
-//    }
-    
-    func getColor(selected: Bool) -> Color {
-        if selected == true {
-            return Color("AnimGreenInverse")
+    func getColor() -> Color {
+        if (networkRequests.allergens.contains(name) == true) {
+            return Color("AnimGreen")
         }
         else {
             return Color.white
         }
     }
+    
+    
 }

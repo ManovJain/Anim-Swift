@@ -28,7 +28,6 @@ final class UserViewModel: ObservableObject {
     //USER FILTERS
     @Published var gradePreference: GradePreference = .none
     @Published var geoPreference: GeoPreference = .us
-    @Published var allergenPreference: AllergenPreference = .none
     
     
     var firestoreRequests = FirestoreRequests()

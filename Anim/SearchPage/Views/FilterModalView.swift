@@ -20,6 +20,12 @@ struct FilterModalView: View {
     
     @State var userPrefs: Bool = false
     
+    var allergensList = ["peanuts", "milk", "gluten", "soybeans", "eggs", "nuts", "fish"]
+    
+    let rows = [
+        GridItem(.fixed(70))
+    ]
+    
     var body: some View {
         HStack {
             Spacer()
@@ -114,54 +120,31 @@ struct FilterModalView: View {
                 //ALLERGENS
                 Text(selectedAllergensFilterMessage)
                     .font(Font.custom("DMSans-Medium", size: 12))
-                HStack {
-                    Spacer()
-                    Button{
-                        networkRequests.allergenPreference = .milk
-                        updateAllergens(input: "milk")
-                        selectedAllergensFilterMessage = "Show products without milk"
-                    } label: {
-                        if((userViewModel.user.allergens?.contains("gluten")) == true){
-                            AllergenButton(name: "milk", selected: true)
-                        }
-                        else {
-                            AllergenButton(name: "milk", selected: false)
-                        }
-                    }
-                    .buttonStyle(.plain)
-                    Spacer()
-                    Button{
-                        networkRequests.allergenPreference = .peanuts
-                        updateAllergens(input: "peanuts")
-                        selectedAllergensFilterMessage = "Show products without peanuts"
-                    } label: {
-                        if((userViewModel.user.allergens?.contains("gluten")) == true){
-                            AllergenButton(name: "peanuts", selected: true)
-                        }
-                        else {
-                            AllergenButton(name: "peanuts", selected: false)
+                HStack() {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        LazyHGrid(rows: rows, alignment: .center) {
+                            ForEach(allergensList, id: \.self) { allergen in
+                                Button{
+                                    updateAllergens(input: allergen)
+                                    selectedAllergensFilterMessage = "Show products without \(allergen)"
+                                } label: {
+                                    if((userViewModel.user.allergens?.contains("gluten")) == true){
+                                        AllergenButton(name: allergen, selected: true)
+                                    }
+                                    else {
+                                        AllergenButton(name: allergen, selected: false)
+                                    }
+                                }
+                                .buttonStyle(.plain)
+                                Spacer()
+                            }
                         }
                     }
-                    .buttonStyle(.plain)
-                    Spacer()
-                    Button{
-                        networkRequests.allergenPreference = .gluten
-                        updateAllergens(input: "gluten")
-                        selectedAllergensFilterMessage = "Show products without gluten"
-                    } label: {
-                        if((userViewModel.user.allergens?.contains("gluten")) == true){
-                            AllergenButton(name: "gluten", selected: true)
-                        }
-                        else {
-                            AllergenButton(name: "gluten", selected: false)
-                        }
-                    }
-                    .buttonStyle(.plain)
-                    Spacer()
                 }
                 .frame(width: 200,height: 40)
                 .background(Color("AnimGreen"))
                 .clipShape(Capsule())
+                .scrollDisabled(false)
                 
                 //CLEAR FILTER
                 Button {
@@ -187,7 +170,6 @@ struct FilterModalView: View {
             .onChange(of: userPrefs){ value in
                 networkRequests.geoPreference = userViewModel.geoPreference
                 networkRequests.gradePreference = userViewModel.gradePreference
-                networkRequests.allergenPreference = userViewModel.allergenPreference
                 setUserPrefs(userPrefs: userPrefs)
                 print("user values set")
             }
@@ -197,12 +179,13 @@ struct FilterModalView: View {
         if userPrefs == true {
             networkRequests.geoPreference = userViewModel.geoPreference
             networkRequests.gradePreference = userViewModel.gradePreference
-            networkRequests.allergenPreference = userViewModel.allergenPreference
+            networkRequests.allergens.removeAll()
+            networkRequests.allergens = userViewModel.user.allergens!
         }
         else {
             networkRequests.geoPreference = .us
             networkRequests.gradePreference = .none
-            networkRequests.allergenPreference = .none
+            networkRequests.allergens.removeAll()
             selectedgeoPreferenceMessage = "Show US products only"
             selectedGradeFilterMessage = "Select below to filter by grade"
             selectedAllergensFilterMessage = "Filter by allergens"
@@ -210,24 +193,15 @@ struct FilterModalView: View {
     }
     
     func updateAllergens(input: String){
-        if((userViewModel.user.allergens?.contains(input)) == true){
-            userViewModel.user.allergens?.removeAll(where: { $0 == input })
-            print(userViewModel.user.allergens!)
+        if((networkRequests.allergens.contains(input)) == true){
+            networkRequests.allergens.removeAll(where: { $0 == input })
+            print(networkRequests.allergens)
         }
         else {
-            userViewModel.user.allergens?.append(input)
-            print(userViewModel.user.allergens!)
+            networkRequests.allergens.append(input)
+            print(networkRequests.allergens)
         }
     }
-    
-//    func allergenLabel(input: String){
-//        if((userViewModel.user.allergens?.contains(input)) == true){
-//            AllergenButton(name: input, selected: true)
-//        }
-//        else {
-//            AllergenButton(name: input, selected: false)
-//        }
-//    }
     
 }
 

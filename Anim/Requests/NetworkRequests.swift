@@ -25,31 +25,23 @@ enum GeoPreference: String {
     case es = "es"
 }
 
-enum AllergenPreference: String {
-    case none = "none"
-    case milk = "milk"
-    case gluten = "gluten"
-    case soybeans = "soybeans"
-    case eggs = "eggs"
-    case nuts = "nuts"
-    case fish = "fish"
-    case mustard = "mustard"
-    case peanuts = "peanuts"
-}
-
-//struct AllergensList: List {
-//    case none = []
-//}
-
-//AllergenPreference: [] {
-//
+//enum AllergenPreference: String {
+//    case none = "none"
+//    case milk = "milk"
+//    case gluten = "gluten"
+//    case soybeans = "soybeans"
+//    case eggs = "eggs"
+//    case nuts = "nuts"
+//    case fish = "fish"
+//    case mustard = "mustard"
+//    case peanuts = "peanuts"
 //}
 
 
 class NetworkRequests: ObservableObject {
     @Published var gradePreference: GradePreference = .none
     @Published var geoPreference: GeoPreference = .us
-    @Published var allergenPreference: AllergenPreference = .none
+    @Published var allergens: [String] = []
 
     func getOpenFoodSearch(searchTerm: String, completion: @escaping (SearchResult?) -> ()) {
         let url = "https://\(geoPreference.rawValue).openfoodfacts.org/cgi/search.pl?search_terms=\(searchTerm)\(gradePreference.rawValue)&json=true"

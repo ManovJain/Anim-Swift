@@ -22,36 +22,27 @@ struct AllergensView: View {
     ]
     
     
-    var allergens = ["milk", "peanuts", "gluten"]
+    var allergensList = ["peanuts", "milk", "gluten", "soybeans", "eggs", "nuts", "fish"]
     
     var body: some View {
-        Text("Favorites")
-            .frame(alignment: .center)
-            .font(Font.custom("DMSans-Medium", size: 30))
-            .foregroundColor(Color("AnimGreen"))
         VStack(){
-//            HStack(){
-//                ForEach(favorites, id: \.self) { favorite in
-//                    Button(){
-//
-//                    } label: {
-//                        Text(favorite)
-//                            .foregroundColor(.white)
-//                            .fontWeight(.heavy)
-//                            .lineLimit(1)
-//                    }
-//                    .padding()
-//                    .background(.green)
-//                    .cornerRadius(15)
-//                    .clipShape(Capsule())
-//                }
-//            }
+            Text("Allergens")
+                .frame(alignment: .center)
+                .font(Font.custom("DMSans-Medium", size: 30))
+                .foregroundColor(Color("AnimGreen"))
+            Button {
+                
+            } label: {
+                Text("Clear Selections")
+                    .frame(alignment: .center)
+                    .font(Font.custom("DMSans-Medium", size: 15))
+                    .foregroundColor(Color("AnimGreen"))
+            }
             VStack(alignment: .leading) {
                     ScrollView(showsIndicators: false) {
                         LazyVGrid(columns: columns, spacing: 20) {
-                            ForEach(allergens, id: \.self) { allergen in
+                            ForEach(allergensList, id: \.self) { allergen in
                                 AllergensViewButton(name: allergen, selected: false)
-                                
                             }
                         }
                         .padding(10)
