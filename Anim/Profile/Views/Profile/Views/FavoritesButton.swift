@@ -89,8 +89,10 @@ struct FavoritesButton: View {
         }
         .onAppear(){
             networkRequests.getFoodByBarcode(barcode: id) { data in
-                status = (data?.status)!
-                product = (data?.product)!
+                if let data {
+                    status = (data.status)!
+                    product = (data.product)!
+                }
             }
         }
     }

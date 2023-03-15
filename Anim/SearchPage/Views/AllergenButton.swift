@@ -39,7 +39,7 @@ struct AllergenButton: View {
     
 //    func filterColor(name: String, filterVal: String) -> Color{
 //        if filterVal == name {
-//            return Color("AnimGreen")
+//            return Color("AnimGreenInverse")
 //        }
 //        else {
 //            return Color.white
@@ -48,7 +48,7 @@ struct AllergenButton: View {
     
     func getColor(selected: Bool) -> Color {
         if selected == true {
-            return Color("AnimGreen")
+            return Color("AnimGreenInverse")
         }
         else {
             return Color.white

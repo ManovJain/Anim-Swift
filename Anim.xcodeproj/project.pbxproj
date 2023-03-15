@@ -17,6 +17,8 @@
 		4387FE2329A7D470005C2464 /* AnimScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4387FE2229A7D470005C2464 /* AnimScroller.swift */; };
 		43C035AE29AE6F9D00FB9A43 /* IncorrectInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C035AD29AE6F9D00FB9A43 /* IncorrectInfoView.swift */; };
 		43C035B029AE7FF300FB9A43 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C035AF29AE7FF300FB9A43 /* Toast.swift */; };
+		43C035BB29B14D3600FB9A43 /* CameraTabsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C035BA29B14D3600FB9A43 /* CameraTabsOverlay.swift */; };
+		43C0361229B917A600FB9A43 /* TransitionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C0361129B917A600FB9A43 /* TransitionExtensions.swift */; };
 		43E23AA529941C3A00DC1B9B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43E23AA429941C3A00DC1B9B /* Launch Screen.storyboard */; };
 		43E4B775297F02C000538495 /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B774297F02C000538495 /* PagingView.swift */; };
 		43E4B777297F18C800538495 /* InstructionSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B776297F18C800538495 /* InstructionSlider.swift */; };
@@ -100,6 +102,8 @@
 		4387FE2229A7D470005C2464 /* AnimScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimScroller.swift; sourceTree = "<group>"; };
 		43C035AD29AE6F9D00FB9A43 /* IncorrectInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncorrectInfoView.swift; sourceTree = "<group>"; };
 		43C035AF29AE7FF300FB9A43 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		43C035BA29B14D3600FB9A43 /* CameraTabsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabsOverlay.swift; sourceTree = "<group>"; };
+		43C0361129B917A600FB9A43 /* TransitionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionExtensions.swift; sourceTree = "<group>"; };
 		43E23AA429941C3A00DC1B9B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		43E4B774297F02C000538495 /* PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
 		43E4B776297F18C800538495 /* InstructionSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionSlider.swift; sourceTree = "<group>"; };
@@ -350,6 +354,7 @@
 			children = (
 				882D1DF329394A99002EFDC8 /* CameraView.swift */,
 				882D1DF529394AD6002EFDC8 /* DataScannerView.swift */,
+				43C035BA29B14D3600FB9A43 /* CameraTabsOverlay.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -458,6 +463,7 @@
 				882D1DF729394B02002EFDC8 /* ViewExtensions.swift */,
 				43E4B77A2980969E00538495 /* DragGestures.swift */,
 				88E04129298DD02800E4C823 /* Notifications.swift */,
+				43C0361129B917A600FB9A43 /* TransitionExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -662,6 +668,7 @@
 				8815B0AC29422FD3007FBB17 /* FoodItem.swift in Sources */,
 				88BE153A294BB5EC001AE321 /* FoodButtonRow.swift in Sources */,
 				8815B0A3294034FB007FBB17 /* SignUpPage.swift in Sources */,
+				43C0361229B917A600FB9A43 /* TransitionExtensions.swift in Sources */,
 				88BE151F294BB351001AE321 /* FoodViewModel.swift in Sources */,
 				88BE152C294BB44E001AE321 /* GradeOverlay.swift in Sources */,
 				88BE1517294BB2CD001AE321 /* NutrientLevels.swift in Sources */,
@@ -695,6 +702,7 @@
 				8815B0A129402D9B007FBB17 /* LoginPage.swift in Sources */,
 				88BE1526294BB3E1001AE321 /* NutrientsPage.swift in Sources */,
 				882D1DF429394A99002EFDC8 /* CameraView.swift in Sources */,
+				43C035BB29B14D3600FB9A43 /* CameraTabsOverlay.swift in Sources */,
 				882D1DFC29394B69002EFDC8 /* Placeholder.swift in Sources */,
 				882D1DF029394992002EFDC8 /* NavModel.swift in Sources */,
 				43C035AE29AE6F9D00FB9A43 /* IncorrectInfoView.swift in Sources */,

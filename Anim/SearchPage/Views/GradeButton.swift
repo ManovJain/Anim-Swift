@@ -20,7 +20,7 @@ struct GradeButton: View {
             .padding(10)
             .background(getColor(grade: grade))
             .clipShape(Circle())
-            .foregroundColor(.primary)
+            .foregroundColor(.black)
     }
     
     func getColor(grade: String) -> Color {

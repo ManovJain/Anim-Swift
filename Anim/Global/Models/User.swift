@@ -33,4 +33,5 @@ struct User: Codable, Hashable {
     var fridgeItems: [String]?
     var geoPreference: String?
     var gradePreference: String?
+    var numNutrimentsReported: Int?
 }

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct IncorrectInfoView: View {
     
+    @EnvironmentObject var userViewModel: UserViewModel
+    
     var nutriments: Nutriments
     
     var foodID: String
@@ -185,6 +187,9 @@ struct IncorrectInfoView: View {
                     }
                     Button {
                         FirestoreRequests().addMissingNutritionInfo(id: foodID, calories: calories, carbs: carbs, cholesterol: cholesterol, fat: fat, fiber: fiber, protein: protein, sat_fat: sat_fat, sodium: sodium, sugar: sugar, trans_fat: trans_fat)
+                        if let _ = userViewModel.user.numNutrimentsReported {
+                            userViewModel.user.numNutrimentsReported! += 1
+                        }
                         dismissSheet.toggle()
                     } label: {
                         HStack {

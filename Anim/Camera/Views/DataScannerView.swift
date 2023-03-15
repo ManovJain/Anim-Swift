@@ -15,6 +15,7 @@ struct DataScannerView: UIViewControllerRepresentable {
     
     @EnvironmentObject var navModel: NavModel
     @EnvironmentObject var cameraViewModel: CameraViewModel
+    @EnvironmentObject var userViewModel: UserViewModel
     
     let recognizedDataType: DataScannerViewController.RecognizedDataType
     let recognizesMultipleItems: Bool
@@ -36,7 +37,7 @@ struct DataScannerView: UIViewControllerRepresentable {
     }
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(recognizedItems: $recognizedItems, navModel: navModel, camModel: cameraViewModel)
+        Coordinator(recognizedItems: $recognizedItems, navModel: navModel, camModel: cameraViewModel, userViewModel: userViewModel)
     }
     
     class Coordinator: NSObject, DataScannerViewControllerDelegate, ObservableObject {
@@ -45,16 +46,22 @@ struct DataScannerView: UIViewControllerRepresentable {
         
         @Published var barcode: String
         @Published var currentPage: CurrentPageNav
+        @Published var foundFridgeProduct: Bool
+        @Published var notFoundFridgeProduct: Bool
         
         private var navModel: NavModel
         private var camModel: CameraViewModel
+        private var userViewModel: UserViewModel
         
-        init(recognizedItems: Binding<[RecognizedItem]>, navModel: NavModel, camModel: CameraViewModel) {
+        init(recognizedItems: Binding<[RecognizedItem]>, navModel: NavModel, camModel: CameraViewModel, userViewModel: UserViewModel) {
             _currentPage = .init(initialValue: navModel.currentPage)
             _barcode = .init(initialValue: camModel.scannedBarcode)
+            _foundFridgeProduct = .init(initialValue: camModel.foundFridgeProduct)
+            _notFoundFridgeProduct = .init(initialValue: camModel.notFoundFridgeProduct)
             self._recognizedItems = recognizedItems
             self.navModel = navModel
             self.camModel = camModel
+            self.userViewModel = userViewModel
         }
 
         func dataScanner(_ dataScanner: DataScannerViewController, didTapOn item: RecognizedItem) {
@@ -68,9 +75,24 @@ struct DataScannerView: UIViewControllerRepresentable {
             for item in recognizedItems {
                 switch item {
                 case .barcode(let barcode) :
-                    camModel.scannedBarcode = barcode.payloadStringValue ?? "Unknown"
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
-                        navModel.currentPage = .food
+                    if !camModel.addingToFridge {
+                        camModel.scannedBarcode = barcode.payloadStringValue ?? "Unknown"
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [self] in
+                            navModel.currentPage = .food
+                        }
+                    }
+                    else {
+                        if let barcode = barcode.payloadStringValue {
+                            NetworkRequests().getFoodByBarcode(barcode: barcode) { data in
+                                if data?.status == nil || data?.status == 0 {
+                                    self.camModel.notFoundFridgeProduct.toggle()
+                                }
+                                else {
+                                    self.userViewModel.user.fridgeItems?.append(barcode)
+                                    self.camModel.foundFridgeProduct.toggle()
+                                }
+                            }
+                        }
                     }
                 case .text(let text) :
                     camModel.scannedBarcode = text.transcript ?? "Unknown"

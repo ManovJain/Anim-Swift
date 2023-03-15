@@ -43,17 +43,19 @@ struct AnimManager: View {
                 .font(Font.custom("DMSans-Medium", size: 20))
                 .foregroundColor(Color("AnimGreen"))
             Spacer()
-                .frame(height: 50)
+                .frame(height: 10)
             VStack {
-                AnimScroller(icons: iconVM.searchIcons)
-                AnimScroller(icons: iconVM.scanIcons)
+                AnimScroller(icons: iconVM.searchIcons, numNeeded: userViewModel.user.productsFromSearch!, numNeededType: .search)
+                AnimScroller(icons: iconVM.scanIcons, numNeeded: userViewModel.user.productsScanned!, numNeededType: .scan)
+                AnimScroller(icons: iconVM.nutrimentsIcons, numNeeded: userViewModel.user.numNutrimentsReported!, numNeededType: .nutriments)
             }
-            .frame(height: 300)
+            .frame(height: 380)
             .padding()
                 .overlay(
                     RoundedRectangle(cornerRadius: 16)
                         .stroke(Color("AnimGreen"), lineWidth: 3)
                 )
+
         }
         .padding()
         .frame(

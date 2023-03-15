@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+enum NumNeededType {
+    case search
+    case scan
+    case nutriments
+}
+
 struct AnimScroller: View {
     
     @EnvironmentObject var userViewModel: UserViewModel
@@ -17,12 +23,14 @@ struct AnimScroller: View {
         GridItem(.fixed(70))
     ]
     
-    @State var productsFromSearch = 0
-    @State var productsScanned = 0
-    
-    let defaults = UserDefaults.standard
     
     @State var icons: [IconModel]
+    
+    @State var numNeeded: Int
+    
+    @State var numNeededType: NumNeededType
+    
+    let defaults = UserDefaults.standard
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -33,7 +41,7 @@ struct AnimScroller: View {
                         self.defaults.set(icon.name, forKey: "anim")
                     }) {
                         VStack {
-                            if (productsFromSearch >= icon.numNeeded) {
+                            if (numNeeded >= icon.numNeeded) {
                                 Image(icon.name)
                                     .resizable()
                                     .frame(width: 70, height: 70)
@@ -42,32 +50,41 @@ struct AnimScroller: View {
                                 Image(icon.name)
                                     .resizable()
                                     .frame(width: 50, height: 50)
-                                    .blur(radius: productsFromSearch < icon.numNeeded ? 15 : 0)
+                                    .blur(radius: numNeeded < icon.numNeeded ? 15 : 0)
                                     .padding(10)
                             }
-                            if (productsFromSearch >= icon.numNeeded) {
+                            if (numNeeded >= icon.numNeeded) {
                                 Text("Anim Earned!")
                                     .lineLimit(nil)
                                     .font(Font.custom("DMSans-Medium", size: 13))
                                     .foregroundColor(Color("AnimGreen"))
                             }
                             else {
-                                Text("Search \(icon.numNeeded - productsFromSearch) more")
-                                    .lineLimit(nil)
-                                    .font(Font.custom("DMSans-Medium", size: 13))
-                                    .foregroundColor(Color("AnimGreen"))
+                                switch numNeededType {
+                                case .search:
+                                    Text("Search \(icon.numNeeded - numNeeded) more")
+                                        .lineLimit(nil)
+                                        .font(Font.custom("DMSans-Medium", size: 13))
+                                        .foregroundColor(Color("AnimGreen"))
+                                case .scan:
+                                    Text("Scan \(icon.numNeeded - numNeeded) more")
+                                        .lineLimit(nil)
+                                        .font(Font.custom("DMSans-Medium", size: 13))
+                                        .foregroundColor(Color("AnimGreen"))
+                                case .nutriments:
+                                    Text("Submit \(icon.numNeeded - numNeeded) more fixes")
+                                        .lineLimit(nil)
+                                        .font(Font.custom("DMSans-Medium", size: 11))
+                                        .foregroundColor(Color("AnimGreen"))
+                                }
                             }
                         }
                         .frame(width: 70, height: 200)
                     }
-                    .disabled(productsFromSearch < icon.numNeeded)
+                    .disabled(numNeeded < icon.numNeeded)
                 }
                 .padding()
             }
-        }
-        .onAppear {
-            productsFromSearch = userViewModel.user.productsFromSearch!
-            productsScanned = userViewModel.user.productsScanned!
         }
     }
     

@@ -11,10 +11,18 @@ struct CameraView: View {
     
     @EnvironmentObject var cameraViewModel: CameraViewModel
     
+    @State var foundFridgeProduct: Bool = false
+    
+    @State var notFoundFridgeProduct: Bool = false
+    
     var body: some View {
         switch cameraViewModel.dataScannerAccessStatus {
         case .scannerAvailable:
             mainView
+                .onAppear {
+                    foundFridgeProduct = cameraViewModel.foundFridgeProduct
+                    notFoundFridgeProduct = cameraViewModel.notFoundFridgeProduct
+                }
         case .cameraUnavailable:
             Text("Your device does not have a camera")
                 .font(Font.custom("DMSans-Medium", size: 15))

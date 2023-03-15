@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum CurrentPageNav: Int, CaseIterable {
     case camera
@@ -31,4 +32,10 @@ enum CurrentPageNav: Int, CaseIterable {
 
 final class NavModel: ObservableObject {
     @Published var currentPage: CurrentPageNav = .camera
+    
+    
+    @Published var cameraEdge: Edge = Edge.leading
+    @Published var productEdge: Edge = Edge.trailing
+    @Published var profileEdge: Edge = Edge.trailing
+    @Published var exploreEdge: Edge = Edge.trailing
 }

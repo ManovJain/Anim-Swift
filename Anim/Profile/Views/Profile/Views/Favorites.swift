@@ -45,6 +45,9 @@ struct Favorites: View {
             minHeight: 0,
             maxHeight: .infinity
         )
+        .onAppear {
+            print(userViewModel.user.fridgeItems)
+        }
     }
 }
 
