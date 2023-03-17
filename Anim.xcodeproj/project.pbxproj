@@ -88,6 +88,8 @@
 		88CB6AAE2988A0B000184BC2 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 88CB6AAD2988A0B000184BC2 /* GoogleSignIn */; };
 		88DA93812971EB6100674DB9 /* ProfileMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DA93802971EB6100674DB9 /* ProfileMenuViewModel.swift */; };
 		88DAABA429505DE4001E0AC6 /* AnimManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAABA329505DE4001E0AC6 /* AnimManager.swift */; };
+		88DBFEEA29C4E716007C6E93 /* Fridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBFEE929C4E716007C6E93 /* Fridge.swift */; };
+		88DBFEEC29C4E9FE007C6E93 /* CameraMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBFEEB29C4E9FE007C6E93 /* CameraMenu.swift */; };
 		88E0412A298DD02800E4C823 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E04129298DD02800E4C823 /* Notifications.swift */; };
 /* End PBXBuildFile section */
 
@@ -168,6 +170,8 @@
 		88CB6AAF2988A14D00184BC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		88DA93802971EB6100674DB9 /* ProfileMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuViewModel.swift; sourceTree = "<group>"; };
 		88DAABA329505DE4001E0AC6 /* AnimManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimManager.swift; sourceTree = "<group>"; };
+		88DBFEE929C4E716007C6E93 /* Fridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fridge.swift; sourceTree = "<group>"; };
+		88DBFEEB29C4E9FE007C6E93 /* CameraMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraMenu.swift; sourceTree = "<group>"; };
 		88E04129298DD02800E4C823 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -220,6 +224,7 @@
 				88902BCE29C13D5B001D41FD /* AllergensView.swift */,
 				88902BD029C13E6C001D41FD /* AllergensViewButton.swift */,
 				88902BD229C14287001D41FD /* ListsView.swift */,
+				88DBFEE929C4E716007C6E93 /* Fridge.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -355,6 +360,7 @@
 				882D1DF329394A99002EFDC8 /* CameraView.swift */,
 				882D1DF529394AD6002EFDC8 /* DataScannerView.swift */,
 				43C035BA29B14D3600FB9A43 /* CameraTabsOverlay.swift */,
+				88DBFEEB29C4E9FE007C6E93 /* CameraMenu.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -692,6 +698,7 @@
 				882D1DF829394B02002EFDC8 /* ViewExtensions.swift in Sources */,
 				88BE1538294BB5C1001AE321 /* ProductPage.swift in Sources */,
 				88DA93812971EB6100674DB9 /* ProfileMenuViewModel.swift in Sources */,
+				88DBFEEC29C4E9FE007C6E93 /* CameraMenu.swift in Sources */,
 				43E4B7922984547300538495 /* SearchResultButton.swift in Sources */,
 				884490EC29B3EDE200C7BA07 /* AllergenButton.swift in Sources */,
 				43E4B777297F18C800538495 /* InstructionSlider.swift in Sources */,
@@ -710,6 +717,7 @@
 				88BE1536294BB59C001AE321 /* ProductInfo.swift in Sources */,
 				88BE1519294BB2E1001AE321 /* Nutriments.swift in Sources */,
 				4355DEA9299178B200C388A4 /* IconModel.swift in Sources */,
+				88DBFEEA29C4E716007C6E93 /* Fridge.swift in Sources */,
 				43E4B775297F02C000538495 /* PagingView.swift in Sources */,
 				88BE1524294BB3C2001AE321 /* IngredientsList.swift in Sources */,
 				88C76D4129AC55F000289E57 /* GradeButton.swift in Sources */,

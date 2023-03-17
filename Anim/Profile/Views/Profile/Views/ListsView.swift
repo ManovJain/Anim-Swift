@@ -35,7 +35,7 @@ struct ListsView: View {
         case "favorites":
             Favorites()
         case "fridge":
-            Text("FRIDGE")
+            Fridge()
         case "allergens":
                 AllergensView()
         default:
@@ -45,8 +45,3 @@ struct ListsView: View {
     }
 }
 
-//struct ListsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ListsView()
-//    }
-//}
