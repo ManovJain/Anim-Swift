@@ -117,35 +117,6 @@ struct FilterModalView: View {
                 .background(Color("AnimGreen"))
                 .clipShape(Capsule())
                 
-                //ALLERGENS
-                Text(selectedAllergensFilterMessage)
-                    .font(Font.custom("DMSans-Medium", size: 12))
-                HStack() {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        LazyHGrid(rows: rows, alignment: .center) {
-                            ForEach(allergensList, id: \.self) { allergen in
-                                Button{
-                                    updateAllergens(input: allergen)
-                                    selectedAllergensFilterMessage = "Show products without \(allergen)"
-                                } label: {
-                                    if((userViewModel.user.allergens?.contains("gluten")) == true){
-                                        AllergenButton(name: allergen, selected: true)
-                                    }
-                                    else {
-                                        AllergenButton(name: allergen, selected: false)
-                                    }
-                                }
-                                .buttonStyle(.plain)
-                                Spacer()
-                            }
-                        }
-                    }
-                }
-                .frame(width: 200,height: 40)
-                .background(Color("AnimGreen"))
-                .clipShape(Capsule())
-                .scrollDisabled(false)
-                
                 //CLEAR FILTER
                 Button {
                     setUserPrefs(userPrefs: false)

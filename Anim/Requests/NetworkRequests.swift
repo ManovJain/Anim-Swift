@@ -25,18 +25,6 @@ enum GeoPreference: String {
     case es = "es"
 }
 
-//enum AllergenPreference: String {
-//    case none = "none"
-//    case milk = "milk"
-//    case gluten = "gluten"
-//    case soybeans = "soybeans"
-//    case eggs = "eggs"
-//    case nuts = "nuts"
-//    case fish = "fish"
-//    case mustard = "mustard"
-//    case peanuts = "peanuts"
-//}
-
 
 class NetworkRequests: ObservableObject {
     @Published var gradePreference: GradePreference = .none
