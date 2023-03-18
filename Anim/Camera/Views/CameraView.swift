@@ -23,13 +23,13 @@ struct CameraView: View {
                 mainView
                     .overlay(((userViewModel.state ==  .signedIn) ? CameraMenu(): nil)
                         .position(x: UIScreen.screenWidth/1.15, y:UIScreen.screenHeight/4.7)
-                        )
+                    )
                     .toast(message: "Product added to fridge",
                            isShowing: $cameraViewModel.foundFridgeProduct,
-                                 duration: Toast.short)
+                           duration: Toast.short)
                     .toast(message: "Product not found",
                            isShowing: $cameraViewModel.notFoundFridgeProduct,
-                                 duration: Toast.short)
+                           duration: Toast.short)
             case .cameraUnavailable:
                 Text("Your device does not have a camera")
                     .font(Font.custom("DMSans-Medium", size: 15))

@@ -40,14 +40,14 @@ struct Fridge: View {
             .cornerRadius(15)
             .clipShape(Capsule())
             VStack(alignment: .leading) {
-                    ScrollView(showsIndicators: false) {
-                        LazyVGrid(columns: columns, spacing: 20) {
-                            ForEach(userViewModel.user.fridgeItems!, id: \.self) { fridge in
-                                FavoritesButton(id: fridge)
-                                
-                            }
+                ScrollView(showsIndicators: false) {
+                    LazyVGrid(columns: columns, spacing: 20) {
+                        ForEach(userViewModel.user.fridgeItems!, id: \.self) { fridge in
+                            FavoritesButton(id: fridge)
+                            
                         }
                     }
+                }
             }
         }
         .padding()
@@ -57,9 +57,6 @@ struct Fridge: View {
             minHeight: 0,
             maxHeight: .infinity
         )
-        .onAppear {
-            print(userViewModel.user.fridgeItems)
-        }
     }
 }
 
