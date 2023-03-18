@@ -19,22 +19,22 @@ struct ProfilePage: View {
     
     var body: some View {
         VStack{
-                switch profileMenuViewModel.icon.rawValue {
-                case "user":
-                    UserView(display: "filter")
-                case "Anim Manager":
-                    AnimManager()
-                case "favorites":
-                    VStack{
-                        ListsView(selection: "favorites")
-                    }
-                default:
-                    LoginPage(darkMode: $darkMode)
+            switch profileMenuViewModel.icon.rawValue {
+            case "user":
+                UserView(display: "filter")
+            case "Anim Manager":
+                AnimManager()
+            case "favorites":
+                VStack{
+                    ListsView(selection: "favorites")
                 }
+            default:
+                LoginPage(darkMode: $darkMode)
+            }
         }
         .overlay(((userViewModel.state ==  .signedIn) ? ProfileMenu(): nil)
             .position(x: UIScreen.screenWidth/1.15, y:UIScreen.screenHeight/4.7)
-            )
+        )
         .padding()
         .frame(
             minWidth: 0,

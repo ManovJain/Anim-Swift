@@ -41,11 +41,11 @@ struct FoodButtonRow: View {
             } label: {
                 if !(userViewModel.user.favorites!.contains((product._id)!)) {
                     Text("Save")
-                        .font(Font.custom("DMSans-Medium", size: 20))
+                        .font(Font.custom("DMSans-Medium", size: 15))
                         .foregroundColor(Color("background"))
                 } else {
                     Text("Unsave")
-                        .font(Font.custom("DMSans-Medium", size: 20))
+                        .font(Font.custom("DMSans-Medium", size: 15))
                         .foregroundColor(Color("background"))
                 }
             }
@@ -61,6 +61,32 @@ struct FoodButtonRow: View {
             //                        .font(.system(size: 25))
             //                }
             Spacer()
+            if((userViewModel.user.fridgeItems!.contains(product._id!) == true)){
+                Button {
+                    userViewModel.user.fridgeItems?.removeAll(where: { $0 == product._id })
+                } label: {
+                    Text("Remove from Fridge")
+                        .font(Font.custom("DMSans-Medium", size: 15))
+                        .foregroundColor(Color("background"))
+                }
+                .padding()
+                .background(.red)
+                .cornerRadius(15)
+                .clipShape(Capsule())
+            }
+            else {
+                Button {
+                    userViewModel.user.fridgeItems!.append(product._id!)
+                } label: {
+                    Text("Add to Fridge")
+                        .font(Font.custom("DMSans-Medium", size: 15))
+                        .foregroundColor(Color("background"))
+                }
+                .padding()
+                .background(Color("AnimGreen"))
+                .cornerRadius(15)
+                .clipShape(Capsule())
+            }
             //            Button {
             //                if isLiked {
             //                    isLiked = false
