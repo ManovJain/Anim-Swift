@@ -30,23 +30,27 @@ struct AllergensView: View {
                 .frame(alignment: .center)
                 .font(Font.custom("DMSans-Medium", size: 30))
                 .foregroundColor(Color("AnimGreen"))
-            Button {
-                
-            } label: {
-                Text("Clear Selections")
-                    .frame(alignment: .center)
-                    .font(Font.custom("DMSans-Medium", size: 15))
-                    .foregroundColor(Color("AnimGreen"))
-            }
+            //            Button {
+            //                userViewModel.user.allergens!.removeAll()
+            //            } label: {
+            //                Text("Clear Selections")
+            //                    .font(Font.custom("DMSans-Medium", size: 10))
+            //                    .foregroundColor(Color("background"))
+            //                    .lineLimit(1)
+            //            }
+            //            .padding()
+            //            .background(.red)
+            //            .cornerRadius(15)
+            //            .clipShape(Capsule())
             VStack(alignment: .leading) {
-                    ScrollView(showsIndicators: false) {
-                        LazyVGrid(columns: columns, spacing: 20) {
-                            ForEach(allergensList, id: \.self) { allergen in
-                                AllergensViewButton(name: allergen, selected: false)
-                            }
+                ScrollView(showsIndicators: false) {
+                    LazyVGrid(columns: columns, spacing: 20) {
+                        ForEach(allergensList, id: \.self) { allergen in
+                            AllergensViewButton(name: allergen, selected: false)
                         }
-                        .padding(10)
                     }
+                    .padding(10)
+                }
             }
         }
         .padding()

@@ -21,20 +21,28 @@ struct AllergensViewButton: View {
             Button {
                 updateAllergens(input: name)
             } label: {
-                Text(getname(name: name))
-                    .font(Font.custom("DMSans-Medium", size: 50))
-                    .padding(5)
-                    .foregroundColor(.primary)
+                VStack {
+                    Text(getname(name: name))
+                        .font(Font.custom("DMSans-Medium", size: 50))
+                        .padding(5)
+                        .foregroundColor(.primary)
+                    Text(name)
+                        .font(Font.custom("DMSans-Medium", size: 15))
+                        .foregroundColor(getTextColor())
+                        .lineLimit(1)
+                }
+                .frame(width: 100, height: 100)
+                .clipShape(RoundedRectangle(cornerRadius: 16))
+                .cornerRadius(15)
+                .padding()
+                .background(getColor())
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color("AnimGreen"), lineWidth: 5))
             }
-            Text(name)
-                .font(Font.custom("DMSans-Medium", size: 12))
+            .background(getColor())
+            .cornerRadius(16)
         }
-        .frame(width: 100, height: 100)
-        .padding()
-        .background(getColor())
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(Color("AnimGreen"), lineWidth: 5))
     }
     
     func getname(name: String) -> String {
@@ -70,6 +78,15 @@ struct AllergensViewButton: View {
         }
         else {
             return Color.white
+        }
+    }
+    
+    func getTextColor() -> Color {
+        if (userViewModel.user.allergens?.contains(name) == true) {
+            return Color.white
+        }
+        else {
+            return Color("AnimGreen")
         }
     }
     

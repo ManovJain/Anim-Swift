@@ -31,7 +31,7 @@ struct Fridge: View {
                 userViewModel.user.fridgeItems?.removeAll()
             } label: {
                 Text("Empty Fridge")
-                    .font(Font.custom("DMSans-Medium", size: 20))
+                    .font(Font.custom("DMSans-Medium", size: 10))
                     .foregroundColor(Color("background"))
                     .lineLimit(1)
             }
