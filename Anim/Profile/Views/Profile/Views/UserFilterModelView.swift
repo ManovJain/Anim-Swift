@@ -28,24 +28,27 @@ struct UserFilterModalView: View {
                     .font(Font.custom("DMSans-Medium", size: 12))
                 HStack {
                     Button{
+                        userViewModel.user.geoPreference = "world"
                         userViewModel.geoPreference = .world
                         selectedgeoPreferenceMessage = "Show products from all countries"
                     } label: {
-                        GeoButton(location: "world", filterVal: userViewModel.geoPreference.rawValue)
+                        GeoButton(location: "world", filterVal: userViewModel.user.geoPreference!)
                     }
                     .buttonStyle(.plain)
                     Button{
+                        userViewModel.user.geoPreference = "us"
                         userViewModel.geoPreference = .us
                         selectedgeoPreferenceMessage = "Show US products only"
                     } label: {
-                        GeoButton(location: "us", filterVal: userViewModel.geoPreference.rawValue)
+                        GeoButton(location: "us", filterVal: userViewModel.user.geoPreference!)
                     }
                     .buttonStyle(.plain)
                     Button{
+                        userViewModel.user.geoPreference = "es"
                         userViewModel.geoPreference = .es
                         selectedgeoPreferenceMessage = "Show Spanish products only"
                     } label: {
-                        GeoButton(location: "es", filterVal: userViewModel.geoPreference.rawValue)
+                        GeoButton(location: "es", filterVal: userViewModel.user.geoPreference!)
                     }
                     .buttonStyle(.plain)
                 }
@@ -55,6 +58,7 @@ struct UserFilterModalView: View {
                 HStack {
                     Spacer()
                     Button{
+                        userViewModel.user.gradePreference = "a"
                         userViewModel.gradePreference = .a
                         selectedGradeFilterMessage = "Show only products with an A grade"
                     } label: {
@@ -68,6 +72,7 @@ struct UserFilterModalView: View {
                     .buttonStyle(.plain)
                     Spacer()
                     Button{
+                        userViewModel.user.gradePreference = "b"
                         userViewModel.gradePreference = .b
                         selectedGradeFilterMessage = "Show only products with a B grade"
                     } label: {
@@ -81,6 +86,7 @@ struct UserFilterModalView: View {
                     .buttonStyle(.plain)
                     Spacer()
                     Button{
+                        userViewModel.user.gradePreference = "c"
                         userViewModel.gradePreference = .c
                         selectedGradeFilterMessage = "Show only products with a C grade"
                     } label: {
@@ -94,6 +100,7 @@ struct UserFilterModalView: View {
                     .buttonStyle(.plain)
                     Spacer()
                     Button{
+                        userViewModel.user.gradePreference = "d"
                         userViewModel.gradePreference = .d
                         selectedGradeFilterMessage = "Show only products with a D grade"
                     } label: {
