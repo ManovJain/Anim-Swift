@@ -30,10 +30,10 @@ struct UserView: View {
                 .resizable()
                 .frame(width: 80, height: 80)
                 .padding()
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 16)
-                            .stroke(Color("AnimGreen"), lineWidth: 3)
-                    )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color("AnimGreen"), lineWidth: 3)
+                )
             Spacer()
                 .frame(height: 25)
             
@@ -42,19 +42,28 @@ struct UserView: View {
                     display = "info"
                 } label: {
                     Text("Info")
-                        .font(Font.custom("DMSans-Medium", size: 20))
-                        .foregroundColor(Color("AnimGreen"))
+                        .font(Font.custom("DMSans-Medium", size: 15))
+                        .foregroundColor(Color("background"))
                         .lineLimit(1)
+                        .padding()
+                        .background(Color("AnimGreen"))
+                        .cornerRadius(15)
+                        .clipShape(Capsule())
                 }
                 Button {
                     display = "filter"
                 } label: {
                     Text("Filter")
-                        .font(Font.custom("DMSans-Medium", size: 20))
-                        .foregroundColor(Color("AnimGreen"))
+                        .font(Font.custom("DMSans-Medium", size: 15))
+                        .foregroundColor(Color("background"))
                         .lineLimit(1)
                 }
+                .padding()
+                .background(Color("AnimGreen"))
+                .cornerRadius(15)
+                .clipShape(Capsule())
             }
+            Spacer()
             
             ScrollView(.vertical, showsIndicators: false) {
                 if display == "filter" {
@@ -88,7 +97,7 @@ struct UserView: View {
                     Spacer()
                         .frame(height: 25)
                     Button(){
-
+                        
                     } label: {
                         Text("Products Viewed: \(userViewModel.user.productsViewed!.count)")
                             .font(Font.custom("DMSans-Medium", size: 20))
@@ -102,7 +111,7 @@ struct UserView: View {
                     Spacer()
                         .frame(height: 25)
                     Button(){
-
+                        
                     } label: {
                         Text("Products Scanned: \(userViewModel.user.productsScanned!)")
                             .font(Font.custom("DMSans-Medium", size: 20))
@@ -116,7 +125,7 @@ struct UserView: View {
                     Spacer()
                         .frame(height: 25)
                     Button(){
-
+                        
                     } label: {
                         Text("Products Searched: \(userViewModel.user.productsFromSearch!)")
                             .font(Font.custom("DMSans-Medium", size: 20))
@@ -128,15 +137,15 @@ struct UserView: View {
                     .cornerRadius(15)
                     .clipShape(Capsule())
                 }
-
+                
             }
         }
         .padding()
         .frame(
-              minWidth: 0,
-              maxWidth: .infinity,
-              minHeight: 0,
-              maxHeight: .infinity
-            )
+            minWidth: 0,
+            maxWidth: .infinity,
+            minHeight: 0,
+            maxHeight: .infinity
+        )
     }
 }

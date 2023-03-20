@@ -26,7 +26,7 @@ struct AllergensView: View {
     
     var body: some View {
         VStack(){
-            Text("Allergens")
+            Text("Allergens coming soon")
                 .frame(alignment: .center)
                 .font(Font.custom("DMSans-Medium", size: 30))
                 .foregroundColor(Color("AnimGreen"))
