@@ -64,6 +64,7 @@ struct UserView: View {
                 .clipShape(Capsule())
             }
             Spacer()
+                .frame(height: 40)
             
             ScrollView(.vertical, showsIndicators: false) {
                 if display == "filter" {

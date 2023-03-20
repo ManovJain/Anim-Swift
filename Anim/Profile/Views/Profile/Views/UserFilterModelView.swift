@@ -132,12 +132,6 @@ struct UserFilterModalView: View {
             }
             Spacer()
         }
-        Button {
-            fireStoreRequests.setGeoPreference(uid: userViewModel.user.uid!, geo: userViewModel.geoPreference.rawValue)
-            fireStoreRequests.setGradePreference(uid: userViewModel.user.uid!, grade: userViewModel.gradePreference.rawValue)
-        } label: {
-            Text("click me")
-        }
     }
 }
 
