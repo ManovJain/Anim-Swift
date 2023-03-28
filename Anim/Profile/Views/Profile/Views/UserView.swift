@@ -62,6 +62,18 @@ struct UserView: View {
                 .background(Color("AnimGreen"))
                 .cornerRadius(15)
                 .clipShape(Capsule())
+                Button {
+                    display = "nutrition"
+                } label: {
+                    Text("Nutrition")
+                        .font(Font.custom("DMSans-Medium", size: 15))
+                        .foregroundColor(Color("background"))
+                        .lineLimit(1)
+                }
+                .padding()
+                .background(Color("AnimGreen"))
+                .cornerRadius(15)
+                .clipShape(Capsule())
             }
             Spacer()
                 .frame(height: 40)
@@ -74,6 +86,9 @@ struct UserView: View {
                         Text("Filter & Sort")
                             .font(Font.custom("DMSans-Medium", size: 12))
                     }
+                }
+                else if display == "nutrition" {
+                    FoodLogView()
                 }
                 else {
                     Button(){

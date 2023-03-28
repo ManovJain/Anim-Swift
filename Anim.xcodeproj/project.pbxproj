@@ -62,6 +62,7 @@
 		88902BCF29C13D5B001D41FD /* AllergensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88902BCE29C13D5B001D41FD /* AllergensView.swift */; };
 		88902BD129C13E6C001D41FD /* AllergensViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88902BD029C13E6C001D41FD /* AllergensViewButton.swift */; };
 		88902BD329C14287001D41FD /* ListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88902BD229C14287001D41FD /* ListsView.swift */; };
+		88A6415B29D1FBCD0004E5C3 /* FoodLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A6415A29D1FBCD0004E5C3 /* FoodLogView.swift */; };
 		88BE1515294BB2B8001AE321 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1514294BB2B8001AE321 /* Ingredient.swift */; };
 		88BE1517294BB2CD001AE321 /* NutrientLevels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1516294BB2CD001AE321 /* NutrientLevels.swift */; };
 		88BE1519294BB2E1001AE321 /* Nutriments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1518294BB2E1001AE321 /* Nutriments.swift */; };
@@ -86,6 +87,7 @@
 		88C76D4329AC6F6B00289E57 /* GeoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C76D4229AC6F6B00289E57 /* GeoButton.swift */; };
 		88CB6AAB29889F8000184BC2 /* GoogleSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB6AAA29889F8000184BC2 /* GoogleSignInButton.swift */; };
 		88CB6AAE2988A0B000184BC2 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 88CB6AAD2988A0B000184BC2 /* GoogleSignIn */; };
+		88CE67E329D38045000FF59A /* Nutrition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE67E229D38045000FF59A /* Nutrition.swift */; };
 		88DA93812971EB6100674DB9 /* ProfileMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DA93802971EB6100674DB9 /* ProfileMenuViewModel.swift */; };
 		88DAABA429505DE4001E0AC6 /* AnimManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAABA329505DE4001E0AC6 /* AnimManager.swift */; };
 		88DBFEEA29C4E716007C6E93 /* Fridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBFEE929C4E716007C6E93 /* Fridge.swift */; };
@@ -144,6 +146,7 @@
 		88902BCE29C13D5B001D41FD /* AllergensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergensView.swift; sourceTree = "<group>"; };
 		88902BD029C13E6C001D41FD /* AllergensViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergensViewButton.swift; sourceTree = "<group>"; };
 		88902BD229C14287001D41FD /* ListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsView.swift; sourceTree = "<group>"; };
+		88A6415A29D1FBCD0004E5C3 /* FoodLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLogView.swift; sourceTree = "<group>"; };
 		88BE1514294BB2B8001AE321 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		88BE1516294BB2CD001AE321 /* NutrientLevels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientLevels.swift; sourceTree = "<group>"; };
 		88BE1518294BB2E1001AE321 /* Nutriments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutriments.swift; sourceTree = "<group>"; };
@@ -168,6 +171,7 @@
 		88C76D4229AC6F6B00289E57 /* GeoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoButton.swift; sourceTree = "<group>"; };
 		88CB6AAA29889F8000184BC2 /* GoogleSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInButton.swift; sourceTree = "<group>"; };
 		88CB6AAF2988A14D00184BC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		88CE67E229D38045000FF59A /* Nutrition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutrition.swift; sourceTree = "<group>"; };
 		88DA93802971EB6100674DB9 /* ProfileMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuViewModel.swift; sourceTree = "<group>"; };
 		88DAABA329505DE4001E0AC6 /* AnimManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimManager.swift; sourceTree = "<group>"; };
 		88DBFEE929C4E716007C6E93 /* Fridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fridge.swift; sourceTree = "<group>"; };
@@ -225,6 +229,7 @@
 				88902BD029C13E6C001D41FD /* AllergensViewButton.swift */,
 				88902BD229C14287001D41FD /* ListsView.swift */,
 				88DBFEE929C4E716007C6E93 /* Fridge.swift */,
+				88A6415A29D1FBCD0004E5C3 /* FoodLogView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -267,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				43E4B78A2980B88600538495 /* User.swift */,
+				88CE67E229D38045000FF59A /* Nutrition.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -657,6 +663,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88BE152E294BB45F001AE321 /* Macros.swift in Sources */,
+				88A6415B29D1FBCD0004E5C3 /* FoodLogView.swift in Sources */,
 				88CB6AAB29889F8000184BC2 /* GoogleSignInButton.swift in Sources */,
 				43E4B78E29830A0500538495 /* FirestoreRequests.swift in Sources */,
 				8815B0AE2942716B007FBB17 /* OpenFoodResult.swift in Sources */,
@@ -666,6 +673,7 @@
 				88607D52294C5BEB00602FE3 /* ProfileMenu.swift in Sources */,
 				430D1A15299D6D8600FD43EC /* ProfilePage.swift in Sources */,
 				4387FE2129A7CA9B005C2464 /* SearchLoadingScreen.swift in Sources */,
+				88CE67E329D38045000FF59A /* Nutrition.swift in Sources */,
 				882D1DCC29393F1A002EFDC8 /* ContentView.swift in Sources */,
 				88BE1530294BB478001AE321 /* NutrientTag.swift in Sources */,
 				88902BD129C13E6C001D41FD /* AllergensViewButton.swift in Sources */,

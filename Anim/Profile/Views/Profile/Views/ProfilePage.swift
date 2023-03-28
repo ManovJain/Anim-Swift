@@ -22,6 +22,7 @@ struct ProfilePage: View {
             switch profileMenuViewModel.icon.rawValue {
             case "user":
                 UserView(display: "info")
+//                FoodLogView()
             case "Anim Manager":
                 AnimManager()
             case "favorites":
