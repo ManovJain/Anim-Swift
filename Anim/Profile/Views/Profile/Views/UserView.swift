@@ -7,23 +7,6 @@
 
 import SwiftUI
 
-struct MenuButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .font(Font.custom("DMSans-Medium", size: 15))
-            .foregroundColor(.white)
-            .lineLimit(1)
-            .padding()
-            .frame(height: 40)
-            .frame(minWidth: 80, maxWidth: .infinity)
-            .background(Color("AnimGreen"))
-            .clipShape(Capsule())
-            .cornerRadius(15)
-            .scaleEffect(configuration.isPressed ? 0.8 : 1.0)
-    }
-}
-
-
 struct UserView: View {
     
     @EnvironmentObject var userViewModel: UserViewModel
@@ -157,3 +140,20 @@ struct UserView: View {
         )
     }
 }
+
+struct MenuButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(Font.custom("DMSans-Medium", size: 15))
+            .foregroundColor(.white)
+            .lineLimit(1)
+            .padding()
+            .frame(height: 40)
+            .frame(minWidth: 80, maxWidth: .infinity)
+            .background(Color("AnimGreen"))
+            .clipShape(Capsule())
+            .cornerRadius(15)
+            .scaleEffect(configuration.isPressed ? 0.8 : 1.0)
+    }
+}
+
