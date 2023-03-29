@@ -7,6 +7,23 @@
 
 import SwiftUI
 
+struct MenuButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(Font.custom("DMSans-Medium", size: 15))
+            .foregroundColor(.white)
+            .lineLimit(1)
+            .padding()
+            .frame(height: 40)
+            .frame(minWidth: 80, maxWidth: .infinity)
+            .background(Color("AnimGreen"))
+            .clipShape(Capsule())
+            .cornerRadius(15)
+            .scaleEffect(configuration.isPressed ? 0.8 : 1.0)
+    }
+}
+
+
 struct UserView: View {
     
     @EnvironmentObject var userViewModel: UserViewModel
@@ -37,43 +54,18 @@ struct UserView: View {
             Spacer()
                 .frame(height: 25)
             
-            HStack{
-                Button {
-                    display = "info"
-                } label: {
-                    Text("Info")
-                        .font(Font.custom("DMSans-Medium", size: 15))
-                        .foregroundColor(Color("background"))
-                        .lineLimit(1)
-                        .padding()
-                        .background(Color("AnimGreen"))
-                        .cornerRadius(15)
-                        .clipShape(Capsule())
+            ScrollView(.horizontal){
+                HStack(alignment: .center, spacing: 10){
+                    Spacer()
+                    Button("Info", action: {display = "info"})
+                        .buttonStyle(MenuButtonStyle())
+                    .buttonStyle(MenuButtonStyle())
+                    Button("Filter", action: {display = "filter"})
+                        .buttonStyle(MenuButtonStyle())
+                    Button("Nutrition", action: {display = "nutrition"})
+                        .buttonStyle(MenuButtonStyle())
+                    Spacer()
                 }
-                Button {
-                    display = "filter"
-                } label: {
-                    Text("Filter")
-                        .font(Font.custom("DMSans-Medium", size: 15))
-                        .foregroundColor(Color("background"))
-                        .lineLimit(1)
-                }
-                .padding()
-                .background(Color("AnimGreen"))
-                .cornerRadius(15)
-                .clipShape(Capsule())
-                Button {
-                    display = "nutrition"
-                } label: {
-                    Text("Nutrition")
-                        .font(Font.custom("DMSans-Medium", size: 15))
-                        .foregroundColor(Color("background"))
-                        .lineLimit(1)
-                }
-                .padding()
-                .background(Color("AnimGreen"))
-                .cornerRadius(15)
-                .clipShape(Capsule())
             }
             Spacer()
                 .frame(height: 40)

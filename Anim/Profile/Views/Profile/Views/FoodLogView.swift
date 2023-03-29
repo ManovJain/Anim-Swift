@@ -31,15 +31,15 @@ struct FoodLogView: View {
         VStack {
             VStack {
                 Text("Calories:")
-                    .font(Font.custom("DMSans-Medium", size: 40))
+                    .font(Font.custom("DMSans-Medium", size: 25))
                     .foregroundColor(Color("AnimGreen"))
                     .lineLimit(1)
                 Text("\(user.calories) / 100")
-                    .font(Font.custom("DMSans-Medium", size: 40))
+                    .font(Font.custom("DMSans-Medium", size: 25))
                     .foregroundColor(Color("AnimGreen"))
                     .lineLimit(1)
                 Spacer()
-                    .frame(height: 50)
+                    .frame(height: 20)
                 ZStack {
 //                    Circle()
 //                        .stroke(lineWidth: 20.0)
