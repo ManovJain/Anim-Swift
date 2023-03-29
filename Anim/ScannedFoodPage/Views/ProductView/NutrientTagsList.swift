@@ -11,6 +11,8 @@ struct NutrientTagsList: View {
     
     var nutrientLevels: NutrientLevels
     
+    var productID: String
+    
     @Binding var tagAlertShown: Bool
     
     var body: some View {
@@ -29,5 +31,8 @@ struct NutrientTagsList: View {
             }
         }
         .padding(.top)
+        .onAppear {
+            FirestoreRequests().addNutrientLevels(nutrientLevels: nutrientLevels, productID: productID)
+        }
     }
 }

@@ -85,6 +85,9 @@ struct ProductPage: View {
                         findingProduct = false
                         status = data?.status
                         product = data?.product
+                        if let addProduct = data?.product {
+                            FirestoreRequests().addProduct(addProduct: addProduct)
+                        }
                         if status != 1 {
                             FirestoreRequests().addBarcodeToMissing(array: "missingBarcode", barcode: camModel.scannedBarcode)
                         }
@@ -103,6 +106,9 @@ struct ProductPage: View {
                     findingProduct = true
                     status = foodViewModel.status
                     product = foodViewModel.product
+                    if let addProduct = foodViewModel.product {
+                        FirestoreRequests().addProduct(addProduct: addProduct)
+                    }
                     findingProduct = false
                     if let uid = userViewModel.user.uid {
                         if uid != "" {

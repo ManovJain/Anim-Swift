@@ -52,7 +52,7 @@ struct ProductInfo: View {
                         Allergens(tags: foundProduct.allergens_tags!)
                     }
                     if let levels = foundProduct.nutrient_levels {
-                        NutrientTagsList(nutrientLevels: levels, tagAlertShown: $tagAlertShown)
+                        NutrientTagsList(nutrientLevels: levels, productID: foundProduct._id! ,tagAlertShown: $tagAlertShown)
                             .frame(width: UIScreen.screenWidth - 50)
                     }
                 }
@@ -66,6 +66,10 @@ struct ProductInfo: View {
             }
             if foundProduct.image_front_url == nil {
                 FirestoreRequests().addBarcodeToMissing(array: "missingPhoto", barcode: foundProduct._id!)
+            }
+            
+            if let nutriments = foundProduct.nutriments {
+                FirestoreRequests().addNutriments(addNutriment: nutriments, productID: foundProduct._id!)
             }
         }
         .frame(width: UIScreen.screenWidth - 50)
