@@ -13,6 +13,8 @@ class UserObj {
 
 struct FoodLogView: View {
     
+    @EnvironmentObject var userViewModel: UserViewModel
+    
     @State private var user = UserObj()
     @State var progressValue: Float = 0.0
     @State private var drawingStroke = false
@@ -34,35 +36,19 @@ struct FoodLogView: View {
                     .font(Font.custom("DMSans-Medium", size: 25))
                     .foregroundColor(Color("AnimGreen"))
                     .lineLimit(1)
-                Text("\(user.calories) / 100")
+                Text("\(userViewModel.nutrition.calories!) / \(userViewModel.nutrition.totalCalories!)")
                     .font(Font.custom("DMSans-Medium", size: 25))
                     .foregroundColor(Color("AnimGreen"))
                     .lineLimit(1)
                 Spacer()
                     .frame(height: 20)
                 ZStack {
-//                    Circle()
-//                        .stroke(lineWidth: 20.0)
-//                        .opacity(0.3)
-//                        .foregroundColor(Color("AnimGreen"))
-//                        .frame(width: 100, height: 100)
                     ring(for: Color("AnimGreen"))
                         .frame(width: 80)
                         .animation(animation, value: drawingStroke)
                         .onAppear {
                             drawingStroke.toggle()
                         }
-                    
-//                    Circle()
-//                        .trim(from: 0.0, to: CGFloat(min(0.1, 1.0)))
-//                        .stroke(style: StrokeStyle(lineWidth: 20.0, lineCap: .round, lineJoin: .round))
-//                        .foregroundColor(Color("AnimGreen"))
-//                        .rotationEffect(Angle(degrees: 270.0))
-//                        .frame(width: 100, height: 100)
-//                    Text(String(format: "%.0f %%", min(0.1, 1.0)*100.0))
-//                        .font(Font.custom("DMSans-Medium", size: 20))
-//                        .foregroundColor(Color("AnimGreen"))
-//                        .lineLimit(1)
                 }
             }
             Spacer()
@@ -103,6 +89,9 @@ struct FoodLogView: View {
     }
     
     func ring(for color: Color) -> some View {
+        
+        //var calPercentage = (userViewModel.nutrition.calories!)/(userViewModel.nutrition.totalCalories!)
+        
         // Background ring
         Circle()
             .stroke(style: StrokeStyle(lineWidth: 16))
@@ -110,6 +99,7 @@ struct FoodLogView: View {
             .overlay {
                 // Foreground ring
                 Circle()
+                    //.trim(from: 0, to: drawingStroke ? calPercentage : 0)
                     .trim(from: 0, to: drawingStroke ? 0.5 : 0)
                     .stroke(color.gradient,
                             style: StrokeStyle(lineWidth: 16, lineCap: .round))

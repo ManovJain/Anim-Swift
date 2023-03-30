@@ -28,7 +28,7 @@ struct UserView: View {
         VStack(){
             Image(userViewModel.user.anim!)
                 .resizable()
-                .frame(width: 80, height: 80)
+                .frame(width: 60, height: 60)
                 .padding()
                 .overlay(
                     RoundedRectangle(cornerRadius: 16)
@@ -37,6 +37,7 @@ struct UserView: View {
             Spacer()
                 .frame(height: 25)
             
+            //DISPLAY NAVIGATION
             ScrollView(.horizontal){
                 HStack(alignment: .center, spacing: 10){
                     Spacer()
@@ -63,7 +64,8 @@ struct UserView: View {
                     }
                 }
                 else if display == "nutrition" {
-                    FoodLogView()
+                    //FoodLogView()
+                    FoodLogInputView()
                 }
                 else {
                     Button(){
@@ -71,12 +73,12 @@ struct UserView: View {
                     } label: {
                         if userViewModel.user.email != ""{
                             Text(userViewModel.user.email!)
-                                .font(Font.custom("DMSans-Medium", size: 20))
+                                .font(Font.custom("DMSans-Medium", size: 15))
                                 .foregroundColor(Color("background"))
                                 .lineLimit(1)
                         } else {
                             Text("No email shared")
-                                .font(Font.custom("DMSans-Medium", size: 20))
+                                .font(Font.custom("DMSans-Medium", size: 15))
                                 .foregroundColor(Color("background"))
                                 .lineLimit(1)
                         }
@@ -86,12 +88,12 @@ struct UserView: View {
                     .cornerRadius(15)
                     .clipShape(Capsule())
                     Spacer()
-                        .frame(height: 25)
+                        .frame(height: 20)
                     Button(){
                         
                     } label: {
                         Text("Products Viewed: \(userViewModel.user.productsViewed!.count)")
-                            .font(Font.custom("DMSans-Medium", size: 20))
+                            .font(Font.custom("DMSans-Medium", size: 15))
                             .foregroundColor(Color("background"))
                             .lineLimit(1)
                     }
@@ -100,12 +102,12 @@ struct UserView: View {
                     .cornerRadius(15)
                     .clipShape(Capsule())
                     Spacer()
-                        .frame(height: 25)
+                        .frame(height: 20)
                     Button(){
                         
                     } label: {
                         Text("Products Scanned: \(userViewModel.user.productsScanned!)")
-                            .font(Font.custom("DMSans-Medium", size: 20))
+                            .font(Font.custom("DMSans-Medium", size: 15))
                             .foregroundColor(Color("background"))
                             .lineLimit(1)
                     }
@@ -114,12 +116,12 @@ struct UserView: View {
                     .cornerRadius(15)
                     .clipShape(Capsule())
                     Spacer()
-                        .frame(height: 25)
+                        .frame(height: 20)
                     Button(){
                         
                     } label: {
                         Text("Products Searched: \(userViewModel.user.productsFromSearch!)")
-                            .font(Font.custom("DMSans-Medium", size: 20))
+                            .font(Font.custom("DMSans-Medium", size: 15))
                             .foregroundColor(Color("background"))
                             .lineLimit(1)
                     }
@@ -150,7 +152,7 @@ struct MenuButtonStyle: ButtonStyle {
             .padding()
             .frame(height: 40)
             .frame(minWidth: 80, maxWidth: .infinity)
-            .background(Color("AnimGreen"))
+            .background(configuration.isPressed ? Color("background") : Color("AnimGreen"))
             .clipShape(Capsule())
             .cornerRadius(15)
             .scaleEffect(configuration.isPressed ? 0.8 : 1.0)

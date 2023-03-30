@@ -88,6 +88,7 @@
 		88CB6AAB29889F8000184BC2 /* GoogleSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB6AAA29889F8000184BC2 /* GoogleSignInButton.swift */; };
 		88CB6AAE2988A0B000184BC2 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 88CB6AAD2988A0B000184BC2 /* GoogleSignIn */; };
 		88CE67E329D38045000FF59A /* Nutrition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE67E229D38045000FF59A /* Nutrition.swift */; };
+		88CE67E529D3FEB4000FF59A /* FoodLogInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE67E429D3FEB4000FF59A /* FoodLogInputView.swift */; };
 		88DA93812971EB6100674DB9 /* ProfileMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DA93802971EB6100674DB9 /* ProfileMenuViewModel.swift */; };
 		88DAABA429505DE4001E0AC6 /* AnimManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAABA329505DE4001E0AC6 /* AnimManager.swift */; };
 		88DBFEEA29C4E716007C6E93 /* Fridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBFEE929C4E716007C6E93 /* Fridge.swift */; };
@@ -172,6 +173,7 @@
 		88CB6AAA29889F8000184BC2 /* GoogleSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInButton.swift; sourceTree = "<group>"; };
 		88CB6AAF2988A14D00184BC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		88CE67E229D38045000FF59A /* Nutrition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutrition.swift; sourceTree = "<group>"; };
+		88CE67E429D3FEB4000FF59A /* FoodLogInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLogInputView.swift; sourceTree = "<group>"; };
 		88DA93802971EB6100674DB9 /* ProfileMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuViewModel.swift; sourceTree = "<group>"; };
 		88DAABA329505DE4001E0AC6 /* AnimManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimManager.swift; sourceTree = "<group>"; };
 		88DBFEE929C4E716007C6E93 /* Fridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fridge.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				88902BD229C14287001D41FD /* ListsView.swift */,
 				88DBFEE929C4E716007C6E93 /* Fridge.swift */,
 				88A6415A29D1FBCD0004E5C3 /* FoodLogView.swift */,
+				88CE67E429D3FEB4000FF59A /* FoodLogInputView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -714,6 +717,7 @@
 				8864360E2994AD4100FB28D4 /* FavoritesButton.swift in Sources */,
 				43E4B7902984407100538495 /* GradeAlertView.swift in Sources */,
 				4355DEAB299178EF00C388A4 /* IconVM.swift in Sources */,
+				88CE67E529D3FEB4000FF59A /* FoodLogInputView.swift in Sources */,
 				8815B0A129402D9B007FBB17 /* LoginPage.swift in Sources */,
 				88BE1526294BB3E1001AE321 /* NutrientsPage.swift in Sources */,
 				882D1DF429394A99002EFDC8 /* CameraView.swift in Sources */,

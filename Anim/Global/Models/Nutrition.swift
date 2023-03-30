@@ -9,7 +9,7 @@ import Foundation
 
 struct Nutrition: Codable, Hashable {
     
-    
+    var nutritionSet: Bool?
     var calories: Float?
     var carbs: Float?
     var fat: Float?
