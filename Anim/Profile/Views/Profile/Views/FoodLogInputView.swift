@@ -38,8 +38,8 @@ struct FoodLogInputView: View {
                 .foregroundColor(Color("AnimGreen"))
             TextField("Daily Protein Goal", value: ($userViewModel.nutrition.totalProtein), format: .number)
                 .textFieldStyle(FoogLogInputStyle())
-            Button("clickMe", action: {print(userViewModel.nutrition.totalCalories)})
-                .buttonStyle(MenuButtonStyle())
+//            Button("clickMe", action: {print(userViewModel.nutrition.totalCalories)})
+//                .buttonStyle(MenuButtonStyle())
         }
     }
     

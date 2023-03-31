@@ -251,7 +251,7 @@ struct MenuButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(Font.custom("DMSans-Medium", size: 15))
-            .foregroundColor(.white)
+            .foregroundColor(Color("background"))
             .lineLimit(1)
             .padding()
             .frame(height: 40)

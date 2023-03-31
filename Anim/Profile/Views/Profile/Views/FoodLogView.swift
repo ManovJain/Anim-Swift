@@ -63,6 +63,9 @@ struct FoodLogView: View {
                     ProgressView(value: 10, total: 100)
                         .frame(width: 100)
                         .tint(ice)
+                    Text("\(userViewModel.nutrition.carbs!)")
+                        .font(Font.custom("DMSans-Medium", size: 25))
+                        .foregroundColor(Color("AnimGreen"))
                 }
                 HStack{
                     Text("Fat")
@@ -73,6 +76,9 @@ struct FoodLogView: View {
                     ProgressView(value: 10, total: 100)
                         .frame(width: 100)
                         .tint(strawberry)
+                    Text("\(userViewModel.nutrition.fat!)")
+                        .font(Font.custom("DMSans-Medium", size: 25))
+                        .foregroundColor(Color("AnimGreen"))
                 }
                 HStack{
                     Text("Protein")
@@ -83,8 +89,44 @@ struct FoodLogView: View {
                     ProgressView(value: 10, total: 100)
                         .frame(width: 100)
                         .tint(lime)
+                    Text("\(userViewModel.nutrition.protein!)")
+                        .font(Font.custom("DMSans-Medium", size: 25))
+                        .foregroundColor(Color("AnimGreen"))
+                    
                 }
             }
+//            VStack {
+//                HStack{
+//                    Text("Carbs")
+//                        .font(Font.custom("DMSans-Medium", size: 25))
+//                        .foregroundColor(Color("AnimGreen"))
+//                        .lineLimit(1)
+//                        .frame(width: 100)
+//                    ProgressView(value: userViewModel.nutrition.carbs, total: userViewModel.nutrition.totalCarbs)
+//                        .frame(width: 100)
+//                        .tint(ice)
+//                }
+//                HStack{
+//                    Text("Fat")
+//                        .font(Font.custom("DMSans-Medium", size: 25))
+//                        .foregroundColor(Color("AnimGreen"))
+//                        .lineLimit(1)
+//                        .frame(width: 100)
+//                    ProgressView(value: userViewModel.nutrition.fat, total: userViewModel.nutrition.totalFat)
+//                        .frame(width: 100)
+//                        .tint(strawberry)
+//                }
+//                HStack{
+//                    Text("Protein")
+//                        .font(Font.custom("DMSans-Medium", size: 25))
+//                        .foregroundColor(Color("AnimGreen"))
+//                        .lineLimit(1)
+//                        .frame(width: 100)
+//                    ProgressView(value: userViewModel.nutrition.protein, total: userViewModel.nutrition.totalProtein)
+//                        .frame(width: 100)
+//                        .tint(lime)
+//                }
+//            }
         }
     }
     
