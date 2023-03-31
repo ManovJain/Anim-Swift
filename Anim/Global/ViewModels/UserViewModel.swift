@@ -21,7 +21,7 @@ final class UserViewModel: ObservableObject {
     }
     
     @Published var user: User = User(uid: "", username: "", email: "", productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default")
-    @Published var nutrition: Nutrition = Nutrition(nutritionSet: false, calories: 0, carbs: 0, fat: 0, protein: 0, totalCalories: 0, totalCarbs: 0, totalFat: 0, totalProtein: 0)
+    @Published var nutrition: Nutrition = Nutrition(nutritionSet: false, calories: 0, carbs: 0, fat: 0, protein: 0, totalCalories: 100, totalCarbs: 0, totalFat: 0, totalProtein: 0)
     @Published var nonce = ""
     @Published var state: SignInState = .signedOut
     @Published var test = "not changed"
