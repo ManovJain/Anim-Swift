@@ -12,6 +12,7 @@ struct UserView: View {
     @EnvironmentObject var userViewModel: UserViewModel
     
     @State var display: String
+    @State var nutritionDisplay: String = "foodLog"
     
     var body: some View {
         if((userViewModel.user.username) != ""){
@@ -64,8 +65,16 @@ struct UserView: View {
                     }
                 }
                 else if display == "nutrition" {
-                    //FoodLogView()
-                    FoodLogInputView()
+                    if nutritionDisplay == "foodLog" {
+                        Button("Input", action: {nutritionDisplay = "input"})
+                            .buttonStyle(MenuButtonStyle())
+                        FoodLogView()
+                    }
+                    else {
+                        Button("Food Log", action: {nutritionDisplay = "foodLog"})
+                            .buttonStyle(MenuButtonStyle())
+                        FoodLogInputView()
+                    }
                 }
                 else {
                     Button(){

@@ -15,19 +15,8 @@ struct ListsView: View {
     var body: some View {
         HStack(){
             ForEach(favorites, id: \.self) { favorite in
-                Button(){
-                    selection = favorite
-                } label: {
-                    Text(favorite)
-                        .font(Font.custom("DMSans-Medium", size: 12))
-                        .foregroundColor(.white)
-                        .fontWeight(.heavy)
-                        .lineLimit(1)
-                }
-                .padding()
-                .background(Color("AnimGreen"))
-                .cornerRadius(15)
-                .clipShape(Capsule())
+                Button(favorite.capitalized, action: {selection = favorite})
+                    .buttonStyle(MenuButtonStyle())
             }
         }
         Spacer()
