@@ -42,93 +42,93 @@ struct UserView: View {
             
             //DISPLAY NAVIGATION
             
-//            HStack(){
-//                ForEach(displays, id: \.self) { displayOption in
-//                    Button(displayOption, action: {display = displayOption})
-//                        .buttonStyle(MenuButtonStyle())
-//                }
-//            }
-////            Spacer()
-//            switch display {
-//            case "Info":
-//                Button(){
-//
-//                } label: {
-//                    if userViewModel.user.email != ""{
-//                        Text(userViewModel.user.email!)
-//                            .font(Font.custom("DMSans-Medium", size: 15))
-//                            .foregroundColor(Color("background"))
-//                            .lineLimit(1)
-//                    } else {
-//                        Text("No email shared")
-//                            .font(Font.custom("DMSans-Medium", size: 15))
-//                            .foregroundColor(Color("background"))
-//                            .lineLimit(1)
-//                    }
-//                }
-//                .padding()
-//                .background(Color("AnimGreen"))
-//                .cornerRadius(15)
-//                .clipShape(Capsule())
-//                Spacer()
-//                    .frame(height: 20)
-//                Button(){
-//
-//                } label: {
-//                    Text("Products Viewed: \(userViewModel.user.productsViewed!.count)")
-//                        .font(Font.custom("DMSans-Medium", size: 15))
-//                        .foregroundColor(Color("background"))
-//                        .lineLimit(1)
-//                }
-//                .padding()
-//                .background(Color("AnimGreen"))
-//                .cornerRadius(15)
-//                .clipShape(Capsule())
-//                Spacer()
-//                    .frame(height: 20)
-//                Button(){
-//
-//                } label: {
-//                    Text("Products Scanned: \(userViewModel.user.productsScanned!)")
-//                        .font(Font.custom("DMSans-Medium", size: 15))
-//                        .foregroundColor(Color("background"))
-//                        .lineLimit(1)
-//                }
-//                .padding()
-//                .background(Color("AnimGreen"))
-//                .cornerRadius(15)
-//                .clipShape(Capsule())
-//                Spacer()
-//                    .frame(height: 20)
-//                Button(){
-//
-//                } label: {
-//                    Text("Products Searched: \(userViewModel.user.productsFromSearch!)")
-//                        .font(Font.custom("DMSans-Medium", size: 15))
-//                        .foregroundColor(Color("background"))
-//                        .lineLimit(1)
-//                }
-//                .padding()
-//                .background(Color("AnimGreen"))
-//                .cornerRadius(15)
-//                .clipShape(Capsule())
-//            case "Filter":
-//                UserFilterModalView()
-//            case "Nutrition":
-//                if nutritionDisplay == "foodLog" {
-//                    Button("Input", action: {nutritionDisplay = "input"})
-//                        .buttonStyle(MenuButtonStyle())
-//                    FoodLogView()
-//                }
-//                else {
-//                    Button("Food Log", action: {nutritionDisplay = "foodLog"})
-//                        .buttonStyle(MenuButtonStyle())
-//                    FoodLogInputView()
-//                }
-//            default:
-//                Favorites()
-//            }
-//        }
+            //            HStack(){
+            //                ForEach(displays, id: \.self) { displayOption in
+            //                    Button(displayOption, action: {display = displayOption})
+            //                        .buttonStyle(MenuButtonStyle())
+            //                }
+            //            }
+            ////            Spacer()
+            //            switch display {
+            //            case "Info":
+            //                Button(){
+            //
+            //                } label: {
+            //                    if userViewModel.user.email != ""{
+            //                        Text(userViewModel.user.email!)
+            //                            .font(Font.custom("DMSans-Medium", size: 15))
+            //                            .foregroundColor(Color("background"))
+            //                            .lineLimit(1)
+            //                    } else {
+            //                        Text("No email shared")
+            //                            .font(Font.custom("DMSans-Medium", size: 15))
+            //                            .foregroundColor(Color("background"))
+            //                            .lineLimit(1)
+            //                    }
+            //                }
+            //                .padding()
+            //                .background(Color("AnimGreen"))
+            //                .cornerRadius(15)
+            //                .clipShape(Capsule())
+            //                Spacer()
+            //                    .frame(height: 20)
+            //                Button(){
+            //
+            //                } label: {
+            //                    Text("Products Viewed: \(userViewModel.user.productsViewed!.count)")
+            //                        .font(Font.custom("DMSans-Medium", size: 15))
+            //                        .foregroundColor(Color("background"))
+            //                        .lineLimit(1)
+            //                }
+            //                .padding()
+            //                .background(Color("AnimGreen"))
+            //                .cornerRadius(15)
+            //                .clipShape(Capsule())
+            //                Spacer()
+            //                    .frame(height: 20)
+            //                Button(){
+            //
+            //                } label: {
+            //                    Text("Products Scanned: \(userViewModel.user.productsScanned!)")
+            //                        .font(Font.custom("DMSans-Medium", size: 15))
+            //                        .foregroundColor(Color("background"))
+            //                        .lineLimit(1)
+            //                }
+            //                .padding()
+            //                .background(Color("AnimGreen"))
+            //                .cornerRadius(15)
+            //                .clipShape(Capsule())
+            //                Spacer()
+            //                    .frame(height: 20)
+            //                Button(){
+            //
+            //                } label: {
+            //                    Text("Products Searched: \(userViewModel.user.productsFromSearch!)")
+            //                        .font(Font.custom("DMSans-Medium", size: 15))
+            //                        .foregroundColor(Color("background"))
+            //                        .lineLimit(1)
+            //                }
+            //                .padding()
+            //                .background(Color("AnimGreen"))
+            //                .cornerRadius(15)
+            //                .clipShape(Capsule())
+            //            case "Filter":
+            //                UserFilterModalView()
+            //            case "Nutrition":
+            //                if nutritionDisplay == "foodLog" {
+            //                    Button("Input", action: {nutritionDisplay = "input"})
+            //                        .buttonStyle(MenuButtonStyle())
+            //                    FoodLogView()
+            //                }
+            //                else {
+            //                    Button("Food Log", action: {nutritionDisplay = "foodLog"})
+            //                        .buttonStyle(MenuButtonStyle())
+            //                    FoodLogInputView()
+            //                }
+            //            default:
+            //                Favorites()
+            //            }
+            //        }
             
             
             
@@ -139,7 +139,7 @@ struct UserView: View {
                     Spacer()
                     Button("Info", action: {display = "info"})
                         .buttonStyle(MenuButtonStyle())
-                    .buttonStyle(MenuButtonStyle())
+                        .buttonStyle(MenuButtonStyle())
                     Button("Filter", action: {display = "filter"})
                         .buttonStyle(MenuButtonStyle())
                     Button("Nutrition", action: {display = "nutrition"})
@@ -149,7 +149,7 @@ struct UserView: View {
             }
             Spacer()
                 .frame(height: 40)
-
+            
             ScrollView(.vertical, showsIndicators: false) {
                 if display == "filter" {
                     Section {
@@ -173,7 +173,7 @@ struct UserView: View {
                 }
                 else {
                     Button(){
-
+                        
                     } label: {
                         if userViewModel.user.email != ""{
                             Text(userViewModel.user.email!)
@@ -194,7 +194,7 @@ struct UserView: View {
                     Spacer()
                         .frame(height: 20)
                     Button(){
-
+                        
                     } label: {
                         Text("Products Viewed: \(userViewModel.user.productsViewed!.count)")
                             .font(Font.custom("DMSans-Medium", size: 15))
@@ -208,7 +208,7 @@ struct UserView: View {
                     Spacer()
                         .frame(height: 20)
                     Button(){
-
+                        
                     } label: {
                         Text("Products Scanned: \(userViewModel.user.productsScanned!)")
                             .font(Font.custom("DMSans-Medium", size: 15))
@@ -222,7 +222,7 @@ struct UserView: View {
                     Spacer()
                         .frame(height: 20)
                     Button(){
-
+                        
                     } label: {
                         Text("Products Searched: \(userViewModel.user.productsFromSearch!)")
                             .font(Font.custom("DMSans-Medium", size: 15))
@@ -234,7 +234,7 @@ struct UserView: View {
                     .cornerRadius(15)
                     .clipShape(Capsule())
                 }
-
+                
             }
         }
         .padding()

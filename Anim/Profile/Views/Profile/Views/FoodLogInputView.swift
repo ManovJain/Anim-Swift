@@ -38,17 +38,8 @@ struct FoodLogInputView: View {
                 .foregroundColor(Color("AnimGreen"))
             TextField("Daily Protein Goal", value: ($userViewModel.nutrition.totalProtein), format: .number)
                 .textFieldStyle(FoogLogInputStyle())
-//            Button("clickMe", action: {print(userViewModel.nutrition.totalCalories)})
-//                .buttonStyle(MenuButtonStyle())
         }
     }
-    
-//    func setNutritionTotals(calories: Float, carbs: Float, fat: Float, protein: Float) {
-//        userViewModel.nutrition.totalCalories = calories
-//        userViewModel.nutrition.totalCarbs = carbs
-//        userViewModel.nutrition.totalFat = fat
-//        userViewModel.nutrition.totalProtein = protein
-//    }
     
 }
 
@@ -56,7 +47,7 @@ struct FoodLogInputView: View {
 
 struct FoogLogInputStyle: TextFieldStyle {
     func _body(configuration: TextField<Self._Label>) -> some View {
-            configuration
+        configuration
             .font(Font.custom("DMSans-Medium", size: 15))
             .foregroundColor(Color("AnimGreen"))
             .lineLimit(1)

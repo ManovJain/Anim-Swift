@@ -14,6 +14,8 @@ struct RingView: View {
     @State var drawingStroke = false;
     var color = Color("AnimGreen")
     
+    let strawberry = Color(#colorLiteral(red: 1, green: 0.1857388616, blue: 0.5733950138, alpha: 1))
+    
     let animation = Animation
         .easeOut(duration: 3)
         .delay(0.5)
@@ -26,7 +28,6 @@ struct RingView: View {
                 // Foreground ring
                 Circle()
                     .trim(from: 0, to: drawingStroke ? CGFloat(calPercentage) : 0)
-                //                    .trim(from: 0, to: drawingStroke ? 0.5 : 0)
                     .stroke(color.gradient,
                             style: StrokeStyle(lineWidth: 16, lineCap: .round))
             }
@@ -39,9 +40,3 @@ struct RingView: View {
             .animation(animation, value: drawingStroke)
     }
 }
-
-//struct RingView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        RingView()
-//    }
-//}

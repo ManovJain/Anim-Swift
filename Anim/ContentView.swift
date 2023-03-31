@@ -17,7 +17,7 @@ struct ContentView: View {
     @EnvironmentObject var userViewModel: UserViewModel
     
     @AppStorage("darkMode") var darkMode = false
-
+    
     var fireStoreRequests = FirestoreRequests()
     
     @State var openedApp: Bool = false
@@ -102,9 +102,9 @@ struct ContentView: View {
         .background(Color("background"))
         .onChange(of: scenePhase) { newPhase in
             if newPhase == .background {
-                            fireStoreRequests.updateUser(uid: userViewModel.user.uid!, user: userViewModel.user)
-                        }
-                    }
+                fireStoreRequests.updateUser(uid: userViewModel.user.uid!, user: userViewModel.user)
+            }
+        }
         .overlay(openedApp ? nil : InstructionSlider(openedApp: $openedApp), alignment: .center)
         .overlay(openedApp ? PillTabBar() : nil, alignment: .bottom)
         

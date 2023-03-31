@@ -26,7 +26,7 @@ struct ListsView: View {
         case "fridge":
             Fridge()
         case "allergens":
-                AllergensView()
+            AllergensView()
         default:
             Favorites()
         }
