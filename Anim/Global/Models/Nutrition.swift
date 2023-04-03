@@ -9,6 +9,7 @@ import Foundation
 
 struct Nutrition: Codable, Hashable {
     
+    let uid: String?
     var nutritionSet: Bool?
     var calories: Int?
     var carbs: Int?
