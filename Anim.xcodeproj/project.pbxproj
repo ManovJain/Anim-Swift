@@ -95,6 +95,7 @@
 		88DBFEEA29C4E716007C6E93 /* Fridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBFEE929C4E716007C6E93 /* Fridge.swift */; };
 		88DBFEEC29C4E9FE007C6E93 /* CameraMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBFEEB29C4E9FE007C6E93 /* CameraMenu.swift */; };
 		88E0412A298DD02800E4C823 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E04129298DD02800E4C823 /* Notifications.swift */; };
+		88FB08DD29DC999500596AF5 /* Search2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FB08DC29DC999500596AF5 /* Search2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -181,6 +182,7 @@
 		88DBFEE929C4E716007C6E93 /* Fridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fridge.swift; sourceTree = "<group>"; };
 		88DBFEEB29C4E9FE007C6E93 /* CameraMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraMenu.swift; sourceTree = "<group>"; };
 		88E04129298DD02800E4C823 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		88FB08DC29DC999500596AF5 /* Search2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -462,6 +464,7 @@
 				88C76D4029AC55F000289E57 /* GradeButton.swift */,
 				88C76D4229AC6F6B00289E57 /* GeoButton.swift */,
 				884490EB29B3EDE200C7BA07 /* AllergenButton.swift */,
+				88FB08DC29DC999500596AF5 /* Search2.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -716,6 +719,7 @@
 				882D552D29D7556300487B46 /* RingView.swift in Sources */,
 				43E4B7922984547300538495 /* SearchResultButton.swift in Sources */,
 				884490EC29B3EDE200C7BA07 /* AllergenButton.swift in Sources */,
+				88FB08DD29DC999500596AF5 /* Search2.swift in Sources */,
 				43E4B777297F18C800538495 /* InstructionSlider.swift in Sources */,
 				4387FE2329A7D470005C2464 /* AnimScroller.swift in Sources */,
 				8864360E2994AD4100FB28D4 /* FavoritesButton.swift in Sources */,
