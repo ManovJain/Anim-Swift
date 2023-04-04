@@ -21,6 +21,7 @@ final class UserViewModel: ObservableObject {
     }
     
     @Published var user: User = User(uid: "", username: "", email: "", productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default")
+    @Published var nutrition: Nutrition = Nutrition(uid: "", nutritionSet: false, calories: 0, carbs: 0, fat: 0, protein: 0, totalCalories: 1000, totalCarbs: 100, totalFat: 100, totalProtein: 100)
     @Published var nonce = ""
     @Published var state: SignInState = .signedOut
     @Published var test = "not changed"
@@ -86,74 +87,74 @@ final class UserViewModel: ObservableObject {
     
     //GOOGLE SIGN IN
     func signIn(completion: @escaping (User?) -> ()) {
-            // 1
-            if GIDSignIn.sharedInstance.hasPreviousSignIn() && Auth.auth().currentUser != nil {
-                GIDSignIn.sharedInstance.restorePreviousSignIn { [unowned self] user, error in
-                    authenticateUser(for: user, with: error) {
-                        firestoreRequests.getUser(Auth.auth().currentUser!.uid) { data in
-                            completion(data!)
-                        }
+        // 1
+        if GIDSignIn.sharedInstance.hasPreviousSignIn() && Auth.auth().currentUser != nil {
+            GIDSignIn.sharedInstance.restorePreviousSignIn { [unowned self] user, error in
+                authenticateUser(for: user, with: error) {
+                    firestoreRequests.getUser(Auth.auth().currentUser!.uid) { data in
+                        completion(data!)
                     }
                 }
-            } else {
-                // 2
-                guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-                
-                // 3
-                let configuration = GIDConfiguration(clientID: clientID)
-                
-                // 4
-                guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-                guard let rootViewController = windowScene.windows.first?.rootViewController else { return }
-                
-                // 5
-                GIDSignIn.sharedInstance.signIn(with: configuration, presenting: rootViewController) { [unowned self] user, error in
-                    authenticateUser(for: user, with: error) {
-                        
-                        let db = Firestore.firestore()
-                        
-                        let docRef = db.collection("users").document(Auth.auth().currentUser!.uid)
-                        
-                        docRef.getDocument { (document, error) in
-                            if let document = document, document.exists {
-                                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-                                self.firestoreRequests.getUser(Auth.auth().currentUser!.uid) { data in
-                                    completion(data!)
-                                }
-                            } else {
-                                self.firestoreRequests.createUser(uid: Auth.auth().currentUser!.uid, username: (user?.profile?.name) ?? "", email: user?.profile?.email ?? "") { data in
-                                    completion(data!)
-                                }
+            }
+        } else {
+            // 2
+            guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+            
+            // 3
+            let configuration = GIDConfiguration(clientID: clientID)
+            
+            // 4
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+            guard let rootViewController = windowScene.windows.first?.rootViewController else { return }
+            
+            // 5
+            GIDSignIn.sharedInstance.signIn(with: configuration, presenting: rootViewController) { [unowned self] user, error in
+                authenticateUser(for: user, with: error) {
+                    
+                    let db = Firestore.firestore()
+                    
+                    let docRef = db.collection("users").document(Auth.auth().currentUser!.uid)
+                    
+                    docRef.getDocument { (document, error) in
+                        if let document = document, document.exists {
+                            let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                            self.firestoreRequests.getUser(Auth.auth().currentUser!.uid) { data in
+                                completion(data!)
+                            }
+                        } else {
+                            self.firestoreRequests.createUser(uid: Auth.auth().currentUser!.uid, username: (user?.profile?.name) ?? "", email: user?.profile?.email ?? "") { data in
+                                completion(data!)
                             }
                         }
                     }
                 }
             }
         }
+    }
+    
+    private func authenticateUser(for user: GIDGoogleUser?, with error: Error?, completion: @escaping () -> ()) {
+        // 1
+        if let error = error {
+            print(error.localizedDescription)
+            return
+        }
         
-        private func authenticateUser(for user: GIDGoogleUser?, with error: Error?, completion: @escaping () -> ()) {
-            // 1
+        // 2
+        guard let authentication = user?.authentication, let idToken = authentication.idToken else { return }
+        
+        let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authentication.accessToken)
+        
+        // 3
+        Auth.auth().signIn(with: credential) { [unowned self] (_, error) in
             if let error = error {
                 print(error.localizedDescription)
-                return
-            }
-            
-            // 2
-            guard let authentication = user?.authentication, let idToken = authentication.idToken else { return }
-            
-            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authentication.accessToken)
-            
-            // 3
-            Auth.auth().signIn(with: credential) { [unowned self] (_, error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    defaults.set(true, forKey: "signedIn")
-                    completion()
-                    self.state = .signedIn
-                }
+            } else {
+                defaults.set(true, forKey: "signedIn")
+                completion()
+                self.state = .signedIn
             }
         }
+    }
     
     func signOut() {
         
@@ -171,7 +172,7 @@ final class UserViewModel: ObservableObject {
     
     
     func deleteAccount() {
-
+        
         Auth.auth().currentUser?.delete() { error in
             if let error = error {
                 print(error)
