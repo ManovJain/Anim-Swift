@@ -34,4 +34,9 @@ struct User: Codable, Hashable {
     var geoPreference: String?
     var gradePreference: String?
     var numNutrimentsReported: Int?
+    var followers: [String]?
+    var folowing: [String]?
+    var likedPosts: [String]?
+    var isPublic: Bool?
+    var hasSetUsername: Bool?
 }

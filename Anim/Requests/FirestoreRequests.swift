@@ -12,6 +12,8 @@ import Firebase
 
 class FirestoreRequests {
     
+    //MARK: User Stuff
+    
     func getUser(_ userID: String, completion: @escaping (User?) -> ()) {
         
         let db = Firestore.firestore()
@@ -37,7 +39,12 @@ class FirestoreRequests {
                 let geoPreference = document.get("geoPreference") as! String
                 let gradePreference = document.get("gradePreference") as! String
                 let numNutrimentsReported = document.get("numNutrimentsReported") as! Int
-                let foundUser = User(uid: uid, username: username, email: email, productsFromSearch: productsFromSearch, productsScanned: productsScanned, productsViewed: productsViewed, likes: likes, dislikes: dislikes, favorites: favorites, allergens: allergens, recentSearches: recentSearches, anim: anim, earnedAnims: earnedAnims, fridgeItems: fridgeItems, geoPreference: geoPreference, gradePreference: gradePreference, numNutrimentsReported: numNutrimentsReported)
+                let followers = document.get("followers") as! [String]
+                let following = document.get("following") as! [String]
+                let likedPosts = document.get("likedPosts") as! [String]
+                let isPublic = document.get("isPublic") as! Bool
+                let hasSetUsername = document.get("hasSetUsername") as! Bool
+                let foundUser = User(uid: uid, username: username, email: email, productsFromSearch: productsFromSearch, productsScanned: productsScanned, productsViewed: productsViewed, likes: likes, dislikes: dislikes, favorites: favorites, allergens: allergens, recentSearches: recentSearches, anim: anim, earnedAnims: earnedAnims, fridgeItems: fridgeItems, geoPreference: geoPreference, gradePreference: gradePreference, numNutrimentsReported: numNutrimentsReported, followers: followers, folowing: following, likedPosts: likedPosts, isPublic: isPublic, hasSetUsername: hasSetUsername)
                 completion(foundUser)
             }
         }
@@ -50,30 +57,66 @@ class FirestoreRequests {
         let user = db.collection("users").document(uid)
         
         user.setData(["uid": uid,
-                      "username": username,
+                      "username": "",
                       "email": email,
                       "productsFromSearch": 0,
                       "productsScanned": 0,
-                      "productsViewed": [],
-                      "likes": [],
-                      "dislikes": [],
-                      "favorites": [],
-                      "allergens": [],
-                      "recentSearches": [],
+                      "productsViewed": [String](),
+                      "likes": [String](),
+                      "dislikes": [String](),
+                      "favorites": [String](),
+                      "allergens": [String](),
+                      "recentSearches": [String](),
                       "anim": "default",
-                      "earnedAnims": [],
-                      "fridgeItems": [],
+                      "earnedAnims": [String](),
+                      "fridgeItems": [String](),
                       "geoPreference": "us",
                       "gradePreference": "",
-                      "numNutrimentsReported": 0]) { error in
+                      "numNutrimentsReported": 0,
+                      "followers" : [String](),
+                      "following" : [String](),
+                      "likedPosts" : [String](),
+                      "isPublic" : false,
+                      "hasSetUsername" : false
+                     ]) { error in
             if let error = error {
                 print("Error writing document: \(error)")
             }
             else {
-                completion(User(uid: uid, username: username, email: email, productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default", earnedAnims: [], fridgeItems: [], geoPreference: "us", gradePreference: "", numNutrimentsReported: 0))
+                completion(User(uid: uid, username: username, email: email, productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default", earnedAnims: [], fridgeItems: [], geoPreference: "us", gradePreference: "", numNutrimentsReported: 0, followers: [], folowing: [], likedPosts: [], isPublic: false, hasSetUsername: false))
             }
         }
     }
+    
+    
+    func updateUser(uid: String, user: User) {
+        let db = Firestore.firestore()
+        
+        let firestoreUser = db.collection("users").document(uid)
+        
+        firestoreUser.updateData([
+            "productsFromSearch": user.productsFromSearch,
+            "productsScanned": user.productsScanned,
+            "productsViewed": user.productsViewed,
+            "likes": user.likes,
+            "dislikes": user.dislikes,
+            "favorites": user.favorites,
+            "allergens": user.allergens,
+            "recentSearches": user.recentSearches,
+            "anim": user.anim,
+            "earnedAnims": user.earnedAnims,
+            "fridgeItems": user.fridgeItems,
+            "geoPreference": user.geoPreference,
+            "gradePreference": user.gradePreference,
+            "numNutrimentsReported": user.numNutrimentsReported,
+            "followers" : user.followers,
+            "following" : user.folowing,
+            "likedPosts" : user.likedPosts,
+            "isPublic" : user.isPublic,
+            "hasSetUsername": user.hasSetUsername
+        ])
+    }
+    
     
     func deleteAccount(uid: String) {
         let db = Firestore.firestore()
@@ -98,6 +141,8 @@ class FirestoreRequests {
             "anim": icon
         ])
     }
+    
+    //MARK: Product Stuff
     
     func addProductScanned(uid: String) {
         
@@ -132,6 +177,7 @@ class FirestoreRequests {
         ])
     }
     
+    
     func addBarcodeToMissing(array: String, barcode: String) {
         
         let db = Firestore.firestore()
@@ -157,32 +203,9 @@ class FirestoreRequests {
             array: FieldValue.arrayRemove([barcode])
         ])
     }
+
     
-    func updateUser(uid: String, user: User) {
-        let db = Firestore.firestore()
-        
-        let firestoreUser = db.collection("users").document(uid)
-        
-        firestoreUser.updateData([
-            "productsFromSearch": user.productsFromSearch,
-            "productsScanned": user.productsScanned,
-            "productsViewed": user.productsViewed,
-            "likes": user.likes,
-            "dislikes": user.dislikes,
-            "favorites": user.favorites,
-            "allergens": user.allergens,
-            "recentSearches": user.recentSearches,
-            "anim": user.anim,
-            "earnedAnims": user.earnedAnims,
-            "fridgeItems": user.fridgeItems,
-            "geoPreference": user.geoPreference,
-            "gradePreference": user.gradePreference,
-            "numNutrimentsReported": user.numNutrimentsReported
-        ])
-    }
-    
-    
-    
+    //MARK: addField function
     func addField(field: String) {
         let db = Firestore.firestore()
         db.collection("users")
@@ -193,7 +216,7 @@ class FirestoreRequests {
                     for document in querySnapshot!.documents {
                         let doc = db.collection("users").document(document.documentID)
                         doc.updateData([
-                            field: 0
+                            field: false
                         ]) { err in
                             if let err = err {
                                 print("Error updating document: \(err)")
@@ -206,6 +229,8 @@ class FirestoreRequests {
                 }
             }
     }
+    
+    //MARK: Creating Database FUnction
     
     func addMissingNutritionInfo(id: String, calories: Int, carbs: Float, cholesterol: Float, fat: Float, fiber: Float, protein: Float, sat_fat: Float, sodium: Float, sugar: Float, trans_fat: Float) {
         
@@ -345,7 +370,8 @@ class FirestoreRequests {
                     "product_name_en": addProduct.product_name_en ?? "none",
                     "serving_size": addProduct.serving_size ?? "none",
                     "traces_hierarchy": addProduct.traces_hierarchy ?? [],
-                    "vitamins_tags": addProduct.vitamins_tags ?? []
+                    "vitamins_tags": addProduct.vitamins_tags ?? [],
+                    "generic_name" : "none"
                 ]) { error in
                     if let error = error {
                         print("Error writing document: \(error)")
@@ -456,6 +482,175 @@ class FirestoreRequests {
                         print("Error writing document: \(error)")
                     }
                 }
+            }
+        }
+    }
+    
+    //MARK: Social Stuff
+    
+    func createPost(userID: String, postID: String, contentType: String, content: String, caption: String, datePosted: Date, completion: @escaping (Post?) -> ()) {
+        
+        let db = Firestore.firestore()
+        
+        let user = db.collection("Posts").document(postID)
+        
+        user.setData(["userID": userID,
+                      "postID": postID,
+                      "contentType": contentType,
+                      "content": content,
+                      "caption": caption,
+                      "datePosted": datePosted,
+                      "likedBy": [String](),
+                      "numLikes": 0,
+                     ]) { error in
+            if let error = error {
+                print("Error writing document: \(error)")
+            }
+            else {
+                completion(Post(id: postID, userID: userID, contentType: contentType, content: content, caption: caption, datePosted: datePosted, numLikes: 0, likedBy: []))
+            }
+        }
+    }
+    
+    func deletePost(postID: String) {
+        let db = Firestore.firestore()
+        
+        db.collection("Posts").document(postID).delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            }
+            else {
+                print("Document successfully removed!")
+            }
+        }
+    }
+    
+    func createComment(userID: String, postID: String, commentID: String, content: String, datePosted: Date, completion: @escaping (Comment?) -> ()) {
+        
+        let db = Firestore.firestore()
+        
+        let user = db.collection("Posts").document(postID)
+        
+        user.setData(["userID": userID,
+                      "postID": postID,
+                      "commentID" : commentID,
+                      "content": content,
+                      "datePosted": datePosted,
+                     ]) { error in
+            if let error = error {
+                print("Error writing document: \(error)")
+            }
+            else {
+                completion(Comment(id: commentID, postID: postID, userID: userID, content: content, datePosted: datePosted))
+            }
+        }
+    }
+    
+    func deleteComment(commentID: String) {
+        let db = Firestore.firestore()
+        
+        db.collection("Comments").document(commentID).delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            }
+            else {
+                print("Document successfully removed!")
+            }
+        }
+    }
+    
+    
+    func likePost(postID: String, userID: String) {
+        
+        let db = Firestore.firestore()
+        
+        let post = db.collection("Posts").document(postID)
+        
+        post.updateData([
+            "numLikes": FieldValue.increment(Int64(1))
+        ])
+        
+        post.updateData([
+            "likedBy": FieldValue.arrayUnion([userID])
+        ])
+        
+    }
+    
+    func unLikePost(postID: String, userID: String) {
+        
+        let db = Firestore.firestore()
+        
+        let post = db.collection("Posts").document(postID)
+        
+        post.updateData([
+            "numLikes": FieldValue.increment(Int64(-1))
+        ])
+        
+        post.updateData([
+            "likedBy": FieldValue.arrayRemove([userID])
+        ])
+        
+    }
+    
+    func getAllPosts(completion: @escaping ([Post]?) -> ()) {
+        let db = Firestore.firestore()
+        var allPosts = [Post]()
+        db.collection("Posts")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let doc = db.collection("Posts").document(document.documentID)
+                        let id = document.get("postID") as! String
+                        let userID = document.get("userID") as! String
+                        let contentType = document.get("contentType") as! String
+                        let content = document.get("content") as! String
+                        let caption = document.get("caption") as! String
+                        let datePosted = document.get("datePosted") as! Timestamp
+                        let numLikes = document.get("numLikes") as! Int
+                        let likedBy = document.get("likedBy") as! [String]
+                        let tempPost = Post(id: id, userID: userID, contentType: contentType, content: content, caption: caption, datePosted: datePosted.dateValue(), numLikes: numLikes, likedBy: likedBy)
+                        allPosts.append(tempPost)
+                    }
+                    completion(allPosts)
+                }
+            }
+    }
+    
+    
+    func addUsernameToArray(username: String) {
+        
+        let db = Firestore.firestore()
+        
+        let usernames = db.collection("usernames").document("7hicMTCyRJA7UlCKDXVJ")
+        
+        usernames.updateData([
+            "usernames": FieldValue.arrayUnion([username])
+        ])
+        
+    }
+    
+    
+    func checkUsername(username: String, completion: @escaping (Bool) -> ()) {
+        
+        let db = Firestore.firestore()
+        
+        let usernames = db.collection("usernames").document("7hicMTCyRJA7UlCKDXVJ")
+        
+        var foundName = false
+        
+        usernames.getDocument { (document, error) in
+            if let document = document {
+                if let names = document.get("usernames") as? [String] {
+                    if names.contains(username) {
+                        completion(true)
+                    }
+                    else {
+                        completion(false)
+                    }
+                }
+                
             }
         }
     }

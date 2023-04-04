@@ -84,6 +84,28 @@ struct ContentView: View {
                         }
                     )
                     .transition(.move(edge: navModel.exploreEdge))
+                
+            case .social:
+                ExplorePage()
+                    .gesture(DragGesture()
+                        .onEnded { value in
+                            let direction = detectDirection(value: value)
+                            if direction == .left {
+                                navModel.socialEdge = Edge.trailing
+                                withAnimation  {
+                                    navModel.currentPage.previous()
+                                }
+                            }
+                            if direction == .right {
+                                navModel.socialEdge = Edge.leading
+                                withAnimation {
+                                    navModel.currentPage.next()
+                                }
+                            }
+                        }
+                    )
+                    .transition(.move(edge: navModel.socialEdge))
+                
             case .profile:
                 ProfilePage(darkMode: $darkMode)
                     .gesture(DragGesture()
@@ -106,7 +128,8 @@ struct ContentView: View {
                         }
                     }
         .overlay(openedApp ? nil : InstructionSlider(openedApp: $openedApp), alignment: .center)
-        .overlay(openedApp ? PillTabBar() : nil, alignment: .bottom)
+        .overlay((openedApp ? PillTabBar() : nil)
+            .position(x: UIScreen.screenWidth/2, y: UIScreen.screenHeight - 100))
         
         .preferredColorScheme(darkMode ? .dark : .light)
         
@@ -117,7 +140,7 @@ struct ContentView: View {
             userViewModel.user.anim = defaults.string(forKey: "anim")
             
             //get user stored in default user if signedIn before is true
-            
+
             if defaults.bool(forKey: "signedIn") {
                 if defaults.string(forKey: "uid") != nil {
                     fireStoreRequests.getUser(defaults.string(forKey: "uid")!) { data in
