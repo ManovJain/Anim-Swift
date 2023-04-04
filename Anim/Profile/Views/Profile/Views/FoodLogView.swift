@@ -93,6 +93,11 @@ struct FoodLogView: View {
             }
         }
     }
+//        .onAppear(){
+//            if(userViewModel.nutrition){
+//                userViewModel.nutrition = FirestoreRequests.getNutrition(userViewModel.user.uid)
+//            }
+//        }
 }
 
 struct FoodLogView_Previews: PreviewProvider {
