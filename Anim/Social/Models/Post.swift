@@ -19,6 +19,7 @@ struct Post: Codable, Hashable {
     
     let id: String?
     var userID: String?
+    var username: String?
     let contentType: String?
     var content: String?
     var caption: String?

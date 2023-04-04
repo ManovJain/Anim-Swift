@@ -488,7 +488,7 @@ class FirestoreRequests {
     
     //MARK: Social Stuff
     
-    func createPost(userID: String, postID: String, contentType: String, content: String, caption: String, datePosted: Date, completion: @escaping (Post?) -> ()) {
+    func createPost(userID: String, postID: String, contentType: String, content: String, caption: String, datePosted: Date, username: String, completion: @escaping (Post?) -> ()) {
         
         let db = Firestore.firestore()
         
@@ -501,13 +501,14 @@ class FirestoreRequests {
                       "caption": caption,
                       "datePosted": datePosted,
                       "likedBy": [String](),
+                      "username" : username,
                       "numLikes": 0,
                      ]) { error in
             if let error = error {
                 print("Error writing document: \(error)")
             }
             else {
-                completion(Post(id: postID, userID: userID, contentType: contentType, content: content, caption: caption, datePosted: datePosted, numLikes: 0, likedBy: []))
+                completion(Post(id: postID, userID: userID, username: username, contentType: contentType, content: content, caption: caption, datePosted: datePosted, numLikes: 0, likedBy: []))
             }
         }
     }
@@ -525,23 +526,24 @@ class FirestoreRequests {
         }
     }
     
-    func createComment(userID: String, postID: String, commentID: String, content: String, datePosted: Date, completion: @escaping (Comment?) -> ()) {
+    func createComment(userID: String, postID: String, commentID: String, content: String, datePosted: Date, username: String, completion: @escaping (Comment?) -> ()) {
         
         let db = Firestore.firestore()
         
-        let user = db.collection("Posts").document(postID)
+        let user = db.collection("Comments").document(postID)
         
         user.setData(["userID": userID,
                       "postID": postID,
                       "commentID" : commentID,
                       "content": content,
                       "datePosted": datePosted,
+                      "username" : username
                      ]) { error in
             if let error = error {
                 print("Error writing document: \(error)")
             }
             else {
-                completion(Comment(id: commentID, postID: postID, userID: userID, content: content, datePosted: datePosted))
+                completion(Comment(id: commentID, postID: postID, userID: userID, content: content, datePosted: datePosted, username: username))
             }
         }
     }
@@ -610,10 +612,58 @@ class FirestoreRequests {
                         let datePosted = document.get("datePosted") as! Timestamp
                         let numLikes = document.get("numLikes") as! Int
                         let likedBy = document.get("likedBy") as! [String]
-                        let tempPost = Post(id: id, userID: userID, contentType: contentType, content: content, caption: caption, datePosted: datePosted.dateValue(), numLikes: numLikes, likedBy: likedBy)
+                        let username = document.get("username") as! String
+                        let tempPost = Post(id: id, userID: userID, username: username, contentType: contentType, content: content, caption: caption, datePosted: datePosted.dateValue(), numLikes: numLikes, likedBy: likedBy)
                         allPosts.append(tempPost)
                     }
                     completion(allPosts)
+                }
+            }
+    }
+    
+    func getPost(postID: String, completion: @escaping (Post) -> ()) {
+        let db = Firestore.firestore()
+        
+        let post = db.collection("Posts").document(postID)
+        
+        post.getDocument{(document, error) in
+            if let document = document, document.exists {
+                let id = document.get("postID") as! String
+                let userID = document.get("userID") as! String
+                let contentType = document.get("contentType") as! String
+                let content = document.get("content") as! String
+                let caption = document.get("caption") as! String
+                let datePosted = document.get("datePosted") as! Timestamp
+                let numLikes = document.get("numLikes") as! Int
+                let likedBy = document.get("likedBy") as! [String]
+                let username = document.get("username") as! String
+                let tempPost = Post(id: id, userID: userID, username: username, contentType: contentType, content: content, caption: caption, datePosted: datePosted.dateValue(), numLikes: numLikes, likedBy: likedBy)
+                completion(tempPost)
+            }
+        }
+    }
+    
+    func getCommentsForPost(post: String ,completion: @escaping ([Comment]?) -> ()) {
+        let db = Firestore.firestore()
+        var allComments = [Comment]()
+        db.collection("Comments")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let id = document.get("commentID") as! String
+                        let userID = document.get("userID") as! String
+                        let postID = document.get("postID") as! String
+                        let content = document.get("content") as! String
+                        let datePosted = document.get("datePosted") as! Timestamp
+                        let username = document.get("username") as! String
+                        let tempComment = Comment(id: id, postID: postID, userID: userID, content: content, datePosted: datePosted.dateValue(), username: username)
+                        if postID == post {
+                            allComments.append(tempComment)
+                        }
+                    }
+                    completion(allComments)
                 }
             }
     }

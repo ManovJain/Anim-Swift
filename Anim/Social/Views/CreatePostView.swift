@@ -49,7 +49,7 @@ struct CreatePostView: View {
             .padding()
             .border(Color("AnimGreen"), width: 1)
             Button(action: {
-                FirestoreRequests().createPost(userID: userViewModel.user.uid!, postID: UUID().uuidString, contentType: "link", content: link, caption: caption, datePosted: Date()) { data in
+                FirestoreRequests().createPost(userID: userViewModel.user.uid!, postID: UUID().uuidString, contentType: "link", content: link, caption: caption, datePosted: Date(), username: userViewModel.user.username!) { data in
                     NotificationCenter.default.post(name: NSNotification.refreshPosts, object: nil)
                     self.presentationMode.wrappedValue.dismiss()
                 }
@@ -59,6 +59,9 @@ struct CreatePostView: View {
             }
             .disabled(!verifyUrl(urlString: link))
             Spacer()
+        }
+        .onDisappear() {
+            NotificationCenter.default.post(name: NSNotification.refreshPost, object: nil)
         }
         .padding()
         .navigationTitle("Create Post")
@@ -72,10 +75,4 @@ func verifyUrl (urlString: String?) -> Bool {
         }
     }
     return false
-}
-
-struct CreatePostView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreatePostView()
-    }
 }

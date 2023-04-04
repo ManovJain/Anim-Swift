@@ -75,6 +75,7 @@ struct ExplorePage: View {
         .onAppear {
             if userViewModel.state == .signedIn {
                 usernameSet = userViewModel.user.hasSetUsername!
+                print("check")
             }
             
             FirestoreRequests().getAllPosts { data in

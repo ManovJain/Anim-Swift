@@ -13,5 +13,6 @@ extension NSNotification {
     static let signInStateChange = Notification.Name.init("signInStateChange")
     static let showAnimAlert = Notification.Name.init("showAnimAlert")
     static let refreshPosts = Notification.Name.init("refreshPosts")
+    static let refreshPost = Notification.Name.init("refreshPost")
     static let usernameCreated = Notification.Name.init("usernameCreated")
 }

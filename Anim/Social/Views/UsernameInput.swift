@@ -54,6 +54,7 @@ struct UsernameInput: View {
                     Button {
                         exploreViewModel.dismissedUsername = true
                         createUsername()
+                        NotificationCenter.default.post(name: NSNotification.usernameCreated, object: nil)
                     } label: {
                         Text("Create Username")
                             .font(Font.custom("DMSans-Medium", size: 13))

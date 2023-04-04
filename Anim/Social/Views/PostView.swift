@@ -17,39 +17,127 @@ struct PostView: View {
     
     @State var postUser: User = User(uid: "", email: "")
     
+    @State var numLikes = 0
+    
+    @State var comments = [Comment]()
+    
+    @State var comment: String = ""
+    
     var body: some View {
         VStack (alignment: .leading) {
             HStack {
-                Text(postUser.username ?? "loading...")
+                Text(post.username!)
                     .padding([.leading])
+                    .fontWeight(.bold)
             }
-            Divider()
             URLPreview(previewURL: URL(string: post.content!)!, togglePreview: $togglePreview)
                 .padding()
-            if userViewModel.state == .signedIn {
-                HStack {
+            //MARK: Like Button and Like Count
+            HStack {
+                if userViewModel.state == .signedIn {
                     Button {
                         if (userViewModel.user.likedPosts?.contains(post.id!))! {
                             userViewModel.user.likedPosts! = userViewModel.user.likedPosts!.filter { $0 != post.id! }
                             FirestoreRequests().unLikePost(postID: post.id!, userID: userViewModel.user.uid!)
+                            numLikes -= 1
                         }
                         else {
                             userViewModel.user.likedPosts?.append(post.id!)
                             FirestoreRequests().likePost(postID: post.id!, userID: userViewModel.user.uid!)
+                            numLikes += 1
                         }
                     } label: {
                         Image(systemName:  (userViewModel.user.likedPosts?.contains(post.id!))! ? "heart.fill" : "heart")
                             .foregroundColor( (userViewModel.user.likedPosts?.contains(post.id!))! ? .red : .gray)
                     }
                 }
+                
+                Text("\(numLikes) \(numLikes == 1 ? "like" : "likes")")
+                    .bold()
             }
-            Text(post.caption!)
-                .padding([.leading])
+            .padding([.horizontal])
+            .padding([.bottom], 4)
+            //MARK: Caption
+            HStack {
+                Text(post.username!).bold() +
+                Text("")
+                Text(post.caption!)
+            }
+            .padding([.leading])
+            .padding([.bottom], 3)
+            //MARK: Comments
+            if comments.count > 2 {
+                Text("View all comments")
+                    .foregroundColor(.gray)
+                    .padding([.leading])
+                    .padding([.bottom], 3)
+            }
+            if !comment.isEmpty {
+                Divider()
+            }
+            HStack {
+                TextField(
+                    "Add a comment...",
+                    text: $comment
+                )
+                if !comment.isEmpty {
+                    Button(action: {
+                        FirestoreRequests().createComment(userID: userViewModel.user.uid!, postID: post.id!, commentID:  UUID().uuidString, content: comment, datePosted: Date(), username: userViewModel.user.username!) { data in
+                            comments.append(data!)
+                            comment = ""
+                        }
+                    }) {
+                        Image(systemName: "plus.app")
+                            .foregroundColor(.blue)
+                            .multilineTextAlignment(.trailing)
+                            .padding([.trailing])
+                    }
+                }
+            }
+            .padding([.leading])
+            .padding([.bottom], 3)
+            .padding([.top], comment.isEmpty ? 0 : 3)
+            if !comment.isEmpty {
+                Divider()
+            }
+            if comments.count > 2 {
+                ForEach(comments.suffix(2), id: \.self) { comment in
+                    HStack {
+                        Text(comment.username!).bold() +
+                        Text("")
+                        Text(comment.content!)
+                    }
+                    .padding([.leading])
+                    .padding([.bottom], 3)
+                }
+            }
+            else {
+                ForEach(comments, id: \.self) { comment in
+                    HStack {
+                        Text(comment.username!).bold() +
+                        Text("")
+                        Text(comment.content!)
+                    }
+                    .padding([.leading])
+                    .padding([.bottom], 3)
+                }
+            }
         }
         .onAppear {
-            FirestoreRequests().getUser(post.userID!) { data in
-                postUser = data!
+            numLikes = post.numLikes!
+            FirestoreRequests().getCommentsForPost(post: post.id!) { data in
+                comments = data!
             }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.refreshPost)) { object in
+            refreshPost()
+        }
+    }
+    
+    
+    func refreshPost() {
+        FirestoreRequests().getPost(postID: post.id!) { data in
+            numLikes = data.numLikes!
         }
     }
 }

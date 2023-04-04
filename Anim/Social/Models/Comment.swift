@@ -22,4 +22,5 @@ struct Comment: Codable, Hashable {
     let userID: String?
     var content: String?
     var datePosted: Date?
+    var username: String?
 }
