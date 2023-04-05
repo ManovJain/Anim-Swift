@@ -142,15 +142,10 @@ struct PillTabBar: View {
             }
             Spacer()
         }
-        .frame(width: 200,height: 40)
-        .background(Color(.lightGray).opacity(0.75))
-        .clipShape(Capsule())
+        .frame(width: UIScreen.screenWidth,height: 50)
+        .background(Color("background"))
+        .border(width: 0.75, edges: [.top], color: Color("AnimGreen"))
         .padding(.bottom)
-    }
-}
-
-struct PillTabBar_Previews: PreviewProvider {
-    static var previews: some View {
-        PillTabBar()
+        
     }
 }

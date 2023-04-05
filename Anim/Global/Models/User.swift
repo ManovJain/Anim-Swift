@@ -35,7 +35,7 @@ struct User: Codable, Hashable {
     var gradePreference: String?
     var numNutrimentsReported: Int?
     var followers: [String]?
-    var folowing: [String]?
+    var following: [String]?
     var likedPosts: [String]?
     var isPublic: Bool?
     var hasSetUsername: Bool?

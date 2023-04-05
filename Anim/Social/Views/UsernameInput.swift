@@ -23,9 +23,10 @@ struct UsernameInput: View {
     
     @State var usernameIssue: UsernameIssues = .valid
     
+    @State var missingUsername: Bool = false
+    
     var body: some View {
         ZStack {
-            Color("background").edgesIgnoringSafeArea(.all)
             VStack (alignment: .center) {
                 TextField(
                     "Username",

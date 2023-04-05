@@ -120,16 +120,19 @@ struct ContentView: View {
                     )
                     .transition(.move(edge: navModel.profileEdge))
             }
+            if openedApp {
+                PillTabBar()
+                    .position(x: UIScreen.screenWidth/2, y: UIScreen.screenHeight - 100)
+            }
         }
         .background(Color("background"))
         .onChange(of: scenePhase) { newPhase in
             if newPhase == .background {
                             fireStoreRequests.updateUser(uid: userViewModel.user.uid!, user: userViewModel.user)
+                
                         }
                     }
         .overlay(openedApp ? nil : InstructionSlider(openedApp: $openedApp), alignment: .center)
-        .overlay((openedApp ? PillTabBar() : nil)
-            .position(x: UIScreen.screenWidth/2, y: UIScreen.screenHeight - 100))
         
         .preferredColorScheme(darkMode ? .dark : .light)
         

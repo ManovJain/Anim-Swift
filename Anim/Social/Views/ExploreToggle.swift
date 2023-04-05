@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ExploreToggle: View {
     
+    @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var exploreViewModel: ExploreViewModel
     
     var body: some View {
@@ -31,22 +32,24 @@ struct ExploreToggle: View {
                         .padding(.bottom, 5)
                 }
             }
-            Spacer()
-            Button(action: {
-                exploreViewModel.feedType = .following
-            }) {
-                if exploreViewModel.feedType == .following {
-                    Text("Following")
-                        .foregroundColor(Color("background"))
-                        .font(Font.custom("DMSans-Medium", size: 14))
-                        .padding(.bottom, 5)
-                        .border(width: 2, edges: [.bottom], color: Color("background"))
-                }
-                else {
-                    Text("Following")
-                        .foregroundColor(Color("background"))
-                        .font(Font.custom("DMSans-Medium", size: 14))
-                        .padding(.bottom, 5)
+            if userViewModel.state == .signedIn {
+                Spacer()
+                Button(action: {
+                    exploreViewModel.feedType = .following
+                }) {
+                    if exploreViewModel.feedType == .following {
+                        Text("Following")
+                            .foregroundColor(Color("background"))
+                            .font(Font.custom("DMSans-Medium", size: 14))
+                            .padding(.bottom, 5)
+                            .border(width: 2, edges: [.bottom], color: Color("background"))
+                    }
+                    else {
+                        Text("Following")
+                            .foregroundColor(Color("background"))
+                            .font(Font.custom("DMSans-Medium", size: 14))
+                            .padding(.bottom, 5)
+                    }
                 }
             }
             Spacer()

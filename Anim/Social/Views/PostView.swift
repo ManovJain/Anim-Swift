@@ -23,6 +23,14 @@ struct PostView: View {
     
     @State var comment: String = ""
     
+    @State var deletePostPressed: Bool = false
+    
+    @State var followPressed: Bool = false
+    
+    @State var unfollowPressed: Bool = false
+    
+    @Binding var missingUsername : Bool
+    
     var body: some View {
         VStack (alignment: .leading) {
             HStack (spacing: 0.1) {
@@ -37,109 +45,144 @@ struct PostView: View {
                 Text(post.username!)
                     .padding([.leading])
                     .fontWeight(.bold)
+                Spacer()
+                if (postUser.uid! == userViewModel.user.uid!) {
+                    Menu ("···") {
+                        Button{ deletePostPressed.toggle()}
+                    label: {
+                        Text ("Delete Post")
+                            .frame(alignment: .center)
+                    }
+                    }
+                    .foregroundColor(.gray)
+                    .padding([.trailing])
+                }
+                else {
+                    if userViewModel.state == .signedIn {
+                        if userViewModel.user.following!.contains(postUser.uid!) {
+                            Button("Unfollow") {
+                                if userViewModel.user.hasSetUsername! {
+                                    unfollowPressed.toggle()
+                                }
+                                else {
+                                    missingUsername.toggle()
+                                }
+                            }
+                            .padding([.trailing])
+                        }
+                        else {
+                            Button("Follow") {
+                                if userViewModel.user.hasSetUsername! {
+                                    followPressed.toggle()
+                                }
+                                else {
+                                    missingUsername.toggle()
+                                }
+                            }
+                            .padding([.trailing])
+                        }
+                    }
+                }
             }
             .padding(.top, 1)
             .padding([.leading])
             URLPreview(previewURL: URL(string: post.content!)!, togglePreview: $togglePreview)
                 .padding([.horizontal], 4)
-            //MARK: Like Button and Like Count
-            HStack {
-                if userViewModel.state == .signedIn {
-                    Button {
-                        if (userViewModel.user.likedPosts?.contains(post.id!))! {
-                            userViewModel.user.likedPosts! = userViewModel.user.likedPosts!.filter { $0 != post.id! }
-                            FirestoreRequests().unLikePost(postID: post.id!, userID: userViewModel.user.uid!)
-                            numLikes -= 1
-                        }
-                        else {
-                            userViewModel.user.likedPosts?.append(post.id!)
-                            FirestoreRequests().likePost(postID: post.id!, userID: userViewModel.user.uid!)
-                            numLikes += 1
-                        }
-                    } label: {
-                        Image(systemName:  (userViewModel.user.likedPosts?.contains(post.id!))! ? "heart.fill" : "heart")
-                            .foregroundColor( (userViewModel.user.likedPosts?.contains(post.id!))! ? .red : .gray)
-                    }
-                }
-                
-                Text("\(numLikes) \(numLikes == 1 ? "like" : "likes")")
-                    .bold()
-            }
-            .padding([.horizontal])
-            .padding([.bottom], 4)
             //MARK: Caption
-            HStack {
-                Text(post.username!).bold() +
-                Text("")
+            VStack (alignment: .leading, spacing: 3) {
                 Text(post.caption!)
+                Text("shared " + post.datePosted!.timeAgoDisplay())
+                    .foregroundColor(.gray)
+                    .font(.system(size: 10))
             }
             .padding([.leading])
             .padding([.bottom], 3)
-            //MARK: Comments
-            if comments.count > 2 {
-                Text("View all comments")
-                    .foregroundColor(.gray)
-                    .padding([.leading])
-                    .padding([.bottom], 3)
-            }
-            if !comment.isEmpty {
-                Divider()
-            }
-            if !comment.isEmpty {
-                Divider()
-            }
-            if comments.count > 2 {
-                ForEach(comments.suffix(2), id: \.self) { comment in
-                    HStack {
-                        Text(comment.username!).bold() +
-                        Text("")
-                        Text(comment.content!)
-                    }
-                    .padding([.leading])
-                    .padding([.bottom], 3)
-                }
-            }
-            else {
-                ForEach(comments, id: \.self) { comment in
-                    HStack {
-                        Text(comment.username!).bold() +
-                        Text("")
-                        Text(comment.content!)
-                    }
-                    .padding([.leading])
-                    .padding([.bottom], 3)
-                }
-            }
-            
-            if userViewModel.state == .signedIn && userViewModel.user.hasSetUsername! {
-                HStack {
-                    TextField(
-                        "Add a comment...",
-                        text: $comment
-                    )
-                    if !comment.isEmpty {
-                        Button(action: {
-                            FirestoreRequests().createComment(userID: userViewModel.user.uid!, postID: post.id!, commentID:  UUID().uuidString, content: comment, datePosted: Date(), username: userViewModel.user.username!) { data in
-                                comments.append(data!)
-                                comment = ""
+            //MARK: Like Button and Like Count
+            HStack (alignment: .center) {
+                if userViewModel.state == .signedIn {
+                    Button {
+                        if userViewModel.user.hasSetUsername! {
+                            if (userViewModel.user.likedPosts?.contains(post.id!))! {
+                                userViewModel.user.likedPosts! = userViewModel.user.likedPosts!.filter { $0 != post.id! }
+                                FirestoreRequests().unLikePost(postID: post.id!, userID: userViewModel.user.uid!)
+                                numLikes -= 1
                             }
-                        }) {
-                            Image(systemName: "plus.app")
-                                .foregroundColor(.blue)
-                                .multilineTextAlignment(.trailing)
-                                .padding([.trailing])
+                            else {
+                                userViewModel.user.likedPosts?.append(post.id!)
+                                FirestoreRequests().likePost(postID: post.id!, userID: userViewModel.user.uid!)
+                                numLikes += 1
+                            }
                         }
+                        else {
+                            missingUsername.toggle()
+                        }
+                    } label: {
+                        Image(systemName:  (userViewModel.user.likedPosts?.contains(post.id!))! ? "heart.fill" : "heart")
+                            .resizable()
+                            .frame(width: 16, height: 16)
+                            .foregroundColor( (userViewModel.user.likedPosts?.contains(post.id!))! ? .red : .gray)
+                            
                     }
                 }
-                .padding([.leading])
-                .padding([.bottom], 3)
-                .padding([.top], comment.isEmpty ? 0 : 3)
+                else {
+                    Image(systemName:  ("heart"))
+                        .frame(width: 16, height: 16)
+                        .foregroundColor(.gray)
+                }
+                Text("\(numLikes)")
+                    .foregroundColor(.gray)
+                
+                Spacer()
+                //MARK: Comments
+                if userViewModel.user.hasSetUsername! {
+                    NavigationLink(destination: CommentsView(post: post, anim: postUser.anim ?? "animLogoIcon", comments: comments)) {
+                        Image(systemName:  ("message"))
+                            .frame(width: 16, height: 16)
+                            .foregroundColor(.gray)
+                    }
+                }
+                else {
+                    Button(action: {
+                        missingUsername.toggle()
+                    }) {
+                        Image(systemName:  ("message"))
+                            .frame(width: 16, height: 16)
+                            .foregroundColor(.gray)
+                    }
+                }
+                Text("\(comments.count)")
+                    .foregroundColor(.gray)
+            }
+            .padding([.horizontal])
+            .padding([.bottom], 4)
+        }
+        .alert("Are you sure you want to delete this post?", isPresented: $deletePostPressed) {
+            Button("No", role: .cancel) { }
+            Button("Yes") {
+                FirestoreRequests().deletePost(postID: post.id!)
+                NotificationCenter.default.post(name: NSNotification.refreshPosts, object: nil)
+            }
+        }
+        .alert("Follow \(post.username!)? They will see that you are following them.", isPresented: $followPressed) {
+            Button("No", role: .cancel) { }
+            Button("Yes") {
+                FirestoreRequests().followUser(posterID: postUser.uid!, followerID: userViewModel.user.uid!)
+                userViewModel.user.following?.append(postUser.uid!)
+                NotificationCenter.default.post(name: NSNotification.refreshFollowingPosts, object: nil)
+            }
+        }
+        .alert("Unfollow \(post.username!)? They will see that you are no longer following them.", isPresented: $unfollowPressed) {
+            Button("No", role: .cancel) { }
+            Button("Yes") {
+                userViewModel.user.following! = userViewModel.user.following!.filter {$0 != postUser.uid!}
+                FirestoreRequests().unFollowUser(posterID: postUser.uid!, followerID: userViewModel.user.uid!)
+                NotificationCenter.default.post(name: NSNotification.refreshFollowingPosts, object: nil)
             }
         }
         .onAppear {
             numLikes = post.numLikes!
             FirestoreRequests().getCommentsForPost(post: post.id!) { data in
-                comments = data!
+                comments = data!.sorted{ $0.datePosted! > $1.datePosted!}
             }
             FirestoreRequests().getUser(post.userID!) { data in
                 postUser = data!
@@ -147,6 +190,11 @@ struct PostView: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.refreshPost)) { object in
             refreshPost()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.refreshComments)) { object in
+            FirestoreRequests().getCommentsForPost(post: post.id!) { data in
+                comments = data!.sorted{ $0.datePosted! > $1.datePosted!}
+            }
         }
     }
     
