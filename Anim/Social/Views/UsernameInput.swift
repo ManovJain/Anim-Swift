@@ -67,6 +67,7 @@ struct UsernameInput: View {
                     .cornerRadius(15)
                     .clipShape(Capsule())
                     Button {
+                        exploreViewModel.dismissedUsername = true
                     } label: {
                         Text("Create Later")
                             .font(Font.custom("DMSans-Medium", size: 13))

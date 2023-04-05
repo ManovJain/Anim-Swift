@@ -25,13 +25,23 @@ struct PostView: View {
     
     var body: some View {
         VStack (alignment: .leading) {
-            HStack {
+            HStack (spacing: 0.1) {
+                Image(postUser.anim ?? "animLogoIcon")
+                    .resizable()
+                    .frame(width: 30, height: 30, alignment: .leading)
+                    .padding(5)
+                    .overlay(
+                        Circle()
+                            .stroke(.primary, lineWidth: 2)
+                    )
                 Text(post.username!)
                     .padding([.leading])
                     .fontWeight(.bold)
             }
+            .padding(.top, 1)
+            .padding([.leading])
             URLPreview(previewURL: URL(string: post.content!)!, togglePreview: $togglePreview)
-                .padding()
+                .padding([.horizontal], 4)
             //MARK: Like Button and Like Count
             HStack {
                 if userViewModel.state == .signedIn {
@@ -75,28 +85,6 @@ struct PostView: View {
             if !comment.isEmpty {
                 Divider()
             }
-            HStack {
-                TextField(
-                    "Add a comment...",
-                    text: $comment
-                )
-                if !comment.isEmpty {
-                    Button(action: {
-                        FirestoreRequests().createComment(userID: userViewModel.user.uid!, postID: post.id!, commentID:  UUID().uuidString, content: comment, datePosted: Date(), username: userViewModel.user.username!) { data in
-                            comments.append(data!)
-                            comment = ""
-                        }
-                    }) {
-                        Image(systemName: "plus.app")
-                            .foregroundColor(.blue)
-                            .multilineTextAlignment(.trailing)
-                            .padding([.trailing])
-                    }
-                }
-            }
-            .padding([.leading])
-            .padding([.bottom], 3)
-            .padding([.top], comment.isEmpty ? 0 : 3)
             if !comment.isEmpty {
                 Divider()
             }
@@ -122,11 +110,39 @@ struct PostView: View {
                     .padding([.bottom], 3)
                 }
             }
+            
+            if userViewModel.state == .signedIn && userViewModel.user.hasSetUsername! {
+                HStack {
+                    TextField(
+                        "Add a comment...",
+                        text: $comment
+                    )
+                    if !comment.isEmpty {
+                        Button(action: {
+                            FirestoreRequests().createComment(userID: userViewModel.user.uid!, postID: post.id!, commentID:  UUID().uuidString, content: comment, datePosted: Date(), username: userViewModel.user.username!) { data in
+                                comments.append(data!)
+                                comment = ""
+                            }
+                        }) {
+                            Image(systemName: "plus.app")
+                                .foregroundColor(.blue)
+                                .multilineTextAlignment(.trailing)
+                                .padding([.trailing])
+                        }
+                    }
+                }
+                .padding([.leading])
+                .padding([.bottom], 3)
+                .padding([.top], comment.isEmpty ? 0 : 3)
+            }
         }
         .onAppear {
             numLikes = post.numLikes!
             FirestoreRequests().getCommentsForPost(post: post.id!) { data in
                 comments = data!
+            }
+            FirestoreRequests().getUser(post.userID!) { data in
+                postUser = data!
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.refreshPost)) { object in
