@@ -65,7 +65,8 @@ struct ContentView: View {
                     }
                     .transition(.move(edge: navModel.productEdge))
             case .explore:
-                SearchPage()
+//                SearchPage()
+                Search2()
                     .gesture(DragGesture()
                         .onEnded { value in
                             let direction = detectDirection(value: value)
@@ -97,12 +98,39 @@ struct ContentView: View {
                         }
                     )
                     .transition(.move(edge: navModel.profileEdge))
+            case .animManager:
+                AnimManager()
+                    .gesture(DragGesture()
+                        .onEnded { value in
+                            let direction = detectDirection(value: value)
+                            if direction == .left {
+                                withAnimation  {
+                                    navModel.currentPage.previous()
+                                }
+                            }
+                        }
+                    )
+                    .transition(.move(edge: navModel.profileEdge))
+            case .foodLog:
+            FoodLogView()
+                    .gesture(DragGesture()
+                        .onEnded { value in
+                            let direction = detectDirection(value: value)
+                            if direction == .left {
+                                withAnimation  {
+                                    navModel.currentPage.previous()
+                                }
+                            }
+                        }
+                    )
+                    .transition(.move(edge: navModel.profileEdge))
             }
         }
         .background(Color("background"))
         .onChange(of: scenePhase) { newPhase in
             if newPhase == .background {
                 fireStoreRequests.updateUser(uid: userViewModel.user.uid!, user: userViewModel.user)
+                fireStoreRequests.updateNutrition(uid: userViewModel.user.uid!, nutrition: userViewModel.nutrition)
             }
         }
         .overlay(openedApp ? nil : InstructionSlider(openedApp: $openedApp), alignment: .center)

@@ -92,12 +92,20 @@ struct FoodLogView: View {
                 }
             }
         }
+        .onAppear(){
+            if(userViewModel.nutrition.uid == ""){
+                print("nutrition1")
+                FirestoreRequests().createNutrition(uid: userViewModel.user.uid!){ data in
+                    userViewModel.nutrition = data!
+                }
+            } else {
+                FirestoreRequests().getNutrition(userViewModel.user.uid!){ data in
+                    userViewModel.nutrition = data!
+                }
+            }
+        }
     }
-//        .onAppear(){
-//            if(userViewModel.nutrition){
-//                userViewModel.nutrition = FirestoreRequests.getNutrition(userViewModel.user.uid)
-//            }
-//        }
+
 }
 
 struct FoodLogView_Previews: PreviewProvider {

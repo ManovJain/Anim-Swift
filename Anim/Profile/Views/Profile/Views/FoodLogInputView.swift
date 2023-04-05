@@ -38,6 +38,18 @@ struct FoodLogInputView: View {
                 .foregroundColor(Color("AnimGreen"))
             TextField("Daily Protein Goal", value: ($userViewModel.nutrition.totalProtein), format: .number)
                 .textFieldStyle(FoogLogInputStyle())
+            Button(action: {
+                FirestoreRequests().updateNutrition(uid: userViewModel.user.uid!, nutrition: userViewModel.nutrition)
+            }, label: {
+                Text("Save Changes")
+                    .font(Font.custom("DMSans-Medium", size: 20))
+                    .foregroundColor(Color("background"))
+                    .lineLimit(1)
+            })
+            .padding()
+            .background(Color("AnimGreen"))
+            .cornerRadius(15)
+            .clipShape(Capsule())
         }
     }
     

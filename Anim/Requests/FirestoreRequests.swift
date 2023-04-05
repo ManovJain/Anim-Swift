@@ -95,6 +95,8 @@ class FirestoreRequests {
                 let totalProtein = document.get("totalProtein") as! Int
                 let foundNutrition = Nutrition(uid: uid, calories: calories, carbs: carbs, fat: fat, protein: protein, totalCalories: totalCalories, totalCarbs: totalCarbs, totalFat: totalFat, totalProtein: totalProtein)
                 completion(foundNutrition)
+            } else {
+                completion(Nutrition(uid: "", nutritionSet: false, calories: 0, carbs: 0, fat: 0, protein: 0, totalCalories: 1000, totalCarbs: 100, totalFat: 100, totalProtein: 100))
             }
         }
     }
@@ -120,6 +122,24 @@ class FirestoreRequests {
                     completion(Nutrition(uid: uid, calories: 0, carbs: 0, fat: 0, protein: 0, totalCalories: 2000, totalCarbs: 100, totalFat: 100, totalProtein: 100))
                 }
             }
+    }
+    
+    func updateNutrition(uid: String, nutrition: Nutrition) {
+        let db = Firestore.firestore()
+        
+        let firestoreNutrition = db.collection("nutrition").document(uid)
+        
+        firestoreNutrition.updateData([
+            "uid": uid,
+            "calories": nutrition.calories!,
+            "carbs": nutrition.carbs!,
+            "fat": nutrition.fat!,
+            "protein": nutrition.protein!,
+            "totalCalories": nutrition.totalCalories!,
+            "totalCarbs": nutrition.totalCarbs!,
+            "totalFat": nutrition.totalFat!,
+            "totalProtein": nutrition.totalProtein!
+        ])
     }
     
     func deleteAccount(uid: String) {
