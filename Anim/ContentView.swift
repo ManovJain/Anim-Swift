@@ -65,7 +65,8 @@ struct ContentView: View {
                     }
                     .transition(.move(edge: navModel.productEdge))
             case .explore:
-                SearchPage()
+//                SearchPage()
+                Search2()
                     .gesture(DragGesture()
                         .onEnded { value in
                             let direction = detectDirection(value: value)
@@ -103,6 +104,7 @@ struct ContentView: View {
         .onChange(of: scenePhase) { newPhase in
             if newPhase == .background {
                 fireStoreRequests.updateUser(uid: userViewModel.user.uid!, user: userViewModel.user)
+                fireStoreRequests.updateNutrition(uid: userViewModel.user.uid!, nutrition: userViewModel.nutrition)
             }
         }
         .overlay(openedApp ? nil : InstructionSlider(openedApp: $openedApp), alignment: .center)
