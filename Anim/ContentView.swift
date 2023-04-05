@@ -98,6 +98,32 @@ struct ContentView: View {
                         }
                     )
                     .transition(.move(edge: navModel.profileEdge))
+            case .animManager:
+                AnimManager()
+                    .gesture(DragGesture()
+                        .onEnded { value in
+                            let direction = detectDirection(value: value)
+                            if direction == .left {
+                                withAnimation  {
+                                    navModel.currentPage.previous()
+                                }
+                            }
+                        }
+                    )
+                    .transition(.move(edge: navModel.profileEdge))
+            case .foodLog:
+            FoodLogView()
+                    .gesture(DragGesture()
+                        .onEnded { value in
+                            let direction = detectDirection(value: value)
+                            if direction == .left {
+                                withAnimation  {
+                                    navModel.currentPage.previous()
+                                }
+                            }
+                        }
+                    )
+                    .transition(.move(edge: navModel.profileEdge))
             }
         }
         .background(Color("background"))

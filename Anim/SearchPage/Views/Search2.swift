@@ -24,8 +24,11 @@ struct Search2: View {
     @State private var index = 0
     @State var display: String = "Explore"
     
-    var displays = ["Explore", "Filter"]
-    var banners = ["Banner1", "Banner2", "Banner3"]
+    var banners = [
+        ["inputImage": "Banner1", "location": "foodLog"],
+        ["inputImage": "Banner2", "location": "animManager"],
+        ["inputImage": "Banner3", "location": "animManager"] //this will be updated to the explore page!
+    ]
     
     var body: some View {
         NavigationStack() {
@@ -57,9 +60,7 @@ struct Search2: View {
                             }
                             TabView(selection: $index){
                                 ForEach((0...banners.count-1), id: \.self) { index in
-                                    Image(banners[index])
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
+                                    Banner(inputImage: banners[index]["inputImage"]!, location: banners[index]["location"]!)
                                 }
                             }
                             .frame(height: 200)
@@ -69,15 +70,15 @@ struct Search2: View {
                                     Image(systemName: "clock")
                                     Text("Recent Searches")
                                 }
-                                ScrollView(.horizontal){
-                                    HStack{
-                                        if searchText.isEmpty && userViewModel.state == .signedIn {
-                                            ForEach(userViewModel.user.productsViewed!, id: \.self) { favorite in
-                                                RecentSearchView(id: favorite)
-                                            }
-                                        }
-                                    }
-                                }
+//                                ScrollView(.horizontal){
+//                                    HStack{
+//                                        if searchText.isEmpty && userViewModel.state == .signedIn {
+//                                            ForEach(userViewModel.user.productsViewed!, id: \.self) { favorite in
+//                                                RecentSearchView(id: favorite)
+//                                            }
+//                                        }
+//                                    }
+//                                }
                             }
                             Spacer()
                                 .frame(height: 20)
