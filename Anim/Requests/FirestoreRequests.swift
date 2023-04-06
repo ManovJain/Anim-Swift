@@ -113,7 +113,8 @@ class FirestoreRequests {
             "following" : user.following,
             "likedPosts" : user.likedPosts,
             "isPublic" : user.isPublic,
-            "hasSetUsername": user.hasSetUsername
+            "hasSetUsername": user.hasSetUsername,
+            "username" : user.username
         ])
     }
     

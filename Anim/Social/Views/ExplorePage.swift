@@ -11,6 +11,7 @@ import Combine
 enum UsernameIssue {
     case length
     case taken
+    case special
 }
 
 
@@ -39,7 +40,7 @@ struct ExplorePage: View {
     @State var username: String = ""
     
     @State var usernameIssue: UsernameIssue = .length
-
+    
     var body: some View {
         
         NavigationView {
@@ -51,7 +52,7 @@ struct ExplorePage: View {
                     }
                     else if exploreViewModel.dismissedUsername || userViewModel.state == .signedOut || usernameSet {
                         if showTopBar {
-                            ExploreToggle()
+                            ExploreToggle(missingUsername: $showUsernameMissingAlert)
                                 .transition(.move(edge: .top))
                         }
                         switch exploreViewModel.feedType {
@@ -133,6 +134,8 @@ struct ExplorePage: View {
                 return Alert(title: Text("Invalid Username"), message: Text("Username must be between 3 and 15 characters."), dismissButton: .default(Text("OK")) {showUsernameMissingAlert.toggle()})
             case .taken:
                 return Alert(title: Text("Invalid Username"), message: Text("Username is already in use."), dismissButton: .default(Text("OK")) {showUsernameMissingAlert.toggle()})
+            case .special:
+                return Alert(title: Text("Invalid Username"), message: Text("Username contains an invalid character."), dismissButton: .default(Text("OK")) {showUsernameMissingAlert.toggle()})
             }
         }
         .onAppear {
@@ -181,6 +184,9 @@ struct ExplorePage: View {
                 if data {
                     completion(.taken)
                 }
+                else if checkForSpecialCharacters(string: username) {
+                    completion(.special)
+                }
                 else {
                     completion(.valid)
                 }
@@ -194,14 +200,17 @@ struct ExplorePage: View {
     func createUsername() {
         checkUsername() { data in
             if data == .valid {
-                print(username)
-                    userViewModel.user.username = username
-                    userViewModel.user.hasSetUsername = true
-                    usernameSet = true
-                    FirestoreRequests().addUsernameToArray(username: username)
+                userViewModel.user.username = username
+                userViewModel.user.hasSetUsername = true
+                usernameSet = true
+                FirestoreRequests().addUsernameToArray(username: username)
             }
             if data == .taken {
                 usernameIssue = .taken
+                showUsernameIssue.toggle()
+            }
+            if data == .special {
+                usernameIssue = .special
                 showUsernameIssue.toggle()
             }
             if data == .length {
@@ -209,5 +218,13 @@ struct ExplorePage: View {
                 showUsernameIssue.toggle()
             }
         }
+    }
+    
+    func checkForSpecialCharacters(string: String) -> Bool{
+        let characterset = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_")
+        if string.rangeOfCharacter(from: characterset.inverted) == nil {
+            return false
+        }
+        return true
     }
 }

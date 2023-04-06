@@ -12,6 +12,8 @@ struct ExploreToggle: View {
     @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var exploreViewModel: ExploreViewModel
     
+    @Binding var missingUsername : Bool
+    
     var body: some View {
         HStack {
             Spacer()
@@ -35,7 +37,12 @@ struct ExploreToggle: View {
             if userViewModel.state == .signedIn {
                 Spacer()
                 Button(action: {
-                    exploreViewModel.feedType = .following
+                    if !userViewModel.user.hasSetUsername! {
+                        missingUsername.toggle()
+                    }
+                    else {
+                        exploreViewModel.feedType = .following
+                    }
                 }) {
                     if exploreViewModel.feedType == .following {
                         Text("Following")
@@ -56,11 +63,5 @@ struct ExploreToggle: View {
         }
         .frame(height: 50)
         .background(Color("AnimGreen"))
-    }
-}
-
-struct ExploreToggle_Previews: PreviewProvider {
-    static var previews: some View {
-        ExploreToggle()
     }
 }

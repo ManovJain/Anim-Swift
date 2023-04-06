@@ -134,17 +134,26 @@ struct PostView: View {
                 
                 Spacer()
                 //MARK: Comments
-                if userViewModel.user.hasSetUsername! {
-                    NavigationLink(destination: CommentsView(post: post, anim: postUser.anim ?? "animLogoIcon", comments: comments)) {
-                        Image(systemName:  ("message"))
-                            .frame(width: 16, height: 16)
-                            .foregroundColor(.gray)
+                if userViewModel.state == .signedIn {
+                    if userViewModel.user.hasSetUsername! {
+                        NavigationLink(destination: CommentsView(post: post, anim: postUser.anim ?? "animLogoIcon", comments: comments)) {
+                            Image(systemName:  ("message"))
+                                .frame(width: 16, height: 16)
+                                .foregroundColor(.gray)
+                        }
+                    }
+                    else {
+                        Button(action: {
+                            missingUsername.toggle()
+                        }) {
+                            Image(systemName:  ("message"))
+                                .frame(width: 16, height: 16)
+                                .foregroundColor(.gray)
+                        }
                     }
                 }
                 else {
-                    Button(action: {
-                        missingUsername.toggle()
-                    }) {
+                    NavigationLink(destination: CommentsView(post: post, anim: postUser.anim ?? "animLogoIcon", comments: comments)) {
                         Image(systemName:  ("message"))
                             .frame(width: 16, height: 16)
                             .foregroundColor(.gray)

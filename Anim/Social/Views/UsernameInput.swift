@@ -10,6 +10,7 @@ import SwiftUI
 enum UsernameIssues {
     case valid
     case length
+    case special
     case taken
 }
 
@@ -46,6 +47,11 @@ struct UsernameInput: View {
                 }
                 if (usernameIssue == .taken) {
                     Text("Username already in use")
+                        .foregroundColor(.red)
+                        .font(Font.custom("DMSans-Medium", size: 12))
+                }
+                if (usernameIssue == .special) {
+                    Text("Username contains invalid character")
                         .foregroundColor(.red)
                         .font(Font.custom("DMSans-Medium", size: 12))
                 }
@@ -101,15 +107,21 @@ struct UsernameInput: View {
     }
     
     func checkUsername() {
-        if username.count >= 3 && username.count <= 15 {
-            FirestoreRequests().checkUsername(username: username) { data in
+        if username.count >= 3 && username.count <= 15{
+            FirestoreRequests().checkUsername(username: username.lowercased()) { data in
                 if data {
                     usernameIssue = .taken
+                }
+                else if checkForSpecialCharacters(string: username) {
+                    usernameIssue = .special
                 }
                 else {
                     usernameIssue = .valid
                 }
             }
+        }
+        else if checkForSpecialCharacters(string: username) {
+            usernameIssue = .special
         }
         else {
             usernameIssue = .length
@@ -117,14 +129,16 @@ struct UsernameInput: View {
     }
     
     func createUsername() {
-        userViewModel.user.username = username
+        userViewModel.user.username = username.lowercased()
         userViewModel.user.hasSetUsername = true
-        FirestoreRequests().addUsernameToArray(username: username)
+        FirestoreRequests().addUsernameToArray(username: username.lowercased())
     }
-}
-
-struct UsernameInput_Previews: PreviewProvider {
-    static var previews: some View {
-        UsernameInput()
+    
+    func checkForSpecialCharacters(string: String) -> Bool{
+        let characterset = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_")
+        if string.rangeOfCharacter(from: characterset.inverted) == nil {
+            return false
+        }
+        return true
     }
 }

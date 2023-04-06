@@ -44,8 +44,8 @@ struct CommentsView: View {
                         }
                         Divider()
                         ForEach(comments, id: \.self) { comment in
-                            VStack (alignment: .leading) {
-                                HStack {
+                            VStack (alignment: .leading, spacing: 3) {
+                                HStack  {
                                     Text(comment.username!)
                                         .fontWeight(.bold)
                                     Text(comment.datePosted!.timeAgoDisplay())
