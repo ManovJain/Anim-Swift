@@ -168,7 +168,7 @@ struct ContentView: View {
             openedApp = defaults.bool(forKey: "openedApp")
             
             userViewModel.user.anim = defaults.string(forKey: "anim")
-            
+
             //get user stored in default user if signedIn before is true
 
             if defaults.bool(forKey: "signedIn") {

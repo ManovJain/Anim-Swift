@@ -39,4 +39,6 @@ struct User: Codable, Hashable {
     var likedPosts: [String]?
     var isPublic: Bool?
     var hasSetUsername: Bool?
+    var followRequests: [String]?
+    var pendingRequests: [String]?
 }

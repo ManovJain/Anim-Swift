@@ -59,6 +59,31 @@ struct ExploreToggle: View {
                     }
                 }
             }
+            if userViewModel.state == .signedIn {
+                Spacer()
+                Button(action: {
+                    if !userViewModel.user.hasSetUsername! {
+                        missingUsername.toggle()
+                    }
+                    else {
+                        exploreViewModel.feedType = .search
+                    }
+                }) {
+                    if exploreViewModel.feedType == .search {
+                        Text("Search")
+                            .foregroundColor(Color("background"))
+                            .font(Font.custom("DMSans-Medium", size: 14))
+                            .padding(.bottom, 5)
+                            .border(width: 2, edges: [.bottom], color: Color("background"))
+                    }
+                    else {
+                        Text("Search")
+                            .foregroundColor(Color("background"))
+                            .font(Font.custom("DMSans-Medium", size: 14))
+                            .padding(.bottom, 5)
+                    }
+                }
+            }
             Spacer()
         }
         .frame(height: 50)

@@ -19,6 +19,7 @@
 		435E402B29DDCA170063AD4B /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435E402A29DDCA170063AD4B /* CommentsView.swift */; };
 		435E402D29DDCD120063AD4B /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435E402C29DDCD120063AD4B /* DateExtensions.swift */; };
 		435E403029DDFC510063AD4B /* CreatePostButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435E402F29DDFC510063AD4B /* CreatePostButton.swift */; };
+		435E403229DF7EE40063AD4B /* SearchUserPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 435E403129DF7EE40063AD4B /* SearchUserPage.swift */; };
 		4387FE2129A7CA9B005C2464 /* SearchLoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4387FE2029A7CA9B005C2464 /* SearchLoadingScreen.swift */; };
 		4387FE2329A7D470005C2464 /* AnimScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4387FE2229A7D470005C2464 /* AnimScroller.swift */; };
 		43AE49D729DB595600C43E2E /* CreatePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AE49D629DB595600C43E2E /* CreatePostView.swift */; };
@@ -128,6 +129,7 @@
 		435E402A29DDCA170063AD4B /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
 		435E402C29DDCD120063AD4B /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		435E402F29DDFC510063AD4B /* CreatePostButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostButton.swift; sourceTree = "<group>"; };
+		435E403129DF7EE40063AD4B /* SearchUserPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserPage.swift; sourceTree = "<group>"; };
 		4387FE2029A7CA9B005C2464 /* SearchLoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchLoadingScreen.swift; sourceTree = "<group>"; };
 		4387FE2229A7D470005C2464 /* AnimScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimScroller.swift; sourceTree = "<group>"; };
 		43AE49D629DB595600C43E2E /* CreatePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostView.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				435E402029DC9C4D0063AD4B /* PostView.swift */,
 				435E402A29DDCA170063AD4B /* CommentsView.swift */,
 				435E402F29DDFC510063AD4B /* CreatePostButton.swift */,
+				435E403129DF7EE40063AD4B /* SearchUserPage.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -823,6 +826,7 @@
 				88DBFEEC29C4E9FE007C6E93 /* CameraMenu.swift in Sources */,
 				882D552D29D7556300487B46 /* RingView.swift in Sources */,
 				43E4B7922984547300538495 /* SearchResultButton.swift in Sources */,
+				435E403229DF7EE40063AD4B /* SearchUserPage.swift in Sources */,
 				884490EC29B3EDE200C7BA07 /* AllergenButton.swift in Sources */,
 				88FB08DD29DC999500596AF5 /* Search2.swift in Sources */,
 				43E4B777297F18C800538495 /* InstructionSlider.swift in Sources */,

@@ -70,6 +70,10 @@ struct PostView: View {
                             }
                             .padding([.trailing])
                         }
+                        else if userViewModel.user.pendingRequests!.contains(postUser.uid!) {
+                            Text("Requested")
+                                .foregroundColor(.gray)
+                        }
                         else {
                             Button("Follow") {
                                 if userViewModel.user.hasSetUsername! {
@@ -175,9 +179,15 @@ struct PostView: View {
         .alert("Follow \(post.username!)? They will see that you are following them.", isPresented: $followPressed) {
             Button("No", role: .cancel) { }
             Button("Yes") {
-                FirestoreRequests().followUser(posterID: postUser.uid!, followerID: userViewModel.user.uid!)
-                userViewModel.user.following?.append(postUser.uid!)
-                NotificationCenter.default.post(name: NSNotification.refreshFollowingPosts, object: nil)
+                if post.isPublic! {
+                    FirestoreRequests().followUser(posterID: postUser.uid!, followerID: userViewModel.user.uid!)
+                    userViewModel.user.following?.append(postUser.uid!)
+                    NotificationCenter.default.post(name: NSNotification.refreshFollowingPosts, object: nil)
+                }
+                else {
+                    FirestoreRequests().followPrivateUser(posterID: postUser.uid!, followerID: userViewModel.user.uid!)
+                    userViewModel.user.pendingRequests?.append(postUser.uid!)
+                }
             }
         }
         .alert("Unfollow \(post.username!)? They will see that you are no longer following them.", isPresented: $unfollowPressed) {

@@ -109,6 +109,8 @@ struct ExplorePage: View {
                             .padding([.top], showTopBar ? -5 : 20)
                             .padding([.bottom], 40)
                             .coordinateSpace(name: "scroll")
+                        case .search:
+                            SearchUserPage()
                         }
                     }
                 }

@@ -10,6 +10,7 @@ import Foundation
 enum FeedType {
     case explore
     case following
+    case search
 }
 
 final class ExploreViewModel: ObservableObject {

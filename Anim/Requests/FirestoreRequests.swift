@@ -44,10 +44,55 @@ class FirestoreRequests {
                 let likedPosts = document.get("likedPosts") as! [String]
                 let isPublic = document.get("isPublic") as! Bool
                 let hasSetUsername = document.get("hasSetUsername") as! Bool
-                let foundUser = User(uid: uid, username: username, email: email, productsFromSearch: productsFromSearch, productsScanned: productsScanned, productsViewed: productsViewed, likes: likes, dislikes: dislikes, favorites: favorites, allergens: allergens, recentSearches: recentSearches, anim: anim, earnedAnims: earnedAnims, fridgeItems: fridgeItems, geoPreference: geoPreference, gradePreference: gradePreference, numNutrimentsReported: numNutrimentsReported, followers: followers, following: following, likedPosts: likedPosts, isPublic: isPublic, hasSetUsername: hasSetUsername)
+                let followRequests = document.get("followRequests") as! [String]
+                let pendingRequests = document.get("pendingRequests") as! [String]
+                let foundUser = User(uid: uid, username: username, email: email, productsFromSearch: productsFromSearch, productsScanned: productsScanned, productsViewed: productsViewed, likes: likes, dislikes: dislikes, favorites: favorites, allergens: allergens, recentSearches: recentSearches, anim: anim, earnedAnims: earnedAnims, fridgeItems: fridgeItems, geoPreference: geoPreference, gradePreference: gradePreference, numNutrimentsReported: numNutrimentsReported, followers: followers, following: following, likedPosts: likedPosts, isPublic: isPublic, hasSetUsername: hasSetUsername, followRequests: followRequests, pendingRequests: pendingRequests)
                 completion(foundUser)
             }
         }
+    }
+    
+    func getUserSearch(searchTerm: String, completion: @escaping ([User]?) -> ()) {
+        let db = Firestore.firestore()
+        var results = [User]()
+        db.collection("users")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let uid = document.get("uid") as! String
+                        let username = document.get("username") as! String
+                        let email = document.get("email") as! String
+                        let productsFromSearch = document.get("productsFromSearch") as! Int
+                        let productsScanned = document.get("productsScanned") as! Int
+                        let productsViewed = document.get("productsViewed") as! [String]
+                        let likes = document.get("likes") as! [String]
+                        let dislikes = document.get("dislikes") as! [String]
+                        let favorites = document.get("favorites") as! [String]
+                        let allergens = document.get("allergens") as! [String]
+                        let recentSearches = document.get("recentSearches") as! [String]
+                        let anim = document.get("anim") as! String
+                        let earnedAnims = document.get("earnedAnims") as! [String]
+                        let fridgeItems = document.get("fridgeItems") as! [String]
+                        let geoPreference = document.get("geoPreference") as! String
+                        let gradePreference = document.get("gradePreference") as! String
+                        let numNutrimentsReported = document.get("numNutrimentsReported") as! Int
+                        let followers = document.get("followers") as! [String]
+                        let following = document.get("following") as! [String]
+                        let likedPosts = document.get("likedPosts") as! [String]
+                        let isPublic = document.get("isPublic") as! Bool
+                        let hasSetUsername = document.get("hasSetUsername") as! Bool
+                        let followRequests = document.get("followRequests") as! [String]
+                        let pendingRequests = document.get("pendingRequests") as! [String]
+                        let tempUser = User(uid: uid, username: username, email: email, productsFromSearch: productsFromSearch, productsScanned: productsScanned, productsViewed: productsViewed, likes: likes, dislikes: dislikes, favorites: favorites, allergens: allergens, recentSearches: recentSearches, anim: anim, earnedAnims: earnedAnims, fridgeItems: fridgeItems, geoPreference: geoPreference, gradePreference: gradePreference, numNutrimentsReported: numNutrimentsReported, followers: followers, following: following, likedPosts: likedPosts, isPublic: isPublic, hasSetUsername: hasSetUsername, followRequests: followRequests, pendingRequests: pendingRequests)
+                        if following.contains(searchTerm) {
+                            results.append(tempUser)
+                        }
+                    }
+                    completion(results)
+                }
+            }
     }
     
     func createUser(uid: String, username: String, email: String, completion: @escaping (User?) -> ()) {
@@ -77,13 +122,15 @@ class FirestoreRequests {
                       "following" : [String](),
                       "likedPosts" : [String](),
                       "isPublic" : false,
-                      "hasSetUsername" : false
+                      "hasSetUsername" : false,
+                      "followRequests" : [String](),
+                      "pendingRequests" : [String](),
                      ]) { error in
             if let error = error {
                 print("Error writing document: \(error)")
             }
             else {
-                completion(User(uid: uid, username: username, email: email, productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default", earnedAnims: [], fridgeItems: [], geoPreference: "us", gradePreference: "", numNutrimentsReported: 0, followers: [], following: [], likedPosts: [], isPublic: false, hasSetUsername: false))
+                completion(User(uid: uid, username: username, email: email, productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default", earnedAnims: [], fridgeItems: [], geoPreference: "us", gradePreference: "", numNutrimentsReported: 0, followers: [], following: [], likedPosts: [], isPublic: false, hasSetUsername: false, followRequests: [], pendingRequests: []))
             }
             
         }
@@ -140,7 +187,9 @@ class FirestoreRequests {
             "likedPosts" : user.likedPosts,
             "isPublic" : user.isPublic,
             "hasSetUsername": user.hasSetUsername,
-            "username" : user.username
+            "username" : user.username,
+            "followRequests" : user.followRequests,
+            "pendingRequests" : user.pendingRequests
         ])
     }
     
@@ -284,7 +333,7 @@ class FirestoreRequests {
                     for document in querySnapshot!.documents {
                         let doc = db.collection("users").document(document.documentID)
                         doc.updateData([
-                            field: false
+                            field: []
                         ]) { err in
                             if let err = err {
                                 print("Error updating document: \(err)")
@@ -815,6 +864,18 @@ class FirestoreRequests {
         
         user.updateData([
             "followers": FieldValue.arrayUnion([followerID])
+        ])
+        
+    }
+    
+    func followPrivateUser(posterID: String, followerID: String) {
+        
+        let db = Firestore.firestore()
+        
+        let user = db.collection("users").document(posterID)
+        
+        user.updateData([
+            "followRequest": FieldValue.arrayUnion([followerID])
         ])
         
     }
