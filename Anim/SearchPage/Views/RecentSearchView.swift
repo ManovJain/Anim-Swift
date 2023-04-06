@@ -51,12 +51,16 @@ struct RecentSearchView: View {
             networkRequests.getFoodByBarcode(barcode: id) { data in
                 if let data {
                     status = (data.status)!
-                    print(id)
                     //these gave nil products
-                    //0042272005895
                     //0795835873164
                     //0646555007127
-                    product = (data.product)!
+                    if data.product == nil{
+                        print(id)
+                        //remove from userViewModel
+                    } else {
+                        product = (data.product)!
+                    }
+                    
                 }
                 
             }

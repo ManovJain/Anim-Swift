@@ -15,16 +15,21 @@ struct Banner: View {
     @State var location: String
     
     var body: some View {
-        Button(action: {
-            navModel.exploreEdge = Edge.trailing
-            withAnimation() {
-                locationConvert(location: location)
-            }
-        }) {
-            Image(inputImage)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-        }
+//        Button(action: {
+//            print("clicked")
+////            navModel.exploreEdge = Edge.trailing
+////            withAnimation() {
+////                locationConvert(location: location)
+////            }
+//        }) {
+//            Image(inputImage)
+//                .resizable()
+//                .aspectRatio(contentMode: .fit)
+//        }
+                    Image(inputImage)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+        
     }
     func locationConvert(location: String) {
         if location == "camera" {

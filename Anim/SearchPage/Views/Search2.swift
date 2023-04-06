@@ -70,15 +70,15 @@ struct Search2: View {
                                     Image(systemName: "clock")
                                     Text("Recent Searches")
                                 }
-//                                ScrollView(.horizontal){
-//                                    HStack{
-//                                        if searchText.isEmpty && userViewModel.state == .signedIn {
-//                                            ForEach(userViewModel.user.productsViewed!, id: \.self) { favorite in
-//                                                RecentSearchView(id: favorite)
-//                                            }
-//                                        }
-//                                    }
-//                                }
+                                ScrollView(.horizontal){
+                                    HStack{
+                                        if searchText.isEmpty && userViewModel.state == .signedIn {
+                                            ForEach(userViewModel.user.productsViewed!, id: \.self) { favorite in
+                                                RecentSearchView(id: favorite)
+                                            }
+                                        }
+                                    }
+                                }
                             }
                             Spacer()
                                 .frame(height: 20)
