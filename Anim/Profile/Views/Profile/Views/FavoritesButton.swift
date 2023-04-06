@@ -19,8 +19,6 @@ struct FavoritesButton: View {
     @State var status: Int?
     @State var id: String
     
-    
-    
     var body: some View {
         VStack {
             Spacer()
@@ -73,6 +71,8 @@ struct FavoritesButton: View {
                         .font(Font.custom("DMSans-Medium", size: 15))
                         .foregroundColor(Color("AnimGreen"))
                         .lineLimit(1)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(minWidth: 80, maxWidth: 80)
                 }
                 .padding()
                 .overlay(
@@ -91,8 +91,15 @@ struct FavoritesButton: View {
             networkRequests.getFoodByBarcode(barcode: id) { data in
                 if let data {
                     status = (data.status)!
+                    print(id)
+                    //these gave nil products
+                    //0042272005895
+                    //0795835873164
+                    //0646555007127
                     product = (data.product)!
+//                    product = (data.product == nil ? data.product : "8076800195057")
                 }
+                
             }
         }
     }

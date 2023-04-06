@@ -85,9 +85,35 @@ class FirestoreRequests {
             else {
                 completion(User(uid: uid, username: username, email: email, productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default", earnedAnims: [], fridgeItems: [], geoPreference: "us", gradePreference: "", numNutrimentsReported: 0, followers: [], following: [], likedPosts: [], isPublic: false, hasSetUsername: false))
             }
+            
         }
     }
     
+    func getNutrition(_ userID: String, completion: @escaping (Nutrition?) -> ()) {
+        
+        let db = Firestore.firestore()
+        
+        let nutrition = db.collection("nutrition").document(userID)
+        
+        nutrition.getDocument{(document, error) in
+            if let document = document, document.exists {
+                let uid = document.get("uid") as! String
+                let calories = document.get("calories") as! Int
+                let carbs = document.get("carbs") as! Int
+                let fat = document.get("fat") as! Int
+                let protein = document.get("protein") as! Int
+                let totalCalories = document.get("totalCalories") as! Int
+                let totalCarbs = document.get("totalCarbs") as! Int
+                let totalFat = document.get("totalFat") as! Int
+                let totalProtein = document.get("totalProtein") as! Int
+                let foundNutrition = Nutrition(uid: uid, calories: calories, carbs: carbs, fat: fat, protein: protein, totalCalories: totalCalories, totalCarbs: totalCarbs, totalFat: totalFat, totalProtein: totalProtein)
+                completion(foundNutrition)
+            } else {
+                completion(Nutrition(uid: "", nutritionSet: false, calories: 0, carbs: 0, fat: 0, protein: 0, totalCalories: 1000, totalCarbs: 100, totalFat: 100, totalProtein: 100))
+            }
+        }
+    }
+
     
     func updateUser(uid: String, user: User) {
         let db = Firestore.firestore()
@@ -118,6 +144,47 @@ class FirestoreRequests {
         ])
     }
     
+
+    func createNutrition(uid: String, completion: @escaping (Nutrition?) -> ()){
+        let db = Firestore.firestore()
+        let nutrition = db.collection("nutrition").document(uid)
+        
+        nutrition.setData([
+            "uid": uid,
+            "calories": 0,
+            "carbs": 0,
+            "fat": 0,
+            "protein": 0,
+            "totalCalories": 2000,
+            "totalCarbs": 100,
+            "totalFat": 100,
+            "totalProtein": 100]) { error in
+                if let error = error {
+                    print("Error writing document: \(error)")
+                }
+                else {
+                    completion(Nutrition(uid: uid, calories: 0, carbs: 0, fat: 0, protein: 0, totalCalories: 2000, totalCarbs: 100, totalFat: 100, totalProtein: 100))
+                }
+            }
+    }
+    
+    func updateNutrition(uid: String, nutrition: Nutrition) {
+        let db = Firestore.firestore()
+        
+        let firestoreNutrition = db.collection("nutrition").document(uid)
+        
+        firestoreNutrition.updateData([
+            "uid": uid,
+            "calories": nutrition.calories!,
+            "carbs": nutrition.carbs!,
+            "fat": nutrition.fat!,
+            "protein": nutrition.protein!,
+            "totalCalories": nutrition.totalCalories!,
+            "totalCarbs": nutrition.totalCarbs!,
+            "totalFat": nutrition.totalFat!,
+            "totalProtein": nutrition.totalProtein!
+        ])
+    }
     
     func deleteAccount(uid: String) {
         let db = Firestore.firestore()

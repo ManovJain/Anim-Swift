@@ -67,6 +67,10 @@
 		882D1DFC29394B69002EFDC8 /* Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882D1DFB29394B69002EFDC8 /* Placeholder.swift */; };
 		882D1E0129394CC9002EFDC8 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882D1E0029394CC9002EFDC8 /* UserView.swift */; };
 		882D1E0329394CE4002EFDC8 /* SearchPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882D1E0229394CE4002EFDC8 /* SearchPage.swift */; };
+		882D552D29D7556300487B46 /* RingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882D552C29D7556300487B46 /* RingView.swift */; };
+		88339D2E29DDEB8E0033B990 /* RecentSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88339D2D29DDEB8E0033B990 /* RecentSearchView.swift */; };
+		88339D3029DE1DC40033B990 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88339D2F29DE1DC40033B990 /* Banner.swift */; };
+		88339D3229DE398C0033B990 /* Profile2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88339D3129DE398C0033B990 /* Profile2.swift */; };
 		884490EC29B3EDE200C7BA07 /* AllergenButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884490EB29B3EDE200C7BA07 /* AllergenButton.swift */; };
 		884490EE29B3F88D00C7BA07 /* UserFilterModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884490ED29B3F88D00C7BA07 /* UserFilterModelView.swift */; };
 		88607D52294C5BEB00602FE3 /* ProfileMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88607D51294C5BEB00602FE3 /* ProfileMenu.swift */; };
@@ -75,6 +79,7 @@
 		88902BCF29C13D5B001D41FD /* AllergensView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88902BCE29C13D5B001D41FD /* AllergensView.swift */; };
 		88902BD129C13E6C001D41FD /* AllergensViewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88902BD029C13E6C001D41FD /* AllergensViewButton.swift */; };
 		88902BD329C14287001D41FD /* ListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88902BD229C14287001D41FD /* ListsView.swift */; };
+		88A6415B29D1FBCD0004E5C3 /* FoodLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A6415A29D1FBCD0004E5C3 /* FoodLogView.swift */; };
 		88BE1515294BB2B8001AE321 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1514294BB2B8001AE321 /* Ingredient.swift */; };
 		88BE1517294BB2CD001AE321 /* NutrientLevels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1516294BB2CD001AE321 /* NutrientLevels.swift */; };
 		88BE1519294BB2E1001AE321 /* Nutriments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1518294BB2E1001AE321 /* Nutriments.swift */; };
@@ -99,11 +104,15 @@
 		88C76D4329AC6F6B00289E57 /* GeoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C76D4229AC6F6B00289E57 /* GeoButton.swift */; };
 		88CB6AAB29889F8000184BC2 /* GoogleSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB6AAA29889F8000184BC2 /* GoogleSignInButton.swift */; };
 		88CB6AAE2988A0B000184BC2 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 88CB6AAD2988A0B000184BC2 /* GoogleSignIn */; };
+		88CE67E329D38045000FF59A /* Nutrition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE67E229D38045000FF59A /* Nutrition.swift */; };
+		88CE67E529D3FEB4000FF59A /* FoodLogInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE67E429D3FEB4000FF59A /* FoodLogInputView.swift */; };
 		88DA93812971EB6100674DB9 /* ProfileMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DA93802971EB6100674DB9 /* ProfileMenuViewModel.swift */; };
 		88DAABA429505DE4001E0AC6 /* AnimManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DAABA329505DE4001E0AC6 /* AnimManager.swift */; };
 		88DBFEEA29C4E716007C6E93 /* Fridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBFEE929C4E716007C6E93 /* Fridge.swift */; };
 		88DBFEEC29C4E9FE007C6E93 /* CameraMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBFEEB29C4E9FE007C6E93 /* CameraMenu.swift */; };
 		88E0412A298DD02800E4C823 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E04129298DD02800E4C823 /* Notifications.swift */; };
+		88E0D83E29DF33AA00514A0B /* UserStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E0D83D29DF33AA00514A0B /* UserStats.swift */; };
+		88FB08DD29DC999500596AF5 /* Search2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FB08DC29DC999500596AF5 /* Search2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -162,6 +171,10 @@
 		882D1DFB29394B69002EFDC8 /* Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Placeholder.swift; sourceTree = "<group>"; };
 		882D1E0029394CC9002EFDC8 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		882D1E0229394CE4002EFDC8 /* SearchPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPage.swift; sourceTree = "<group>"; };
+		882D552C29D7556300487B46 /* RingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingView.swift; sourceTree = "<group>"; };
+		88339D2D29DDEB8E0033B990 /* RecentSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchView.swift; sourceTree = "<group>"; };
+		88339D2F29DE1DC40033B990 /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
+		88339D3129DE398C0033B990 /* Profile2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile2.swift; sourceTree = "<group>"; };
 		884490EB29B3EDE200C7BA07 /* AllergenButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergenButton.swift; sourceTree = "<group>"; };
 		884490ED29B3F88D00C7BA07 /* UserFilterModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFilterModelView.swift; sourceTree = "<group>"; };
 		88607D51294C5BEB00602FE3 /* ProfileMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenu.swift; sourceTree = "<group>"; };
@@ -170,6 +183,7 @@
 		88902BCE29C13D5B001D41FD /* AllergensView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergensView.swift; sourceTree = "<group>"; };
 		88902BD029C13E6C001D41FD /* AllergensViewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergensViewButton.swift; sourceTree = "<group>"; };
 		88902BD229C14287001D41FD /* ListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsView.swift; sourceTree = "<group>"; };
+		88A6415A29D1FBCD0004E5C3 /* FoodLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLogView.swift; sourceTree = "<group>"; };
 		88BE1514294BB2B8001AE321 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		88BE1516294BB2CD001AE321 /* NutrientLevels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientLevels.swift; sourceTree = "<group>"; };
 		88BE1518294BB2E1001AE321 /* Nutriments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutriments.swift; sourceTree = "<group>"; };
@@ -194,11 +208,15 @@
 		88C76D4229AC6F6B00289E57 /* GeoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoButton.swift; sourceTree = "<group>"; };
 		88CB6AAA29889F8000184BC2 /* GoogleSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInButton.swift; sourceTree = "<group>"; };
 		88CB6AAF2988A14D00184BC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		88CE67E229D38045000FF59A /* Nutrition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutrition.swift; sourceTree = "<group>"; };
+		88CE67E429D3FEB4000FF59A /* FoodLogInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLogInputView.swift; sourceTree = "<group>"; };
 		88DA93802971EB6100674DB9 /* ProfileMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuViewModel.swift; sourceTree = "<group>"; };
 		88DAABA329505DE4001E0AC6 /* AnimManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimManager.swift; sourceTree = "<group>"; };
 		88DBFEE929C4E716007C6E93 /* Fridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fridge.swift; sourceTree = "<group>"; };
 		88DBFEEB29C4E9FE007C6E93 /* CameraMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraMenu.swift; sourceTree = "<group>"; };
 		88E04129298DD02800E4C823 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		88E0D83D29DF33AA00514A0B /* UserStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStats.swift; sourceTree = "<group>"; };
+		88FB08DC29DC999500596AF5 /* Search2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +259,7 @@
 		4355DEA52991789B00C388A4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				88E0D83C29DF338700514A0B /* UserPage */,
 				88607D51294C5BEB00602FE3 /* ProfileMenu.swift */,
 				882D1E0029394CC9002EFDC8 /* UserView.swift */,
 				88607D55294CFA6900602FE3 /* Favorites.swift */,
@@ -251,6 +270,10 @@
 				88902BD029C13E6C001D41FD /* AllergensViewButton.swift */,
 				88902BD229C14287001D41FD /* ListsView.swift */,
 				88DBFEE929C4E716007C6E93 /* Fridge.swift */,
+				88A6415A29D1FBCD0004E5C3 /* FoodLogView.swift */,
+				88CE67E429D3FEB4000FF59A /* FoodLogInputView.swift */,
+				882D552C29D7556300487B46 /* RingView.swift */,
+				88339D3129DE398C0033B990 /* Profile2.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -293,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				43E4B78A2980B88600538495 /* User.swift */,
+				88CE67E229D38045000FF59A /* Nutrition.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -519,6 +543,9 @@
 				88C76D4029AC55F000289E57 /* GradeButton.swift */,
 				88C76D4229AC6F6B00289E57 /* GeoButton.swift */,
 				884490EB29B3EDE200C7BA07 /* AllergenButton.swift */,
+				88FB08DC29DC999500596AF5 /* Search2.swift */,
+				88339D2D29DDEB8E0033B990 /* RecentSearchView.swift */,
+				88339D2F29DE1DC40033B990 /* Banner.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -638,6 +665,14 @@
 			path = Register;
 			sourceTree = "<group>";
 		};
+		88E0D83C29DF338700514A0B /* UserPage */ = {
+			isa = PBXGroup;
+			children = (
+				88E0D83D29DF33AA00514A0B /* UserStats.swift */,
+			);
+			path = UserPage;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -728,6 +763,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88BE152E294BB45F001AE321 /* Macros.swift in Sources */,
+				88A6415B29D1FBCD0004E5C3 /* FoodLogView.swift in Sources */,
 				88CB6AAB29889F8000184BC2 /* GoogleSignInButton.swift in Sources */,
 				43E4B78E29830A0500538495 /* FirestoreRequests.swift in Sources */,
 				435E403029DDFC510063AD4B /* CreatePostButton.swift in Sources */,
@@ -735,12 +771,14 @@
 				43E4B78B2980B88600538495 /* User.swift in Sources */,
 				884490EE29B3F88D00C7BA07 /* UserFilterModelView.swift in Sources */,
 				882D1E0129394CC9002EFDC8 /* UserView.swift in Sources */,
+				88E0D83E29DF33AA00514A0B /* UserStats.swift in Sources */,
 				88607D52294C5BEB00602FE3 /* ProfileMenu.swift in Sources */,
 				43ECC6B929DB3B01000E0497 /* ExplorePage.swift in Sources */,
 				430D1A15299D6D8600FD43EC /* ProfilePage.swift in Sources */,
 				43AE49DA29DB5E9E00C43E2E /* URLPreview.swift in Sources */,
 				4387FE2129A7CA9B005C2464 /* SearchLoadingScreen.swift in Sources */,
 				435E401F29DC7D170063AD4B /* UsernameInput.swift in Sources */,
+				88CE67E329D38045000FF59A /* Nutrition.swift in Sources */,
 				882D1DCC29393F1A002EFDC8 /* ContentView.swift in Sources */,
 				88BE1530294BB478001AE321 /* NutrientTag.swift in Sources */,
 				88902BD129C13E6C001D41FD /* AllergensViewButton.swift in Sources */,
@@ -762,11 +800,13 @@
 				88BE1528294BB41A001AE321 /* TagAlertView.swift in Sources */,
 				430D1A10299C2B9200FD43EC /* AnimEarnedAlert.swift in Sources */,
 				43E4B77B2980969E00538495 /* DragGestures.swift in Sources */,
+				88339D2E29DDEB8E0033B990 /* RecentSearchView.swift in Sources */,
 				88BE151B294BB2FC001AE321 /* Product.swift in Sources */,
 				88BE1515294BB2B8001AE321 /* Ingredient.swift in Sources */,
 				4355DEAD299193FC00C388A4 /* DismissButton.swift in Sources */,
 				88902BD329C14287001D41FD /* ListsView.swift in Sources */,
 				88BE153D294BBD6E001AE321 /* NavButton.swift in Sources */,
+				88339D3229DE398C0033B990 /* Profile2.swift in Sources */,
 				882D1E0329394CE4002EFDC8 /* SearchPage.swift in Sources */,
 				43ECC6BF29DB3F50000E0497 /* ExploreViewModel.swift in Sources */,
 				88C76D3D29A8826300289E57 /* FilterModalView.swift in Sources */,
@@ -774,19 +814,23 @@
 				435E402B29DDCA170063AD4B /* CommentsView.swift in Sources */,
 				88C76D4329AC6F6B00289E57 /* GeoButton.swift in Sources */,
 				882D1DF629394AD6002EFDC8 /* DataScannerView.swift in Sources */,
+				88339D3029DE1DC40033B990 /* Banner.swift in Sources */,
 				43C035B029AE7FF300FB9A43 /* Toast.swift in Sources */,
 				882D1DF829394B02002EFDC8 /* ViewExtensions.swift in Sources */,
 				43AE49D729DB595600C43E2E /* CreatePostView.swift in Sources */,
 				88BE1538294BB5C1001AE321 /* ProductPage.swift in Sources */,
 				88DA93812971EB6100674DB9 /* ProfileMenuViewModel.swift in Sources */,
 				88DBFEEC29C4E9FE007C6E93 /* CameraMenu.swift in Sources */,
+				882D552D29D7556300487B46 /* RingView.swift in Sources */,
 				43E4B7922984547300538495 /* SearchResultButton.swift in Sources */,
 				884490EC29B3EDE200C7BA07 /* AllergenButton.swift in Sources */,
+				88FB08DD29DC999500596AF5 /* Search2.swift in Sources */,
 				43E4B777297F18C800538495 /* InstructionSlider.swift in Sources */,
 				4387FE2329A7D470005C2464 /* AnimScroller.swift in Sources */,
 				8864360E2994AD4100FB28D4 /* FavoritesButton.swift in Sources */,
 				43E4B7902984407100538495 /* GradeAlertView.swift in Sources */,
 				4355DEAB299178EF00C388A4 /* IconVM.swift in Sources */,
+				88CE67E529D3FEB4000FF59A /* FoodLogInputView.swift in Sources */,
 				8815B0A129402D9B007FBB17 /* LoginPage.swift in Sources */,
 				43ECC6B429DB2A35000E0497 /* Post.swift in Sources */,
 				435E402129DC9C4D0063AD4B /* PostView.swift in Sources */,

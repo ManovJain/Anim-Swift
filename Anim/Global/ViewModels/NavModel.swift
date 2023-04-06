@@ -14,6 +14,8 @@ enum CurrentPageNav: Int, CaseIterable {
     case explore
     case social
     case profile
+    case animManager
+    case foodLog
     
     mutating func next() {
         let allCases = type(of: self).allCases

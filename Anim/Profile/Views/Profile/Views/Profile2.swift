@@ -1,14 +1,13 @@
 //
-//  QuickStats.swift
+//  Profile2.swift
 //  Anim
 //
-//  Created by Pattison, Brian (Cognizant) on 11/29/22.
+//  Created by Manovski on 4/5/23.
 //
 
 import SwiftUI
 
-struct UserView: View {
-    
+struct Profile2: View {
     @EnvironmentObject var userViewModel: UserViewModel
     
     @State var display: String
@@ -17,29 +16,69 @@ struct UserView: View {
     var displays = ["Info", "Filter", "Nutrition"]
     
     var body: some View {
-        if((userViewModel.user.username) != ""){
-            Text(userViewModel.user.username!)
-                .frame(alignment: .center)
-                .font(Font.custom("DMSans-Medium", size: 30))
-                .foregroundColor(Color("AnimGreen"))
-        } else {
-            Text("User")
-                .frame(alignment: .center)
-                .font(Font.custom("DMSans-Medium", size: 30))
-                .foregroundColor(Color("AnimGreen"))
-        }
         VStack(){
-            Image(userViewModel.user.anim!)
-                .resizable()
-                .frame(width: 60, height: 60)
-                .padding()
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color("AnimGreen"), lineWidth: 3)
-                )
+            HStack{
+                Image(userViewModel.user.anim!)
+                    .resizable()
+                    .frame(width: 60, height: 60)
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color("AnimGreen"), lineWidth: 3)
+                    )
+                VStack{
+                    if((userViewModel.user.username) != ""){
+                        Text(userViewModel.user.username!)
+                            .frame(alignment: .center)
+                            .font(Font.custom("DMSans-Medium", size: 30))
+                            .foregroundColor(Color("AnimGreen"))
+                    } else {
+                        Text("User")
+                            .frame(alignment: .center)
+                            .font(Font.custom("DMSans-Medium", size: 30))
+                            .foregroundColor(Color("AnimGreen"))
+                    }
+                    HStack{
+                        VStack {
+                            Text("Posts")
+                                .font(Font.custom("DMSans-Medium", size: 15))
+                                .foregroundColor(Color("AnimGreen"))
+                                .lineLimit(1)
+                            Text("20")
+                                .font(Font.custom("DMSans-Medium", size: 15))
+                                .foregroundColor(Color("AnimGreen"))
+                                .lineLimit(1)
+                        }
+                        Spacer()
+                        VStack {
+                            Text("Following")
+                                .font(Font.custom("DMSans-Medium", size: 15))
+                                .foregroundColor(Color("AnimGreen"))
+                                .lineLimit(1)
+                            Text("20")
+                                .font(Font.custom("DMSans-Medium", size: 15))
+                                .foregroundColor(Color("AnimGreen"))
+                                .lineLimit(1)
+                        }
+                        Spacer()
+                        VStack {
+                            Text("Followers")
+                                .font(Font.custom("DMSans-Medium", size: 15))
+                                .foregroundColor(Color("AnimGreen"))
+                                .lineLimit(1)
+                            Text("20")
+                                .font(Font.custom("DMSans-Medium", size: 15))
+                                .foregroundColor(Color("AnimGreen"))
+                                .lineLimit(1)
+                        }
+                        Spacer()
+                    }
+                }
+                
+            }
             Spacer()
-                .frame(height: 25)
-            
+                .frame(height: 20)
+            UserStats()
             ScrollView(.horizontal){
                 HStack(alignment: .center, spacing: 10){
                     Spacer()
@@ -54,7 +93,6 @@ struct UserView: View {
                 }
             }
             Spacer()
-                .frame(height: 40)
             
             ScrollView(.vertical, showsIndicators: false) {
                 if display == "filter" {
@@ -121,24 +159,6 @@ struct UserView: View {
                             .foregroundColor(Color("background"))
                             .lineLimit(1)
                     }
-                    .padding()
-                    .background(Color("AnimGreen"))
-                    .cornerRadius(15)
-                    .clipShape(Capsule())
-                    Spacer()
-                        .frame(height: 20)
-                    Button(){
-                        
-                    } label: {
-                        Text("Products Searched: \(userViewModel.user.productsFromSearch!)")
-                            .font(Font.custom("DMSans-Medium", size: 15))
-                            .foregroundColor(Color("background"))
-                            .lineLimit(1)
-                    }
-                    .padding()
-                    .background(Color("AnimGreen"))
-                    .cornerRadius(15)
-                    .clipShape(Capsule())
                 }
                 
             }
@@ -153,19 +173,6 @@ struct UserView: View {
     }
 }
 
-struct MenuButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .font(Font.custom("DMSans-Medium", size: 15))
-            .foregroundColor(Color("background"))
-            .lineLimit(1)
-            .padding()
-            .frame(height: 40)
-            .frame(minWidth: 80, maxWidth: .infinity)
-            .background(configuration.isPressed ? Color("background") : Color("AnimGreen"))
-            .clipShape(Capsule())
-            .cornerRadius(15)
-            .scaleEffect(configuration.isPressed ? 0.8 : 1.0)
-    }
+struct MyFont {
+    static let scrollStats = Font.custom("DMSans-Medium", size: 15.0)
 }
-
