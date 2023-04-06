@@ -765,7 +765,6 @@ class FirestoreRequests {
             }
     }
     
-    
     func addUsernameToArray(username: String) {
         
         let db = Firestore.firestore()

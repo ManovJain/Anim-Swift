@@ -18,9 +18,58 @@ struct PillTabBar: View {
             Group {
                 Spacer()
                 Button(action: {
-                    navModel.cameraEdge = Edge.leading
-                    navModel.productEdge = Edge.trailing
+                    navModel.productEdge = Edge.leading
+                    navModel.cameraEdge = Edge.trailing
                     navModel.exploreEdge = Edge.trailing
+                    navModel.socialEdge = Edge.trailing
+                    withAnimation() {
+                        navModel.currentPage = .food
+                    }
+                }) {
+                    if navModel.currentPage == .food {
+                        VStack {
+                            Image("forkGreen")
+                                .resizable()
+                                .frame(width: 23, height: 23)
+                        }
+                        .frame(height: 35)
+                        .border(width: 2, edges: [.bottom], color: Color("AnimGreen"))
+                    }
+                    else {
+                        Image("fork")
+                            .resizable()
+                            .frame(width: 23, height: 23)
+                            .foregroundColor(.primary)
+                    }
+                }
+                Spacer()
+                Button(action: {
+                    navModel.productEdge = Edge.leading
+                    navModel.cameraEdge = Edge.trailing
+                    withAnimation() {
+                        navModel.currentPage = .explore
+                    }
+                }) {
+                    if navModel.currentPage == .explore {
+                        VStack {
+                            Image("searchGreen")
+                                .resizable()
+                                .frame(width: 23, height: 23)
+                        }
+                        .frame(height: 35)
+                        .border(width: 2, edges: [.bottom], color: Color("AnimGreen"))
+                    }
+                    else {
+                        Image("search")
+                            .resizable()
+                            .frame(width: 23, height: 23)
+                            .foregroundColor(.primary)
+                    }
+                }
+                
+                Spacer()
+                Button(action: {
+                    navModel.exploreEdge = Edge.leading
                     navModel.socialEdge = Edge.trailing
                     withAnimation() {
                         navModel.currentPage = .camera
@@ -45,56 +94,7 @@ struct PillTabBar: View {
                 Spacer()
             }
             Button(action: {
-                navModel.exploreEdge = Edge.trailing
-                navModel.socialEdge = Edge.trailing
-                withAnimation() {
-                    navModel.currentPage = .food
-                }
-            }) {
-                if navModel.currentPage == .food {
-                    VStack {
-                        Image("forkGreen")
-                            .resizable()
-                            .frame(width: 23, height: 23)
-                    }
-                    .frame(height: 35)
-                    .border(width: 2, edges: [.bottom], color: Color("AnimGreen"))
-                }
-                else {
-                    Image("fork")
-                        .resizable()
-                        .frame(width: 23, height: 23)
-                        .foregroundColor(.primary)
-                }
-            }
-            Spacer()
-            Button(action: {
-                navModel.productEdge = Edge.leading
-                navModel.socialEdge = Edge.trailing
-                withAnimation() {
-                    navModel.currentPage = .explore
-                }
-            }) {
-                if navModel.currentPage == .explore {
-                    VStack {
-                        Image("searchGreen")
-                            .resizable()
-                            .frame(width: 23, height: 23)
-                    }
-                    .frame(height: 35)
-                    .border(width: 2, edges: [.bottom], color: Color("AnimGreen"))
-                }
-                else {
-                    Image("search")
-                        .resizable()
-                        .frame(width: 23, height: 23)
-                        .foregroundColor(.primary)
-                }
-            }
-            
-            Spacer()
-            Button(action: {
-                navModel.productEdge = Edge.leading
+                navModel.cameraEdge = Edge.leading
                 navModel.exploreEdge = Edge.leading
                 withAnimation() {
                     navModel.currentPage = .social
@@ -119,6 +119,9 @@ struct PillTabBar: View {
             
             Spacer()
             Button(action: {
+                navModel.productEdge = Edge.leading
+                navModel.cameraEdge = Edge.leading
+                navModel.exploreEdge = Edge.leading
                 navModel.socialEdge = Edge.leading
                 withAnimation() {
                     navModel.currentPage = .profile
