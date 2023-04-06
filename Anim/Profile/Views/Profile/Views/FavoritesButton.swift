@@ -19,8 +19,6 @@ struct FavoritesButton: View {
     @State var status: Int?
     @State var id: String
     
-    
-    
     var body: some View {
         VStack {
             Spacer()
