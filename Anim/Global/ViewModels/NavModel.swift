@@ -12,6 +12,7 @@ enum CurrentPageNav: Int, CaseIterable {
     case camera
     case food
     case explore
+    case social
     case profile
     case animManager
     case foodLog
@@ -39,5 +40,6 @@ final class NavModel: ObservableObject {
     @Published var cameraEdge: Edge = Edge.leading
     @Published var productEdge: Edge = Edge.trailing
     @Published var profileEdge: Edge = Edge.trailing
+    @Published var socialEdge: Edge = Edge.trailing
     @Published var exploreEdge: Edge = Edge.trailing
 }
