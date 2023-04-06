@@ -35,6 +35,7 @@ struct UsernameInput: View {
                 )
                 .frame(width: 200)
                 .textInputAutocapitalization(.never)
+                .autocorrectionDisabled()
                 .padding()
                 .overlay(
                     RoundedRectangle(cornerRadius: 16)

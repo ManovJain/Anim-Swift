@@ -26,4 +26,5 @@ struct Post: Codable, Hashable {
     var datePosted: Date?
     var numLikes: Int?
     var likedBy: [String]?
+    var isPublic: Bool?
 }

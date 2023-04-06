@@ -113,7 +113,7 @@ class FirestoreRequests {
             }
         }
     }
-
+    
     
     func updateUser(uid: String, user: User) {
         let db = Firestore.firestore()
@@ -144,7 +144,7 @@ class FirestoreRequests {
         ])
     }
     
-
+    
     func createNutrition(uid: String, completion: @escaping (Nutrition?) -> ()){
         let db = Firestore.firestore()
         let nutrition = db.collection("nutrition").document(uid)
@@ -271,7 +271,7 @@ class FirestoreRequests {
             array: FieldValue.arrayRemove([barcode])
         ])
     }
-
+    
     
     //MARK: addField function
     func addField(field: String) {
@@ -556,7 +556,7 @@ class FirestoreRequests {
     
     //MARK: Social Stuff
     
-    func createPost(userID: String, postID: String, contentType: String, content: String, caption: String, datePosted: Date, username: String, completion: @escaping (Post?) -> ()) {
+    func createPost(userID: String, postID: String, contentType: String, content: String, caption: String, datePosted: Date, username: String, isPublic: Bool,completion: @escaping (Post?) -> ()) {
         
         let db = Firestore.firestore()
         
@@ -571,12 +571,13 @@ class FirestoreRequests {
                       "likedBy": [String](),
                       "username" : username,
                       "numLikes": 0,
+                      "isPublic" : isPublic
                      ]) { error in
             if let error = error {
                 print("Error writing document: \(error)")
             }
             else {
-                completion(Post(id: postID, userID: userID, username: username, contentType: contentType, content: content, caption: caption, datePosted: datePosted, numLikes: 0, likedBy: []))
+                completion(Post(id: postID, userID: userID, username: username, contentType: contentType, content: content, caption: caption, datePosted: datePosted, numLikes: 0, likedBy: [], isPublic: isPublic))
             }
         }
     }
@@ -681,8 +682,11 @@ class FirestoreRequests {
                         let numLikes = document.get("numLikes") as! Int
                         let likedBy = document.get("likedBy") as! [String]
                         let username = document.get("username") as! String
-                        let tempPost = Post(id: id, userID: userID, username: username, contentType: contentType, content: content, caption: caption, datePosted: datePosted.dateValue(), numLikes: numLikes, likedBy: likedBy)
-                        allPosts.append(tempPost)
+                        let isPublic = document.get("isPublic") as! Bool
+                        let tempPost = Post(id: id, userID: userID, username: username, contentType: contentType, content: content, caption: caption, datePosted: datePosted.dateValue(), numLikes: numLikes, likedBy: likedBy, isPublic: isPublic)
+                        if isPublic {
+                            allPosts.append(tempPost)
+                        }
                     }
                     completion(allPosts)
                 }
@@ -708,7 +712,8 @@ class FirestoreRequests {
                         let numLikes = document.get("numLikes") as! Int
                         let likedBy = document.get("likedBy") as! [String]
                         let username = document.get("username") as! String
-                        let tempPost = Post(id: id, userID: userID, username: username, contentType: contentType, content: content, caption: caption, datePosted: datePosted.dateValue(), numLikes: numLikes, likedBy: likedBy)
+                        let isPublic = document.get("isPublic") as! Bool
+                        let tempPost = Post(id: id, userID: userID, username: username, contentType: contentType, content: content, caption: caption, datePosted: datePosted.dateValue(), numLikes: numLikes, likedBy: likedBy, isPublic: isPublic)
                         if following.contains(userID) {
                             allPosts.append(tempPost)
                         }
@@ -734,7 +739,8 @@ class FirestoreRequests {
                 let numLikes = document.get("numLikes") as! Int
                 let likedBy = document.get("likedBy") as! [String]
                 let username = document.get("username") as! String
-                let tempPost = Post(id: id, userID: userID, username: username, contentType: contentType, content: content, caption: caption, datePosted: datePosted.dateValue(), numLikes: numLikes, likedBy: likedBy)
+                let isPublic = document.get("isPublic") as! Bool
+                let tempPost = Post(id: id, userID: userID, username: username, contentType: contentType, content: content, caption: caption, datePosted: datePosted.dateValue(), numLikes: numLikes, likedBy: likedBy, isPublic: isPublic)
                 completion(tempPost)
             }
         }
@@ -825,5 +831,65 @@ class FirestoreRequests {
         
     }
     
-}
     
+    func publicUser(uid: String) {
+        
+        let db = Firestore.firestore()
+        
+        let user = db.collection("users").document(uid)
+        
+        user.updateData([
+            "isPublic": true
+        ])
+        
+        db.collection("Posts")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let postID = document.get("postID") as! String
+                        let userID = document.get("userID") as! String
+                        if userID == uid {
+                            let temp = db.collection("Posts").document(postID)
+                            
+                            temp.updateData([
+                                "isPublic": true
+                            ])
+                        }
+                    }
+                }
+            }
+    }
+    
+    func privateUser(uid: String) {
+        
+        let db = Firestore.firestore()
+        
+        let user = db.collection("users").document(uid)
+        
+        user.updateData([
+            "isPublic": false
+        ])
+        
+        db.collection("Posts")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let postID = document.get("postID") as! String
+                        let userID = document.get("userID") as! String
+                        if userID == uid {
+                            let temp = db.collection("Posts").document(postID)
+                            
+                            temp.updateData([
+                                "isPublic": false
+                            ])
+                        }
+                    }
+                }
+            }
+    }
+}
+

@@ -9,6 +9,12 @@ import _AuthenticationServices_SwiftUI
 import GoogleSignIn
 import Firebase
 //import GoogleSignInSwift
+
+enum SettingsAlert {
+    case deleteAccount
+    case publicAccount
+    case privateAccount
+}
 struct LoginPage: View {
     
     let defaults = UserDefaults.standard
@@ -20,6 +26,10 @@ struct LoginPage: View {
     @State var showAlert = false
     
     @Binding var darkMode: Bool
+    
+    @State var publicAccount: Bool
+    
+    @State var settingsAlert: SettingsAlert = .deleteAccount
     
     var body: some View {
         if(userViewModel.state == .signedIn){
@@ -58,7 +68,7 @@ struct LoginPage: View {
             Spacer()
                 .frame(height: 20)
             if(userViewModel.state == .signedOut){
-
+                
                 VStack{
                     //APPLE SIGN IN
                     SignInWithAppleButton { (request) in
@@ -97,6 +107,14 @@ struct LoginPage: View {
                 }
             }
             else {
+                if userViewModel.state == .signedIn && userViewModel.user.hasSetUsername! {
+                    VStack {
+                        Text("Make Account Public")
+                            .font(Font.custom("DMSans-Medium", size: 15))
+                        Toggle("DarkMode", isOn: $publicAccount).labelsHidden()
+                            .tint(Color("AnimGreen"))
+                    }
+                }
                 Button(action: {
                     userViewModel.signOut()
                     
@@ -124,7 +142,8 @@ struct LoginPage: View {
                 .clipShape(Capsule())
                 
                 Button {
-                    showAlert = true
+                    showAlert.toggle()
+                    settingsAlert = .deleteAccount
                 } label: {
                     Text("Delete Account")
                         .font(Font.custom("DMSans-Medium", size: 20))
@@ -138,9 +157,9 @@ struct LoginPage: View {
             }
             Spacer()
             Link("Icons by Icons8",
-                  destination: URL(string: "https://icons8.com")!)
-                .font(Font.custom("DMSans-Medium", size: 13))
-                .padding(.bottom, 50)
+                 destination: URL(string: "https://icons8.com")!)
+            .font(Font.custom("DMSans-Medium", size: 13))
+            .padding(.bottom, 50)
         }
         .frame(
             minWidth: 0,
@@ -149,25 +168,73 @@ struct LoginPage: View {
             maxHeight: .infinity
         )
         .alert(isPresented: $showAlert) {
-                Alert(
+            switch settingsAlert {
+            case .deleteAccount:
+                return Alert(
                     title: Text("Are you sure?"),
                     message: Text("You will lose all of the data associated with your account."),
                     primaryButton: .default(
                         Text("Keep Account"),
-                        action: {showAlert = false}
+                        action: {showAlert.toggle()}
                     ),
                     secondaryButton: .destructive(
                         Text("Delete Account"),
                         action: deleteAccount
                     )
                 )
+            case .publicAccount:
+                return Alert(
+                    title: Text("Make your account public?"),
+                    message: Text("All users will be able to see your posts and your profile."),
+                    primaryButton: .default(
+                        Text("Yes"),
+                        action: {showAlert.toggle()
+                            publicUser()
+                        }
+                    ),
+                    secondaryButton: .destructive(
+                        Text("No"),
+                        action: {
+                            showAlert.toggle()
+                            publicAccount = false
+                        }
+                    )
+                )
+            case .privateAccount:
+                return Alert(
+                    title: Text("Make your account private?"),
+                    message: Text("Only approved followers will be able to see your posts and your profile."),
+                    primaryButton: .default(
+                        Text("Yes"),
+                        action: {showAlert.toggle()
+                            privateUser()
+                        }
+                    ),
+                    secondaryButton: .destructive(
+                        Text("No"),
+                        action: {
+                            showAlert.toggle()
+                            publicAccount = true
+                        }
+                    )
+                )
             }
+        }
+        .onChange(of: publicAccount) { value in
+            showAlert.toggle()
+            if publicAccount {
+                settingsAlert = .publicAccount
+            }
+            else {
+                settingsAlert = .privateAccount
+            }
+        }
     }
- 
+    
     func deleteAccount() {
         userViewModel.deleteAccount()
         FirestoreRequests().deleteAccount(uid: userViewModel.user.uid!)
-        showAlert = false
+        showAlert.toggle()
         userViewModel.user = User(uid: "", username: "", email: "", productsFromSearch: 0, productsScanned: 0, productsViewed: [], likes: [], dislikes: [], favorites: [], allergens: [], recentSearches: [], anim: "default")
         
         defaults.set(false, forKey: "signedIn")
@@ -182,4 +249,12 @@ struct LoginPage: View {
         profileMenuViewModel.icon = .settings
     }
     
+    func publicUser() {
+        userViewModel.user.isPublic! = true
+        FirestoreRequests().publicUser(uid: userViewModel.user.uid!)
+    }
+    func privateUser() {
+        userViewModel.user.isPublic! = false
+        FirestoreRequests().privateUser(uid: userViewModel.user.uid!)
+    }
 }

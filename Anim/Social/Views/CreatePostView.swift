@@ -49,7 +49,7 @@ struct CreatePostView: View {
             .padding()
             .border(Color("AnimGreen"), width: 1)
             Button(action: {
-                FirestoreRequests().createPost(userID: userViewModel.user.uid!, postID: UUID().uuidString, contentType: "link", content: link, caption: caption, datePosted: Date(), username: userViewModel.user.username!) { data in
+                FirestoreRequests().createPost(userID: userViewModel.user.uid!, postID: UUID().uuidString, contentType: "link", content: link, caption: caption, datePosted: Date(), username: userViewModel.user.username!, isPublic: userViewModel.user.isPublic!) { data in
                     NotificationCenter.default.post(name: NSNotification.refreshPosts, object: nil)
                     self.presentationMode.wrappedValue.dismiss()
                 }
