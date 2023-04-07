@@ -106,6 +106,11 @@
 		88CB207929DFDE17009E6F77 /* UserNavTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB207829DFDE17009E6F77 /* UserNavTitle.swift */; };
 		88CB6AAB29889F8000184BC2 /* GoogleSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB6AAA29889F8000184BC2 /* GoogleSignInButton.swift */; };
 		88CB6AAE2988A0B000184BC2 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 88CB6AAD2988A0B000184BC2 /* GoogleSignIn */; };
+		88CE3C2029E0B5F2009E5FF3 /* ProductView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE3C1F29E0B5F2009E5FF3 /* ProductView2.swift */; };
+		88CE3C2329E0B696009E5FF3 /* ProductInfo2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE3C2229E0B696009E5FF3 /* ProductInfo2.swift */; };
+		88CE3C2529E0B713009E5FF3 /* ProductImage2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE3C2429E0B713009E5FF3 /* ProductImage2.swift */; };
+		88CE3C2729E0B77C009E5FF3 /* FoodButtonRow2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE3C2629E0B77C009E5FF3 /* FoodButtonRow2.swift */; };
+		88CE3C2929E0BC99009E5FF3 /* Ingredients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE3C2829E0BC99009E5FF3 /* Ingredients.swift */; };
 		88CE67E329D38045000FF59A /* Nutrition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE67E229D38045000FF59A /* Nutrition.swift */; };
 		88CE67E529D3FEB4000FF59A /* FoodLogInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE67E429D3FEB4000FF59A /* FoodLogInputView.swift */; };
 		88DA93812971EB6100674DB9 /* ProfileMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DA93802971EB6100674DB9 /* ProfileMenuViewModel.swift */; };
@@ -212,6 +217,11 @@
 		88CB207829DFDE17009E6F77 /* UserNavTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNavTitle.swift; sourceTree = "<group>"; };
 		88CB6AAA29889F8000184BC2 /* GoogleSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInButton.swift; sourceTree = "<group>"; };
 		88CB6AAF2988A14D00184BC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		88CE3C1F29E0B5F2009E5FF3 /* ProductView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView2.swift; sourceTree = "<group>"; };
+		88CE3C2229E0B696009E5FF3 /* ProductInfo2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfo2.swift; sourceTree = "<group>"; };
+		88CE3C2429E0B713009E5FF3 /* ProductImage2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductImage2.swift; sourceTree = "<group>"; };
+		88CE3C2629E0B77C009E5FF3 /* FoodButtonRow2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodButtonRow2.swift; sourceTree = "<group>"; };
+		88CE3C2829E0BC99009E5FF3 /* Ingredients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredients.swift; sourceTree = "<group>"; };
 		88CE67E229D38045000FF59A /* Nutrition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutrition.swift; sourceTree = "<group>"; };
 		88CE67E429D3FEB4000FF59A /* FoodLogInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodLogInputView.swift; sourceTree = "<group>"; };
 		88DA93802971EB6100674DB9 /* ProfileMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileMenuViewModel.swift; sourceTree = "<group>"; };
@@ -601,6 +611,7 @@
 		88BE1513294BB295001AE321 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				88CE3C2129E0B663009E5FF3 /* New Product Display */,
 				88BE1520294BB38A001AE321 /* IngredientsView */,
 				88BE1521294BB392001AE321 /* NutrientsView */,
 				88BE1522294BB39F001AE321 /* ProductView */,
@@ -651,6 +662,18 @@
 				88CB207829DFDE17009E6F77 /* UserNavTitle.swift */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		88CE3C2129E0B663009E5FF3 /* New Product Display */ = {
+			isa = PBXGroup;
+			children = (
+				88CE3C1F29E0B5F2009E5FF3 /* ProductView2.swift */,
+				88CE3C2629E0B77C009E5FF3 /* FoodButtonRow2.swift */,
+				88CE3C2229E0B696009E5FF3 /* ProductInfo2.swift */,
+				88CE3C2429E0B713009E5FF3 /* ProductImage2.swift */,
+				88CE3C2829E0BC99009E5FF3 /* Ingredients.swift */,
+			);
+			path = "New Product Display";
 			sourceTree = "<group>";
 		};
 		88DA937F2971EB3F00674DB9 /* ViewModels */ = {
@@ -795,6 +818,7 @@
 				88CE67E329D38045000FF59A /* Nutrition.swift in Sources */,
 				882D1DCC29393F1A002EFDC8 /* ContentView.swift in Sources */,
 				88BE1530294BB478001AE321 /* NutrientTag.swift in Sources */,
+				88CE3C2329E0B696009E5FF3 /* ProductInfo2.swift in Sources */,
 				88902BD129C13E6C001D41FD /* AllergensViewButton.swift in Sources */,
 				435E402D29DDCD120063AD4B /* DateExtensions.swift in Sources */,
 				882D1DCA29393F1A002EFDC8 /* AnimApp.swift in Sources */,
@@ -809,6 +833,7 @@
 				88CB207929DFDE17009E6F77 /* UserNavTitle.swift in Sources */,
 				88BE152C294BB44E001AE321 /* GradeOverlay.swift in Sources */,
 				88BE1517294BB2CD001AE321 /* NutrientLevels.swift in Sources */,
+				88CE3C2729E0B77C009E5FF3 /* FoodButtonRow2.swift in Sources */,
 				88902BCF29C13D5B001D41FD /* AllergensView.swift in Sources */,
 				882D1DEE29394978002EFDC8 /* CameraViewModel.swift in Sources */,
 				882D1DFA29394B3C002EFDC8 /* PillTabBar.swift in Sources */,
@@ -822,7 +847,9 @@
 				88902BD329C14287001D41FD /* ListsView.swift in Sources */,
 				88BE153D294BBD6E001AE321 /* NavButton.swift in Sources */,
 				88339D3229DE398C0033B990 /* Profile2.swift in Sources */,
+				88CE3C2929E0BC99009E5FF3 /* Ingredients.swift in Sources */,
 				882D1E0329394CE4002EFDC8 /* SearchPage.swift in Sources */,
+				88CE3C2529E0B713009E5FF3 /* ProductImage2.swift in Sources */,
 				43ECC6BF29DB3F50000E0497 /* ExploreViewModel.swift in Sources */,
 				88C76D3D29A8826300289E57 /* FilterModalView.swift in Sources */,
 				88BE152A294BB42B001AE321 /* Allergens.swift in Sources */,
@@ -835,6 +862,7 @@
 				43AE49D729DB595600C43E2E /* CreatePostView.swift in Sources */,
 				88BE1538294BB5C1001AE321 /* ProductPage.swift in Sources */,
 				88DA93812971EB6100674DB9 /* ProfileMenuViewModel.swift in Sources */,
+				88CE3C2029E0B5F2009E5FF3 /* ProductView2.swift in Sources */,
 				88DBFEEC29C4E9FE007C6E93 /* CameraMenu.swift in Sources */,
 				882D552D29D7556300487B46 /* RingView.swift in Sources */,
 				43E4B7922984547300538495 /* SearchResultButton.swift in Sources */,
