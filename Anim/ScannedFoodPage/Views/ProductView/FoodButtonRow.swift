@@ -21,16 +21,17 @@ struct FoodButtonRow: View {
             HStack(alignment: .center, spacing: 10){
                 Spacer()
                 if nutriments.sodium_serving != nil {
-                    Text("info")
-                        .font(Font.custom("DMSans-Medium", size: 15))
-                        .foregroundColor(Color("AnimGreen"))
-                        .lineLimit(1)
                     NavigationLink {
                         NutrientsPage(nutriments: nutriments, foodID: product._id!)
                     } label: {
                         Image(systemName: "info.circle")
+                            .font(.system(size: 30))
                             .foregroundColor(Color("AnimGreen"))
                     }
+                    Text("info")
+                        .font(Font.custom("DMSans-Medium", size: 15))
+                        .foregroundColor(Color("AnimGreen"))
+                        .lineLimit(1)
                 }
                 Spacer()
                 Button {
@@ -46,6 +47,7 @@ struct FoodButtonRow: View {
                             .foregroundColor(Color("AnimGreen"))
                             .lineLimit(1)
                         Image(systemName: "star")
+                            .font(.system(size: 30))
                             .foregroundColor(Color("AnimGreen"))
                     } else {
                         Text("unfavorite")
@@ -53,6 +55,7 @@ struct FoodButtonRow: View {
                             .foregroundColor(Color("AnimGreen"))
                             .lineLimit(1)
                         Image(systemName: "star.fill")
+                            .font(.system(size: 30))
                             .foregroundColor(Color("AnimGreen"))
                     }
                 }
@@ -60,30 +63,34 @@ struct FoodButtonRow: View {
                 .disabled((userViewModel.state ==  .signedOut))
                 Spacer()
             }
+            Spacer()
+                .frame(height: 10)
             HStack(alignment: .center, spacing: 10){
                 Spacer()
                 if((userViewModel.user.fridgeItems!.contains(product._id!) == true)){
                     Button {
                         userViewModel.user.fridgeItems?.removeAll(where: { $0 == product._id })
                     } label: {
+                        Image(systemName: "refrigerator.fill")
+                            .font(.system(size: 30))
+                            .foregroundColor(Color("AnimGreen"))
                         Text("Remove from Fridge")
                             .font(Font.custom("DMSans-Medium", size: 15))
                             .foregroundColor(Color("AnimGreen"))
                             .lineLimit(1)
-                        Image(systemName: "refrigerator.fill")
-                            .foregroundColor(Color("AnimGreen"))
                     }
                 }
                 else {
                     Button {
                         userViewModel.user.fridgeItems!.append(product._id!)
                     } label: {
+                        Image(systemName: "refrigerator")
+                            .font(.system(size: 30))
+                            .foregroundColor(Color("AnimGreen"))
                         Text("Add to Fridge")
                             .font(Font.custom("DMSans-Medium", size: 15))
                             .foregroundColor(Color("AnimGreen"))
                             .lineLimit(1)
-                        Image(systemName: "refrigerator")
-                            .foregroundColor(Color("AnimGreen"))
                     }
                 }
                 Spacer()
@@ -96,6 +103,7 @@ struct FoodButtonRow: View {
                             .foregroundColor(Color("AnimGreen"))
                             .lineLimit(1)
                         Image(systemName: "plus.circle")
+                            .font(.system(size: 30))
                             .foregroundColor(Color("AnimGreen"))
                     }
                 }

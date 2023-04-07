@@ -15,7 +15,7 @@ struct Allergens: View {
         VStack (alignment: .leading, spacing: 0){
             Text("Allergens")
                 .underline()
-                .font(Font.custom("DMSans-Medium", size: 17))
+                .font(Font.custom("DMSans-Medium", size: 20))
             HStack (alignment: .top) {
                 ForEach(tags, id: \.self) { tag in
                     Text((tag.dropFirst(3)).capitalized)
