@@ -12,7 +12,7 @@ struct Profile2: View {
     
     @State var display: String
     @State var nutritionDisplay: String = "FoodLog"
-    @State var followingPosts = [Post]()
+    @State var selfPosts = [Post]()
     @State var showUsernameMissingAlert: Bool = false
     @State var allPosts = [Post]()
     @State var togglePreview = false
@@ -44,16 +44,6 @@ struct Profile2: View {
                             .foregroundColor(Color("AnimGreen"))
                     }
                     HStack{
-                        VStack {
-                            Text("Posts")
-                                .font(Font.custom("DMSans-Medium", size: 15))
-                                .foregroundColor(Color("AnimGreen"))
-                                .lineLimit(1)
-                            Text("20")
-                                .font(Font.custom("DMSans-Medium", size: 15))
-                                .foregroundColor(Color("AnimGreen"))
-                                .lineLimit(1)
-                        }
                         Spacer()
                         VStack {
                             Text("Following")
@@ -79,22 +69,50 @@ struct Profile2: View {
                         Spacer()
                     }
                 }
-                
             }
             Spacer()
                 .frame(height: 20)
             UserStats()
-            ScrollView(.horizontal){
-                HStack(alignment: .center, spacing: 10){
-                    Spacer()
-                    Button("Filter", action: {display = "Filter"})
-                        .buttonStyle(MenuButtonStyle())
-                    Spacer()
-                    Button("Nutrition", action: {display = "Nutrition"})
-                        .buttonStyle(MenuButtonStyle())
-                    Spacer()
+            HStack(alignment: .center, spacing: 10){
+                Spacer()
+                Button(action: {
+                    display = "Posts"
+                }) {
+                    Text("Posts")
+                        .font(Font.custom("DMSans-Medium", size: 15))
+                        .foregroundColor(Color("AnimGreen"))
+                        .lineLimit(1)
+                    Image(systemName: "carrot.fill")
+                        .foregroundColor(Color("AnimGreen"))
                 }
+                Spacer()
+                Button(action: {
+                    display = "Filter"
+                }) {
+                    Text("Filter")
+                        .font(Font.custom("DMSans-Medium", size: 15))
+                        .foregroundColor(Color("AnimGreen"))
+                        .lineLimit(1)
+                    Image(systemName: "checklist")
+                        .foregroundColor(Color("AnimGreen"))
+                }
+                Spacer()
+                Button(action: {
+                    display = "Nutrition"
+                }) {
+                    Text("Nutrition")
+                        .font(Font.custom("DMSans-Medium", size: 15))
+                        .foregroundColor(Color("AnimGreen"))
+                        .lineLimit(1)
+                    Image(systemName: "heart.circle.fill")
+                        .foregroundColor(Color("AnimGreen"))
+                }
+                Spacer()
             }
+            .frame(width: UIScreen.screenWidth,height: 50)
+            .background(Color("background"))
+            .border(width: 0.75, edges: [.top, .bottom], color: Color("AnimGreen"))
+            .padding(.bottom)
             Spacer()
             ScrollView(.vertical, showsIndicators: false) {
                 if display == "Filter" {
@@ -119,7 +137,7 @@ struct Profile2: View {
                 }
                 else {
                     VStack {
-                        ForEach(followingPosts, id: \.self) { post in
+                        ForEach(selfPosts, id: \.self) { post in
                             PostView(post: post, togglePreview: $togglePreview, missingUsername: $showUsernameMissingAlert)
                             Divider()
                         }
@@ -134,7 +152,7 @@ struct Profile2: View {
                         }
                         if userViewModel.state == .signedIn {
                             FirestoreRequests().getFollowingPosts(following: [userViewModel.user.uid!]) { data in
-                                followingPosts = data!.sorted{ $0.datePosted! > $1.datePosted!}
+                                selfPosts = data!.sorted{ $0.datePosted! > $1.datePosted!}
                             }
                         }
                     }
@@ -150,8 +168,4 @@ struct Profile2: View {
             maxHeight: .infinity
         )
     }
-}
-
-struct MyFont {
-    static let scrollStats = Font.custom("DMSans-Medium", size: 15.0)
 }
