@@ -11,7 +11,12 @@ struct Profile2: View {
     @EnvironmentObject var userViewModel: UserViewModel
     
     @State var display: String
-    @State var nutritionDisplay: String = "foodLog"
+    @State var nutritionDisplay: String = "FoodLog"
+    @State var followingPosts = [Post]()
+    @State var showUsernameMissingAlert: Bool = false
+    @State var allPosts = [Post]()
+    @State var togglePreview = false
+    @State var usernameSet = false
     
     var displays = ["Info", "Filter", "Nutrition"]
     
@@ -20,7 +25,7 @@ struct Profile2: View {
             HStack{
                 Image(userViewModel.user.anim!)
                     .resizable()
-                    .frame(width: 60, height: 60)
+                    .frame(width: 50, height: 50)
                     .padding()
                     .overlay(
                         RoundedRectangle(cornerRadius: 16)
@@ -82,20 +87,17 @@ struct Profile2: View {
             ScrollView(.horizontal){
                 HStack(alignment: .center, spacing: 10){
                     Spacer()
-                    Button("Info", action: {display = "info"})
+                    Button("Filter", action: {display = "Filter"})
                         .buttonStyle(MenuButtonStyle())
-                        .buttonStyle(MenuButtonStyle())
-                    Button("Filter", action: {display = "filter"})
-                        .buttonStyle(MenuButtonStyle())
-                    Button("Nutrition", action: {display = "nutrition"})
+                    Spacer()
+                    Button("Nutrition", action: {display = "Nutrition"})
                         .buttonStyle(MenuButtonStyle())
                     Spacer()
                 }
             }
             Spacer()
-            
             ScrollView(.vertical, showsIndicators: false) {
-                if display == "filter" {
+                if display == "Filter" {
                     Section {
                         UserFilterModalView()
                     } header: {
@@ -103,64 +105,41 @@ struct Profile2: View {
                             .font(Font.custom("DMSans-Medium", size: 12))
                     }
                 }
-                else if display == "nutrition" {
-                    if nutritionDisplay == "foodLog" {
-                        Button("Input", action: {nutritionDisplay = "input"})
+                else if display == "Nutrition" {
+                    if nutritionDisplay == "FoodLog" {
+                        Button("Input", action: {nutritionDisplay = "Input"})
                             .buttonStyle(MenuButtonStyle())
                         FoodLogView()
                     }
                     else {
-                        Button("Food Log", action: {nutritionDisplay = "foodLog"})
+                        Button("Food Log", action: {nutritionDisplay = "FoodLog"})
                             .buttonStyle(MenuButtonStyle())
                         FoodLogInputView()
                     }
                 }
                 else {
-                    Button(){
-                        
-                    } label: {
-                        if userViewModel.user.email != ""{
-                            Text(userViewModel.user.email!)
-                                .font(Font.custom("DMSans-Medium", size: 15))
-                                .foregroundColor(Color("background"))
-                                .lineLimit(1)
-                        } else {
-                            Text("No email shared")
-                                .font(Font.custom("DMSans-Medium", size: 15))
-                                .foregroundColor(Color("background"))
-                                .lineLimit(1)
+                    VStack {
+                        ForEach(followingPosts, id: \.self) { post in
+                            PostView(post: post, togglePreview: $togglePreview, missingUsername: $showUsernameMissingAlert)
+                            Divider()
                         }
                     }
-                    .padding()
-                    .background(Color("AnimGreen"))
-                    .cornerRadius(15)
-                    .clipShape(Capsule())
-                    Spacer()
-                        .frame(height: 20)
-                    Button(){
-                        
-                    } label: {
-                        Text("Products Viewed: \(userViewModel.user.productsViewed!.count)")
-                            .font(Font.custom("DMSans-Medium", size: 15))
-                            .foregroundColor(Color("background"))
-                            .lineLimit(1)
+                    .background(GeometryReader {
+                        return Color.clear.preference(key: ViewOffsetKey.self,
+                                                      value: -$0.frame(in: .named("scroll")).origin.y)
+                    })
+                    .onAppear {
+                        if userViewModel.state == .signedIn {
+                            usernameSet = userViewModel.user.hasSetUsername!
+                        }
+                        if userViewModel.state == .signedIn {
+                            FirestoreRequests().getFollowingPosts(following: [userViewModel.user.uid!]) { data in
+                                followingPosts = data!.sorted{ $0.datePosted! > $1.datePosted!}
+                            }
+                        }
                     }
-                    .padding()
-                    .background(Color("AnimGreen"))
-                    .cornerRadius(15)
-                    .clipShape(Capsule())
-                    Spacer()
-                        .frame(height: 20)
-                    Button(){
-                        
-                    } label: {
-                        Text("Products Scanned: \(userViewModel.user.productsScanned!)")
-                            .font(Font.custom("DMSans-Medium", size: 15))
-                            .foregroundColor(Color("background"))
-                            .lineLimit(1)
-                    }
+                    .padding(5)
                 }
-                
             }
         }
         .padding()
