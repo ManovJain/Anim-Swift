@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+enum PostAlert {
+    case delete
+    case follow
+    case unfollow
+}
+
+
 struct PostView: View {
     
     @EnvironmentObject var userViewModel: UserViewModel
@@ -23,11 +30,9 @@ struct PostView: View {
     
     @State var comment: String = ""
     
-    @State var deletePostPressed: Bool = false
+    @State var postAlert: PostAlert = .delete
     
-    @State var followPressed: Bool = false
-    
-    @State var unfollowPressed: Bool = false
+    @State var showPostAlert: Bool = false
     
     @Binding var missingUsername : Bool
     
@@ -48,7 +53,9 @@ struct PostView: View {
                 Spacer()
                 if (postUser.uid! == userViewModel.user.uid!) {
                     Menu ("···") {
-                        Button{ deletePostPressed.toggle()}
+                        Button{ showPostAlert.toggle()
+                            postAlert = .delete
+                        }
                     label: {
                         Text ("Delete Post")
                             .frame(alignment: .center)
@@ -62,7 +69,8 @@ struct PostView: View {
                         if userViewModel.user.following!.contains(postUser.uid!) {
                             Button("Unfollow") {
                                 if userViewModel.user.hasSetUsername! {
-                                    unfollowPressed.toggle()
+                                    showPostAlert.toggle()
+                                    postAlert = .unfollow
                                 }
                                 else {
                                     missingUsername.toggle()
@@ -77,7 +85,8 @@ struct PostView: View {
                         else {
                             Button("Follow") {
                                 if userViewModel.user.hasSetUsername! {
-                                    followPressed.toggle()
+                                    showPostAlert.toggle()
+                                        postAlert = .follow
                                 }
                                 else {
                                     missingUsername.toggle()
@@ -95,9 +104,10 @@ struct PostView: View {
             //MARK: Caption
             VStack (alignment: .leading, spacing: 3) {
                 Text(post.caption!)
+                    .font(Font.custom("DMSans-Medium", size: 16))
                 Text("shared " + post.datePosted!.timeAgoDisplay())
                     .foregroundColor(.gray)
-                    .font(.system(size: 10))
+                    .font(Font.custom("DMSans-Medium", size: 10))
             }
             .padding([.leading])
             .padding([.bottom], 3)
@@ -125,7 +135,7 @@ struct PostView: View {
                             .resizable()
                             .frame(width: 16, height: 16)
                             .foregroundColor( (userViewModel.user.likedPosts?.contains(post.id!))! ? .red : .gray)
-                            
+                        
                     }
                 }
                 else {
@@ -165,37 +175,36 @@ struct PostView: View {
                 }
                 Text("\(comments.count)")
                     .foregroundColor(.gray)
+                    .font(Font.custom("DMSans-Medium", size: 16))
             }
             .padding([.horizontal])
             .padding([.bottom], 4)
         }
-        .alert("Are you sure you want to delete this post?", isPresented: $deletePostPressed) {
-            Button("No", role: .cancel) { }
-            Button("Yes") {
-                FirestoreRequests().deletePost(postID: post.id!)
-                NotificationCenter.default.post(name: NSNotification.refreshPosts, object: nil)
-            }
-        }
-        .alert("Follow \(post.username!)? They will see that you are following them.", isPresented: $followPressed) {
-            Button("No", role: .cancel) { }
-            Button("Yes") {
-                if post.isPublic! {
-                    FirestoreRequests().followUser(posterID: postUser.uid!, followerID: userViewModel.user.uid!)
-                    userViewModel.user.following?.append(postUser.uid!)
+        .alert(isPresented: $showPostAlert) {
+            switch postAlert {
+            case .delete:
+                return Alert(title: Text("Delete post?"), message: Text("This post will be permanently deleted and cannot be recovered."), primaryButton: .default(Text("Yes")) {
+                    FirestoreRequests().deletePost(postID: post.id!)
+                    NotificationCenter.default.post(name: NSNotification.refreshPosts, object: nil)
+                },secondaryButton: .default(Text("No")) {})
+            case .follow:
+                return Alert(title: Text("Follow \(post.username!)?"), message: Text("They will see that you are following them."), primaryButton: .default(Text("Yes"))  {
+                    if post.isPublic! {
+                        FirestoreRequests().followUser(posterID: postUser.uid!, followerID: userViewModel.user.uid!)
+                        userViewModel.user.following?.append(postUser.uid!)
+                        NotificationCenter.default.post(name: NSNotification.refreshFollowingPosts, object: nil)
+                    }
+                    else {
+                        FirestoreRequests().followPrivateUser(posterID: postUser.uid!, followerID: userViewModel.user.uid!)
+                        userViewModel.user.pendingRequests?.append(postUser.uid!)
+                    }
+                } ,secondaryButton: .default(Text("No")) {})
+            case .unfollow:
+                return Alert(title: Text("Unfollow \(post.username!)?"), message: Text("They will see that you are no longer following them."), primaryButton: .default(Text("Yes")){
+                    userViewModel.user.following! = userViewModel.user.following!.filter {$0 != postUser.uid!}
+                    FirestoreRequests().unFollowUser(posterID: postUser.uid!, followerID: userViewModel.user.uid!)
                     NotificationCenter.default.post(name: NSNotification.refreshFollowingPosts, object: nil)
-                }
-                else {
-                    FirestoreRequests().followPrivateUser(posterID: postUser.uid!, followerID: userViewModel.user.uid!)
-                    userViewModel.user.pendingRequests?.append(postUser.uid!)
-                }
-            }
-        }
-        .alert("Unfollow \(post.username!)? They will see that you are no longer following them.", isPresented: $unfollowPressed) {
-            Button("No", role: .cancel) { }
-            Button("Yes") {
-                userViewModel.user.following! = userViewModel.user.following!.filter {$0 != postUser.uid!}
-                FirestoreRequests().unFollowUser(posterID: postUser.uid!, followerID: userViewModel.user.uid!)
-                NotificationCenter.default.post(name: NSNotification.refreshFollowingPosts, object: nil)
+                } ,secondaryButton: .default(Text("No")) {})
             }
         }
         .onAppear {

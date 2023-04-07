@@ -110,7 +110,7 @@ struct ExplorePage: View {
                             .padding([.bottom], 40)
                             .coordinateSpace(name: "scroll")
                         case .search:
-                            SearchUserPage()
+                            SearchUserPage(missingUsername: $showUsernameMissingAlert)
                         }
                     }
                 }

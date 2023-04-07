@@ -38,6 +38,7 @@ struct CommentsView: View {
                                         .fontWeight(.bold)
                                     Text(post.datePosted!.timeAgoDisplay())
                                         .foregroundColor(.gray)
+                                        .font(Font.custom("DMSans-Medium", size: 16))
                                 }
                                 Text(post.caption!)
                             }
@@ -50,6 +51,7 @@ struct CommentsView: View {
                                         .fontWeight(.bold)
                                     Text(comment.datePosted!.timeAgoDisplay())
                                         .foregroundColor(.gray)
+                                        .font(Font.custom("DMSans-Medium", size: 16))
                                     Spacer()
                                     if (comment.userID! == userViewModel.user.uid!) {
                                         Menu ("···") {
@@ -59,6 +61,7 @@ struct CommentsView: View {
                                         label: {
                                             Text ("Delete Comment")
                                                 .frame(alignment: .center)
+                                                .font(Font.custom("DMSans-Medium", size: 16))
                                         }
                                         }
                                         .foregroundColor(.gray)

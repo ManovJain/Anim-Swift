@@ -52,7 +52,7 @@ class FirestoreRequests {
         }
     }
     
-    func getUserSearch(searchTerm: String, completion: @escaping ([User]?) -> ()) {
+    func getUserSearch(searchTerm: String, userUsername: String, completion: @escaping ([User]?) -> ()) {
         let db = Firestore.firestore()
         var results = [User]()
         db.collection("users")
@@ -86,8 +86,10 @@ class FirestoreRequests {
                         let followRequests = document.get("followRequests") as! [String]
                         let pendingRequests = document.get("pendingRequests") as! [String]
                         let tempUser = User(uid: uid, username: username, email: email, productsFromSearch: productsFromSearch, productsScanned: productsScanned, productsViewed: productsViewed, likes: likes, dislikes: dislikes, favorites: favorites, allergens: allergens, recentSearches: recentSearches, anim: anim, earnedAnims: earnedAnims, fridgeItems: fridgeItems, geoPreference: geoPreference, gradePreference: gradePreference, numNutrimentsReported: numNutrimentsReported, followers: followers, following: following, likedPosts: likedPosts, isPublic: isPublic, hasSetUsername: hasSetUsername, followRequests: followRequests, pendingRequests: pendingRequests)
-                        if following.contains(searchTerm) {
-                            results.append(tempUser)
+                        if username.contains(searchTerm.lowercased()) {
+                            if username != userUsername {
+                                results.append(tempUser)
+                            }
                         }
                     }
                     completion(results)
@@ -875,7 +877,7 @@ class FirestoreRequests {
         let user = db.collection("users").document(posterID)
         
         user.updateData([
-            "followRequest": FieldValue.arrayUnion([followerID])
+            "followRequests": FieldValue.arrayUnion([followerID])
         ])
         
     }
