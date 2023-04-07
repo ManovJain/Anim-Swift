@@ -18,7 +18,11 @@ struct Profile2: View {
     @State var togglePreview = false
     @State var usernameSet = false
     
-    var displays = ["Info", "Filter", "Nutrition"]
+    var displays = [
+        ["displayName": "Posts", "image": "carrot.fill"],
+        ["displayName": "Filter", "image": "checklist"],
+        ["displayName": "Nutrition", "image": "heart.circle.fill"]
+    ]
     
     var body: some View {
         VStack(){
@@ -75,37 +79,88 @@ struct Profile2: View {
             UserStats()
             HStack(alignment: .center, spacing: 10){
                 Spacer()
-                Button(action: {
-                    display = "Posts"
-                }) {
-                    Text("Posts")
-                        .font(Font.custom("DMSans-Medium", size: 15))
-                        .foregroundColor(Color("AnimGreen"))
-                        .lineLimit(1)
-                    Image(systemName: "carrot.fill")
-                        .foregroundColor(Color("AnimGreen"))
+                if display == "Posts" {
+                    VStack {
+                        Button(action: {
+                            display = "Posts"
+                        }) {
+                            Text("Posts")
+                                .font(Font.custom("DMSans-Medium", size: 15))
+                                .foregroundColor(Color("AnimGreen"))
+                                .lineLimit(1)
+                            Image(systemName: "carrot.fill")
+                                .foregroundColor(Color("AnimGreen"))
+                        }
+                    }
+                    .frame(height: 35)
+                    .border(width: 2, edges: [.bottom], color: Color("AnimGreen"))
+                } else {
+                    Button(action: {
+                        display = "Posts"
+                    }) {
+                        Text("Posts")
+                            .font(Font.custom("DMSans-Medium", size: 15))
+                            .foregroundColor(Color("AnimGreen"))
+                            .lineLimit(1)
+                        Image(systemName: "carrot.fill")
+                            .foregroundColor(Color("AnimGreen"))
+                    }
                 }
                 Spacer()
-                Button(action: {
-                    display = "Filter"
-                }) {
-                    Text("Filter")
-                        .font(Font.custom("DMSans-Medium", size: 15))
-                        .foregroundColor(Color("AnimGreen"))
-                        .lineLimit(1)
-                    Image(systemName: "checklist")
-                        .foregroundColor(Color("AnimGreen"))
+                if display == "Filter" {
+                    VStack {
+                        Button(action: {
+                            display = "Filter"
+                        }) {
+                            Text("Filter")
+                                .font(Font.custom("DMSans-Medium", size: 15))
+                                .foregroundColor(Color("AnimGreen"))
+                                .lineLimit(1)
+                            Image(systemName: "checklist")
+                                .foregroundColor(Color("AnimGreen"))
+                        }
+                    }
+                    .frame(height: 35)
+                    .border(width: 2, edges: [.bottom], color: Color("AnimGreen"))
+                } else {
+                    Button(action: {
+                        display = "Filter"
+                    }) {
+                        Text("Filter")
+                            .font(Font.custom("DMSans-Medium", size: 15))
+                            .foregroundColor(Color("AnimGreen"))
+                            .lineLimit(1)
+                        Image(systemName: "checklist")
+                            .foregroundColor(Color("AnimGreen"))
+                    }
                 }
                 Spacer()
-                Button(action: {
-                    display = "Nutrition"
-                }) {
-                    Text("Nutrition")
-                        .font(Font.custom("DMSans-Medium", size: 15))
-                        .foregroundColor(Color("AnimGreen"))
-                        .lineLimit(1)
-                    Image(systemName: "heart.circle.fill")
-                        .foregroundColor(Color("AnimGreen"))
+                if display == "Nutrition" {
+                    VStack {
+                        Button(action: {
+                            display = "Nutrition"
+                        }) {
+                            Text("Nutrition")
+                                .font(Font.custom("DMSans-Medium", size: 15))
+                                .foregroundColor(Color("AnimGreen"))
+                                .lineLimit(1)
+                            Image(systemName: "heart.circle.fill")
+                                .foregroundColor(Color("AnimGreen"))
+                        }
+                    }
+                    .frame(height: 35)
+                    .border(width: 2, edges: [.bottom], color: Color("AnimGreen"))
+                } else {
+                    Button(action: {
+                        display = "Nutrition"
+                    }) {
+                        Text("Nutrition")
+                            .font(Font.custom("DMSans-Medium", size: 15))
+                            .foregroundColor(Color("AnimGreen"))
+                            .lineLimit(1)
+                        Image(systemName: "heart.circle.fill")
+                            .foregroundColor(Color("AnimGreen"))
+                    }
                 }
                 Spacer()
             }

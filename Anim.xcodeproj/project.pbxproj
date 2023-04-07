@@ -103,6 +103,7 @@
 		88C76D3D29A8826300289E57 /* FilterModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C76D3C29A8826300289E57 /* FilterModalView.swift */; };
 		88C76D4129AC55F000289E57 /* GradeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C76D4029AC55F000289E57 /* GradeButton.swift */; };
 		88C76D4329AC6F6B00289E57 /* GeoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C76D4229AC6F6B00289E57 /* GeoButton.swift */; };
+		88CB207929DFDE17009E6F77 /* UserNavTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB207829DFDE17009E6F77 /* UserNavTitle.swift */; };
 		88CB6AAB29889F8000184BC2 /* GoogleSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CB6AAA29889F8000184BC2 /* GoogleSignInButton.swift */; };
 		88CB6AAE2988A0B000184BC2 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 88CB6AAD2988A0B000184BC2 /* GoogleSignIn */; };
 		88CE67E329D38045000FF59A /* Nutrition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CE67E229D38045000FF59A /* Nutrition.swift */; };
@@ -208,6 +209,7 @@
 		88C76D3C29A8826300289E57 /* FilterModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterModalView.swift; sourceTree = "<group>"; };
 		88C76D4029AC55F000289E57 /* GradeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeButton.swift; sourceTree = "<group>"; };
 		88C76D4229AC6F6B00289E57 /* GeoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoButton.swift; sourceTree = "<group>"; };
+		88CB207829DFDE17009E6F77 /* UserNavTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNavTitle.swift; sourceTree = "<group>"; };
 		88CB6AAA29889F8000184BC2 /* GoogleSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInButton.swift; sourceTree = "<group>"; };
 		88CB6AAF2988A14D00184BC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		88CE67E229D38045000FF59A /* Nutrition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nutrition.swift; sourceTree = "<group>"; };
@@ -275,7 +277,6 @@
 				88A6415A29D1FBCD0004E5C3 /* FoodLogView.swift */,
 				88CE67E429D3FEB4000FF59A /* FoodLogInputView.swift */,
 				882D552C29D7556300487B46 /* RingView.swift */,
-				88339D3129DE398C0033B990 /* Profile2.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -502,6 +503,8 @@
 		882D1E08293951C5002EFDC8 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				88CB207729DFDA02009E6F77 /* User */,
+				4355DEA42991788C00C388A4 /* AnimManager */,
 				88DA937F2971EB3F00674DB9 /* ViewModels */,
 				882D1E0E29395244002EFDC8 /* Views */,
 			);
@@ -641,6 +644,15 @@
 			path = ProductView;
 			sourceTree = "<group>";
 		};
+		88CB207729DFDA02009E6F77 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				88339D3129DE398C0033B990 /* Profile2.swift */,
+				88CB207829DFDE17009E6F77 /* UserNavTitle.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
 		88DA937F2971EB3F00674DB9 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -652,7 +664,6 @@
 		88DAABA029505242001E0AC6 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				4355DEA42991788C00C388A4 /* AnimManager */,
 				4355DEA52991789B00C388A4 /* Views */,
 			);
 			path = Profile;
@@ -795,6 +806,7 @@
 				43C0361229B917A600FB9A43 /* TransitionExtensions.swift in Sources */,
 				43ECC6B629DB2AC5000E0497 /* Comment.swift in Sources */,
 				88BE151F294BB351001AE321 /* FoodViewModel.swift in Sources */,
+				88CB207929DFDE17009E6F77 /* UserNavTitle.swift in Sources */,
 				88BE152C294BB44E001AE321 /* GradeOverlay.swift in Sources */,
 				88BE1517294BB2CD001AE321 /* NutrientLevels.swift in Sources */,
 				88902BCF29C13D5B001D41FD /* AllergensView.swift in Sources */,
