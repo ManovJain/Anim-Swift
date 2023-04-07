@@ -23,6 +23,12 @@ struct Search2: View {
     @State private var loadingSearch: Bool = false
     @State private var index = 0
     @State var display: String = "Explore"
+    @State var togglePreview = false
+    @State var showUsernameMissingAlert: Bool = false
+    @State var allPosts = [Post]()
+    @State var followingPosts = [Post]()
+    @State var usernameSet = false
+    
     
     var banners = [
         ["inputImage": "Banner1", "location": "foodLog"],
@@ -89,13 +95,52 @@ struct Search2: View {
                                 }
                                 ScrollView(.horizontal){
                                     HStack{
-                                        ForEach((0...banners.count-1), id: \.self) { index in
-                                            Image(uiImage: UIImage(named: "animLogoIconGreen") ?? UIImage())
-                                                .resizable()
-                                                .frame(width: 120, height: 120)
+                                        ForEach(allPosts, id: \.self) { post in
+                                            PostView(post: post, togglePreview: $togglePreview, missingUsername: $showUsernameMissingAlert)
+                                                .padding(5)
+                                            Divider()
+                                        }
+                                    }
+                                    .onAppear {
+                                        if userViewModel.state == .signedIn {
+                                            usernameSet = userViewModel.user.hasSetUsername!
+                                        }
+                                        
+                                        FirestoreRequests().getAllPosts { data in
+                                            allPosts = data!.sorted{ $0.datePosted! > $1.datePosted!}
+                                        }
+                                        if userViewModel.state == .signedIn {
+                                            FirestoreRequests().getFollowingPosts(following: userViewModel.user.following!) { data in
+                                                followingPosts = data!.sorted{ $0.datePosted! > $1.datePosted!}
+                                            }
+                                        }
+                                    }
+                                    .onReceive(NotificationCenter.default.publisher(for: NSNotification.refreshPosts)) { object in
+                                        FirestoreRequests().getAllPosts { data in
+                                            allPosts = data!.sorted{ $0.datePosted! > $1.datePosted!}
+                                        }
+                                        if userViewModel.state == .signedIn {
+                                            FirestoreRequests().getFollowingPosts(following: userViewModel.user.following!) { data in
+                                                followingPosts = data!.sorted{ $0.datePosted! > $1.datePosted!}
+                                            }
+                                        }
+                                    }
+                                    
+                                    .onReceive(NotificationCenter.default.publisher(for: NSNotification.refreshFollowingPosts)) { object in
+                                        if userViewModel.state == .signedIn {
+                                            FirestoreRequests().getFollowingPosts(following: userViewModel.user.following!) { data in
+                                                followingPosts = data!.sorted{ $0.datePosted! > $1.datePosted!}
+                                            }
+                                        }
+                                    }
+                                    
+                                    .onReceive(NotificationCenter.default.publisher(for: NSNotification.usernameCreated)) { object in
+                                        if userViewModel.state == .signedIn {
+                                            usernameSet = userViewModel.user.hasSetUsername!
                                         }
                                     }
                                 }
+                                Spacer()
                             }
                             Spacer()
                         }
