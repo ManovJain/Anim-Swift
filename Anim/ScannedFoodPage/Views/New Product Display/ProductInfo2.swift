@@ -30,6 +30,13 @@ struct ProductInfo2: View {
                     ProductImage2(imageURL: "https://i.imgur.com/9eJFAzo.png", grade: foundProduct.nutriscore_grade ?? "NA", gradeAlertShown: $gradeAlertShown)
                 }
                 FoodButtonRow2(nutriments: foundProduct.nutriments!, product: foundProduct)
+            }
+            VStack () {
+                Spacer()
+                if let levels = foundProduct.nutrient_levels {
+                    NutrientTagsList(nutrientLevels: levels, productID: foundProduct._id! ,tagAlertShown: $tagAlertShown)
+                    Spacer()
+                }
                 if let ingredients = foundProduct.ingredients {
                     NavigationLink {
                         IngredientsList(ingredients: ingredients)
@@ -37,23 +44,16 @@ struct ProductInfo2: View {
                 label: {
                     Ingredients(ingredients: ingredients)
                         .foregroundColor(.primary)
+                    }
                 }
+                Spacer()
+                if foundProduct.allergens_tags!.count > 0 {
+                    Allergens(tags: foundProduct.allergens_tags!)
                 }
             }
-            VStack ( spacing: 8) {
-                //                    FoodButtonRow(nutriments: foundProduct.nutriments!, product: foundProduct)
-                Spacer()
-                VStack (spacing: 2){
-                    Macros(nutriments: foundProduct.nutriments!)
-                    Spacer()
-                    if foundProduct.allergens_tags!.count > 0 {
-                        Allergens(tags: foundProduct.allergens_tags!)
-                    }
-                    if let levels = foundProduct.nutrient_levels {
-                        NutrientTagsList(nutrientLevels: levels, productID: foundProduct._id! ,tagAlertShown: $tagAlertShown)
-                            .frame(width: UIScreen.screenWidth - 50)
-                    }
-                }
+            Spacer()
+            if foundProduct.nutriments?.proteins_serving != nil {
+                Macros2(nutriments: foundProduct.nutriments!)
             }
             Spacer()
                 .frame(height: UIScreen.screenHeight / 10)
@@ -65,7 +65,7 @@ struct ProductInfo2: View {
             if foundProduct.image_front_url == nil {
                 FirestoreRequests().addBarcodeToMissing(array: "missingPhoto", barcode: foundProduct._id!)
             }
-            
+
             if let nutriments = foundProduct.nutriments {
                 FirestoreRequests().addNutriments(addNutriment: nutriments, productID: foundProduct._id!)
             }
