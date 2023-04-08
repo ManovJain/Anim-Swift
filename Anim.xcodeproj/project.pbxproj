@@ -275,7 +275,6 @@
 		4355DEA52991789B00C388A4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				88E0D83C29DF338700514A0B /* UserPage */,
 				88607D51294C5BEB00602FE3 /* ProfileMenu.swift */,
 				882D1E0029394CC9002EFDC8 /* UserView.swift */,
 				88607D55294CFA6900602FE3 /* Favorites.swift */,
@@ -662,6 +661,7 @@
 			children = (
 				88339D3129DE398C0033B990 /* Profile2.swift */,
 				88CB207829DFDE17009E6F77 /* UserNavTitle.swift */,
+				88E0D83D29DF33AA00514A0B /* UserStats.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -703,14 +703,6 @@
 				88CB6AAA29889F8000184BC2 /* GoogleSignInButton.swift */,
 			);
 			path = Register;
-			sourceTree = "<group>";
-		};
-		88E0D83C29DF338700514A0B /* UserPage */ = {
-			isa = PBXGroup;
-			children = (
-				88E0D83D29DF33AA00514A0B /* UserStats.swift */,
-			);
-			path = UserPage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

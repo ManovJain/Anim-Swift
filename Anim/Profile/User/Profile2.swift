@@ -36,16 +36,25 @@ struct Profile2: View {
                             .stroke(Color("AnimGreen"), lineWidth: 3)
                     )
                 VStack{
-                    if((userViewModel.user.username) != ""){
-                        Text(userViewModel.user.username!)
-                            .frame(alignment: .center)
-                            .font(Font.custom("DMSans-Medium", size: 30))
-                            .foregroundColor(Color("AnimGreen"))
-                    } else {
-                        Text("User")
-                            .frame(alignment: .center)
-                            .font(Font.custom("DMSans-Medium", size: 30))
-                            .foregroundColor(Color("AnimGreen"))
+                    HStack{
+                        if((userViewModel.user.username) != ""){
+                            Text(userViewModel.user.username!)
+                                .frame(alignment: .center)
+                                .font(Font.custom("DMSans-Medium", size: 30))
+                                .foregroundColor(Color("AnimGreen"))
+                        } else {
+                            Text("User")
+                                .frame(alignment: .center)
+                                .font(Font.custom("DMSans-Medium", size: 30))
+                                .foregroundColor(Color("AnimGreen"))
+                        }
+//                        NavigationLink {
+//                            CameraView() //figure out a better navigation link input
+//                        } label: {
+//                            Image(systemName: "bell")
+//                                .font(.system(size: 30))
+//                                .foregroundColor(Color("AnimGreen"))
+//                        }
                     }
                     HStack{
                         Spacer()
