@@ -94,7 +94,6 @@ struct FoodLogView: View {
         }
         .onAppear(){
             if(userViewModel.nutrition.uid == ""){
-                print("nutrition1")
                 FirestoreRequests().createNutrition(uid: userViewModel.user.uid!){ data in
                     userViewModel.nutrition = data!
                 }
@@ -103,6 +102,7 @@ struct FoodLogView: View {
                     userViewModel.nutrition = data!
                 }
             }
+            print(userViewModel.nutrition.calories!)
         }
     }
 
