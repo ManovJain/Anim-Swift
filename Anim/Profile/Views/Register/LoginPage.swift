@@ -107,12 +107,14 @@ struct LoginPage: View {
                 }
             }
             else {
-                if userViewModel.state == .signedIn && userViewModel.user.hasSetUsername! {
-                    VStack {
-                        Text("Make Account Public")
-                            .font(Font.custom("DMSans-Medium", size: 15))
-                        Toggle("DarkMode", isOn: $publicAccount).labelsHidden()
-                            .tint(Color("AnimGreen"))
+                if let madeUsername = userViewModel.user.hasSetUsername {
+                    if userViewModel.state == .signedIn && madeUsername {
+                        VStack {
+                            Text("Make Account Public")
+                                .font(Font.custom("DMSans-Medium", size: 15))
+                            Toggle("DarkMode", isOn: $publicAccount).labelsHidden()
+                                .tint(Color("AnimGreen"))
+                        }
                     }
                 }
                 Button(action: {
