@@ -23,19 +23,21 @@ struct FoodButtonRow2: View {
                 }
             }
             if !(userViewModel.user.favorites!.contains((product._id)!)) {
-                Button {
-                    userViewModel.user.favorites?.append((product._id)!)
-                } label: {
-                    SpinningStarButton(favorited: false)
-                }
-                .disabled((userViewModel.state ==  .signedOut))
+//                Button {
+//                    userViewModel.user.favorites?.append((product._id)!)
+//                } label: {
+//                    SpinningStarButton(favorited: false)
+//                }
+//                .disabled((userViewModel.state ==  .signedOut))
+                SpinningStarButton(favorited: false, id: (product._id)!)
             } else {
-                Button {
-                    userViewModel.user.favorites = userViewModel.user.favorites?.filter { $0 != (product._id)! }
-                } label: {
-                    SpinningStarButton(favorited: true)
-                }
-                .disabled((userViewModel.state ==  .signedOut))
+//                Button {
+//                    userViewModel.user.favorites = userViewModel.user.favorites?.filter { $0 != (product._id)! }
+//                } label: {
+//                    SpinningStarButton(favorited: true)
+//                }
+//                .disabled((userViewModel.state ==  .signedOut))
+                SpinningStarButton(favorited: true, id: (product._id)!)
             }
 //            Button {
 //                if !(userViewModel.user.favorites!.contains((product._id)!)) {
