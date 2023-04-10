@@ -22,7 +22,7 @@ struct ProfilePage: View {
             switch profileMenuViewModel.icon.rawValue {
             case "user":
                 //UserView(display: "Info")
-                Profile2(display: "Info")
+                Profile2(display: "Posts")
             case "Anim Manager":
                 AnimManager()
             case "favorites":

@@ -30,6 +30,7 @@ struct ContentView: View {
             switch navModel.currentPage {
             case .camera:
                 CameraView()
+                    .edgesIgnoringSafeArea(.all)
                     .gesture(DragGesture()
                         .onEnded { value in
                             let direction = detectDirection(value: value)
@@ -42,7 +43,8 @@ struct ContentView: View {
                     )
                     .transition(.move(edge: navModel.cameraEdge))
             case .food:
-                ProductPage()
+                ProductView2()
+                    .edgesIgnoringSafeArea(.all)
                     .gesture(DragGesture()
                         .onEnded { value in
                             let direction = detectDirection(value: value)

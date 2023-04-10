@@ -92,14 +92,8 @@ struct FavoritesButton: View {
                 if let data {
                     status = (data.status)!
                     print(id)
-                    //these gave nil products
-                    //0042272005895
-                    //0795835873164
-                    //0646555007127
                     product = (data.product)!
-//                    product = (data.product == nil ? data.product : "8076800195057")
                 }
-                
             }
         }
     }

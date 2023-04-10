@@ -1,25 +1,24 @@
 //
-//  Allergens.swift
+//  Ingredients.swift
 //  Anim
 //
-//  Created by Pattison, Brian (Cognizant) on 12/7/22.
+//  Created by Manovski on 4/7/23.
 //
 
 import SwiftUI
 
-struct Allergens: View {
-    
-    var tags: [String]
+struct Ingredients: View {
+    var ingredients: [Ingredient]
     
     var body: some View {
         VStack (alignment: .leading, spacing: 0){
-            Text("Allergens")
+            Text("Ingredients")
                 .underline()
                 .font(Font.custom("DMSans-Medium", size: 20))
             ScrollView(.horizontal){
                 HStack (alignment: .top) {
-                    ForEach(tags, id: \.self) { tag in
-                        Text((tag.dropFirst(3)).capitalized)
+                    ForEach(ingredients, id: \.self) { ingredient in
+                        Text(ingredient.text!)
                         Divider()
                     }
                     Spacer()
@@ -29,4 +28,3 @@ struct Allergens: View {
         }
     }
 }
-

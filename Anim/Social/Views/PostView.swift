@@ -100,7 +100,9 @@ struct PostView: View {
             .padding(.top, 1)
             .padding([.leading])
             URLPreview(previewURL: URL(string: post.content!)!, togglePreview: $togglePreview)
-                .padding([.horizontal], 4)
+//            URLPreview2(urlString: post.content!)
+//                .frame(width: 100, height: 100)
+//                .padding([.horizontal], 4)
             //MARK: Caption
             VStack (alignment: .leading, spacing: 3) {
                 Text(post.caption!)
