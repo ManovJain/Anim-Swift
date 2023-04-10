@@ -28,6 +28,7 @@ struct FoodButtonRow: View {
                             .font(.system(size: 30))
                             .foregroundColor(Color("AnimGreen"))
                     }
+                    .edgesIgnoringSafeArea(.all)
                     Text("info")
                         .font(Font.custom("DMSans-Medium", size: 15))
                         .foregroundColor(Color("AnimGreen"))

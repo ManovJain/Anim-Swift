@@ -20,8 +20,7 @@ struct ProductInfo: View {
             if let ingredients = foundProduct.ingredients {
                 NavigationLink {
                     IngredientsList(ingredients: ingredients)
-                }
-            label: {
+                } label: {
                 Text(((foundProduct.product_name) ?? (foundProduct.generic_name_en ?? "Food")).capitalized)
                     .font(Font.custom("DMSans-Medium", size: 20))
                     .fontWeight(.bold)

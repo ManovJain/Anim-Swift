@@ -22,25 +22,38 @@ struct FoodButtonRow2: View {
                         .foregroundColor(Color("AnimGreen"))
                 }
             }
-            Button {
-                if !(userViewModel.user.favorites!.contains((product._id)!)) {
+            if !(userViewModel.user.favorites!.contains((product._id)!)) {
+                Button {
                     userViewModel.user.favorites?.append((product._id)!)
-                } else {
+                } label: {
+                    SpinningStarButton(favorited: false)
+                }
+                .disabled((userViewModel.state ==  .signedOut))
+            } else {
+                Button {
                     userViewModel.user.favorites = userViewModel.user.favorites?.filter { $0 != (product._id)! }
+                } label: {
+                    SpinningStarButton(favorited: true)
                 }
-            } label: {
-                if !(userViewModel.user.favorites!.contains((product._id)!)) {
-                    Image(systemName: "star")
-                        .font(.system(size: 30))
-                        .foregroundColor(Color("AnimGreen"))
-                } else {
-                    Image(systemName: "star.fill")
-                        .font(.system(size: 30))
-                        .foregroundColor(Color("AnimGreen"))
-                }
+                .disabled((userViewModel.state ==  .signedOut))
             }
-            .foregroundColor(Color("AnimGreen"))
-            .disabled((userViewModel.state ==  .signedOut))
+//            Button {
+//                if !(userViewModel.user.favorites!.contains((product._id)!)) {
+//                    print("added")
+//                    userViewModel.user.favorites?.append((product._id)!)
+//                } else {
+//                    print("removed")
+//                    userViewModel.user.favorites = userViewModel.user.favorites?.filter { $0 != (product._id)! }
+//                }
+//            } label: {
+//                if !(userViewModel.user.favorites!.contains((product._id)!)) {
+//                    SpinningStarButton(favorited: false)
+//                } else {
+//                    SpinningStarButton(favorited: true)
+//                }
+//            }
+//            .foregroundColor(Color("AnimGreen"))
+//            .disabled((userViewModel.state ==  .signedOut))
             if((userViewModel.user.fridgeItems!.contains(product._id!) == true)){
                 Button {
                     userViewModel.user.fridgeItems?.removeAll(where: { $0 == product._id })
