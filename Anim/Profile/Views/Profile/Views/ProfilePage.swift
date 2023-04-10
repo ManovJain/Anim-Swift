@@ -30,7 +30,7 @@ struct ProfilePage: View {
                     ListsView(selection: "favorites")
                 }
             default:
-                LoginPage(darkMode: $darkMode, publicAccount: userViewModel.user.isPublic!)
+                LoginPage(darkMode: $darkMode, publicAccount: userViewModel.user.isPublic ?? false)
             }
         }
         .overlay(((userViewModel.state ==  .signedIn) ? ProfileMenu(): nil)

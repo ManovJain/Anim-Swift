@@ -40,12 +40,14 @@ struct CreatePostView: View {
                 "Recipe Link",
                 text: $link
             )
+            .font(Font.custom("DMSans-Medium", size: 16))
             .padding()
             .border(Color("AnimGreen"), width: 1)
             TextField(
                 "Caption",
                 text: $caption
             )
+            .font(Font.custom("DMSans-Medium", size: 16))
             .padding()
             .border(Color("AnimGreen"), width: 1)
             Button(action: {
