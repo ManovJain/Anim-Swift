@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SpinningStarButton: View {
+struct FavoriteFoodButton: View {
     
     @EnvironmentObject var userViewModel: UserViewModel
     

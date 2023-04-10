@@ -1,15 +1,8 @@
-//
-//  ProductView2.swift
-//  Anim
-//
-//  Created by Manovski on 4/7/23.
-//
-
 import SwiftUI
 import CachedAsyncImage
 
 
-struct ProductView2: View {
+struct FoodPage: View {
     
     var iconVM = IconVM()
     
@@ -48,7 +41,7 @@ struct ProductView2: View {
                 else {
                     ZStack {
                         Group {
-                            ProductInfo2(foundProduct: product!, tagAlertShown: $tagAlertShown, gradeAlertShown: $gradeAlertShown)
+                            FoodInfoView(foundProduct: product!, tagAlertShown: $tagAlertShown, gradeAlertShown: $gradeAlertShown)
                                 .blur(radius: tagAlertShown ? 20 : 0)
                                 .blur(radius: gradeAlertShown ? 20 : 0)
                                 .animation(.spring())

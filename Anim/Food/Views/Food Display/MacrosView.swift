@@ -1,13 +1,6 @@
-//
-//  Macros2.swift
-//  Anim
-//
-//  Created by Manovski on 4/7/23.
-//
-
 import SwiftUI
 
-struct Macros2: View {
+struct MacrosView: View {
     
     @EnvironmentObject var userViewModel: UserViewModel
     

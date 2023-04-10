@@ -43,7 +43,7 @@ struct ContentView: View {
                     )
                     .transition(.move(edge: navModel.cameraEdge))
             case .food:
-                ProductView2()
+                FoodPage()
                     .edgesIgnoringSafeArea(.all)
                     .gesture(DragGesture()
                         .onEnded { value in

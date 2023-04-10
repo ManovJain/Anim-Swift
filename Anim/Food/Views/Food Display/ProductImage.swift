@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ProductImage2: View {
+struct ProductImage: View {
         var imageURL: String
         var grade: String
         

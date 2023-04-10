@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Profile2: View {
+struct ProfileView: View {
     @EnvironmentObject var userViewModel: UserViewModel
     
     @State var display: String
