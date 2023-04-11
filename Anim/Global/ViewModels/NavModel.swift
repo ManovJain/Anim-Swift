@@ -41,5 +41,5 @@ final class NavModel: ObservableObject {
     @Published var productEdge: Edge = Edge.trailing
     @Published var profileEdge: Edge = Edge.trailing
     @Published var socialEdge: Edge = Edge.trailing
-    @Published var exploreEdge: Edge = Edge.trailing
+    @Published var exploreEdge: Edge = Edge.leading
 }

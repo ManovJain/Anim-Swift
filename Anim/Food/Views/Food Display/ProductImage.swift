@@ -1,4 +1,5 @@
 import SwiftUI
+import CachedAsyncImage
 
 struct ProductImage: View {
         var imageURL: String
@@ -8,7 +9,7 @@ struct ProductImage: View {
         
         var body: some View {
             VStack(){
-                AsyncImage(
+                CachedAsyncImage(
                     url: URL(string: imageURL)) { image in
                         image.resizable()
                             .aspectRatio(contentMode: .fit)
@@ -22,4 +23,5 @@ struct ProductImage: View {
             }
         }
     }
+
 

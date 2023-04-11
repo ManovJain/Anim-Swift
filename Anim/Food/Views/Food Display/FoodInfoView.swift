@@ -8,16 +8,13 @@ struct FoodInfoView: View {
     @Binding var gradeAlertShown: Bool
     
     var body: some View {
-        VStack {
+        ScrollView {
             VStack {
                 Spacer()
-                ScrollView(.horizontal) {
-                    HStack(alignment: .center) {
-                        Text(((foundProduct.product_name) ?? (foundProduct.generic_name_en ?? "Food")).capitalized)
-                            .font(Font.custom("DMSans-Medium", size: 20))
-                            .foregroundColor(.primary)
-                    }
-                }
+                Text(((foundProduct.product_name) ?? (foundProduct.generic_name_en ?? "Food")).capitalized)
+                    .font(Font.custom("DMSans-Medium", size: 20))
+                    .foregroundColor(.primary)
+                    .multilineTextAlignment(.center)
                 if let imageURL = foundProduct.image_front_url {
                     ProductImage(imageURL: imageURL, grade: foundProduct.nutriscore_grade ?? "NA", gradeAlertShown: $gradeAlertShown)
                 }
@@ -41,7 +38,7 @@ struct FoodInfoView: View {
                 label: {
                     Ingredients(ingredients: ingredients)
                         .foregroundColor(.primary)
-                    }
+                }
                 }
                 Spacer()
                 if foundProduct.allergens_tags!.count > 0 {
@@ -62,7 +59,7 @@ struct FoodInfoView: View {
             if foundProduct.image_front_url == nil {
                 FirestoreRequests().addBarcodeToMissing(array: "missingPhoto", barcode: foundProduct._id!)
             }
-
+            
             if let nutriments = foundProduct.nutriments {
                 FirestoreRequests().addNutriments(addNutriment: nutriments, productID: foundProduct._id!)
             }

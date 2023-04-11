@@ -177,7 +177,10 @@ struct ContentView: View {
                 if defaults.string(forKey: "uid") != nil {
                     fireStoreRequests.getUser(defaults.string(forKey: "uid")!) { data in
                         userViewModel.user = data!
-                        userViewModel.state = .signedIn
+                        fireStoreRequests.getNutrition(defaults.string(forKey: "uid")!) { data in
+                            userViewModel.nutrition = data!
+                            userViewModel.state = .signedIn
+                        }
                     }
                 }
             }

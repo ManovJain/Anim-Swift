@@ -54,7 +54,7 @@ struct RecentSearchView: View {
                     //these gave nil products
                     //0795835873164
                     //0646555007127
-                    if data.product == nil{
+                    if data.product == nil {
                         print(id)
                         //remove from userViewModel
                     } else {
