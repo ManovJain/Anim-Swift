@@ -55,9 +55,6 @@ struct FoodLogView: View {
                         .font(Font.custom("DMSans-Medium", size: 25))
                         .foregroundColor(Color("AnimGreen"))
                 }
-                .onAppear(){
-                    carbsProgressValue = Float(userViewModel.nutrition.carbs!)/Float(userViewModel.nutrition.totalCarbs!)
-                }
                 HStack{
                     Text("Fat")
                         .font(Font.custom("DMSans-Medium", size: 25))
@@ -70,9 +67,6 @@ struct FoodLogView: View {
                     Text("\(userViewModel.nutrition.fat!)")
                         .font(Font.custom("DMSans-Medium", size: 25))
                         .foregroundColor(Color("AnimGreen"))
-                }
-                .onAppear(){
-                    fatProgressValue = Float(userViewModel.nutrition.carbs!)/Float(userViewModel.nutrition.totalCarbs!)
                 }
                 HStack{
                     Text("Protein")
@@ -87,21 +81,14 @@ struct FoodLogView: View {
                         .font(Font.custom("DMSans-Medium", size: 25))
                         .foregroundColor(Color("AnimGreen"))
                 }
-                .onAppear(){
-                    proteinProgressValue = Float(userViewModel.nutrition.carbs!)/Float(userViewModel.nutrition.totalCarbs!)
-                }
             }
         }
         .onAppear(){
-//            if(userViewModel.nutrition.uid == ""){
-//                FirestoreRequests().createNutrition(uid: userViewModel.user.uid!){ data in
-//                    userViewModel.nutrition = data!
-//                }
-//            } else {
-//                FirestoreRequests().getNutrition(userViewModel.user.uid!){ data in
-//                    userViewModel.nutrition = data!
-//                }
-//            }
+            carbsProgressValue = Float(userViewModel.nutrition.carbs!)/Float(userViewModel.nutrition.totalCarbs!)
+
+            fatProgressValue = Float(userViewModel.nutrition.carbs!)/Float(userViewModel.nutrition.totalFat!)
+
+            proteinProgressValue = Float(userViewModel.nutrition.carbs!)/Float(userViewModel.nutrition.totalProtein!)
         }
     }
 
