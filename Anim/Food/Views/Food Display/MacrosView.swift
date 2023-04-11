@@ -53,16 +53,17 @@ struct MacrosView: View {
     }
     
     func addFood(){
-        userViewModel.nutrition.calories! += Int((nutriments.energy_kcal_serving ?? 0) * multiplier)
+        print(Int((nutriments.energy_kcal_serving ?? 0) * multiplier))
         print(userViewModel.nutrition.calories!)
+        (userViewModel.nutrition.calories!) += Int((nutriments.energy_kcal_serving ?? 0) * multiplier)
         
-        userViewModel.nutrition.carbs! += Int((nutriments.carbohydrates_serving ?? 0) * multiplier)
-        print(userViewModel.nutrition.carbs!)
-        
-        userViewModel.nutrition.fat! += Int((nutriments.fat_serving ?? 0) * multiplier)
-        print(userViewModel.nutrition.fat!)
-        
-        userViewModel.nutrition.protein! += Int((nutriments.proteins_serving ?? 0) * multiplier)
-        print(userViewModel.nutrition.protein!)
+//        userViewModel.nutrition.carbs! += Int((nutriments.carbohydrates_serving ?? 0) * multiplier)
+//        print(userViewModel.nutrition.carbs!)
+//
+//        userViewModel.nutrition.fat! += Int((nutriments.fat_serving ?? 0) * multiplier)
+//        print(userViewModel.nutrition.fat!)
+//
+//        userViewModel.nutrition.protein! += Int((nutriments.proteins_serving ?? 0) * multiplier)
+//        print(userViewModel.nutrition.protein!)
     }
 }

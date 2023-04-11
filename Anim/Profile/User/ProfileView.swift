@@ -48,13 +48,6 @@ struct ProfileView: View {
                                 .font(Font.custom("DMSans-Medium", size: 30))
                                 .foregroundColor(Color("AnimGreen"))
                         }
-//                        NavigationLink {
-//                            CameraView() //figure out a better navigation link input
-//                        } label: {
-//                            Image(systemName: "bell")
-//                                .font(.system(size: 30))
-//                                .foregroundColor(Color("AnimGreen"))
-//                        }
                     }
                     HStack{
                         Spacer()
@@ -177,6 +170,7 @@ struct ProfileView: View {
             .background(Color("background"))
             .border(width: 0.75, edges: [.top, .bottom], color: Color("AnimGreen"))
             .padding(.bottom)
+            
             Spacer()
             ScrollView(.vertical, showsIndicators: false) {
                 if display == "Filter" {
@@ -189,7 +183,9 @@ struct ProfileView: View {
                 }
                 else if display == "Nutrition" {
                     if nutritionDisplay == "FoodLog" {
-                        Button("Input", action: {nutritionDisplay = "Input"})
+//                        Button("Input", action: {nutritionDisplay = "Input"})
+//                            .buttonStyle(MenuButtonStyle())
+                        Button("Input", action: {print(userViewModel.nutrition.calories!)})
                             .buttonStyle(MenuButtonStyle())
                         FoodLogView()
                     }

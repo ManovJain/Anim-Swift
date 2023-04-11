@@ -10,7 +10,7 @@ import SwiftUI
 struct RingView: View {
     
     @EnvironmentObject var userViewModel: UserViewModel
-    @State var calPercentage = 0.0
+    @State var calPercentage = 0
     @State var drawingStroke = false;
     var color = Color("AnimGreen")
     
@@ -33,7 +33,7 @@ struct RingView: View {
             }
             .rotationEffect(.degrees(-90))
             .onAppear(){
-                calPercentage = Double(userViewModel.nutrition.calories!)/Double(userViewModel.nutrition.totalCalories!)
+                calPercentage = userViewModel.nutrition.calories! / userViewModel.nutrition.totalCalories!
                 drawingStroke.toggle()
             }
             .frame(width: 80)

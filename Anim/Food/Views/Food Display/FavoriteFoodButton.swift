@@ -21,38 +21,31 @@ struct FavoriteFoodButton: View {
         
         if favorited {
             Button(action: {
-                
-                
                 userViewModel.user.favorites = userViewModel.user.favorites?.filter { $0 != (id) }
-                
-                withAnimation(.spring()) {
-                                self.isTapped.toggle()
-                            }
+                withAnimation(.easeInOut(duration: 1.0)) {
+                    isTapped.toggle()
+                }
             }) {
                 Image(systemName: "heart.fill")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: isTapped ? 50 : 30, height: isTapped ? 50 : 30)
-                    .foregroundColor(isTapped ? .gray : .pink)
-                    .rotationEffect(.degrees(isTapped ? 0 : 360))
+                    .foregroundColor(isTapped ? Color.red : Color.gray)
+                    .font(.system(size: 30))
             }
+            .rotationEffect(Angle.degrees(isTapped ? 360 : 0))
         } else {
             Button(action: {
                 
                 userViewModel.user.favorites?.append(id)
                 
-                withAnimation(.spring()) {
-                                self.isTapped.toggle()
-                            }
+                withAnimation(.easeInOut(duration: 1.0)) {
+                    isTapped.toggle()
+                }
                 
             }) {
                 Image(systemName: "heart.fill")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: isTapped ? 50 : 30, height: isTapped ? 50 : 30)
-                    .foregroundColor(isTapped ? .pink : .gray)
-                    .rotationEffect(.degrees(isTapped ? 360 : 0))
+                    .foregroundColor(isTapped ? Color.gray : Color.red)
+                    .font(.system(size: 30))
             }
+            .rotationEffect(Angle.degrees(isTapped ? 0 : 360))
         }
     }
 }
