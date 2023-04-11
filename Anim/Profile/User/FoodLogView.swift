@@ -93,16 +93,15 @@ struct FoodLogView: View {
             }
         }
         .onAppear(){
-            if(userViewModel.nutrition.uid == ""){
-                FirestoreRequests().createNutrition(uid: userViewModel.user.uid!){ data in
-                    userViewModel.nutrition = data!
-                }
-            } else {
-                FirestoreRequests().getNutrition(userViewModel.user.uid!){ data in
-                    userViewModel.nutrition = data!
-                }
-            }
-            print(userViewModel.nutrition.calories!)
+//            if(userViewModel.nutrition.uid == ""){
+//                FirestoreRequests().createNutrition(uid: userViewModel.user.uid!){ data in
+//                    userViewModel.nutrition = data!
+//                }
+//            } else {
+//                FirestoreRequests().getNutrition(userViewModel.user.uid!){ data in
+//                    userViewModel.nutrition = data!
+//                }
+//            }
         }
     }
 

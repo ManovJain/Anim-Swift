@@ -85,6 +85,9 @@ struct LoginPage: View {
                             }
                             userViewModel.authenticate(credential: credential) { data in
                                 userViewModel.user = data!
+                                FirestoreRequests().getNutrition(data!.uid!) { data in
+                                    userViewModel.nutrition = data!
+                                }
                                 profileMenuViewModel.icon = .user
                                 defaults.set(userViewModel.user.uid!, forKey: "uid")
                             }
@@ -100,6 +103,9 @@ struct LoginPage: View {
                         .onTapGesture {
                             userViewModel.signIn() { data in
                                 userViewModel.user = data!
+                                FirestoreRequests().getNutrition(data!.uid!) { data in
+                                    userViewModel.nutrition = data!
+                                }
                                 profileMenuViewModel.icon = .user
                                 defaults.set(userViewModel.user.uid!, forKey: "uid")
                             }

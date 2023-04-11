@@ -19,6 +19,7 @@ struct Search2: View {
     
     @State private var searchResults: [FoodItem] = [FoodItem]()
     @State private var recentSearches: [String] = []
+    @State private var productsViewed: [String] = []
     @State var searchText: String = ""
     @State private var loadingSearch: Bool = false
     @State private var index = 0
@@ -79,8 +80,8 @@ struct Search2: View {
                                 ScrollView(.horizontal){
                                     HStack{
                                         if searchText.isEmpty && userViewModel.state == .signedIn {
-                                            ForEach(userViewModel.user.productsViewed!, id: \.self) { favorite in
-                                                RecentSearchView(id: favorite)
+                                            ForEach(productsViewed, id: \.self) { product in
+                                                RecentSearchView(id: product)
                                             }
                                         }
                                     }
@@ -174,6 +175,11 @@ struct Search2: View {
             searchText = foodViewModel.searchTerm
             searchResults = foodViewModel.searchResults
             recentSearches = userViewModel.user.recentSearches ?? []
+            if let viewed = userViewModel.user.productsViewed {
+                if viewed.count > 7 {
+                    productsViewed = viewed.suffix(7)
+                }
+            }
         }
         .onChange(of: searchText) { searchText in
             if searchText.isEmpty && !isSearching {
