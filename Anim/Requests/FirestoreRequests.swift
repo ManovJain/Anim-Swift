@@ -954,5 +954,49 @@ class FirestoreRequests {
                 }
             }
     }
+    
+    func acceptFollowRequest(userID: String, requesterID: String) {
+        
+        let db = Firestore.firestore()
+        
+        let user = db.collection("users").document(userID)
+        
+        user.updateData([
+            "followers": FieldValue.arrayUnion([requesterID])
+        ])
+        
+        user.updateData([
+            "followRequests": FieldValue.arrayRemove([requesterID])
+        ])
+        
+        let requester = db.collection("users").document(requesterID)
+        
+        requester.updateData([
+            "following": FieldValue.arrayUnion([userID])
+        ])
+
+        requester.updateData([
+            "pendingRequests": FieldValue.arrayRemove([userID])
+        ])
+        
+    }
+    
+    func declineFollowRequest(userID: String, requesterID: String) {
+        
+        let db = Firestore.firestore()
+        
+        let user = db.collection("users").document(userID)
+
+        user.updateData([
+            "followRequests": FieldValue.arrayRemove([requesterID])
+        ])
+        
+        let requester = db.collection("users").document(requesterID)
+
+        requester.updateData([
+            "pendingRequests": FieldValue.arrayRemove([userID])
+        ])
+        
+    }
 }
 

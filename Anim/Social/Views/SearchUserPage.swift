@@ -42,58 +42,65 @@ struct SearchUserPage: View {
                 .background(Color("searchBarColor"))
                 .cornerRadius(50)
                 Divider().background(Color.gray)
-                            .padding(.top, 10)
+                    .padding(.top, 10)
                 ScrollView {
                     ForEach(users, id: \.self) { user in
-                        HStack {
-                            
-                            Image(user.anim ?? "animLogoIcon")
-                                .resizable()
-                                .frame(width: 30, height: 30, alignment: .leading)
-                                .padding(5)
-                                .overlay(
-                                    Circle()
-                                        .stroke(.primary, lineWidth: 2)
-                                )
-                            VStack (alignment: .leading) {
-                                Text(user.username!)
-                                Text("\((user.followers?.count)!) \(user.followers?.count == 1 ? "follower" : "followers")")
+                        NavigationLink(destination: PublicProfile(selectedUser: user)) {
+                            HStack {
+                                
+                                Image(user.anim ?? "animLogoIcon")
+                                    .resizable()
+                                    .frame(width: 30, height: 30, alignment: .leading)
+                                    .padding(5)
+                                    .overlay(
+                                        Circle()
+                                            .stroke(.primary, lineWidth: 2)
+                                            .foregroundColor(.primary)
+                                    )
+                                VStack (alignment: .leading) {
+                                    Text(user.username!)
+                                        .foregroundColor(.primary)
+                                    Text("\((user.followers?.count)!) \(user.followers?.count == 1 ? "follower" : "followers")")
+                                        .foregroundColor(.gray)
+                                }
+                                .padding([.leading])
+                                Spacer()
+                                if userViewModel.user.following!.contains(user.uid!) {
+                                    Button("Unfollow") {
+                                        if userViewModel.user.hasSetUsername! {
+                                            selectedUser = user
+                                            searchUserAlert = .unfollow
+                                            showAlert.toggle()
+                                        }
+                                        else {
+                                            missingUsername.toggle()
+                                        }
+                                    }
+                                    .padding([.trailing])
+                                }
+                                else if userViewModel.user.pendingRequests!.contains(user.uid!) {
+                                    Text("Requested")
+                                        .foregroundColor(.gray)
+                                }
+                                else {
+                                    Button("Follow") {
+                                        if userViewModel.user.hasSetUsername! {
+                                            selectedUser = user
+                                            searchUserAlert = .follow
+                                            showAlert.toggle()
+                                        }
+                                        else {
+                                            missingUsername.toggle()
+                                        }
+                                    }
+                                    .padding([.trailing])
+                                }
+                                Spacer()
+                                Image(systemName: "chevron.right")
                                     .foregroundColor(.gray)
                             }
-                            .padding([.leading])
-                            Spacer()
-                            if userViewModel.user.following!.contains(user.uid!) {
-                                Button("Unfollow") {
-                                    if userViewModel.user.hasSetUsername! {
-                                        selectedUser = user
-                                        searchUserAlert = .unfollow
-                                        showAlert.toggle()
-                                    }
-                                    else {
-                                        missingUsername.toggle()
-                                    }
-                                }
-                                .padding([.trailing])
-                            }
-                            else if userViewModel.user.pendingRequests!.contains(user.uid!) {
-                                Text("Requested")
-                                    .foregroundColor(.gray)
-                            }
-                            else {
-                                Button("Follow") {
-                                    if userViewModel.user.hasSetUsername! {
-                                        selectedUser = user
-                                        searchUserAlert = .follow
-                                        showAlert.toggle()
-                                    }
-                                    else {
-                                        missingUsername.toggle()
-                                    }
-                                }
-                                .padding([.trailing])
-                            }
+                            .padding()
                         }
-                        .padding()
                         Divider()
                     }
                 }

@@ -18,6 +18,10 @@ struct PostView: View {
     
     @EnvironmentObject var userViewModel: UserViewModel
     
+    @EnvironmentObject var navModel: NavModel
+    
+    @EnvironmentObject var profileMenuViewModel: ProfileMenuViewModel
+    
     @State var post: Post
     
     @Binding var togglePreview: Bool
@@ -39,17 +43,46 @@ struct PostView: View {
     var body: some View {
         VStack (alignment: .leading) {
             HStack (spacing: 0.1) {
-                Image(postUser.anim ?? "animLogoIcon")
-                    .resizable()
-                    .frame(width: 30, height: 30, alignment: .leading)
-                    .padding(5)
-                    .overlay(
-                        Circle()
-                            .stroke(.primary, lineWidth: 2)
-                    )
-                Text(post.username!)
-                    .padding([.leading])
-                    .fontWeight(.bold)
+                if postUser.uid! == userViewModel.user.uid! {
+                    Image(postUser.anim ?? "animLogoIcon")
+                        .resizable()
+                        .frame(width: 30, height: 30, alignment: .leading)
+                        .padding(5)
+                        .overlay(
+                            Circle()
+                                .stroke(.primary, lineWidth: 2)
+                                .foregroundColor(.primary)
+                        )
+                        .onTapGesture {
+                            navModel.currentPage = .profile
+                            profileMenuViewModel.icon = .user
+                        }
+                    Text(post.username!)
+                        .padding([.leading])
+                        .fontWeight(.bold)
+                        .foregroundColor(.black)
+                        .onTapGesture {
+                            navModel.currentPage = .profile
+                            profileMenuViewModel.icon = .user
+                        }
+                }
+                else {
+                    NavigationLink(destination: PublicProfile(selectedUser: postUser)) {
+                        Image(postUser.anim ?? "animLogoIcon")
+                            .resizable()
+                            .frame(width: 30, height: 30, alignment: .leading)
+                            .padding(5)
+                            .overlay(
+                                Circle()
+                                    .stroke(.primary, lineWidth: 2)
+                                    .foregroundColor(.primary)
+                            )
+                        Text(post.username!)
+                            .padding([.leading])
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                    }
+                }
                 Spacer()
                 if (postUser.uid! == userViewModel.user.uid!) {
                     Menu ("···") {
@@ -86,7 +119,7 @@ struct PostView: View {
                             Button("Follow") {
                                 if userViewModel.user.hasSetUsername! {
                                     showPostAlert.toggle()
-                                        postAlert = .follow
+                                    postAlert = .follow
                                 }
                                 else {
                                     missingUsername.toggle()
@@ -100,9 +133,9 @@ struct PostView: View {
             .padding(.top, 1)
             .padding([.leading])
             URLPreview(previewURL: URL(string: post.content!)!, togglePreview: $togglePreview)
-//            URLPreview2(urlString: post.content!)
-//                .frame(width: 100, height: 100)
-//                .padding([.horizontal], 4)
+            //            URLPreview2(urlString: post.content!)
+            //                .frame(width: 100, height: 100)
+            //                .padding([.horizontal], 4)
             //MARK: Caption
             VStack (alignment: .leading, spacing: 3) {
                 Text(post.caption!)

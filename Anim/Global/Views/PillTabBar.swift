@@ -18,13 +18,7 @@ struct PillTabBar: View {
             Group {
                 Spacer()
                 Button(action: {
-                    navModel.productEdge = Edge.leading
-                    navModel.cameraEdge = Edge.trailing
-                    navModel.exploreEdge = Edge.trailing
-                    navModel.socialEdge = Edge.trailing
-                    withAnimation() {
                         navModel.currentPage = .food
-                    }
                 }) {
                     if navModel.currentPage == .food {
                         VStack {
@@ -44,11 +38,7 @@ struct PillTabBar: View {
                 }
                 Spacer()
                 Button(action: {
-                    navModel.productEdge = Edge.leading
-                    navModel.cameraEdge = Edge.trailing
-                    withAnimation() {
                         navModel.currentPage = .explore
-                    }
                 }) {
                     if navModel.currentPage == .explore {
                         VStack {
@@ -69,11 +59,7 @@ struct PillTabBar: View {
                 
                 Spacer()
                 Button(action: {
-                    navModel.exploreEdge = Edge.leading
-                    navModel.socialEdge = Edge.trailing
-                    withAnimation() {
                         navModel.currentPage = .camera
-                    }
                 }) {
                     if navModel.currentPage == .camera {
                         VStack {
@@ -94,11 +80,7 @@ struct PillTabBar: View {
                 Spacer()
             }
             Button(action: {
-                navModel.cameraEdge = Edge.leading
-                navModel.exploreEdge = Edge.leading
-                withAnimation() {
                     navModel.currentPage = .social
-                }
             }) {
                 if navModel.currentPage == .social {
                     VStack {
@@ -119,13 +101,7 @@ struct PillTabBar: View {
             
             Spacer()
             Button(action: {
-                navModel.productEdge = Edge.leading
-                navModel.cameraEdge = Edge.leading
-                navModel.exploreEdge = Edge.leading
-                navModel.socialEdge = Edge.leading
-                withAnimation() {
                     navModel.currentPage = .profile
-                }
             }) {
                 if navModel.currentPage == .profile {
                     VStack {
