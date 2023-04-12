@@ -12,7 +12,7 @@ struct UserStats: View {
     @EnvironmentObject var userViewModel: UserViewModel
     
     var body: some View {
-        ScrollView(.horizontal){
+        ScrollView(.horizontal, showsIndicators: false){
             HStack {
                 Spacer()
                 VStack(){

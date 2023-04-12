@@ -29,6 +29,8 @@
 		43C035BB29B14D3600FB9A43 /* CameraTabsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C035BA29B14D3600FB9A43 /* CameraTabsOverlay.swift */; };
 		43C0361229B917A600FB9A43 /* TransitionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C0361129B917A600FB9A43 /* TransitionExtensions.swift */; };
 		43E23AA529941C3A00DC1B9B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43E23AA429941C3A00DC1B9B /* Launch Screen.storyboard */; };
+		43E3F17529E6102000926B50 /* PublicProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E3F17429E6102000926B50 /* PublicProfile.swift */; };
+		43E3F17729E6219900926B50 /* FollowRequestRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E3F17629E6219900926B50 /* FollowRequestRowView.swift */; };
 		43E4B775297F02C000538495 /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B774297F02C000538495 /* PagingView.swift */; };
 		43E4B777297F18C800538495 /* InstructionSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B776297F18C800538495 /* InstructionSlider.swift */; };
 		43E4B77929808EF100538495 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B77829808EF100538495 /* UserViewModel.swift */; };
@@ -143,6 +145,8 @@
 		43C035BA29B14D3600FB9A43 /* CameraTabsOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTabsOverlay.swift; sourceTree = "<group>"; };
 		43C0361129B917A600FB9A43 /* TransitionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionExtensions.swift; sourceTree = "<group>"; };
 		43E23AA429941C3A00DC1B9B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		43E3F17429E6102000926B50 /* PublicProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicProfile.swift; sourceTree = "<group>"; };
+		43E3F17629E6219900926B50 /* FollowRequestRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowRequestRowView.swift; sourceTree = "<group>"; };
 		43E4B774297F02C000538495 /* PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
 		43E4B776297F18C800538495 /* InstructionSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionSlider.swift; sourceTree = "<group>"; };
 		43E4B77829808EF100538495 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
@@ -351,6 +355,7 @@
 				435E402A29DDCA170063AD4B /* CommentsView.swift */,
 				435E402F29DDFC510063AD4B /* CreatePostButton.swift */,
 				435E403129DF7EE40063AD4B /* SearchUserPage.swift */,
+				43E3F17429E6102000926B50 /* PublicProfile.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -677,6 +682,7 @@
 				88A6415A29D1FBCD0004E5C3 /* FoodLogView.swift */,
 				88CE67E429D3FEB4000FF59A /* FoodLogInputView.swift */,
 				882D552C29D7556300487B46 /* RingView.swift */,
+				43E3F17629E6219900926B50 /* FollowRequestRowView.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -826,6 +832,7 @@
 				88BE153D294BBD6E001AE321 /* NavButton.swift in Sources */,
 				88339D3229DE398C0033B990 /* ProfileView.swift in Sources */,
 				88CE3C2929E0BC99009E5FF3 /* Ingredients.swift in Sources */,
+				43E3F17729E6219900926B50 /* FollowRequestRowView.swift in Sources */,
 				882D1E0329394CE4002EFDC8 /* SearchPage.swift in Sources */,
 				88CE3C2529E0B713009E5FF3 /* ProductImage.swift in Sources */,
 				43ECC6BF29DB3F50000E0497 /* ExploreViewModel.swift in Sources */,
@@ -841,6 +848,7 @@
 				88DA93812971EB6100674DB9 /* ProfileMenuViewModel.swift in Sources */,
 				88CE3C2029E0B5F2009E5FF3 /* FoodPage.swift in Sources */,
 				88DBFEEC29C4E9FE007C6E93 /* CameraMenu.swift in Sources */,
+				43E3F17529E6102000926B50 /* PublicProfile.swift in Sources */,
 				882D552D29D7556300487B46 /* RingView.swift in Sources */,
 				43E4B7922984547300538495 /* SearchResultButton.swift in Sources */,
 				88FC1D8E29E4764200814F22 /* MenuButtonStyle.swift in Sources */,

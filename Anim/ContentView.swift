@@ -31,123 +31,22 @@ struct ContentView: View {
             case .camera:
                 CameraView()
                     .edgesIgnoringSafeArea(.all)
-                    .gesture(DragGesture()
-                        .onEnded { value in
-                            let direction = detectDirection(value: value)
-                            if direction == .right {
-                                withAnimation {
-                                    navModel.currentPage.next()
-                                }
-                            }
-                        }
-                    )
-                    .transition(.move(edge: navModel.cameraEdge))
             case .food:
                 FoodPage()
                     .edgesIgnoringSafeArea(.all)
-                    .gesture(DragGesture()
-                        .onEnded { value in
-                            let direction = detectDirection(value: value)
-                            if direction == .left {
-                                navModel.productEdge = Edge.trailing
-                                withAnimation {
-                                    navModel.currentPage.previous()
-                                }
-                            }
-                            if direction == .right {
-                                navModel.productEdge = Edge.leading
-                                withAnimation {
-                                    navModel.currentPage.next()
-                                }
-                            }
-                        }
-                    )
-                    .onAppear {
-                        navModel.exploreEdge = Edge.trailing
-                    }
-                    .transition(.move(edge: navModel.productEdge))
             case .explore:
 //                SearchPage()
                 Search2()
-                    .gesture(DragGesture()
-                        .onEnded { value in
-                            let direction = detectDirection(value: value)
-                            if direction == .left {
-                                navModel.exploreEdge = Edge.trailing
-                                withAnimation  {
-                                    navModel.currentPage.previous()
-                                }
-                            }
-                            if direction == .right {
-                                navModel.exploreEdge = Edge.leading
-                                withAnimation {
-                                    navModel.currentPage.next()
-                                }
-                            }
-                        }
-                    )
-                    .transition(.move(edge: navModel.exploreEdge))
                 
             case .social:
                 ExplorePage()
-                    .gesture(DragGesture()
-                        .onEnded { value in
-                            let direction = detectDirection(value: value)
-                            if direction == .left {
-                                navModel.socialEdge = Edge.trailing
-                                withAnimation  {
-                                    navModel.currentPage.previous()
-                                }
-                            }
-                            if direction == .right {
-                                navModel.socialEdge = Edge.leading
-                                withAnimation {
-                                    navModel.currentPage.next()
-                                }
-                            }
-                        }
-                    )
-                    .transition(.move(edge: navModel.socialEdge))
                 
             case .profile:
                 ProfilePage(darkMode: $darkMode)
-                    .gesture(DragGesture()
-                        .onEnded { value in
-                            let direction = detectDirection(value: value)
-                            if direction == .left {
-                                withAnimation  {
-                                    navModel.currentPage.previous()
-                                }
-                            }
-                        }
-                    )
-                    .transition(.move(edge: navModel.profileEdge))
             case .animManager:
                 AnimManager()
-                    .gesture(DragGesture()
-                        .onEnded { value in
-                            let direction = detectDirection(value: value)
-                            if direction == .left {
-                                withAnimation  {
-                                    navModel.currentPage.previous()
-                                }
-                            }
-                        }
-                    )
-                    .transition(.move(edge: navModel.profileEdge))
             case .foodLog:
             FoodLogView()
-                    .gesture(DragGesture()
-                        .onEnded { value in
-                            let direction = detectDirection(value: value)
-                            if direction == .left {
-                                withAnimation  {
-                                    navModel.currentPage.previous()
-                                }
-                            }
-                        }
-                    )
-                    .transition(.move(edge: navModel.profileEdge))
             }
             if openedApp {
                 PillTabBar()
