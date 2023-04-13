@@ -35,26 +35,30 @@ struct PublicProfile: View {
                     VStack (alignment: .leading){
                         HStack{
                             Spacer()
-                            VStack {
-                                Text("Following")
-                                    .font(Font.custom("DMSans-Medium", size: 15))
-                                    .foregroundColor(Color("AnimGreen"))
-                                    .lineLimit(1)
-                                Text("\(selectedUser.following!.count)")
-                                    .font(Font.custom("DMSans-Medium", size: 15))
-                                    .foregroundColor(Color("AnimGreen"))
-                                    .lineLimit(1)
+                            NavigationLink(destination: FollowingListView(followingIDs: selectedUser.following!)) {
+                                VStack {
+                                    Text("Following")
+                                        .font(Font.custom("DMSans-Medium", size: 15))
+                                        .foregroundColor(Color("AnimGreen"))
+                                        .lineLimit(1)
+                                    Text("\(selectedUser.following!.count)")
+                                        .font(Font.custom("DMSans-Medium", size: 15))
+                                        .foregroundColor(Color("AnimGreen"))
+                                        .lineLimit(1)
+                                }
                             }
                             Spacer()
-                            VStack {
-                                Text("Followers")
-                                    .font(Font.custom("DMSans-Medium", size: 15))
-                                    .foregroundColor(Color("AnimGreen"))
-                                    .lineLimit(1)
-                                Text("\(selectedUser.followers!.count)")
-                                    .font(Font.custom("DMSans-Medium", size: 15))
-                                    .foregroundColor(Color("AnimGreen"))
-                                    .lineLimit(1)
+                            NavigationLink(destination: FollowerListView(followerIDs: selectedUser.followers!, ownProfile: false)) {
+                                VStack {
+                                    Text("Followers")
+                                        .font(Font.custom("DMSans-Medium", size: 15))
+                                        .foregroundColor(Color("AnimGreen"))
+                                        .lineLimit(1)
+                                    Text("\(selectedUser.followers!.count)")
+                                        .font(Font.custom("DMSans-Medium", size: 15))
+                                        .foregroundColor(Color("AnimGreen"))
+                                        .lineLimit(1)
+                                }
                             }
                             Spacer()
                         }
@@ -86,19 +90,24 @@ struct PublicProfile: View {
                     })
                 }
                 else if userViewModel.user.pendingRequests!.contains(selectedUser.uid!) {
-                    VStack {
-                        Text("Requested")
-                            .font(Font.custom("DMSans-Medium", size: 17))
-                            .frame(width: UIScreen.screenWidth - 40)
-                            .foregroundColor(.white)
-                            .padding(4)
-                    }
-                    .background(.gray)
-                    .clipShape(
-                        RoundedRectangle(
-                            cornerRadius: 8
+                    Button(action: {
+                        FirestoreRequests().cancelFollowRequest(userID: userViewModel.user.uid!, requesterID: selectedUser.uid!)
+                        userViewModel.user.pendingRequests! = userViewModel.user.pendingRequests!.filter {$0 != selectedUser.uid!}
+                    }, label: {
+                        VStack {
+                            Text("Cancel Request")
+                                .font(Font.custom("DMSans-Medium", size: 17))
+                                .frame(width: UIScreen.screenWidth - 40)
+                                .foregroundColor(.white)
+                                .padding(4)
+                        }
+                        .background(.gray)
+                        .clipShape(
+                            RoundedRectangle(
+                                cornerRadius: 8
+                            )
                         )
-                    )
+                    })
                 }
                 else {
                     Button(action: {

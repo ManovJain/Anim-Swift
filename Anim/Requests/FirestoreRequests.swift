@@ -998,5 +998,41 @@ class FirestoreRequests {
         ])
         
     }
+    
+    func cancelFollowRequest(userID: String, requesterID: String) {
+        
+        let db = Firestore.firestore()
+        
+        let user = db.collection("users").document(userID)
+
+        user.updateData([
+            "pendingRequests": FieldValue.arrayRemove([requesterID])
+        ])
+        
+        let requester = db.collection("users").document(requesterID)
+
+        requester.updateData([
+            "followRequests": FieldValue.arrayRemove([userID])
+        ])
+        
+    }
+    
+    func removeFollower(userID: String, followerID: String) {
+        
+        let db = Firestore.firestore()
+        
+        let user = db.collection("users").document(userID)
+
+        user.updateData([
+            "followers": FieldValue.arrayRemove([followerID])
+        ])
+        
+        let requester = db.collection("users").document(followerID)
+
+        requester.updateData([
+            "following": FieldValue.arrayRemove([userID])
+        ])
+        
+    }
 }
 
