@@ -16,6 +16,7 @@ struct FoodLogView: View {
     @EnvironmentObject var userViewModel: UserViewModel
     
     @State private var user = UserObj()
+    @State private var showingAlert = false
     
     let strawberry = Color(#colorLiteral(red: 1, green: 0.1857388616, blue: 0.5733950138, alpha: 1))
     let lime = Color(#colorLiteral(red: 0.5563425422, green: 0.9793455005, blue: 0, alpha: 1))
@@ -79,9 +80,23 @@ struct FoodLogView: View {
                         .foregroundColor(Color("AnimGreen"))
                 }
             }
+            Spacer()
+            Button{
+                showingAlert = true
+            } label: {
+                Image(systemName: "info.circle")
+                    .font(.system(size: 30))
+            }
+            .alert(isPresented:$showingAlert) {
+                Alert(
+                    title: Text("Nutrition"),
+                    message: Text("Nutrition is in beta, calories & macros will reset at CST midnight everyday."),
+                    dismissButton: .default((Text("Got it!")))
+                )
+            }
         }
     }
-
+    
 }
 
 struct FoodLogView_Previews: PreviewProvider {
