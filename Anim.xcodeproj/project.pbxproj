@@ -31,6 +31,10 @@
 		43E23AA529941C3A00DC1B9B /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43E23AA429941C3A00DC1B9B /* Launch Screen.storyboard */; };
 		43E3F17529E6102000926B50 /* PublicProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E3F17429E6102000926B50 /* PublicProfile.swift */; };
 		43E3F17729E6219900926B50 /* FollowRequestRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E3F17629E6219900926B50 /* FollowRequestRowView.swift */; };
+		43E3F17929E8787F00926B50 /* FollowingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E3F17829E8787F00926B50 /* FollowingListView.swift */; };
+		43E3F17B29E87D4D00926B50 /* FollowingListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E3F17A29E87D4D00926B50 /* FollowingListItem.swift */; };
+		43E3F17D29E87FC600926B50 /* FollowerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E3F17C29E87FC600926B50 /* FollowerListView.swift */; };
+		43E3F17F29E8812A00926B50 /* FollowerListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E3F17E29E8812A00926B50 /* FollowerListItem.swift */; };
 		43E4B775297F02C000538495 /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B774297F02C000538495 /* PagingView.swift */; };
 		43E4B777297F18C800538495 /* InstructionSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B776297F18C800538495 /* InstructionSlider.swift */; };
 		43E4B77929808EF100538495 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43E4B77829808EF100538495 /* UserViewModel.swift */; };
@@ -147,6 +151,10 @@
 		43E23AA429941C3A00DC1B9B /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		43E3F17429E6102000926B50 /* PublicProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicProfile.swift; sourceTree = "<group>"; };
 		43E3F17629E6219900926B50 /* FollowRequestRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowRequestRowView.swift; sourceTree = "<group>"; };
+		43E3F17829E8787F00926B50 /* FollowingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingListView.swift; sourceTree = "<group>"; };
+		43E3F17A29E87D4D00926B50 /* FollowingListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingListItem.swift; sourceTree = "<group>"; };
+		43E3F17C29E87FC600926B50 /* FollowerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListView.swift; sourceTree = "<group>"; };
+		43E3F17E29E8812A00926B50 /* FollowerListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListItem.swift; sourceTree = "<group>"; };
 		43E4B774297F02C000538495 /* PagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
 		43E4B776297F18C800538495 /* InstructionSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionSlider.swift; sourceTree = "<group>"; };
 		43E4B77829808EF100538495 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
@@ -683,6 +691,10 @@
 				88CE67E429D3FEB4000FF59A /* FoodLogInputView.swift */,
 				882D552C29D7556300487B46 /* RingView.swift */,
 				43E3F17629E6219900926B50 /* FollowRequestRowView.swift */,
+				43E3F17829E8787F00926B50 /* FollowingListView.swift */,
+				43E3F17A29E87D4D00926B50 /* FollowingListItem.swift */,
+				43E3F17C29E87FC600926B50 /* FollowerListView.swift */,
+				43E3F17E29E8812A00926B50 /* FollowerListItem.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -828,6 +840,7 @@
 				88BE151B294BB2FC001AE321 /* Product.swift in Sources */,
 				88BE1515294BB2B8001AE321 /* Ingredient.swift in Sources */,
 				4355DEAD299193FC00C388A4 /* DismissButton.swift in Sources */,
+				43E3F17B29E87D4D00926B50 /* FollowingListItem.swift in Sources */,
 				88902BD329C14287001D41FD /* ListsView.swift in Sources */,
 				88BE153D294BBD6E001AE321 /* NavButton.swift in Sources */,
 				88339D3229DE398C0033B990 /* ProfileView.swift in Sources */,
@@ -875,6 +888,7 @@
 				88BE1519294BB2E1001AE321 /* Nutriments.swift in Sources */,
 				4355DEA9299178B200C388A4 /* IconModel.swift in Sources */,
 				88DBFEEA29C4E716007C6E93 /* Fridge.swift in Sources */,
+				43E3F17D29E87FC600926B50 /* FollowerListView.swift in Sources */,
 				43E4B775297F02C000538495 /* PagingView.swift in Sources */,
 				88BE1524294BB3C2001AE321 /* IngredientsList.swift in Sources */,
 				88C76D4129AC55F000289E57 /* GradeButton.swift in Sources */,
@@ -883,6 +897,8 @@
 				88DAABA429505DE4001E0AC6 /* AnimManager.swift in Sources */,
 				88E0412A298DD02800E4C823 /* Notifications.swift in Sources */,
 				43E4B77929808EF100538495 /* UserViewModel.swift in Sources */,
+				43E3F17929E8787F00926B50 /* FollowingListView.swift in Sources */,
+				43E3F17F29E8812A00926B50 /* FollowerListItem.swift in Sources */,
 				88DF4F8029E3413B00CA4EE7 /* FavoriteFoodButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

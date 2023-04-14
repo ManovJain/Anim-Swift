@@ -55,26 +55,30 @@ struct ProfileView: View {
                             }
                             HStack{
                                 Spacer()
-                                VStack {
-                                    Text("Following")
-                                        .font(Font.custom("DMSans-Medium", size: 15))
-                                        .foregroundColor(Color("AnimGreen"))
-                                        .lineLimit(1)
-                                    Text("\(userViewModel.user.following!.count)")
-                                        .font(Font.custom("DMSans-Medium", size: 15))
-                                        .foregroundColor(Color("AnimGreen"))
-                                        .lineLimit(1)
+                                NavigationLink(destination: FollowingListView(followingIDs: userViewModel.user.following!)) {
+                                    VStack {
+                                        Text("Following")
+                                            .font(Font.custom("DMSans-Medium", size: 15))
+                                            .foregroundColor(Color("AnimGreen"))
+                                            .lineLimit(1)
+                                        Text("\(userViewModel.user.following!.count)")
+                                            .font(Font.custom("DMSans-Medium", size: 15))
+                                            .foregroundColor(Color("AnimGreen"))
+                                            .lineLimit(1)
+                                    }
                                 }
                                 Spacer()
-                                VStack {
-                                    Text("Followers")
-                                        .font(Font.custom("DMSans-Medium", size: 15))
-                                        .foregroundColor(Color("AnimGreen"))
-                                        .lineLimit(1)
-                                    Text("\(userViewModel.user.followers!.count)")
-                                        .font(Font.custom("DMSans-Medium", size: 15))
-                                        .foregroundColor(Color("AnimGreen"))
-                                        .lineLimit(1)
+                                NavigationLink(destination: FollowerListView(followerIDs: userViewModel.user.followers!, ownProfile: true)) {
+                                    VStack {
+                                        Text("Followers")
+                                            .font(Font.custom("DMSans-Medium", size: 15))
+                                            .foregroundColor(Color("AnimGreen"))
+                                            .lineLimit(1)
+                                        Text("\(userViewModel.user.followers!.count)")
+                                            .font(Font.custom("DMSans-Medium", size: 15))
+                                            .foregroundColor(Color("AnimGreen"))
+                                            .lineLimit(1)
+                                    }
                                 }
                                 Spacer()
                             }

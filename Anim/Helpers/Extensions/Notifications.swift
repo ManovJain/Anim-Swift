@@ -17,4 +17,5 @@ extension NSNotification {
     static let refreshPost = Notification.Name.init("refreshPost")
     static let refreshComments = Notification.Name.init("refreshComments")
     static let usernameCreated = Notification.Name.init("usernameCreated")
+    static let refreshFollowers = Notification.Name.init("refreshFollowers")
 }
