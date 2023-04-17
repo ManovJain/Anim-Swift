@@ -115,7 +115,7 @@ struct ExplorePage: View {
                     }
                 }
             }
-            .overlay( ((userViewModel.state == .signedIn && (usernameSet || exploreViewModel.dismissedUsername)) ? CreatePostButton(missingUsername: $showUsernameMissingAlert).position(x: UIScreen.screenWidth - 30, y: UIScreen.screenHeight - 165) : nil)
+            .overlay( ((userViewModel.state == .signedIn && (usernameSet || exploreViewModel.dismissedUsername)) ? CreatePostButton(missingUsername: $showUsernameMissingAlert).position(x: UIScreen.screenWidth - 30, y: UIScreen.screenHeight - 170) : nil)
             )
             
         }

@@ -58,7 +58,7 @@ struct PostView: View {
                             profileMenuViewModel.icon = .user
                         }
                     Text(post.username!)
-                        .padding([.leading])
+                        .padding([.leading], 16)
                         .fontWeight(.bold)
                         .foregroundColor(.primary)
                         .onTapGesture {
@@ -133,6 +133,7 @@ struct PostView: View {
             .padding(.top, 1)
             .padding([.leading])
             URLPreview(previewURL: URL(string: post.content!)!, togglePreview: $togglePreview)
+                .padding([.horizontal], navModel.currentPage == .profile ? 0 : 8)
             //            URLPreview2(urlString: post.content!)
             //                .frame(width: 100, height: 100)
             //                .padding([.horizontal], 4)
