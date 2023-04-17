@@ -20,8 +20,8 @@ struct ProfilePage: View {
     var body: some View {
         VStack{
             switch profileMenuViewModel.icon.rawValue {
-            case "user":
-                ProfileView(display: "Posts")
+            case "settings":
+                LoginPage(darkMode: $darkMode, publicAccount: userViewModel.user.isPublic ?? false)
             case "Anim Manager":
                 AnimManager()
             case "favorites":
@@ -29,10 +29,10 @@ struct ProfilePage: View {
                     ListsView(selection: "favorites")
                 }
             default:
-                LoginPage(darkMode: $darkMode, publicAccount: userViewModel.user.isPublic ?? false)
+                ProfileView(display: "Posts")
             }
         }
-        .overlay(((userViewModel.state ==  .signedIn) ? ProfileMenu(): nil)
+        .overlay(((userViewModel.state ==  .signedIn) ? ProfileMenu(): nil)?.allowsHitTesting(true)
             .position(x: UIScreen.screenWidth/1.15, y:UIScreen.screenHeight/4.7)
         )
         .padding()

@@ -55,7 +55,7 @@ struct ProfileView: View {
                             }
                             HStack{
                                 Spacer()
-                                NavigationLink(destination: FollowingListView(followingIDs: userViewModel.user.following!)) {
+                                NavigationLink(destination: FollowingListView(followingIDs: userViewModel.user.following ?? [])) {
                                     VStack {
                                         Text("Following")
                                             .font(Font.custom("DMSans-Medium", size: 15))
@@ -87,7 +87,7 @@ struct ProfileView: View {
                     .padding([.horizontal], 18)
                     Spacer()
                         .frame(height: 20)
-                    UserStats()
+                    UserStats(user: userViewModel.user)
                         .padding([.horizontal], 18)
                     HStack(alignment: .center, spacing: 10){
                         Spacer()

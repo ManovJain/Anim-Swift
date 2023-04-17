@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserStats: View {
     
-    @EnvironmentObject var userViewModel: UserViewModel
+    @State var user: User
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false){
@@ -20,7 +20,7 @@ struct UserStats: View {
                         .font(Font.custom("DMSans-Medium", size: 15))
                         .foregroundColor(Color("AnimGreen"))
                         .lineLimit(1)
-                    Text("\(userViewModel.user.productsFromSearch!)")
+                    Text("\(user.productsFromSearch!)")
                         .font(Font.custom("DMSans-Medium", size: 15))
                         .foregroundColor(Color("AnimGreen"))
                         .lineLimit(1)
@@ -32,7 +32,7 @@ struct UserStats: View {
                         .font(Font.custom("DMSans-Medium", size: 15))
                         .foregroundColor(Color("AnimGreen"))
                         .lineLimit(1)
-                    Text("\(userViewModel.user.productsScanned!)")
+                    Text("\(user.productsScanned!)")
                         .font(Font.custom("DMSans-Medium", size: 15))
                         .foregroundColor(Color("AnimGreen"))
                         .lineLimit(1)
@@ -44,7 +44,7 @@ struct UserStats: View {
                         .font(Font.custom("DMSans-Medium", size: 15))
                         .foregroundColor(Color("AnimGreen"))
                         .lineLimit(1)
-                    Text("\(userViewModel.user.productsViewed!.count)")
+                    Text("\(user.productsViewed!.count)")
                         .font(Font.custom("DMSans-Medium", size: 15))
                         .foregroundColor(Color("AnimGreen"))
                         .lineLimit(1)
@@ -53,11 +53,5 @@ struct UserStats: View {
             }
             .frame(height: 35)
         }
-    }
-}
-
-struct UserStats_Previews: PreviewProvider {
-    static var previews: some View {
-        UserStats()
     }
 }

@@ -60,7 +60,7 @@ struct PostView: View {
                     Text(post.username!)
                         .padding([.leading])
                         .fontWeight(.bold)
-                        .foregroundColor(.black)
+                        .foregroundColor(.primary)
                         .onTapGesture {
                             navModel.currentPage = .profile
                             profileMenuViewModel.icon = .user
@@ -80,7 +80,7 @@ struct PostView: View {
                         Text(post.username!)
                             .padding([.leading])
                             .fontWeight(.bold)
-                            .foregroundColor(.black)
+                            .foregroundColor(.primary)
                     }
                 }
                 Spacer()

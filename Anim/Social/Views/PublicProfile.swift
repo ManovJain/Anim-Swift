@@ -131,7 +131,7 @@ struct PublicProfile: View {
                         )
                     })
                 }
-                UserStats()
+                UserStats(user: selectedUser)
                     .blur(radius: selectedUser.isPublic! ? 0 : 10)
                 Divider()
                 ScrollView(.vertical, showsIndicators: false) {

@@ -50,7 +50,7 @@ struct ContentView: View {
             }
             if openedApp {
                 PillTabBar()
-                    .position(x: UIScreen.screenWidth/2, y: UIScreen.screenHeight - 100)
+                    .position(x: UIScreen.screenWidth/2, y: UIScreen.screenHeight - 50)
             }
         }
         .background(Color("background"))

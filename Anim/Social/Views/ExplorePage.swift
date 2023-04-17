@@ -142,7 +142,7 @@ struct ExplorePage: View {
         }
         .onAppear {
             if userViewModel.state == .signedIn {
-                usernameSet = userViewModel.user.hasSetUsername!
+                usernameSet = userViewModel.user.hasSetUsername ?? false
             }
             
             FirestoreRequests().getAllPosts { data in
@@ -175,7 +175,7 @@ struct ExplorePage: View {
         
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.usernameCreated)) { object in
             if userViewModel.state == .signedIn {
-                usernameSet = userViewModel.user.hasSetUsername!
+                usernameSet = userViewModel.user.hasSetUsername ?? true
             }
         }
     }
