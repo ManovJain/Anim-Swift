@@ -23,9 +23,9 @@ struct FoodButtonView: View {
                 }
             }
             if !(userViewModel.user.favorites!.contains((product._id)!)) {
-                FavoriteFoodButton(favorited: false, id: (product._id)!)
-            } else {
                 FavoriteFoodButton(favorited: true, id: (product._id)!)
+            } else {
+                FavoriteFoodButton(favorited: false, id: (product._id)!)
             }
             if((userViewModel.user.fridgeItems!.contains(product._id!) == true)){
                 Button {

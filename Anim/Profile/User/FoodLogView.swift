@@ -16,9 +16,7 @@ struct FoodLogView: View {
     @EnvironmentObject var userViewModel: UserViewModel
     
     @State private var user = UserObj()
-    @State var carbsProgressValue: Float = 0.0
-    @State var fatProgressValue: Float = 0.0
-    @State var proteinProgressValue: Float = 0.0
+    @State private var showingAlert = false
     
     let strawberry = Color(#colorLiteral(red: 1, green: 0.1857388616, blue: 0.5733950138, alpha: 1))
     let lime = Color(#colorLiteral(red: 0.5563425422, green: 0.9793455005, blue: 0, alpha: 1))
@@ -48,7 +46,7 @@ struct FoodLogView: View {
                         .foregroundColor(Color("AnimGreen"))
                         .lineLimit(1)
                         .frame(width: 100)
-                    ProgressView(value: carbsProgressValue, total: 100)
+                    ProgressView(value: Double(userViewModel.nutrition.carbs!), total: 100)
                         .frame(width: 100)
                         .tint(ice)
                     Text("\(userViewModel.nutrition.carbs!)")
@@ -61,7 +59,7 @@ struct FoodLogView: View {
                         .foregroundColor(Color("AnimGreen"))
                         .lineLimit(1)
                         .frame(width: 100)
-                    ProgressView(value: fatProgressValue, total: 100)
+                    ProgressView(value: Double(userViewModel.nutrition.fat!), total: 100)
                         .frame(width: 100)
                         .tint(strawberry)
                     Text("\(userViewModel.nutrition.fat!)")
@@ -74,7 +72,7 @@ struct FoodLogView: View {
                         .foregroundColor(Color("AnimGreen"))
                         .lineLimit(1)
                         .frame(width: 100)
-                    ProgressView(value: proteinProgressValue, total: 100)
+                    ProgressView(value: Double(userViewModel.nutrition.protein!), total: 100)
                         .frame(width: 100)
                         .tint(lime)
                     Text("\(userViewModel.nutrition.protein!)")
@@ -82,16 +80,23 @@ struct FoodLogView: View {
                         .foregroundColor(Color("AnimGreen"))
                 }
             }
-        }
-        .onAppear(){
-            carbsProgressValue = Float(userViewModel.nutrition.carbs!)/Float(userViewModel.nutrition.totalCarbs!)
-
-            fatProgressValue = Float(userViewModel.nutrition.carbs!)/Float(userViewModel.nutrition.totalFat!)
-
-            proteinProgressValue = Float(userViewModel.nutrition.carbs!)/Float(userViewModel.nutrition.totalProtein!)
+            Spacer()
+            Button{
+                showingAlert = true
+            } label: {
+                Image(systemName: "info.circle")
+                    .font(.system(size: 30))
+            }
+            .alert(isPresented:$showingAlert) {
+                Alert(
+                    title: Text("Nutrition"),
+                    message: Text("Nutrition is in beta, calories & macros will reset at CST midnight everyday."),
+                    dismissButton: .default((Text("Got it!")))
+                )
+            }
         }
     }
-
+    
 }
 
 struct FoodLogView_Previews: PreviewProvider {
