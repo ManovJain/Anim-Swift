@@ -35,6 +35,7 @@ final class CameraViewModel: ObservableObject {
     @Published var addingToFridge = false
     @Published var foundFridgeProduct = false
     @Published var notFoundFridgeProduct = false
+    @Published var productInFridge = false
     
     var recognizedDataType: DataScannerViewController.RecognizedDataType {
         scanType == .barcode ? .barcode() : .text(textContentType: textContentType)

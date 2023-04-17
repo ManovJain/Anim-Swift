@@ -12,10 +12,6 @@ struct CameraView: View {
     @EnvironmentObject var cameraViewModel: CameraViewModel
     @EnvironmentObject var userViewModel: UserViewModel
     
-    @State var foundFridgeProduct: Bool = false
-    
-    @State var notFoundFridgeProduct: Bool = false
-    
     var body: some View {
         VStack {
             switch cameraViewModel.dataScannerAccessStatus {
@@ -29,6 +25,9 @@ struct CameraView: View {
                            duration: Toast.short)
                     .toast(message: "Product not found",
                            isShowing: $cameraViewModel.notFoundFridgeProduct,
+                           duration: Toast.short)
+                    .toast(message: "Product already in fridge",
+                           isShowing: $cameraViewModel.productInFridge,
                            duration: Toast.short)
             case .cameraUnavailable:
                 Text("Your device does not have a camera")

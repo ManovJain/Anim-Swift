@@ -109,6 +109,7 @@ struct PostView: View {
                                     missingUsername.toggle()
                                 }
                             }
+                            .foregroundColor(.blue)
                             .padding([.trailing])
                         }
                         else if userViewModel.user.pendingRequests!.contains(postUser.uid!) {
@@ -125,6 +126,7 @@ struct PostView: View {
                                     missingUsername.toggle()
                                 }
                             }
+                            .foregroundColor(.blue)
                             .padding([.trailing])
                         }
                     }

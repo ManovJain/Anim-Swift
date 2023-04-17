@@ -75,7 +75,7 @@ struct Search2: View {
                             VStack{
                                 HStack(){
                                     Image(systemName: "clock")
-                                    Text("Recent Searches")
+                                    Text("Recently Viewed")
                                 }
                                 ScrollView(.horizontal){
                                     HStack{
@@ -179,6 +179,10 @@ struct Search2: View {
                 if viewed.count > 7 {
                     productsViewed = viewed.suffix(7)
                 }
+                else {
+                    productsViewed = viewed
+                }
+                productsViewed = productsViewed.reversed()
             }
         }
         .onChange(of: searchText) { searchText in

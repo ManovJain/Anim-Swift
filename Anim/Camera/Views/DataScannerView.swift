@@ -88,6 +88,9 @@ struct DataScannerView: UIViewControllerRepresentable {
                                     self.camModel.notFoundFridgeProduct.toggle()
                                 }
                                 else {
+                                    if self.userViewModel.user.fridgeItems!.contains(barcode) {
+                                        self.camModel.productInFridge.toggle()
+                                    }
                                     self.userViewModel.user.fridgeItems?.append(barcode)
                                     self.camModel.foundFridgeProduct.toggle()
                                 }

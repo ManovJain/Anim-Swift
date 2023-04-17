@@ -15,6 +15,7 @@ struct RecentSearchView: View {
     @EnvironmentObject var foodViewModel: FoodViewModel
     @EnvironmentObject var navModel: NavModel
     @EnvironmentObject var camModel: CameraViewModel
+    @EnvironmentObject var userViewModel: UserViewModel
     
     @State var product: Product?
     @State var status: Int?
@@ -51,18 +52,18 @@ struct RecentSearchView: View {
             networkRequests.getFoodByBarcode(barcode: id) { data in
                 if let data {
                     status = (data.status)!
-                    //these gave nil products
-                    //0795835873164
-                    //0646555007127
-                    if data.product == nil {
+                    if status == 0 {
                         print(id)
-                        //remove from userViewModel
-                    } else {
+                        userViewModel.user.productsViewed = userViewModel.user.productsViewed!.filter{ $0 != id }
+                    } else if status == 1 {
                         product = (data.product)!
                     }
                     
                 }
-                
+                else {
+                    print(id)
+                    userViewModel.user.productsViewed = userViewModel.user.productsViewed!.filter{ $0 != id }
+                }
             }
         }
     }
