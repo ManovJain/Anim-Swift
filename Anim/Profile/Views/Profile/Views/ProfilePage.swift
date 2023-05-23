@@ -32,6 +32,11 @@ struct ProfilePage: View {
                 ProfileView(display: "Posts")
             }
         }
+        .onAppear {
+            if userViewModel.state == .signedIn {
+                profileMenuViewModel.icon = .user
+            }
+        }
         .overlay(((userViewModel.state ==  .signedIn) ? ProfileMenu(): nil)?.allowsHitTesting(true)
             .position(x: UIScreen.screenWidth/1.15, y:UIScreen.screenHeight/4.7)
         )

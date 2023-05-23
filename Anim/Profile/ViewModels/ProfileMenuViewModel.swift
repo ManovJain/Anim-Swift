@@ -15,6 +15,6 @@ enum Icon: String {
 }
 
 final class ProfileMenuViewModel: ObservableObject {
-    @Published var icon: Icon = .user
+    @Published var icon: Icon = .settings
 }
 
