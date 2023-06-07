@@ -1,156 +1,131 @@
 import SwiftUI
-import Combine
 
 struct ProfileMenu: View {
-
     @EnvironmentObject var navModel: NavModel
     @EnvironmentObject var profileMenuViewModel: ProfileMenuViewModel
-    
-    @State private var icon = "settings"
-    @State private var anim = "AppIcon" //dynamic
-    
-    @State var secondsElapsed = 0
-    @State var timer: Timer.TimerPublisher = Timer.publish(every: 1, on: .main, in: .common)
-    @State var connectedTimer: Cancellable? = nil
-    
-    @State var opacity = 1.0
+    @State private var isExpanded = false
     
     var body: some View {
         VStack {
-            Spacer()
-            Button(action: {
-                self.resetCounter()
-                    withAnimation {
-                        opacity = 1
+            if isExpanded {
+                ForEach(Icon.allCases, id: \.self) { icon in
+                    if profileMenuViewModel.icon != icon {
+                        Button(action: {
+                            withAnimation {
+                                isExpanded.toggle()
+                            }
+                            profileMenuViewModel.icon = icon
+                        }) {
+                            icon.normalImage
+                                .font(.system(size: 20))
+                                .foregroundColor(.primary)
+                        }
+                        .padding(.vertical, 4)
                     }
-                profileMenuViewModel.icon = .user
-            }) {
-                if profileMenuViewModel.icon.rawValue == "user" {
-                    Image(systemName: "person.fill")
+                    else {
+                        Button(action: {
+                            withAnimation {
+                                isExpanded.toggle()
+                            }
+                            profileMenuViewModel.icon = icon
+                        }) {
+                            profileMenuViewModel.icon.selectedImage
+                                .font(.system(size: 20))
+                                .foregroundColor(Color("AnimGreen"))
+                        }
+                        .padding(.vertical, 4)
+                    }
+                }
+            }
+            else {
+                Button(action: {
+                    withAnimation {
+                        isExpanded.toggle()
+                    }
+                }) {
+                    profileMenuViewModel.icon.selectedImage
                         .font(.system(size: 20))
                         .foregroundColor(Color("AnimGreen"))
                 }
-                else {
-                    Image(systemName: "person")
-                        .font(.system(size: 20))
-                        .foregroundColor(.primary)
-                }
             }
-            Spacer()
-            
-            Button(action: {
-                self.resetCounter()
-                withAnimation {
-                    opacity = 1
-                }
-                profileMenuViewModel.icon = .animManager
-            }) {
-                if profileMenuViewModel.icon.rawValue == "Anim Manager" {
-                    Image("animLogoIconGreen")
-                        .resizable()
-                        .frame(width: 23, height: 23)
-                        .font(.system(size: 20))
-                }
-                else {
-                    Image("animLogoIcon")
-                        .resizable()
-                        .frame(width: 23, height: 23)
-                        .font(.system(size: 20))
-                }
-            }
-            Spacer()
-            
-            Button(action: {
-                self.resetCounter()
-                withAnimation {
-                    opacity = 1
-                }
-                profileMenuViewModel.icon = .favorites
-            }) {
-                if profileMenuViewModel.icon.rawValue == "favorites" {
-                    Image(systemName: "star.fill")
-                        .font(.system(size: 20))
-                        .foregroundColor(Color("AnimGreen"))
-                }
-                else {
-                    Image(systemName: "star")
-                        .font(.system(size: 20))
-                        .foregroundColor(.primary)
-                }
-            }
-            Spacer()
-            
-            Button(action: {
-                self.resetCounter()
-                withAnimation {
-                    opacity = 1
-                }
-                profileMenuViewModel.icon = .settings
-            }) {
-                if profileMenuViewModel.icon.rawValue == "settings" {
-                    Image(systemName: "gear")
-                        .font(.system(size: 20))
-                        .foregroundColor(Color("AnimGreen"))
-                }
-                else {
-                    Image(systemName: "gear")
-                        .font(.system(size: 20))
-                        .foregroundColor(.primary)
-                }
-            }
-            Spacer()
         }
-        .frame(width: 40,height: 200)
+        .frame(width: 40, height: isExpanded ? CGFloat(40 + (Icon.allCases.count * 30)) : 40) // Adjust the height based on the number of items in the menu
         .background(Color(.lightGray).opacity(0.75))
         .clipShape(Capsule())
-        .opacity(opacity)
-        .onAppear(){
-            self.instantiateTimer()
-        }
-        
-        .onReceive(timer) { _ in
-            self.secondsElapsed += 1
-            if secondsElapsed >= 5 && opacity > 0.5 {
-                withAnimation {
-                    opacity = 0.2
-                }
-                self.resetCounter()
+        .overlay(
+            GeometryReader { geometry in
+                Color.clear
+                    .preference(
+                        key: IconPreferenceKey.self,
+                        value: IconPreferenceData(iconSize: geometry.size, iconFrame: geometry.frame(in: .global))
+                    )
             }
+        )
+        .onPreferenceChange(IconPreferenceKey.self) { value in
+            profileMenuViewModel.iconFrame = value.iconFrame
         }
-    }
-    
-    func getIcon() -> String{
-        return icon
-    }
-    
-    func instantiateTimer() {
-        self.timer = Timer.publish(every: 1, on: .main, in: .common)
-        self.connectedTimer = self.timer.connect()
-        return
-    }
-    
-    func cancelTimer() {
-        self.connectedTimer?.cancel()
-        return
-    }
-    
-    func resetCounter() {
-        self.secondsElapsed = 0
-        return
-    }
-    
-    func restartTimer() {
-        self.secondsElapsed = 0
-        self.cancelTimer()
-        self.instantiateTimer()
-        return
     }
 }
 
 
 
-struct ProfileMenu_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileMenu()
+
+struct IconPreferenceKey: PreferenceKey {
+    static var defaultValue: IconPreferenceData = .zero
+    
+    static func reduce(value: inout IconPreferenceData, nextValue: () -> IconPreferenceData) {
+        value = nextValue()
+    }
+}
+
+struct IconPreferenceData: Equatable {
+    let iconSize: CGSize
+    let iconFrame: CGRect
+    
+    static var zero: IconPreferenceData {
+        IconPreferenceData(iconSize: .zero, iconFrame: .zero)
+    }
+}
+
+enum Icon: String, CaseIterable {
+    case user
+    case animManager
+    case favorites
+    case settings
+    
+    var normalImage: AnyView {
+        switch self {
+        case .user:
+            return AnyView(Image(systemName: "person"))
+        case .animManager:
+            return AnyView(
+                Image("animLogoIcon")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 20, height: 20) // Adjust the size here
+            )
+        case .favorites:
+            return AnyView(Image(systemName: "star"))
+        case .settings:
+            return AnyView(Image(systemName: "gear"))
+        }
+    }
+    
+    var selectedImage: AnyView {
+        switch self {
+        case .user:
+            return AnyView(Image(systemName: "person.fill"))
+        case .animManager:
+            return AnyView(
+                Image("animLogoIconGreen")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 20, height: 20) // Adjust the size here
+            )
+        case .favorites:
+            return AnyView(Image(systemName: "star.fill"))
+        case .settings:
+            return AnyView(Image(systemName: "gear"))
+        }
     }
 }

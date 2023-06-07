@@ -22,7 +22,7 @@ struct ProfilePage: View {
             switch profileMenuViewModel.icon.rawValue {
             case "settings":
                 LoginPage(darkMode: $darkMode, publicAccount: userViewModel.user.isPublic ?? false)
-            case "Anim Manager":
+            case "animManager":
                 AnimManager()
             case "favorites":
                 VStack{
