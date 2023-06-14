@@ -38,7 +38,7 @@ struct ProfilePage: View {
             }
         }
         .overlay(((userViewModel.state ==  .signedIn) ? ProfileMenu(): nil)?.allowsHitTesting(true)
-            .position(x: UIScreen.screenWidth/1.15, y:UIScreen.screenHeight/4.7)
+            .position(x: UIScreen.screenWidth/1.15, y: 65)
         )
         .padding()
         .frame(
