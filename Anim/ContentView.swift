@@ -25,7 +25,11 @@ struct ContentView: View {
     let defaults = UserDefaults.standard
     
     var body: some View {
-        ProductView()
+        ZStack {
+            ProductView()
+                            PillTabBar()
+                                .position(x: UIScreen.screenWidth/2, y: UIScreen.screenHeight - 50)
+        }
         
 //        ZStack {
 //            switch navModel.currentPage {

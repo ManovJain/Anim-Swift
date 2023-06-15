@@ -13,38 +13,34 @@ struct ProductView: View {
     
     @State var nutrientLevels = [NutrientLevelKey]()
     
-    var data = [
-        "Beatles",
-        "Pearl Jam",
-        "REM",
-        "Guns n Roses",
-        "Red Hot Chili Peppers",
-        "No Doubt",
-        "Nirvana",
-        "Tom Petty and the Heart Breakers",
-        "The Eagles"
-        ]
-    
     var body: some View {
         VStack {
             if let product = product {
                 if product.image_front_url != nil {
                     ProductImage(product: product)
                 }
-                GeometryReader { geometryProxy in
-                        FlexibleView(
-                            availableWidth: geometryProxy.size.width, data: nutrientLevels,
-                                    spacing: 10,
-                                    alignment: .leading
-                                  ) { item in
-                                      QuickTag(nutrient: item.value.0, level: item.value.1)
-                                  }
-                                  .padding(.horizontal)
-                        }
+                ScrollView {
+                    VStack (alignment: .leading){
+                            FlexibleView(
+                                availableWidth: UIScreen.screenWidth, data: nutrientLevels,
+                                spacing: 10,
+                                alignment: .leading
+                            ) { item in
+                                QuickTag(nutrient: item.value.0, level: item.value.1)
+                            }
+                            .padding(.horizontal)
+                        Divider()
+                        Text("Nutrition Information")
+                            .foregroundColor(.gray)
+                            .padding(.horizontal)
+                            .multilineTextAlignment(.leading)
+                            .font(.system(size: 14))
+                    }
+                }
             }
         }
         .onAppear {
-            NetworkRequests().getFoodByBarcode(barcode: "013000006057") { data in
+            NetworkRequests().getFoodByBarcode(barcode: "0048500008607") { data in
                 product = data?.product
                 if let nutrients = product?.nutrient_levels {
                     if let fat = nutrients.fat {
@@ -62,11 +58,5 @@ struct ProductView: View {
                 }
             }
         }
-    }
-}
-
-struct ProductView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductView()
     }
 }

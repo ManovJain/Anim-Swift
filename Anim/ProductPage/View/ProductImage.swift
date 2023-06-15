@@ -43,7 +43,7 @@ struct ProductImage: View {
                     }
             }
             Text(product.product_name_en!.capitalized)
-                .padding()
+                .padding([.horizontal])
                 .bold()
                 .font(.system(size: 18))
         }
