@@ -1,7 +1,7 @@
 import SwiftUI
 import CachedAsyncImage
 
-struct ProductImage: View {
+struct ProductImage_Old: View {
         var imageURL: String
         var grade: String
         

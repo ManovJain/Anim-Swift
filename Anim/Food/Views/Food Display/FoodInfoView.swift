@@ -16,10 +16,10 @@ struct FoodInfoView: View {
                     .foregroundColor(.primary)
                     .multilineTextAlignment(.center)
                 if let imageURL = foundProduct.image_front_url {
-                    ProductImage(imageURL: imageURL, grade: foundProduct.nutriscore_grade ?? "NA", gradeAlertShown: $gradeAlertShown)
+                    ProductImage_Old(imageURL: imageURL, grade: foundProduct.nutriscore_grade ?? "NA", gradeAlertShown: $gradeAlertShown)
                 }
                 else {
-                    ProductImage(imageURL: "https://i.imgur.com/9eJFAzo.png", grade: foundProduct.nutriscore_grade ?? "NA", gradeAlertShown: $gradeAlertShown)
+                    ProductImage_Old(imageURL: "https://i.imgur.com/9eJFAzo.png", grade: foundProduct.nutriscore_grade ?? "NA", gradeAlertShown: $gradeAlertShown)
                 }
                 FoodButtonView(nutriments: foundProduct.nutriments!, product: foundProduct)
             }

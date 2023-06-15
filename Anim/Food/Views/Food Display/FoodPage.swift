@@ -95,6 +95,7 @@ struct FoodPage: View {
                     findingProduct = true
                     status = foodViewModel.status
                     product = foodViewModel.product
+                    print(product?._id)
                     if let addProduct = foodViewModel.product {
                         FirestoreRequests().addProduct(addProduct: addProduct)
                     }
