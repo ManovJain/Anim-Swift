@@ -13,6 +13,8 @@ struct ProductView: View {
     
     @State var nutrientLevels = [NutrientLevelKey]()
     
+    @State var ingredientsList: String = ""
+    
     var body: some View {
         VStack {
             if let product = product {
@@ -30,11 +32,33 @@ struct ProductView: View {
                             }
                             .padding(.horizontal)
                         Divider()
-                        Text("Nutrition Information")
-                            .foregroundColor(.gray)
-                            .padding(.horizontal)
-                            .multilineTextAlignment(.leading)
-                            .font(.system(size: 14))
+                        if let nutriments = product.nutriments {
+                            Text("Nutrition Information")
+                                .foregroundColor(.gray)
+                                .padding(.horizontal)
+                                .padding([.top], 4)
+                                .multilineTextAlignment(.leading)
+                                .font(.system(size: 18))
+                            NutritionFacts(nutriments: nutriments)
+                                .padding([.horizontal])
+                                .padding([.top], 4)
+                                .padding([.bottom], 8)
+                            Divider()
+                        }
+                        if let ingredients = product.ingredients {
+                            Text("Ingredients")
+                                .bold()
+                                .padding(.horizontal)
+                                .padding([.top], 4)
+                                .multilineTextAlignment(.leading)
+                                .font(.system(size: 18))
+                            Text(ingredientsList)
+                                .lineSpacing(10)
+                                .foregroundColor(.gray)
+                                .padding([.horizontal])
+                                .padding([.top], 4)
+                                .padding([.bottom], 8)
+                        }
                     }
                 }
             }
@@ -56,6 +80,29 @@ struct ProductView: View {
                         nutrientLevels.append(NutrientLevelKey(value: ("Saturated Fat" , sfat)))
                     }
                 }
+                if let ingredients = product!.ingredients {
+                    let ingredientCount = ingredients.count
+                    if ingredientCount > 0 {
+                        for (index, ingredient) in ingredients.enumerated() {
+                            let isLastIngredient = index == ingredientCount - 1
+                            let ingredientText = ingredient.text!.lowercased()
+                            
+                            if index == 0 {
+                                // Capitalize the first letter of the first ingredient
+                                let firstIngredientText = ingredientText.prefix(1).capitalized + ingredientText.dropFirst()
+                                ingredientsList += firstIngredientText
+                            } else if isLastIngredient {
+                                // Handle the last ingredient without the comma
+                                ingredientsList += " and " + ingredientText
+                            } else {
+                                ingredientsList += ", " + ingredientText
+                            }
+                        }
+                        
+                        ingredientsList += "."
+                    }
+                }
+
             }
         }
     }

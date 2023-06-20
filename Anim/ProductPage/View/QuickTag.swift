@@ -15,10 +15,10 @@ struct QuickTag: View {
     var body: some View {
         Text(getEmoji(level:level) + "  " + level.capitalized + " In " + nutrient.capitalized)
             .bold()
-            .font(.system(size: 12))
+            .font(.system(size: 16))
             .padding(8)
             .background(.gray.opacity(0.2))
-            .clipShape(Capsule())
+            .cornerRadius(8)
     }
 }
 
