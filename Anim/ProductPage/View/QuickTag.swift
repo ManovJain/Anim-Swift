@@ -15,7 +15,7 @@ struct QuickTag: View {
     var body: some View {
         Text(getEmoji(level:level) + "  " + level.capitalized + " In " + nutrient.capitalized)
             .bold()
-            .font(.system(size: 16))
+            .font(Font.custom("DMSans-Medium", size: 14))
             .padding(8)
             .background(.gray.opacity(0.2))
             .cornerRadius(8)

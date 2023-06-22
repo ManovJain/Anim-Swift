@@ -45,7 +45,7 @@ struct ProductImage: View {
             Text(product.product_name_en!.capitalized)
                 .padding([.horizontal])
                 .bold()
-                .font(.system(size: 22))
+                .font(Font.custom("DMSans-Medium", size: 22))
         }
         
     }
