@@ -216,7 +216,7 @@ struct ProfileView: View {
                             if nutritionDisplay == "FoodLog" {
                                 Button("Input", action: {nutritionDisplay = "Input"})
                                     .buttonStyle(MenuButtonStyle())
-                                FoodLogView()
+//                                FoodLogView()
                             }
                             else {
                                 Button("Food Log", action: {nutritionDisplay = "FoodLog"})

@@ -46,7 +46,8 @@ struct ContentView: View {
             case .animManager:
                 AnimManager()
             case .foodLog:
-            FoodLogView()
+                AnimManager()
+//                FoodLogView()
             }
             if openedApp {
                 PillTabBar()
