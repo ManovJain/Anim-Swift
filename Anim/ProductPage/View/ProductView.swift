@@ -111,7 +111,7 @@ struct ProductView: View {
                                         .padding([.top], 4)
                                         .multilineTextAlignment(.leading)
                                         .font(Font.custom("DMSans-Medium", size: 18))
-                                    Text("This product recieved a nutriscore grade of \(grade.uppercased()). This is a grade calculated by the Food Standards Agency by comparing negative and positive ingredients in a product. Be aware this grade is only meant to give a general idea of the nutrional value of the product and you should do your own research into what a healthy product means to you.")
+                                    Text("This product recieved a nutriscore grade of \(grade.uppercased()). This is a grade calculated by the Food Standards Agency by comparing negative and positive ingredients in a product. Be aware this grade is only meant to give a general idea of the nutrional value of the product and you should do your own research into what a healthy product means to you.\n\n")
                                         .lineSpacing(7)
                                         .foregroundColor(.gray)
                                         .padding([.horizontal])
@@ -124,6 +124,9 @@ struct ProductView: View {
             }
         }
         .overlay(product?.nutriments?.proteins_unit != nil ? LogButton(nutriments: (product?.nutriments)!, numServings: $numServings) : nil, alignment: .bottom)
+        .overlay(((userViewModel.state ==  .signedIn && product != nil) ? FoodButtons(product: product!): nil)?.allowsHitTesting(true)
+            .position(x: UIScreen.screenWidth/1.15, y: 65)
+        )
         .padding(.bottom, 40)
         .onAppear {
             if camModel.scannedBarcode != "No Barcode Scanned Yet" {
