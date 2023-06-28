@@ -25,7 +25,7 @@ struct ContentView: View {
     let defaults = UserDefaults.standard
     
     var body: some View {
-        ZStack {
+        VStack (spacing: 0) {
             switch navModel.currentPage {
             case .camera:
                 CameraView()
@@ -48,7 +48,7 @@ struct ContentView: View {
             }
             if openedApp {
                 PillTabBar()
-                    .position(x: UIScreen.screenWidth/2, y: UIScreen.screenHeight - 50)
+//                    .position(x: UIScreen.screenWidth/2, y: UIScreen.screenHeight - 50)
             }
         }
         .background(Color("background"))

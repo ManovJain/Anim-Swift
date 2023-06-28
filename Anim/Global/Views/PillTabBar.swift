@@ -125,6 +125,5 @@ struct PillTabBar: View {
         .frame(width: UIScreen.screenWidth, height: 50)
         .background(Color("background"))
         .border(width: 0.75, edges: [.top], color: Color("AnimGreen"))
-        .padding(.bottom, 110)
     }
 }

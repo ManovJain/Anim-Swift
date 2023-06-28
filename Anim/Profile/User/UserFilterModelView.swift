@@ -114,7 +114,7 @@ struct UserFilterModalView: View {
                     .buttonStyle(.plain)
                     Spacer()
                 }
-                .frame(width: 200,height: 40)
+                .frame(width: 200)
                 .background(Color("AnimGreen"))
                 .clipShape(Capsule())
                 

@@ -24,6 +24,7 @@ struct LogButton: View {
             Spacer()
             
         }
+        .padding()
     }
     func addFood(){
         userViewModel.nutrition.calories! += Int((nutriments.energy_kcal_serving ?? 0) * Float(numServings))

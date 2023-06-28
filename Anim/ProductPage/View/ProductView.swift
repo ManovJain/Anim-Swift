@@ -127,8 +127,8 @@ struct ProductView: View {
         .overlay(((userViewModel.state ==  .signedIn && product != nil) ? FoodButtons(product: product!): nil)?.allowsHitTesting(true)
             .position(x: UIScreen.screenWidth/1.15, y: 65)
         )
-        .padding(.bottom, 40)
         .onAppear {
+            print(UIScreen.screenHeight/17)
             if camModel.scannedBarcode != "No Barcode Scanned Yet" {
                 findingProduct = true
                 NetworkRequests().getFoodByBarcode(barcode: camModel.scannedBarcode) { data in
