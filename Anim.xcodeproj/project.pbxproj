@@ -105,6 +105,7 @@
 		88BE151F294BB351001AE321 /* FoodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE151E294BB351001AE321 /* FoodViewModel.swift */; };
 		88BE1524294BB3C2001AE321 /* IngredientsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1523294BB3C2001AE321 /* IngredientsList.swift */; };
 		88BE1526294BB3E1001AE321 /* NutrientsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE1525294BB3E1001AE321 /* NutrientsPage.swift */; };
+		88C441052A4CE97500562241 /* FavoriteFoodButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C441042A4CE97500562241 /* FavoriteFoodButton.swift */; };
 		88C76D3D29A8826300289E57 /* FilterModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C76D3C29A8826300289E57 /* FilterModalView.swift */; };
 		88C76D4129AC55F000289E57 /* GradeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C76D4029AC55F000289E57 /* GradeButton.swift */; };
 		88C76D4329AC6F6B00289E57 /* GeoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C76D4229AC6F6B00289E57 /* GeoButton.swift */; };
@@ -217,6 +218,7 @@
 		88BE151E294BB351001AE321 /* FoodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewModel.swift; sourceTree = "<group>"; };
 		88BE1523294BB3C2001AE321 /* IngredientsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientsList.swift; sourceTree = "<group>"; };
 		88BE1525294BB3E1001AE321 /* NutrientsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutrientsPage.swift; sourceTree = "<group>"; };
+		88C441042A4CE97500562241 /* FavoriteFoodButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteFoodButton.swift; sourceTree = "<group>"; };
 		88C76D3C29A8826300289E57 /* FilterModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterModalView.swift; sourceTree = "<group>"; };
 		88C76D4029AC55F000289E57 /* GradeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeButton.swift; sourceTree = "<group>"; };
 		88C76D4229AC6F6B00289E57 /* GeoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoButton.swift; sourceTree = "<group>"; };
@@ -655,6 +657,7 @@
 		88CE3C2129E0B663009E5FF3 /* Food Display */ = {
 			isa = PBXGroup;
 			children = (
+				88C441042A4CE97500562241 /* FavoriteFoodButton.swift */,
 				430D1A0F299C2B9200FD43EC /* AnimEarnedAlert.swift */,
 			);
 			path = "Food Display";
@@ -849,6 +852,7 @@
 				430D1A10299C2B9200FD43EC /* AnimEarnedAlert.swift in Sources */,
 				43E4B77B2980969E00538495 /* DragGestures.swift in Sources */,
 				88339D2E29DDEB8E0033B990 /* RecentSearchView.swift in Sources */,
+				88C441052A4CE97500562241 /* FavoriteFoodButton.swift in Sources */,
 				88BE151B294BB2FC001AE321 /* Product.swift in Sources */,
 				43AC16752A3B777400334764 /* QuickTag.swift in Sources */,
 				88BE1515294BB2B8001AE321 /* Ingredient.swift in Sources */,

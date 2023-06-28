@@ -49,6 +49,14 @@ struct ProductView: View {
                     if product.image_front_url != nil {
                         ProductImage(product: product)
                     }
+                    else {
+                        VStack(alignment: .leading) {
+                            Text(product.product_name_en!.capitalized)
+                                .padding([.horizontal])
+                                .bold()
+                                .font(Font.custom("DMSans-Medium", size: 22))
+                        }
+                    }
                     ScrollView {
                         VStack (alignment: .leading){
                             FlexibleView(
