@@ -25,22 +25,20 @@ struct ContentView: View {
     let defaults = UserDefaults.standard
     
     var body: some View {
-        
-        ZStack {
+        VStack (spacing: 0) {
             switch navModel.currentPage {
             case .camera:
                 CameraView()
                     .edgesIgnoringSafeArea(.all)
             case .food:
-                FoodPage()
-                    .edgesIgnoringSafeArea(.all)
+                ProductView()
             case .explore:
 //                SearchPage()
                 Search2()
-                
+
             case .social:
                 ExplorePage()
-                
+
             case .profile:
                 ProfilePage(darkMode: $darkMode)
             case .animManager:
@@ -50,7 +48,7 @@ struct ContentView: View {
             }
             if openedApp {
                 PillTabBar()
-                    .position(x: UIScreen.screenWidth/2, y: UIScreen.screenHeight - 50)
+//                    .position(x: UIScreen.screenWidth/2, y: UIScreen.screenHeight - 50)
             }
         }
         .background(Color("background"))
@@ -61,13 +59,13 @@ struct ContentView: View {
             }
         }
         .overlay(openedApp ? nil : InstructionSlider(openedApp: $openedApp), alignment: .center)
-        
+
         .preferredColorScheme(darkMode ? .dark : .light)
-        
+
         .onAppear {
 
             openedApp = defaults.bool(forKey: "openedApp")
-            
+
             userViewModel.user.anim = defaults.string(forKey: "anim")
 
             //get user stored in default user if signedIn before is true

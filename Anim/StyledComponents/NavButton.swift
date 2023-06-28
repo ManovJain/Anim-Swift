@@ -1,5 +1,5 @@
 import SwiftUI
-import Foundation
+import Foundation 
 
 struct NavigationButton<Destination: View, Label: View>: View {
     var action: () -> Void = { }
