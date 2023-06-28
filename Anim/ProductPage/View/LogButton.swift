@@ -19,6 +19,13 @@ struct LogButton: View {
             Spacer()
             Stepper("", value: $numServings, in: 1...10)
                 .fixedSize()
+                .background(Color("AnimGreen"))
+                .cornerRadius(10)
+                .buttonStyle(PlainButtonStyle()) // Remove default button style
+                // Apply background and corner radius to buttons
+                .labelsHidden() // Hide the button labels to prevent overlap
+                    .background(Color("AnimGreen"))
+                    .cornerRadius(10)
             Button("LOG", action: { addFood()})
                 .buttonStyle(MenuButtonStyle())
             Spacer()
